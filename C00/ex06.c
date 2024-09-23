@@ -6,42 +6,63 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/09/12 21:39:24 by lilo          #+#    #+#                 */
-/*   Updated: 2024/09/12 23:48:02 by lilo          ########   odam.nl         */
+/*   Updated: 2024/09/23 18:13:20 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-int	ninety_nine_display(void)
+void ft_write(char left_tens, char left_units, char right_tens, char right_units)
 {
-	char	right_units;
-	char	right_tens;
 
-	right_units = '0';
-	right_tens = '0';
-
-	while(right_tens <= '9')
+	if (left_tens > right_tens)
 	{
-		right_units = '0';
-		while(right_units <= '9')
-		{
-			write(1, &right_tens,1);
-			write(1, &right_units, 1);
-			write(1, "\n", 1);
-			right_units++;
-		}
-		right_tens++;
+		return;
 	}
-	return(0);
+	if (left_tens == right_tens && left_units >= right_units)
+	{
+		return;
+	}
+
+	write(1, &left_tens, 1);
+	write(1, &left_units, 1);
+	write(1, " ", 1);
+	write(1, &right_tens, 1);
+	write(1, &right_units, 1);
+	write(1, ", ", 2);
 }
 
-int	ft_print_comb2(void)
+void ft_print_comb2(void)
 {
-	ninety_nine_display();
-	return(0);
+	char left_tens;
+	char left_units;
+	char right_units;
+	char right_tens;
+
+	left_tens = '0';
+	while (left_tens <= '9')
+	{
+		left_units = '0';
+		while (left_units <= '9')
+		{
+			right_tens = '0';
+			while (right_tens <= '9')
+			{
+				right_units = '0';
+				while (right_units <= '9')
+				{
+					ft_write(left_tens, left_units, right_tens, right_units);
+					right_units++;
+				}
+				right_tens++;
+			}
+			left_units++;
+		}
+		left_tens++;
+	}
 }
 
-int	main(void)
+int main(void)
 {
 	ft_print_comb2();
 	return (0);
