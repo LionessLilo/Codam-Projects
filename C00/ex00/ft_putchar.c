@@ -1,32 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ex02.c                                             :+:    :+:            */
+/*   ft_putchar.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2024/09/10 15:14:28 by lilo          #+#    #+#                 */
-/*   Updated: 2024/09/10 15:58:31 by lilo          ########   odam.nl         */
+/*   Created: 2024/09/10 14:42:16 by lilo          #+#    #+#                 */
+/*   Updated: 2024/09/25 15:26:15 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-void	ft_print_reverse_alphabet(void)
+void	ft_putchar(char c)
 {
-	char	c;
-
-	c = 'z';
-	while (c >= 'a')
-	{
-		write(1, &c, 1);
-		c = c - 1 ;
-	}
-	write(1, "\n", 1);
+	write(1, &c, 1);
 }
 
-int	main(void)
-{
-	ft_print_reverse_alphabet();
-	return (0);
-}
+// int	main(void)
+// {
+// 	char	c;
+
+// 	c = 'A';
+// 	ft_putchar(c);
+// 	return (0);
+// }

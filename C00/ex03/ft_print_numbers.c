@@ -1,36 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ex04.c                                             :+:    :+:            */
+/*   ft_print_numbers.c                                 :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2024/09/10 16:30:07 by lilo          #+#    #+#                 */
-/*   Updated: 2024/09/10 16:38:08 by lilo          ########   odam.nl         */
+/*   Created: 2024/09/10 16:21:47 by lilo          #+#    #+#                 */
+/*   Updated: 2024/09/25 15:29:02 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-void	ft_is_negative(int n)
+void	ft_print_numbers(void)
 {
-	if (n < 0)
-	{
-		write(1, "N", 1);
-	}
+	char	i;
 
-	else
+	i = '0';
+	while (i <= '9')
 	{
-		write(1, "P", 1);
+		write(1, &i, 1);
+		i++;
 	}
-	write(1, "\n", 1);
 }
 
-int	main(void)
-{
-	int	n;
-
-	n = 0;
-	ft_is_negative(n);
-	return (0);
-}
+// int	main(void)
+// {
+// 	ft_print_numbers();
+// 	return (0);
+// }
