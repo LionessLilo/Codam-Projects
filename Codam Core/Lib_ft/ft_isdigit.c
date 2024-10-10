@@ -6,25 +6,18 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/10/08 14:06:23 by llourens      #+#    #+#                 */
-/*   Updated: 2024/10/08 14:14:01 by llourens      ########   odam.nl         */
+/*   Updated: 2024/10/09 10:07:52 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <unistd.h>
 
-int	ft_isdigit(char *str)
+int	ft_isdigit(int c)
 {
-	int	i;
-
-	i = 0;
-	while (str[i] != '\0')
+	if (c >= '0' && c <= '9')
 	{
-		if (str[i] >= '0' && str[i] <= '9')
-		{
-			return (1);
-		}
-		i++;
+		return (1);
 	}
 	return (0);
 }

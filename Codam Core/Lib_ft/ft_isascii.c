@@ -1,33 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_memset.c                                        :+:    :+:            */
+/*   ft_isascii.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2024/10/09 17:07:55 by llourens      #+#    #+#                 */
-/*   Updated: 2024/10/10 09:29:04 by llourens      ########   odam.nl         */
+/*   Created: 2024/10/09 14:05:26 by llourens      #+#    #+#                 */
+/*   Updated: 2024/10/09 14:16:47 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-// memset(memory, value, bytes)
 #include <stdio.h>
 #include <unistd.h>
-#include "libft.h"
 
-void	*ft_memset(void *s, int c, size_t n)
+int	ft_isascii(int c)
 {
-	size_t			i;
-	unsigned char	*ns;
-
-	ns = (unsigned char *)s;
-	i = 0;
-
-	while (i < n)
+	if (c >= 0 && c <= 127)
 	{
-		ns[i] = (unsigned char)c;
-		write(1, &ns[i], 1);
-		i++;
+		return (1);
 	}
-	return (s);
+	return (0);
 }

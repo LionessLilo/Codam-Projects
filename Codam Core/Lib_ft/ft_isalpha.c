@@ -6,26 +6,19 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/10/08 12:21:06 by llourens      #+#    #+#                 */
-/*   Updated: 2024/10/08 14:15:51 by llourens      ########   odam.nl         */
+/*   Updated: 2024/10/09 10:10:38 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <unistd.h>
 
-int	ft_isalpha(char *str)
+int	ft_isalpha(int c)
 {
-	int	i;
-
-	i = 0;
-	while (str[i] != '\0')
+	if ((c >= 'A' && c <= 'Z')
+		|| (c >= 'a' && c <= 'z'))
 	{
-		if ((str[i] >= 'A' && str[i] <= 'Z')
-			|| (str[i] >= 'a' && str[i] <= 'z'))
-		{
-			return (1);
-		}
-		i++;
+		return (1);
 	}
 	return (0);
 }
