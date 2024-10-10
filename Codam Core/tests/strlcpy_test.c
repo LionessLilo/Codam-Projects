@@ -1,32 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_memset.c                                        :+:    :+:            */
+/*   strlcpy_test.c                                     :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2024/10/09 17:07:55 by llourens      #+#    #+#                 */
-/*   Updated: 2024/10/11 00:04:14 by llourens      ########   odam.nl         */
+/*   Created: 2024/10/10 23:02:23 by llourens      #+#    #+#                 */
+/*   Updated: 2024/10/10 23:04:46 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
-#include <unistd.h>
-#include "libft.h"
+#include <string.h>
 
-void	*ft_memset(void *s, int c, size_t n)
-{
-	size_t			i;
-	unsigned char	*ns;
-
-	ns = (unsigned char *)s;
-	i = 0;
-
-	while (i < n)
-	{
-		ns[i] = (unsigned char)c;
-		write(1, &ns[i], 1);
-		i++;
-	}
-	return (s);
+int main() {
+    char src[] = "Hello, world!";
+    char dest_small[5];
+    size_t result;
+    
+    result = ft_strlcpy(dest_small, src, sizeof(dest_small));
+    printf("Test - Expected length: %lu, Copied length: %lu, Destination string: \"%s\"\n", strlen(src), result, dest_small);
+    return 0;
 }

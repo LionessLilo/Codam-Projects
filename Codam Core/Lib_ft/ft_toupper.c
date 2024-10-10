@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   tests.c                                            :+:    :+:            */
+/*   ft_toupper.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2024/10/09 17:00:10 by llourens      #+#    #+#                 */
-/*   Updated: 2024/10/10 07:28:19 by llourens      ########   odam.nl         */
+/*   Created: 2024/10/10 23:34:12 by llourens      #+#    #+#                 */
+/*   Updated: 2024/10/11 00:10:08 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <unistd.h>
-#include "libft.h"
 
-int	main(void)
+int ft_toupper(int c)
 {
-	int	c = '\0';
-
-	printf("%d", ft_isascii(c));
-	return (0);
+	if (c >= 'a' && c <= 'z')
+	{
+		c = c - 32;
+	}
+	return (c);
 }
