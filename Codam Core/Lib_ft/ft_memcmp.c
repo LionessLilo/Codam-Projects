@@ -1,23 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_toupper.c                                       :+:    :+:            */
+/*   ft_memcmp.c                                        :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2024/10/10 23:34:12 by llourens      #+#    #+#                 */
-/*   Updated: 2024/10/11 10:44:56 by llourens      ########   odam.nl         */
+/*   Created: 2024/10/11 18:26:39 by llourens      #+#    #+#                 */
+/*   Updated: 2024/10/11 18:41:50 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <unistd.h>
-
-int	ft_toupper(int c)
+int	memcmp(const void *ptr1, const void *ptr2, size_t num)
 {
-	if (c >= 'a' && c <= 'z')
+	size_t	i;
+
+	i = 0;
+	while (i < num)
 	{
-		c = c - 32;
+		if (ptr1[i] != ptr2[i])
+		{
+			return (ptr1[i] - ptr2[i]);
+		}
+		if ((ptr1[i] == '\0' || ptr2[i] == '\0') && i < num)
+		{
+			return (ptr1[i] - ptr2[i]);
+		}
+		i++;
 	}
-	return (c);
+	return (0);
 }

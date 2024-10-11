@@ -1,23 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_toupper.c                                       :+:    :+:            */
+/*   ft_strrchr.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2024/10/10 23:34:12 by llourens      #+#    #+#                 */
-/*   Updated: 2024/10/11 10:44:56 by llourens      ########   odam.nl         */
+/*   Created: 2024/10/11 11:53:28 by llourens      #+#    #+#                 */
+/*   Updated: 2024/10/11 12:06:22 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <unistd.h>
+#include <string.h>
 
-int	ft_toupper(int c)
+char	*ft_strchr(const char *s, int c)
 {
-	if (c >= 'a' && c <= 'z')
+	int	i;
+
+	i = 0;
+	while (s[i] != '\0')
 	{
-		c = c - 32;
+		i++;
 	}
-	return (c);
+	while (i != 0)
+	{
+		if (s[i] == c)
+		{
+			return ((char *)s + i);
+		}
+		i--;
+	}
+	if (c == '\0')
+	{
+		return ((char *)s + i);
+	}
+	return (NULL);
 }
