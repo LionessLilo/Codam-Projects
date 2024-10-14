@@ -1,33 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_memset.c                                        :+:    :+:            */
+/*   memset_test.c                                      :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2024/10/09 17:07:55 by llourens      #+#    #+#                 */
-/*   Updated: 2024/10/10 09:29:04 by llourens      ########   odam.nl         */
+/*   Created: 2024/10/10 09:28:35 by llourens      #+#    #+#                 */
+/*   Updated: 2024/10/10 09:28:48 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-// memset(memory, value, bytes)
 #include <stdio.h>
 #include <unistd.h>
 #include "libft.h"
 
-void	*ft_memset(void *s, int c, size_t n)
+int	main(void)
 {
-	size_t			i;
-	unsigned char	*ns;
+    char buffer[20] = "Hello, World!";
+    
+    printf("Before ft_memset: %s\n", buffer);
+    ft_memset(buffer, '*', 3);
+    printf("\nAfter ft_memset: %s\n", buffer);
 
-	ns = (unsigned char *)s;
-	i = 0;
-
-	while (i < n)
-	{
-		ns[i] = (unsigned char)c;
-		write(1, &ns[i], 1);
-		i++;
-	}
-	return (s);
+    return 0;
 }

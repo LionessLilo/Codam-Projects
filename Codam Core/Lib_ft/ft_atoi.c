@@ -1,33 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_memset.c                                        :+:    :+:            */
+/*   ft_atoi.c                                          :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2024/10/09 17:07:55 by llourens      #+#    #+#                 */
-/*   Updated: 2024/10/10 09:29:04 by llourens      ########   odam.nl         */
+/*   Created: 2024/10/14 15:46:54 by llourens      #+#    #+#                 */
+/*   Updated: 2024/10/14 16:15:09 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-// memset(memory, value, bytes)
-#include <stdio.h>
-#include <unistd.h>
 #include "libft.h"
 
-void	*ft_memset(void *s, int c, size_t n)
+int	atoi(const char *nptr)
 {
-	size_t			i;
-	unsigned char	*ns;
+	int		i;
+	int		is_printable;
+	int		isa_digit;
+	char	os;
 
-	ns = (unsigned char *)s;
-	i = 0;
-
-	while (i < n)
+	while (i != 0)
 	{
-		ns[i] = (unsigned char)c;
-		write(1, &ns[i], 1);
+		is_printable = ft_isprint(nptr);
+		if (is_printable != 0)
+		{
+			if (nptr[i] == '+' || nptr[i] == '-')
+			{
+				os = nptr[i];
+				write(1, os, 1);
+				i++;
+			}
+			isa_digit = ft_isdigit(nptr);
+			if (isa_digit != 0)
+			{
+				
+			}
+		}
 		i++;
 	}
-	return (s);
+	return ();
 }
