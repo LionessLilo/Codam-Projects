@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/10/09 11:30:38 by llourens      #+#    #+#                 */
-/*   Updated: 2024/10/14 11:00:41 by llourens      ########   odam.nl         */
+/*   Updated: 2024/10/16 12:10:25 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,6 @@ char	*ft_strrchr(const char *s, int c);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 void	*ft_memchr(const void *s, int c, size_t n);
 char	*ft_strnstr(const char *big, const char *little, size_t len);
+char    *ft_strtrim(char const *s1, char const *set);
 
 #endif
