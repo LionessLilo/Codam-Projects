@@ -6,24 +6,34 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/10/15 13:42:38 by llourens      #+#    #+#                 */
-/*   Updated: 2024/10/17 08:23:39 by llourens      ########   odam.nl         */
+/*   Updated: 2024/10/17 09:30:53 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include <stdlib.h>
+#include "libft.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_substr(const char *s, unsigned int start, size_t len)
 {
+	char	*ret;
+
 	if (!s)
 	{
-		return (NULL);
+		return (0);
 	}
-    if (start > (ft_strlen((char *)s))
+	if (ft_strlen(s) < start)
 	{
-		
+		len = 0;
 	}
+	if (ft_strlen(s + start) < len)
+	{
+		len = ft_strlen(s + start);
+	}
+	ret = malloc(sizeof(char) * (len + 1));
+	if (!ret)
+	{
+		return (0);
+	}
+	ft_strlcpy(ret, s + start, len + 1);
+	return (ret);
 }
-// char const *s = main string
-// unsigned int start = index where the substring starts
-// size_t len = length of the substring

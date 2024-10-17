@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/10/16 11:29:12 by llourens      #+#    #+#                 */
-/*   Updated: 2024/10/16 22:47:23 by llourens      ########   odam.nl         */
+/*   Updated: 2024/10/17 09:09:37 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,11 +76,4 @@ char	*ft_strtrim(char const *s1, char const *set)
 	ft_strlcpy(new_trimmed, s1 + start_cpy, (size_t)(end_cpy - start_cpy + 1));
 	return (new_trimmed);
 	free(new_trimmed);
-}
-int	main(void)
-{
-	char const	*s1 = "***!*!jknjknji!!**!";
-	char const	*set = "*!";
-
-	printf("%s", ft_strtrim(s1, set));
 }

@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/10/14 08:36:32 by llourens      #+#    #+#                 */
-/*   Updated: 2024/10/14 11:21:18 by llourens      ########   odam.nl         */
+/*   Updated: 2024/10/17 09:11:10 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 	i_big = 0;
 	i_little = 0;
 	len_little = ft_strlen((char *)little);
-
 	if (len_little == 0)
 	{
 		return ((char *)big);
