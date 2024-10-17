@@ -1,41 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_atoi.c                                          :+:    :+:            */
+/*   ft_substr.c                                        :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2024/10/14 15:46:54 by llourens      #+#    #+#                 */
-/*   Updated: 2024/10/15 09:02:41 by llourens      ########   odam.nl         */
+/*   Created: 2024/10/15 13:42:38 by llourens      #+#    #+#                 */
+/*   Updated: 2024/10/17 08:23:39 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdlib.h>
 
-int	ft_atoi(const char *nptr)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	int	i;
-	int	result;
-	int	sign;
-
-	i = 0;
-	result = 0;
-	sign = 1;
-	while (nptr[i] == ' ' || nptr[i] == '\t' || nptr[i] == '\n'
-		|| nptr[i] == '\v' || nptr[i] == '\f' || nptr[i] == '\r')
+	if (!s)
 	{
-		i++;
+		return (NULL);
 	}
-	if (nptr[i] == '-' || nptr[i] == '+')
+    if (start > (ft_strlen((char *)s))
 	{
-		if (nptr[i] == '-')
-			sign = -1;
-		i++;
+		
 	}
-	while (ft_isdigit(nptr[i]) != 0)
-	{
-		result = result * 10 + (nptr[i] - '0');
-		i++;
-	}
-	return (result * sign);
 }
+// char const *s = main string
+// unsigned int start = index where the substring starts
+// size_t len = length of the substring
