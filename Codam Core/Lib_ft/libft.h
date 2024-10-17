@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/10/09 11:30:38 by llourens      #+#    #+#                 */
-/*   Updated: 2024/10/17 08:14:58 by llourens      ########   odam.nl         */
+/*   Updated: 2024/10/17 09:01:25 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,6 @@ void	*ft_calloc(size_t num, size_t size);
 void	*ft_memcpy(void *dest, const void *src, size_t n);
 char	*ft_strdup(const char *s);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
+char    *ft_strtrim(char const *s1, char const *set);
 
 #endif
