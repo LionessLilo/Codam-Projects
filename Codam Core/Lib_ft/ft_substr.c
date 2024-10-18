@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/10/15 13:42:38 by llourens      #+#    #+#                 */
-/*   Updated: 2024/10/17 09:30:53 by llourens      ########   odam.nl         */
+/*   Updated: 2024/10/18 08:03:49 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,18 @@
 char	*ft_substr(const char *s, unsigned int start, size_t len)
 {
 	char	*ret;
+	int		str_len;
 
 	if (!s)
 	{
 		return (0);
 	}
-	if (ft_strlen(s) < start)
+	str_len = ft_strlen((char *)s);
+	if ((unsigned int)str_len < start)
 	{
 		len = 0;
 	}
-	if (ft_strlen(s + start) < len)
+	if (str_len < (int)len)
 	{
 		len = ft_strlen(s + start);
 	}
