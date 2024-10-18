@@ -6,13 +6,32 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/10/17 09:35:49 by llourens      #+#    #+#                 */
-/*   Updated: 2024/10/18 11:06:46 by llourens      ########   odam.nl         */
+/*   Updated: 2024/10/18 18:31:41 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdlib.h>
 #include <string.h>
+#include <stdio.h>
+#include <unistd.h>
+
+static num_of_strings(char *changable_s, char c)
+{
+	int	number_of_commas;
+	int	i;
+	i = 0;
+	number_of_commas = 0;
+	while (s[i] != '\0' )
+	{
+		if (s[i] == c)
+		{
+			number_of_commas++;
+		}
+		i++;
+	}
+	return (number_of_commas);
+}
 
 static int	delimeter(char const *s, char c)
 {
@@ -36,11 +55,13 @@ char	**ft_split(char const *s, char c)
 	int		where_comma;
 	int		whole_str_len;
 	char	*changable_s;
-	char	**list;
+	char 	*list;
+	
 
 	changable_s = (char *)s;
 	i = 0;
-	while (i < 100000)
+	list = (char *)malloc(num_of_strings(changable_s, char c)(changable_s) * sizeof(char));
+	while (*s)
 	{
 		whole_str_len = ft_strlen(changable_s);
 		where_comma = delimeter(changable_s, c);
@@ -57,16 +78,13 @@ char	**ft_split(char const *s, char c)
 			changable_s[i - (where_comma + 1)] = changable_s[i];
 			i++;
 		}
-		if (ft_strlen(changable_s) == 0)
-		{
-			break ;
-		}
+		changable_s[i - (where_comma + 1)] = '\0';
 	}
 	return (list);
 }
 
 // String array
-	// char aray_name[max num of strings in the array][maximum numbers of characters that can be stored in each string] = {list of string};
+	// = (char *)malloc(size * sizeof(char));
 
 // How to copy into the array:
 
@@ -105,12 +123,16 @@ char	**ft_split(char const *s, char c)
 // NB!
 // End with a null pointer, so last item in the list should be a NULL pointer
 // Handle malloc errors
-void	main(void)
+
+int main()
 {
-	char	*test_string = "Hello,world,this,is,a,test";
-	char	delimitor = ",";
+    char str[] = "Bread,Milk,Eggs";
+    char delimiter = ',';
 
-	int t = delimeter(test_string, delimitor);
+    // Test your ft_split function (Step 1)
+    printf("Testing Step 1 with string: \"%s\" and delimiter: '%c'\n", str, delimiter);
+    ft_split(str, delimiter);
 
-	printf("%d", t);
+    return 0;
 }
+
