@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/10/16 10:06:54 by llourens      #+#    #+#                 */
-/*   Updated: 2024/10/16 12:05:27 by llourens      ########   odam.nl         */
+/*   Updated: 2024/10/20 00:16:12 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	{
 		return (NULL);
 	}
-	ptr = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
+	ptr = malloc(ft_strlen((char *)s1) + ft_strlen((char *)s2) + 1);
 	if (!ptr)
 	{
 		return (NULL);

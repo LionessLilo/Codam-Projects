@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/10/17 09:35:49 by llourens      #+#    #+#                 */
-/*   Updated: 2024/10/19 18:12:40 by llourens      ########   odam.nl         */
+/*   Updated: 2024/10/19 23:41:31 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,21 @@
 #include <stdio.h>
 #include <unistd.h>
 
-static free_mem(int i, char **list)
+static char	*allocate_substring(char *changable_s, int where_comma)
 {
-	int j;
+	char	*substring;
+
+	substring = (char *)malloc((where_comma + 1) * sizeof(char));
+	if (!substring)
+		return (NULL);
+	strncpy(substring, changable_s, where_comma);
+	substring[where_comma] = '\0';
+	return (substring);
+}
+
+static void	*free_mem(int i, char **list)
+{
+	int	j;
 
 	j = 0;
 	while (j < i)
@@ -37,16 +49,18 @@ static int	num_of_strings(char *changable_s, char c)
 
 	i = 0;
 	number_of_commas = 0;
-	while (changable_s[i] != '\0')
+	while (changable_s[i] != '\0' )
 	{
 		if (changable_s[i] == c)
+		{
 			number_of_commas++;
+		}
 		i++;
 	}
-	return (number_of_commas + 1);
+	return (number_of_commas);
 }
 
-static int	delimiter(char const *s, char c)
+static int	delimeter(char const *s, char c)
 {
 	int	d_i;
 
@@ -54,76 +68,54 @@ static int	delimiter(char const *s, char c)
 	while (s[d_i] != '\0')
 	{
 		if (s[d_i] == c)
+		{
 			return (d_i);
+		}
 		d_i++;
 	}
 	return (d_i);
 }
 
-static char	*allocate_substring(char *changable_s, int where_comma)
+char	**ft_split(char const *s, char c)
 {
-	char	*substring;
-
-	substring = (char *)malloc((where_comma + 1) * sizeof(char));
-	if (!substring)
-		return (NULL);
-	strncpy(substring, changable_s, where_comma);
-	substring[where_comma] = '\0';
-	return (substring);
-}
-
-static char	**split_string(char *changable_s, char c)
-{
-	char	**list;
-	int		i;
 	int		where_comma;
+	char	*changable_s;
+	char	**list;
+	int		num_list_items;
+	int		list_item_index;
 
-	i = 0;
-	list = (char **)malloc
-		((num_of_strings(changable_s, c) + 1) * sizeof(char *));
+	changable_s = (char *)s;
+	list_item_index = 0;
+	num_list_items = num_of_strings(changable_s, c) + 1;
+	list = malloc(num_list_items * sizeof(char *));
 	if (!list)
 		return (NULL);
 	while (*changable_s)
 	{
-		where_comma = delimiter(changable_s, c);
-		list[i] = allocate_substring(changable_s, where_comma);
-		if (!list[i])
-		{
-			free_mem(i, list);
-		}
-		i++;
-		changable_s = changable_s + where_comma;
-		if (*changable_s == c)
-			changable_s++;
+		where_comma = delimeter(changable_s, c);
+		list[list_item_index] = allocate_substring(changable_s, where_comma);
+		if (!list[list_item_index])
+			free_mem(list_item_index, list);
+		changable_s = changable_s + where_comma + 1;
+		list_item_index++;
 	}
-	list[i] = NULL;
+	list[num_list_items] = NULL;
 	return (list);
 }
 
-char	**ft_split(char const *s, char c)
+int main()
 {
-	char	*changable_s;
+	char str[] = "Bread,Milk,Eggs";
+	char delimiter = ',';
+	char	**splitted;
 
-	changable_s = (char *)s;
-	return (split_string(changable_s, c));
+	// Test your ft_split function (Step 1)
+	printf("Testing Step 1 with string: \"%s\" and delimiter: '%c'\n", str, delimiter);
+	splitted = ft_split(str, delimiter);
+	printf("first item: %s\n", splitted[0]);
+	printf("2nd item: %s\n", splitted[1]);
+	printf("3rd item: %s\n", splitted[2]);
+
+	return 0;
 }
 
-int	main(void)
-{
-	char	str[] = "Bread,Milk,Eggs";
-	char	delimiter = ',';
-	char	**result;
-
-	printf("Testing ft_split with string: \"%s\" and delimiter: '%c'\n", str, delimiter);
-	result = ft_split(str, delimiter);
-	if (result)
-	{
-		for (int i = 0; result[i] != NULL; i++)
-		{
-			printf("%s\n", result[i]);
-			free(result[i]);
-		}
-		free(result);
-	}
-	return (0);
-}
