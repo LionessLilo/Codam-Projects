@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_isdigit.c                                       :+:    :+:            */
+/*   ft_striteri.c                                      :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2024/10/08 14:06:23 by llourens      #+#    #+#                 */
-/*   Updated: 2024/10/21 17:30:19 by llourens      ########   odam.nl         */
+/*   Created: 2024/10/21 19:33:05 by llourens      #+#    #+#                 */
+/*   Updated: 2024/10/21 19:40:16 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <unistd.h>
-
-int	ft_isdigit(int c)
+void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {
-	if (c >= '0' && c <= '9')
+	unsigned int	i;
+
+	i = 0;
+	while (s[i] != '\0')
 	{
-		return (1);
+		f(i, &s[i]);
+		i++;
 	}
-	return (0);
 }

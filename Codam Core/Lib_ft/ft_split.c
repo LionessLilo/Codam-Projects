@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/10/17 09:35:49 by llourens      #+#    #+#                 */
-/*   Updated: 2024/10/19 23:41:31 by llourens      ########   odam.nl         */
+/*   Updated: 2024/10/21 19:44:26 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static char	*allocate_substring(char *changable_s, int where_comma)
 	substring = (char *)malloc((where_comma + 1) * sizeof(char));
 	if (!substring)
 		return (NULL);
-	strncpy(substring, changable_s, where_comma);
+	ft_strncpy(substring, changable_s, where_comma);
 	substring[where_comma] = '\0';
 	return (substring);
 }
@@ -101,21 +101,6 @@ char	**ft_split(char const *s, char c)
 	}
 	list[num_list_items] = NULL;
 	return (list);
+	free(list[list_item_index]);
+	free(list);
 }
-
-int main()
-{
-	char str[] = "Bread,Milk,Eggs";
-	char delimiter = ',';
-	char	**splitted;
-
-	// Test your ft_split function (Step 1)
-	printf("Testing Step 1 with string: \"%s\" and delimiter: '%c'\n", str, delimiter);
-	splitted = ft_split(str, delimiter);
-	printf("first item: %s\n", splitted[0]);
-	printf("2nd item: %s\n", splitted[1]);
-	printf("3rd item: %s\n", splitted[2]);
-
-	return 0;
-}
-

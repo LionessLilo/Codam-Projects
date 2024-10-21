@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_isdigit.c                                       :+:    :+:            */
+/*   ft_putendl_fd.c                                    :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2024/10/08 14:06:23 by llourens      #+#    #+#                 */
-/*   Updated: 2024/10/21 17:30:19 by llourens      ########   odam.nl         */
+/*   Created: 2024/10/21 17:58:23 by llourens      #+#    #+#                 */
+/*   Updated: 2024/10/21 18:33:10 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include <stdlib.h>
 #include <unistd.h>
+#include <fcntl.h>  
+#include <stdio.h>
+#include <string.h>
 
-int	ft_isdigit(int c)
+void	ft_putendl_fd(char *s, int fd)
 {
-	if (c >= '0' && c <= '9')
-	{
-		return (1);
-	}
-	return (0);
+		write(fd, s, ft_strlen(s));
+		write(fd, "\n", 1);
 }
