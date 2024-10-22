@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/10/10 09:33:50 by llourens      #+#    #+#                 */
-/*   Updated: 2024/10/10 10:07:55 by llourens      ########   odam.nl         */
+/*   Updated: 2024/10/22 11:09:50 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void	ft_bzero(void *s, size_t n)
 	while (i < n)
 	{
 		ns[i] = '\0';
-		write(1, &ns[i], 1);
 		i++;
 	}
 }

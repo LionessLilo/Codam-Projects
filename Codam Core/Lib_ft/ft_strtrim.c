@@ -5,50 +5,55 @@
 /*                                                     +:+                    */
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2024/10/16 11:29:12 by llourens      #+#    #+#                 */
-/*   Updated: 2024/10/17 09:09:37 by llourens      ########   odam.nl         */
+/*   Created: 2024/10/22 17:09:05 by llourens      #+#    #+#                 */
+/*   Updated: 2024/10/22 17:09:07 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include <stdio.h>
 #include "libft.h"
+
+static void	*cpy_empty_string(char **new_trimmed)
+{
+	*new_trimmed = malloc(sizeof(char) * 1);
+	if (!*new_trimmed)
+		return (NULL);
+	(*new_trimmed)[0] = '\0';
+	return (*new_trimmed);
+}
 
 static int	is_illegal(char c, char const *set)
 {
 	int		set_index;
-	int		len_set;
 
 	set_index = 0;
-	len_set = ft_strlen((char *)set);
-	while (set_index < len_set)
+	while (set[set_index])
 	{
 		if (set[set_index] == c)
-		{
 			return (1);
-		}
 		set_index++;
 	}
 	return (0);
 }
 
-static int	start_trim(char const *s1, char const *set,	int length_of_string)
+static int	start_trim(char const *s1, char const *set)
 {
 	int		current_index;
-	int		start_of_where_we_are_copying;
 
-	start_of_where_we_are_copying = 0;
 	current_index = 0;
-	while (current_index < length_of_string)
-	{
-		if (is_illegal(s1[current_index], set) == 0)
-		{
-			start_of_where_we_are_copying = current_index;
-			break ;
-		}
+	while (s1[current_index] && is_illegal(s1[current_index], set))
 		current_index++;
-	}
-	return (start_of_where_we_are_copying);
+	return (current_index);
+}
+
+static int	end_trim(char const *s1, char const *set, int len_str)
+{
+	int		current_index;
+
+	current_index = len_str - 1;
+	while (current_index >= 0 && is_illegal(s1[current_index], set))
+		current_index--;
+	return (current_index + 1);
 }
 
 char	*ft_strtrim(char const *s1, char const *set)
@@ -56,24 +61,18 @@ char	*ft_strtrim(char const *s1, char const *set)
 	int		start_cpy;
 	int		end_cpy;
 	int		len_str;
-	int		current_index;
 	char	*new_trimmed;
 
+	if (!s1 || !set)
+		return (NULL);
 	len_str = ft_strlen((char *)s1);
-	start_cpy = start_trim(s1, set, len_str);
-	end_cpy = len_str;
-	current_index = 0;
-	while (current_index < len_str)
-	{
-		if (is_illegal(s1[len_str - (current_index + 1)], set) == 0)
-		{
-			end_cpy = len_str - (current_index + 1);
-			break ;
-		}
-		current_index++;
-	}
+	start_cpy = start_trim(s1, set);
+	end_cpy = end_trim(s1, set, len_str);
+	if (start_cpy >= end_cpy)
+		return (cpy_empty_string(&new_trimmed));
 	new_trimmed = malloc(sizeof(char) * (end_cpy - start_cpy + 1));
-	ft_strlcpy(new_trimmed, s1 + start_cpy, (size_t)(end_cpy - start_cpy + 1));
+	if (!new_trimmed)
+		return (NULL);
+	ft_strlcpy(new_trimmed, s1 + start_cpy, end_cpy - start_cpy + 1);
 	return (new_trimmed);
-	free(new_trimmed);
 }

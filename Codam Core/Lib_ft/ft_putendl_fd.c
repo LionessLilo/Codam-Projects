@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/10/21 17:58:23 by llourens      #+#    #+#                 */
-/*   Updated: 2024/10/21 18:33:10 by llourens      ########   odam.nl         */
+/*   Updated: 2024/10/22 10:57:00 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,10 @@
 #include <fcntl.h>  
 #include <stdio.h>
 #include <string.h>
+#include "libft.h"
 
 void	ft_putendl_fd(char *s, int fd)
 {
-		write(fd, s, ft_strlen(s));
-		write(fd, "\n", 1);
+	write(fd, s, ft_strlen(s));
+	write(fd, "\n", 1);
 }

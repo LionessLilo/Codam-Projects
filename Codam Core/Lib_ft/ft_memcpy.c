@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/10/10 10:12:50 by llourens      #+#    #+#                 */
-/*   Updated: 2024/10/16 22:50:30 by llourens      ########   odam.nl         */
+/*   Updated: 2024/10/22 11:11:50 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,5 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 		((unsigned char *)dest)[i] = ((unsigned char *)src)[i];
 		i++;
 	}
-	return (0);
+	return (dest);
 }

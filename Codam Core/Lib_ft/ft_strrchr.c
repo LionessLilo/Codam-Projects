@@ -6,34 +6,33 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/10/11 11:53:28 by llourens      #+#    #+#                 */
-/*   Updated: 2024/10/14 08:28:59 by llourens      ########   odam.nl         */
+/*   Updated: 2024/10/22 12:12:11 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <unistd.h>
 #include <string.h>
+#include "libft.h"
 
 char	*ft_strrchr(const char *s, int c)
 {
 	int	i;
+	int	s_len;
 
-	i = 0;
-	while (s[i] != '\0')
+	if (!s)
+		return (NULL);
+	s_len = ft_strlen((char *)s);
+	if (c == '\0')
+		return ((char *)&s[s_len]);
+	i = s_len - 1;
+	while (i >= 0)
 	{
-		i++;
-	}
-	while (i != 0)
-	{
-		if (s[i] == c)
-		{
-			return ((char *)s + i);
-		}
+		if (s[i] == (char)c)
+			return ((char *)&s[i]);
 		i--;
 	}
-	if (c == '\0')
-	{
-		return ((char *)s + i);
-	}
-	return (NULL);
+	if (i == s_len)
+		return (NULL);
+	return (0);
 }

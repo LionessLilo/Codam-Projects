@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/10/09 17:07:55 by llourens      #+#    #+#                 */
-/*   Updated: 2024/10/17 09:10:52 by llourens      ########   odam.nl         */
+/*   Updated: 2024/10/22 11:08:48 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void	*ft_memset(void *s, int c, size_t n)
 	while (i < n)
 	{
 		ns[i] = (unsigned char)c;
-		write(1, &ns[i], 1);
 		i++;
 	}
 	return (s);

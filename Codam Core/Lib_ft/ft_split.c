@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/10/17 09:35:49 by llourens      #+#    #+#                 */
-/*   Updated: 2024/10/21 19:44:26 by llourens      ########   odam.nl         */
+/*   Updated: 2024/10/22 17:49:14 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static int	num_of_strings(char *changable_s, char c)
 		}
 		i++;
 	}
-	return (number_of_commas);
+	return (number_of_commas + 1);
 }
 
 static int	delimeter(char const *s, char c)
@@ -84,10 +84,12 @@ char	**ft_split(char const *s, char c)
 	int		num_list_items;
 	int		list_item_index;
 
+	if (!s)
+		return (NULL);
 	changable_s = (char *)s;
 	list_item_index = 0;
-	num_list_items = num_of_strings(changable_s, c) + 1;
-	list = malloc(num_list_items * sizeof(char *));
+	num_list_items = num_of_strings(changable_s, c);
+	list = malloc((num_list_items + 1) * sizeof(char *));
 	if (!list)
 		return (NULL);
 	while (*changable_s)
@@ -95,12 +97,10 @@ char	**ft_split(char const *s, char c)
 		where_comma = delimeter(changable_s, c);
 		list[list_item_index] = allocate_substring(changable_s, where_comma);
 		if (!list[list_item_index])
-			free_mem(list_item_index, list);
+			return (free_mem(list_item_index, list));
 		changable_s = changable_s + where_comma + 1;
 		list_item_index++;
 	}
 	list[num_list_items] = NULL;
 	return (list);
-	free(list[list_item_index]);
-	free(list);
 }
