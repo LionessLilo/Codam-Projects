@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/10/15 13:42:38 by llourens      #+#    #+#                 */
-/*   Updated: 2024/10/20 00:17:23 by llourens      ########   odam.nl         */
+/*   Updated: 2024/10/23 18:45:41 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	*ft_substr(const char *s, unsigned int start, size_t len)
 	{
 		len = 0;
 	}
-	if (str_len < (int)len)
+	if (len && len > (size_t)ft_strlen((char *)s + start))
 	{
 		len = ft_strlen((char *)s + start);
 	}
@@ -36,6 +36,8 @@ char	*ft_substr(const char *s, unsigned int start, size_t len)
 	{
 		return (0);
 	}
+	if (!len)
+		return (ft_calloc(1, sizeof(char)));
 	ft_strlcpy(ret, s + start, len + 1);
 	return (ret);
 }
