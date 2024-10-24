@@ -1,35 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_memcmp.c                                        :+:    :+:            */
+/*   ft_putstr_fd.c                                     :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2024/10/11 18:26:39 by llourens      #+#    #+#                 */
-/*   Updated: 2024/10/24 11:44:57 by llourens      ########   odam.nl         */
+/*   Created: 2024/10/24 13:38:48 by llourens      #+#    #+#                 */
+/*   Updated: 2024/10/24 14:55:29 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include <unistd.h>
-#include <string.h>
+#include <stdlib.h>
 
-int	ft_memcmp(const void *ptr1, const void *ptr2, size_t num)
+void	ft_putstr_fd(char *s, int fd)
 {
-	size_t			i;
-	unsigned char	*u_ptr1;
-	unsigned char	*u_ptr2;
+	int	i;
 
-	u_ptr1 = (unsigned char *)ptr1;
-	u_ptr2 = (unsigned char *)ptr2;
+	if (!s)
+		exit (0);
 	i = 0;
-	while (i < num)
+	while (s[i] != '\0')
 	{
-		if (u_ptr1[i] != u_ptr2[i])
-		{
-			return (u_ptr1[i] - u_ptr2[i]);
-		}
+		write(fd, &s[i], 1);
 		i++;
 	}
-	return (0);
 }

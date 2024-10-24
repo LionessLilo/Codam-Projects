@@ -1,35 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_memcmp.c                                        :+:    :+:            */
+/*   ft_strlcat.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2024/10/11 18:26:39 by llourens      #+#    #+#                 */
-/*   Updated: 2024/10/24 11:44:57 by llourens      ########   odam.nl         */
+/*   Created: 2024/10/24 14:59:39 by llourens      #+#    #+#                 */
+/*   Updated: 2024/10/24 15:44:06 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <unistd.h>
-#include <string.h>
+#include <stdlib.h>
+#include "libft.h"
 
-int	ft_memcmp(const void *ptr1, const void *ptr2, size_t num)
+size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
-	size_t			i;
-	unsigned char	*u_ptr1;
-	unsigned char	*u_ptr2;
+	size_t	size_of_src;
+	size_t	size_of_dst;
 
-	u_ptr1 = (unsigned char *)ptr1;
-	u_ptr2 = (unsigned char *)ptr2;
-	i = 0;
-	while (i < num)
+	size_of_src = ft_strlen(src);
+	size_of_dst = ft_strlen(dst);
+	if (!dst || !src)
+		return (NULL);
+	while (size_of_dst < dstsize)
 	{
-		if (u_ptr1[i] != u_ptr2[i])
-		{
-			return (u_ptr1[i] - u_ptr2[i]);
-		}
-		i++;
+		
 	}
-	return (0);
+
 }

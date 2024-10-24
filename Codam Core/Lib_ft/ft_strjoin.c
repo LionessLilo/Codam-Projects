@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/10/16 10:06:54 by llourens      #+#    #+#                 */
-/*   Updated: 2024/10/20 00:16:12 by llourens      ########   odam.nl         */
+/*   Updated: 2024/10/24 11:51:56 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,5 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		*s3++ = *s2++;
 	}
 	*s3 = '\0';
-	free(s3);
 	return (ptr);
 }
