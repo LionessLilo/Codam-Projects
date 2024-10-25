@@ -6,11 +6,13 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/10/14 15:46:54 by llourens      #+#    #+#                 */
-/*   Updated: 2024/10/15 09:02:41 by llourens      ########   odam.nl         */
+/*   Updated: 2024/10/25 14:53:26 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 int	ft_atoi(const char *nptr)
 {
