@@ -6,12 +6,13 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/10/28 15:06:52 by llourens      #+#    #+#                 */
-/*   Updated: 2024/10/30 19:06:30 by llourens      ########   odam.nl         */
+/*   Updated: 2024/10/31 10:11:26 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdarg.h>
 #include <stdlib.h>
+#include "libftprintf.h"
 
 static int	print_from_specifiers(char specifier, va_list arg_pointer)
 {
@@ -19,17 +20,21 @@ static int	print_from_specifiers(char specifier, va_list arg_pointer)
 
 	count_from_specifier = 0;
 	if (specifier == 'c')
-		write(1, specifier, 1);
+		count_from_specifier += ft_print_char(va_arg(arg_pointer, int));
 	else if (specifier == 's')
-		ft_printstr();
-	else if (specifier == 'p')
-		ft_print_hexadecimal();
-	else if (specifier == 'd' || specifier == 'i')
-		ft_putnbr();
-	else if (specifier == 'u')
-		print_unsigned_int();
-	else if (specifier == )
-	return (count_from_specifier);
+		count_from_specifier += ft_printstr(va_arg(arg_pointer, char *));
+	// else if (specifier == 'p')
+	// 	count_from_specifier += ft_print_hexadecimal(va_arg(arg_pointer, int));
+	// else if (specifier == 'd' || specifier == 'i')
+	// 	count_from_specifier += ft_putnbr(va_arg(arg_pointer, int));
+	// else if (specifier == 'u')
+	// 	count_from_specifier
+	// 		+= print_unsigned_int(va_arg(arg_pointer, unsigned long));
+	// else if (specifier == 'x')
+	// 	count_from_specifier += print_hex(va_arg(arg_pointer, unsigned long));
+	// else if (specifier == '%')
+	// 	count_from_specifier += write(1, "%", 1);
+	// return (count_from_specifier);
 }
 
 static int	is_valid(char *str)
@@ -55,9 +60,17 @@ int	ft_printf(const char *str, ...)
 		if (*str == '%' && is_valid(*(++str)) == 1)
 			count += print_from_specifier(*str, arg_pointer);
 		else
-			count += write (1, str, 1);
+			count += write(1, str, 1);
 		str++;
 	}
 	va_end(arg_pointer);
 	return (count);
+}
+
+int	main(void)
+{
+	char *str = "Hello";
+
+	printf("Testing with printf: %s\n", str);
+	ft_printf("Test with my printf: %s", str);
 }

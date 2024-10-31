@@ -1,19 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   libftprintf.h                                      :+:    :+:            */
+/*   ft_printstr.c                                      :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: llourens <llourens@student.codam.nl>         +#+                     */
+/*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2024/10/30 17:58:30 by llourens      #+#    #+#                 */
-/*   Updated: 2024/10/31 10:39:38 by lilo          ########   odam.nl         */
+/*   Created: 2024/10/31 09:24:29 by lilo          #+#    #+#                 */
+/*   Updated: 2024/10/31 09:30:38 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFTPRINTF_H
-# define LIBFTPRINTF_H
+int	ft_printstr(char *str)
+{
+	int	count;
 
-int	ft_printf(const char *str, ...);
-int	ft_print_char(int c);
-
-#endif
+	count = 0;
+	while (*str)
+	{
+		write(1, str, 1);
+		str++;
+		count++;
+	}
+	return (count);
+}
