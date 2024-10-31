@@ -1,27 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_printstr.c                                      :+:    :+:            */
+/*   ft_putendl_fd.c                                    :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: lilo <lilo@student.codam.nl>                 +#+                     */
+/*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2024/10/31 09:24:29 by lilo          #+#    #+#                 */
-/*   Updated: 2024/10/31 13:28:22 by llourens      ########   odam.nl         */
+/*   Created: 2024/10/21 17:58:23 by llourens      #+#    #+#                 */
+/*   Updated: 2024/10/24 12:55:42 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include <unistd.h>
+#include <fcntl.h>  
+#include <stdio.h>
+#include <string.h>
+#include "libft.h"
 
-int	ft_printstr(char *str)
+void	ft_putendl_fd(char *s, int fd)
 {
-	int	count;
-
-	count = 0;
-	while (*str)
-	{
-		write(1, str, 1);
-		str++;
-		count++;
-	}
-	return (count);
+	write(fd, s, ft_strlen(s));
+	write(fd, "\n", 1);
 }

@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_printstr.c                                      :+:    :+:            */
+/*   ft_striteri.c                                      :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: lilo <lilo@student.codam.nl>                 +#+                     */
+/*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2024/10/31 09:24:29 by lilo          #+#    #+#                 */
-/*   Updated: 2024/10/31 13:28:22 by llourens      ########   odam.nl         */
+/*   Created: 2024/10/21 19:33:05 by llourens      #+#    #+#                 */
+/*   Updated: 2024/10/21 19:40:16 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-
-int	ft_printstr(char *str)
+void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {
-	int	count;
+	unsigned int	i;
 
-	count = 0;
-	while (*str)
+	i = 0;
+	while (s[i] != '\0')
 	{
-		write(1, str, 1);
-		str++;
-		count++;
+		f(i, &s[i]);
+		i++;
 	}
-	return (count);
 }

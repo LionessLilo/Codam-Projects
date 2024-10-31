@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_printstr.c                                      :+:    :+:            */
+/*   ft_toupper.c                                       :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: lilo <lilo@student.codam.nl>                 +#+                     */
+/*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2024/10/31 09:24:29 by lilo          #+#    #+#                 */
-/*   Updated: 2024/10/31 13:28:22 by llourens      ########   odam.nl         */
+/*   Created: 2024/10/10 23:34:12 by llourens      #+#    #+#                 */
+/*   Updated: 2024/10/11 10:44:56 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
 #include <unistd.h>
 
-int	ft_printstr(char *str)
+int	ft_toupper(int c)
 {
-	int	count;
-
-	count = 0;
-	while (*str)
+	if (c >= 'a' && c <= 'z')
 	{
-		write(1, str, 1);
-		str++;
-		count++;
+		c = c - 32;
 	}
-	return (count);
+	return (c);
 }

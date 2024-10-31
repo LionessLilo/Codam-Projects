@@ -1,27 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_printstr.c                                      :+:    :+:            */
+/*   ft_bzero.c                                         :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: lilo <lilo@student.codam.nl>                 +#+                     */
+/*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2024/10/31 09:24:29 by lilo          #+#    #+#                 */
-/*   Updated: 2024/10/31 13:28:22 by llourens      ########   odam.nl         */
+/*   Created: 2024/10/10 09:33:50 by llourens      #+#    #+#                 */
+/*   Updated: 2024/10/25 14:53:11 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
 #include <unistd.h>
+#include "libft.h"
 
-int	ft_printstr(char *str)
+void	ft_bzero(void *s, size_t n)
 {
-	int	count;
+	unsigned char	*ns;
+	size_t			i;
 
-	count = 0;
-	while (*str)
+	i = 0;
+	ns = (unsigned char *)s;
+	while (i < n)
 	{
-		write(1, str, 1);
-		str++;
-		count++;
+		ns[i] = '\0';
+		i++;
 	}
-	return (count);
 }

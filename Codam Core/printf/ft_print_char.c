@@ -6,9 +6,11 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/10/31 08:25:24 by lilo          #+#    #+#                 */
-/*   Updated: 2024/10/31 09:03:35 by lilo          ########   odam.nl         */
+/*   Updated: 2024/10/31 13:51:27 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include <unistd.h>
 
 int	ft_print_char(int c)
 {

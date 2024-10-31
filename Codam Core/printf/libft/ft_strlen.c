@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_printstr.c                                      :+:    :+:            */
+/*   ft_strlen.c                                        :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: lilo <lilo@student.codam.nl>                 +#+                     */
+/*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2024/10/31 09:24:29 by lilo          #+#    #+#                 */
-/*   Updated: 2024/10/31 13:28:22 by llourens      ########   odam.nl         */
+/*   Created: 2024/10/09 14:57:30 by llourens      #+#    #+#                 */
+/*   Updated: 2024/10/24 15:11:48 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
 #include <unistd.h>
 
-int	ft_printstr(char *str)
+int	ft_strlen(const char *s)
 {
-	int	count;
+	int	i;
 
-	count = 0;
-	while (*str)
+	i = 0;
+	while (s[i] != '\0')
 	{
-		write(1, str, 1);
-		str++;
-		count++;
+		i++;
 	}
-	return (count);
+	return (i);
 }

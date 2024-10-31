@@ -1,27 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_printstr.c                                      :+:    :+:            */
+/*   ft_strncpy.c                                       :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: lilo <lilo@student.codam.nl>                 +#+                     */
+/*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2024/10/31 09:24:29 by lilo          #+#    #+#                 */
-/*   Updated: 2024/10/31 13:28:22 by llourens      ########   odam.nl         */
+/*   Created: 2024/10/21 09:51:04 by llourens      #+#    #+#                 */
+/*   Updated: 2024/10/21 10:28:05 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include <stdio.h>
+#include <stdlib.h>
 
-int	ft_printstr(char *str)
+char	*ft_strncpy(char *dst, const char *src, size_t size)
 {
-	int	count;
+	size_t	i;
 
-	count = 0;
-	while (*str)
+	i = 0;
+	while (i < size && src[i] != '\0')
 	{
-		write(1, str, 1);
-		str++;
-		count++;
+		dst[i] = src[i];
+		i++;
 	}
-	return (count);
+	if (src[i] == '\0' && i < size)
+	{
+		dst[i] = '\0';
+		i++;
+	}
+	return (dst);
 }

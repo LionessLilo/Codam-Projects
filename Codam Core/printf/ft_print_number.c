@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_printstr.c                                      :+:    :+:            */
+/*   ft_print_number.c                                  :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: lilo <lilo@student.codam.nl>                 +#+                     */
+/*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2024/10/31 09:24:29 by lilo          #+#    #+#                 */
-/*   Updated: 2024/10/31 13:28:22 by llourens      ########   odam.nl         */
+/*   Created: 2024/10/31 14:30:11 by llourens      #+#    #+#                 */
+/*   Updated: 2024/10/31 15:45:22 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include "libftprintf.h"
 
-int	ft_printstr(char *str)
+int ft_print_number(int nbr)
 {
-	int	count;
+    char *str_to_print;
+    int count;
 
-	count = 0;
-	while (*str)
-	{
-		write(1, str, 1);
-		str++;
-		count++;
-	}
-	return (count);
+    str_to_print = ft_itoa(nbr);
+    count = ft_printstr(str_to_print);
+    return (count);
 }

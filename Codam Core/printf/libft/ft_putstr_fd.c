@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_printstr.c                                      :+:    :+:            */
+/*   ft_putstr_fd.c                                     :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: lilo <lilo@student.codam.nl>                 +#+                     */
+/*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2024/10/31 09:24:29 by lilo          #+#    #+#                 */
-/*   Updated: 2024/10/31 13:28:22 by llourens      ########   odam.nl         */
+/*   Created: 2024/10/24 13:38:48 by llourens      #+#    #+#                 */
+/*   Updated: 2024/10/25 17:43:03 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
+#include <stdlib.h>
 
-int	ft_printstr(char *str)
+void	ft_putstr_fd(char *s, int fd)
 {
-	int	count;
+	int	i;
 
-	count = 0;
-	while (*str)
+	if (!s)
+		return ;
+	i = 0;
+	while (s[i] != '\0')
 	{
-		write(1, str, 1);
-		str++;
-		count++;
+		write(fd, &s[i], 1);
+		i++;
 	}
-	return (count);
 }

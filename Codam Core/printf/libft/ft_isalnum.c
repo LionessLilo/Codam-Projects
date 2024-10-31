@@ -1,27 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_printstr.c                                      :+:    :+:            */
+/*   ft_isalnum.c                                       :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: lilo <lilo@student.codam.nl>                 +#+                     */
+/*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2024/10/31 09:24:29 by lilo          #+#    #+#                 */
-/*   Updated: 2024/10/31 13:28:22 by llourens      ########   odam.nl         */
+/*   Created: 2024/10/09 13:38:26 by llourens      #+#    #+#                 */
+/*   Updated: 2024/10/25 14:53:13 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
 #include <unistd.h>
+#include "libft.h"
 
-int	ft_printstr(char *str)
+int	ft_isalnum(int c)
 {
-	int	count;
+	int	is_digit;
+	int	is_alpha;
 
-	count = 0;
-	while (*str)
+	is_alpha = ft_isalpha(c);
+	is_digit = ft_isdigit(c);
+	if (is_alpha == 1 || is_digit == 1)
 	{
-		write(1, str, 1);
-		str++;
-		count++;
+		return (1);
 	}
-	return (count);
+	return (0);
 }

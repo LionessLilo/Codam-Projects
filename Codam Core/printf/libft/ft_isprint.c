@@ -1,27 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_printstr.c                                      :+:    :+:            */
+/*   ft_isprint.c                                       :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: lilo <lilo@student.codam.nl>                 +#+                     */
+/*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2024/10/31 09:24:29 by lilo          #+#    #+#                 */
-/*   Updated: 2024/10/31 13:28:22 by llourens      ########   odam.nl         */
+/*   Created: 2024/10/09 14:24:54 by llourens      #+#    #+#                 */
+/*   Updated: 2024/10/25 14:53:21 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-
-int	ft_printstr(char *str)
+int	ft_isprint(int c)
 {
-	int	count;
-
-	count = 0;
-	while (*str)
+	if (c >= ' ' && c <= '~')
 	{
-		write(1, str, 1);
-		str++;
-		count++;
+		return (1);
 	}
-	return (count);
+	return (0);
 }

@@ -3,32 +3,54 @@
 #                                                         ::::::::             #
 #    Makefile                                           :+:    :+:             #
 #                                                      +:+                     #
-#    By: llourens <llourens@student.codam.nl>         +#+                      #
+#    By: angavrel <angavrel@student.42.fr>            +#+                      #
 #                                                    +#+                       #
-#    Created: 2024/10/30 17:53:40 by llourens      #+#    #+#                  #
-#    Updated: 2024/10/30 18:01:51 by llourens      ########   odam.nl          #
+#    Created: 2017/01/28 18:36:22 by angavrel      #+#    #+#                  #
+#    Updated: 2024/10/31 15:42:45 by llourens      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
 
 NAME = libftprintf.a
-SRCS = ft_printf.c
-OBJ = $(SRCS:.c=.o)
+
+FLAGS = -Wall -Wextra -Werror -O2
+
+LIBFT = libft
+
+DIR_S = srcs
+
+DIR_O = obj
+
+HEADER = includes
+
+SOURCES = 
+
+SRCS = $(addprefix $(DIR_S)/,$(SOURCES))
+
+OBJS = $(addprefix $(DIR_O)/,$(SOURCES:.c=.o))
 
 all: $(NAME)
 
-%.o: %.c libftprintf.h
-	$(CC) $(CFLAGS) -c $< -o $@
+$(NAME): $(OBJS)
+	@make -C $(LIBFT)
+	@cp libft/libft.a ./$(NAME)
+	@ar rc $(NAME) $(OBJS)
+	@ranlib $(NAME)
+
+$(DIR_O)/%.o: $(DIR_S)/%.c $(HEADER)/ft_printf.h
+	@mkdir -p obj
+	@$(CC) $(FLAGS) -I $(HEADER) -o $@ -c $<
 
 clean:
-	rm -f *.o
-
-$(NAME): $(OBJ)
-	ar rcs $(NAME) $(OBJ)
+	@rm -f $(OBJS)
+	@rm -rf $(DIR_O)
+	@make clean -C $(LIBFT)
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
+	@make fclean -C $(LIBFT)
 
 re: fclean all
+
+.PHONY: fclean re norme all clean

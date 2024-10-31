@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_printstr.c                                      :+:    :+:            */
+/*   ft_calloc.c                                        :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: lilo <lilo@student.codam.nl>                 +#+                     */
+/*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2024/10/31 09:24:29 by lilo          #+#    #+#                 */
-/*   Updated: 2024/10/31 13:28:22 by llourens      ########   odam.nl         */
+/*   Created: 2024/10/15 09:33:43 by llourens      #+#    #+#                 */
+/*   Updated: 2024/10/25 17:43:17 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include "libft.h"
 
-int	ft_printstr(char *str)
+void	*ft_calloc(size_t num, size_t size)
 {
-	int	count;
+	void	*pntr;
 
-	count = 0;
-	while (*str)
+	pntr = malloc(num * size);
+	if (pntr == NULL)
 	{
-		write(1, str, 1);
-		str++;
-		count++;
+		return (NULL);
 	}
-	return (count);
+	ft_bzero(pntr, num * size);
+	return (pntr);
 }

@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_printstr.c                                      :+:    :+:            */
+/*   ft_memcpy.c                                        :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: lilo <lilo@student.codam.nl>                 +#+                     */
+/*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2024/10/31 09:24:29 by lilo          #+#    #+#                 */
-/*   Updated: 2024/10/31 13:28:22 by llourens      ########   odam.nl         */
+/*   Created: 2024/10/10 10:12:50 by llourens      #+#    #+#                 */
+/*   Updated: 2024/10/25 14:53:29 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include <stdio.h>
 
-int	ft_printstr(char *str)
+void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
-	int	count;
+	size_t	i;
 
-	count = 0;
-	while (*str)
+	i = 0;
+	if (!dest && !src)
+		return (NULL);
+	while (i < n)
 	{
-		write(1, str, 1);
-		str++;
-		count++;
+		((unsigned char *)dest)[i] = ((unsigned char *)src)[i];
+		i++;
 	}
-	return (count);
+	return (dest);
 }
