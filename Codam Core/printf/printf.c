@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/10/28 15:06:52 by llourens      #+#    #+#                 */
-/*   Updated: 2024/10/31 15:25:20 by llourens      ########   odam.nl         */
+/*   Updated: 2024/11/01 07:09:56 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <unistd.h>
 #include <stdio.h>
 #include "libftprintf.h"
-#include "libft.h"
+#include "libftprintf.h"
 
 static int	print_from_specifier(char specifier, va_list arg_pointer)
 {

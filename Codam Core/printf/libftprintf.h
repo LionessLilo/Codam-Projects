@@ -6,12 +6,12 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/10/31 15:44:18 by llourens      #+#    #+#                 */
-/*   Updated: 2024/10/31 15:45:59 by llourens      ########   odam.nl         */
+/*   Updated: 2024/11/01 09:35:21 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#ifndef LIBFTPRINTF_H
+# define LIBFTPRINTF_H
 
 int	ft_print_char(int c);
 int ft_print_number(int nbr);
