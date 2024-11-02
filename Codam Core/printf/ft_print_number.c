@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/10/31 14:30:11 by llourens      #+#    #+#                 */
-/*   Updated: 2024/11/01 13:06:19 by llourens      ########   odam.nl         */
+/*   Updated: 2024/11/02 16:11:57 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ int	ft_print_number(int nbr)
 
 	str_to_print = ft_itoa(nbr);
 	count = ft_printstr(str_to_print);
-	printf("print_number count: %d");
 	return (count);
 }
 
