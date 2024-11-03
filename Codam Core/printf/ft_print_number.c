@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/10/31 14:30:11 by llourens      #+#    #+#                 */
-/*   Updated: 2024/11/02 16:11:57 by lilo          ########   odam.nl         */
+/*   Updated: 2024/11/03 14:40:51 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,4 +22,3 @@ int	ft_print_number(int nbr)
 	count = ft_printstr(str_to_print);
 	return (count);
 }
-
