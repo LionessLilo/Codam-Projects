@@ -6,20 +6,20 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/10/31 14:03:31 by llourens      #+#    #+#                 */
-/*   Updated: 2024/11/03 15:46:21 by lilo          ########   odam.nl         */
+/*   Updated: 2024/11/03 20:29:47 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include "libft/libft.h"
 #include "libftprintf.h"
+#include <stdio.h>
 #include <unistd.h>
 
 int	ft_print_hex(unsigned long nb, char specifier)
 {
 	int		remainder;
 	char	number;
-	int		count;
-
+	
 	if (nb >= 16)
 	{
 		remainder = nb % 16;
@@ -30,16 +30,16 @@ int	ft_print_hex(unsigned long nb, char specifier)
 	else
 	{
 		if (nb <= 9)
-			count += ft_putnbr_fd(nb, 1);
+			ft_putnbr_fd(nb, 1);
 		else
 		{
 			number = nb + 55;
 			if (specifier == 'x')
 				number = nb + 87;
-			count += write(1, &number, 1);
+			write(1, &number, 1);
 		}
 	}
-	return (count);
+	return (0);
 }
 
 // int	main(void)
