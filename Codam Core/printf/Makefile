@@ -4,7 +4,7 @@ CC = cc
 CFLAGS = -Wall -Werror -Wextra
 LIBFTDIR = libft
 
-SRCS =  ft_print.c ft_print_di.c ft_print_str.c ft_print_xx.c ft_printf.c
+SRCS =  ft_print_c.c ft_print_di.c ft_print_p.c ft_print_str.c ft_print_xx.c ft_printf.c
 OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)
@@ -14,8 +14,8 @@ makelibft:
 	@cp $(LIBFTDIR)/$(LIBFTNAME) .
 	@mv $(LIBFTNAME) $(NAME)
 
-$(NAME): makelibft $(OBJS)
-	@ar -rcs $(NAME) $(OBJS)
+$(NAME): $(OBJS) makelibft
+	@ar -rcs $(NAME) $(OBJS) $(LIBFTDIR)/$(LIBFTNAME)
 
 clean:
 	@rm -f $(OBJS)

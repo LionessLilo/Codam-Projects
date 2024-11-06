@@ -1,23 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_printf.h                                        :+:    :+:            */
+/*   ft_print_p.c                                       :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: llourens <llourens@student.codam.nl>         +#+                     */
+/*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2024/10/31 15:44:18 by llourens      #+#    #+#                 */
-/*   Updated: 2024/11/06 11:47:20 by lilo          ########   odam.nl         */
+/*   Created: 2024/11/06 10:42:27 by lilo          #+#    #+#                 */
+/*   Updated: 2024/11/06 12:50:04 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "ft_printf.h"
+#include <stdint.h>
+#include <unistd.h>
 
-int	ft_print_c(int c);
-int	ft_print_di(int nbr);
-int	ft_print_p(void *nbr);
-int	ft_print_str(char *str);
-int	ft_print_xx(unsigned long nb, char specifier);
-int	ft_printf(const char *str, ...);
+int	ft_print_p(void *nbr)
+{
+	int	count;
 
-#endif
+	count = write(1, "0x", 2);
+	count += ft_print_xx((uintptr_t)nbr, 'x');
+	return (count);
+}

@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/10/31 14:30:11 by llourens      #+#    #+#                 */
-/*   Updated: 2024/11/04 09:11:49 by llourens      ########   odam.nl         */
+/*   Updated: 2024/11/06 07:50:20 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,16 @@ int	ft_print_di(int nbr)
 
     str_to_print = ft_itoa(nbr);
     if (!str_to_print)
-        return (0);  // Handle malloc failure
+        return (0);
     count = ft_print_str(str_to_print);
-    free(str_to_print);  // Free the allocated memory
+    free(str_to_print);
     return (count);
 }
 
-int	main(void)
-{
-	int	nbr = 10;
+// int	main(void)
+// {
+// 	int	nbr = 10;
 
-	printf("printf: %d\n", nbr);
-	ft_print_di(10);
-}
+// 	printf("printf: %d\n", nbr);
+// 	ft_print_di(10);
+// }
