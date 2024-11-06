@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/10/28 15:06:52 by llourens      #+#    #+#                 */
-/*   Updated: 2024/11/06 12:51:12 by lilo          ########   odam.nl         */
+/*   Updated: 2024/11/06 15:26:26 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ static int	print_from_specifier(char specifier, va_list arg_pointer)
 		count_from_specifier += ft_print_p(va_arg(arg_pointer, void *));
 	else if (specifier == 'd' || specifier == 'i')
 		count_from_specifier += ft_print_di(va_arg(arg_pointer, int));
-	// else if (specifier == 'u')
-	// 	count_from_specifier
-	// 		+= print_unsigned_int(va_arg(arg_pointer, unsigned int));
+	else if (specifier == 'u')
+		count_from_specifier
+			+= ft_print_u(va_arg(arg_pointer, unsigned long));
 	else if (specifier == 'x' || specifier == 'X')
 		count_from_specifier += ft_print_xx
 			(va_arg(arg_pointer, unsigned long), specifier);
@@ -80,6 +80,7 @@ int main(void)
 	int		printf_count;
 	int		ft_printf_count;
     void	*ptr = &nbr;
+	unsigned int max;
 
 	printf("Character:\n");
 	printf_count = 0;
@@ -128,7 +129,7 @@ int main(void)
 	printf("%d\n", printf_count);
 	printf("%d\n", ft_printf_count);
 
-	printf("Void pointer\n");
+	printf("Void pointer:\n");
 	printf_count = printf("%p", ptr);
 	printf("\n");
 	ft_printf_count = ft_printf("%p", ptr);
@@ -136,5 +137,13 @@ int main(void)
 	printf("%d\n", printf_count);
 	printf("%d", ft_printf_count);
 
+	printf("\nUnsigned decimal:\n");
+	max = 4294967295;
+	printf_count = printf("%u", max);
+	printf("\n");
+	ft_printf_count = ft_printf("%u", max);
+	printf("\n");
+	printf("%d\n", printf_count);
+	printf("%d", ft_printf_count);
     return (0);
 }

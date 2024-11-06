@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/10/31 14:03:31 by llourens      #+#    #+#                 */
-/*   Updated: 2024/11/06 12:17:31 by lilo          ########   odam.nl         */
+/*   Updated: 2024/11/06 15:44:14 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <stdint.h>
+#include <stdlib.h>
 
 static int	ft_putnbr(int n, int fd)
 {
