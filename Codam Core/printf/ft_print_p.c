@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/11/06 10:42:27 by lilo          #+#    #+#                 */
-/*   Updated: 2024/11/07 13:46:31 by llourens      ########   odam.nl         */
+/*   Updated: 2024/11/07 15:20:53 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,6 @@ int	ft_print_p(void *nbr)
 		return (count);
 	}
 	count = write(1, "0x", 2);
-	count += ft_print_xx((uintptr_t)nbr, 'x');
+	count += ft_print_xx((unsigned long long)nbr, 'x');
 	return (count);
 }
