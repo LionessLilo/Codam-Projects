@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/10/20 00:38:11 by llourens      #+#    #+#                 */
-/*   Updated: 2024/11/06 15:25:11 by lilo          ########   odam.nl         */
+/*   Updated: 2024/11/07 13:52:11 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,5 +86,6 @@ int	ft_print_u(unsigned int nb)
 	}
 	new_str = units_and_flip(new_str, nb, int_len, i);
 	count = ft_print_str(new_str);
+	free(new_str);
 	return (count);
 }

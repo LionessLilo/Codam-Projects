@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/10/28 15:06:52 by llourens      #+#    #+#                 */
-/*   Updated: 2024/11/06 15:26:26 by lilo          ########   odam.nl         */
+/*   Updated: 2024/11/07 13:30:59 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,80 +70,81 @@ int	ft_printf(const char *str, ...)
 	return (count);
 }
 
-#include <stdio.h>
-#include "ft_printf.h"
+// #include <stdio.h>
+// #include "ft_printf.h"
 
-int main(void)
-{
-    char	*str = "Hello";
-	int		nbr = 42;
-	int		printf_count;
-	int		ft_printf_count;
-    void	*ptr = &nbr;
-	unsigned int max;
+// int main(void)
+// {
+//     char	*str = "Hello";
+// 	int		nbr = 42;
+// 	int		printf_count;
+// 	int		ft_printf_count;
+//     void	*ptr = &nbr;
+// 	unsigned int max;
 
-	printf("Character:\n");
-	printf_count = 0;
-	ft_printf_count = 0;
-	printf_count = printf("%c\n", 'H');
-	ft_printf_count = ft_printf("%c\n", 'H');
-	printf("%d\n", printf_count);
-	printf("%d\n", ft_printf_count);
+// 	printf("Character:\n");
+// 	printf_count = 0;
+// 	ft_printf_count = 0;
+// 	printf_count = printf("%c\n", 'H');
+// 	ft_printf_count = ft_printf("%c\n", 'H');
+// 	printf("%d\n", printf_count);
+// 	printf("%d\n", ft_printf_count);
 
-	printf("decimal / int:\n");
-	printf_count = 0;
-	ft_printf_count = 0;
-	printf_count = printf("%d\n", nbr);
-	ft_printf_count = ft_printf("%d\n", nbr);
-	printf("%d\n", printf_count);
-	printf("%d\n", ft_printf_count);
+// 	printf("decimal / int:\n");
+// 	printf_count = 0;
+// 	ft_printf_count = 0;
+// 	printf_count = printf("%d\n", nbr);
+// 	ft_printf_count = ft_printf("%d\n", nbr);
+// 	printf("%d\n", printf_count);
+// 	printf("%d\n", ft_printf_count);
 
-	printf("string:\n");
-	printf_count = 0;
-	ft_printf_count = 0;
-	printf_count = printf("%s\n", str);
-	ft_printf_count = ft_printf("%s\n", str);
-	printf("%d\n", printf_count);
-	printf("%d\n", ft_printf_count);
+// 	printf("string:\n");
+// 	printf_count = 0;
+// 	ft_printf_count = 0;
+// 	printf_count = printf("%s\n", str);
+// 	ft_printf_count = ft_printf("%s\n", str);
+// 	printf("%d\n", printf_count);
+// 	printf("%d\n", ft_printf_count);
 
-	printf("Hex:\n");
-	printf_count = 0;
-	ft_printf_count = 0;
-	printf("%x\n", 6);
-	ft_printf("%x\n", 6);
+// 	printf("Hex:\n");
+// 	printf_count = 0;
+// 	ft_printf_count = 0;
+// 	printf("%x\n", 6);
+// 	ft_printf("%x\n", 6);
 
-	printf("%x\n", 10);
-	ft_printf("%x\n", 10);
+// 	printf("%x\n", 10);
+// 	ft_printf("%x\n", 10);
 
-	printf("%x\n", 13);
-	ft_printf("%x\n", 13);
+// 	printf("%x\n", 13);
+// 	ft_printf("%x\n", 13);
 
-	printf("%x\n", 20);
-	ft_printf("%x\n", 20);
+// 	printf("%x\n", 20);
+// 	ft_printf("%x\n", 20);
 
-	printf("%x\n", 245);
-	ft_printf("%x\n", 245);
+// 	printf("%x\n", 245);
+// 	ft_printf("%x\n", 245);
 
-	printf_count = printf("%X\n", 245);
-	ft_printf_count = ft_printf("%X\n", 245);
-	printf("%d\n", printf_count);
-	printf("%d\n", ft_printf_count);
+// 	printf_count = printf("%X\n", 245);
+// 	ft_printf_count = ft_printf("%X\n", 245);
+// 	printf("%d\n", printf_count);
+// 	printf("%d\n", ft_printf_count);
 
-	printf("Void pointer:\n");
-	printf_count = printf("%p", ptr);
-	printf("\n");
-	ft_printf_count = ft_printf("%p", ptr);
-	printf("\n");
-	printf("%d\n", printf_count);
-	printf("%d", ft_printf_count);
+// 	printf("Void pointer:\n");
+// 	printf_count = printf("%p", ptr);
+// 	printf("\n");
+// 	ft_printf_count = ft_printf("%p", ptr);
+// 	printf("\n");
+// 	printf("%d\n", printf_count);
+// 	printf("%d", ft_printf_count);
+// 	printf("\n");
 
-	printf("\nUnsigned decimal:\n");
-	max = 4294967295;
-	printf_count = printf("%u", max);
-	printf("\n");
-	ft_printf_count = ft_printf("%u", max);
-	printf("\n");
-	printf("%d\n", printf_count);
-	printf("%d", ft_printf_count);
-    return (0);
-}
+// 	printf("\nUnsigned decimal:\n");
+// 	max = 4294967295;
+// 	printf_count = printf("%u", max);
+// 	printf("\n");
+// 	ft_printf_count = ft_printf("%u", max);
+// 	printf("\n");
+// 	printf("%d\n", printf_count);
+// 	printf("%d", ft_printf_count);
+//     return (0);
+// }

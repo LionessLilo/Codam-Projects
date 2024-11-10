@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/10/31 14:03:31 by llourens      #+#    #+#                 */
-/*   Updated: 2024/11/06 15:44:14 by lilo          ########   odam.nl         */
+/*   Updated: 2024/11/07 15:20:59 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static int	ft_putnbr(int n, int fd)
 	return (count);
 }
 
-int	ft_print_xx(uintptr_t nb, char specifier)
+int	ft_print_xx(unsigned long long nb, char specifier)
 {
 	char	number;
 	int		count;
@@ -48,7 +48,6 @@ int	ft_print_xx(uintptr_t nb, char specifier)
 	}
 	if (nb <= 9)
 		return (count + ft_putnbr(nb, 1));
-
 	number = nb + 55;
 	if (specifier == 'x')
 		number = nb + 87;
