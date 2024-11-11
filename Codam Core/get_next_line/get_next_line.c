@@ -6,13 +6,14 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/11/08 13:05:32 by lilo          #+#    #+#                 */
-/*   Updated: 2024/11/10 15:57:37 by lilo          ########   odam.nl         */
+/*   Updated: 2024/11/11 17:20:57 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <fcntl.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include "get_next_line.h"
 #define BUFFER_SIZE 10
 
@@ -21,24 +22,41 @@ char	*get_next_line(int fd)
 	char	chars_read;
 	char	*buffer;
 
-	buffer = ft_calloc(BUFFER_SIZE, sizeof(char));
-	if (buffer == NULL)
+	buffer = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
+	if (!buffer)
 		return (NULL);
+	chars_read = read(fd, buffer, BUFFER_SIZE);
+	if (chars_read <= 0)
+	{
+		free (buffer);
+		return (NULL);
+	}
+	return (buffer);
 }
 
-int	main(void)
+int main(void)
 {
-	int		fd = open("read_file.txt", O_RDWR);
-	char	buffer[256];
-	char	chars_read;
-	int		count;
+	int    fd;
+	char  *next_line;
+	int  count;
 
 	count = 0;
-	while(chars_read = read(fd, buffer, 10))
+	fd = open("read_file.txt", O_RDONLY);
+	if (fd == -1)
 	{
-		buffer[chars_read] = '\0';
-		count++;
-		printf("%d. %s\n", count, buffer);
+		printf("Could not open file");
+		return (1);
 	}
+	while (1)
+	{
+		next_line = get_next_line(fd);
+		if (!next_line)
+			return (1);
+		count++;
+		printf("[%d]:%s\n", count, next_line);
+		free (next_line);
+		next_line = NULL;
+	}
+	close(fd);
 	return (0);
 }

@@ -6,14 +6,15 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/11/10 14:18:16 by lilo          #+#    #+#                 */
-/*   Updated: 2024/11/10 15:57:40 by lilo          ########   odam.nl         */
+/*   Updated: 2024/11/11 16:34:25 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <aio.h>
 #include <stdlib.h>
+#include <stddef.h>
 
-static void	ft_bzero(void *s, size_t n)
+void	ft_bzero(void *s, size_t n)
 {
 	unsigned char	*ns;
 	size_t			i;
@@ -27,7 +28,7 @@ static void	ft_bzero(void *s, size_t n)
 	}
 }
 
-static void	*ft_calloc(size_t num, size_t size)
+void	*ft_calloc(size_t num, size_t size)
 {
 	void	*pntr;
 
