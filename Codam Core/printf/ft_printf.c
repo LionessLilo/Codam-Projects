@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/10/28 15:06:52 by llourens      #+#    #+#                 */
-/*   Updated: 2024/11/07 13:30:59 by llourens      ########   odam.nl         */
+/*   Updated: 2024/11/12 15:13:50 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static int	print_from_specifier(char specifier, va_list arg_pointer)
 			+= ft_print_u(va_arg(arg_pointer, unsigned long));
 	else if (specifier == 'x' || specifier == 'X')
 		count_from_specifier += ft_print_xx
-			(va_arg(arg_pointer, unsigned long), specifier);
+			((unsigned int)va_arg(arg_pointer, unsigned long int), specifier);
 	else if (specifier == '%')
 		count_from_specifier += write(1, "%", 1);
 	return (count_from_specifier);
@@ -72,6 +72,7 @@ int	ft_printf(const char *str, ...)
 
 // #include <stdio.h>
 // #include "ft_printf.h"
+// #include <limits.h>
 
 // int main(void)
 // {
@@ -146,5 +147,9 @@ int	ft_printf(const char *str, ...)
 // 	printf("\n");
 // 	printf("%d\n", printf_count);
 // 	printf("%d", ft_printf_count);
+// 	printf("\n");
+// 	unsigned long long value = LONG_MAX;
+//     printf("Expected hex:\n%x\n", value);
+//     ft_printf("%x", value);
 //     return (0);
 // }
