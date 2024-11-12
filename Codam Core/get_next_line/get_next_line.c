@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/11/08 13:05:32 by lilo          #+#    #+#                 */
-/*   Updated: 2024/11/11 17:20:57 by lilo          ########   odam.nl         */
+/*   Updated: 2024/11/12 09:07:06 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "get_next_line.h"
-#define BUFFER_SIZE 10
 
 char	*get_next_line(int fd)
 {
@@ -34,11 +33,11 @@ char	*get_next_line(int fd)
 	return (buffer);
 }
 
-int main(void)
+int	main(void)
 {
-	int    fd;
-	char  *next_line;
-	int  count;
+	int		fd;
+	char	*next_line;
+	int		count;
 
 	count = 0;
 	fd = open("read_file.txt", O_RDONLY);
