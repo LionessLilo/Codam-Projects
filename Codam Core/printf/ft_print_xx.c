@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/10/31 14:03:31 by llourens      #+#    #+#                 */
-/*   Updated: 2024/11/07 15:20:59 by llourens      ########   odam.nl         */
+/*   Updated: 2024/11/12 15:14:34 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include <stdint.h>
 #include <stdlib.h>
 
-static int	ft_putnbr(int n, int fd)
+static int	ft_putnbr(unsigned int n, int fd)
 {
 	char	str;
 	int		count;
@@ -34,7 +34,7 @@ static int	ft_putnbr(int n, int fd)
 	return (count);
 }
 
-int	ft_print_xx(unsigned long long nb, char specifier)
+int	ft_print_xx(unsigned long int nb, char specifier)
 {
 	char	number;
 	int		count;
@@ -76,5 +76,8 @@ int	ft_print_xx(unsigned long long nb, char specifier)
 // 	printf("\nhex: %X\n", 255);
 // 	count = ft_print_xx(255, 'X');
 // 	printf("\n%d", count);
+
+// 	printf("\nhex: %X\n", 2147483647);
+// 	count = ft_print_xx(2147483647, 'X');
 //     return (0);
 // }
