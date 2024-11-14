@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/11/08 13:05:32 by lilo          #+#    #+#                 */
-/*   Updated: 2024/11/12 09:07:06 by lilo          ########   odam.nl         */
+/*   Updated: 2024/11/14 14:45:02 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,29 @@
 #include <stdlib.h>
 #include "get_next_line.h"
 
-char	*get_next_line(int fd)
+static char	*read_file(int fd)
 {
 	char	chars_read;
-	char	*buffer;
+	char	*cup_buffer;
 
-	buffer = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
-	if (!buffer)
+	cup_buffer = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
+	if (!cup_buffer)
 		return (NULL);
-	chars_read = read(fd, buffer, BUFFER_SIZE);
+	chars_read = read(fd, cup_buffer, BUFFER_SIZE);
 	if (chars_read <= 0)
 	{
-		free (buffer);
+		free (cup_buffer);
 		return (NULL);
 	}
-	return (buffer);
+	return (cup_buffer);
+}
+
+char	*get_next_line(int fd)
+{
+	char	*tank_buffer;
+
+	tank_buffer = read_file(fd);
+	return (tank_buffer);
 }
 
 int	main(void)
