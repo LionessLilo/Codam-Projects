@@ -5,8 +5,8 @@
 /*                                                     +:+                    */
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2024/11/19 13:02:27 by llourens      #+#    #+#                 */
-/*   Updated: 2024/11/19 15:24:33 by llourens      ########   odam.nl         */
+/*   Created: 2024/11/08 13:05:32 by lilo          #+#    #+#                 */
+/*   Updated: 2024/11/20 10:01:58 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,29 @@
 #include <stdlib.h>
 #include "get_next_line.h"
 
+static char	*read_file(int fd)
+{
+	char	chars_read;
+	char	*cup_buffer;
+
+	cup_buffer = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
+	if (!cup_buffer)
+		return (NULL);
+	chars_read = read(fd, cup_buffer, BUFFER_SIZE);
+	if (chars_read <= 0)
+	{
+		free (cup_buffer);
+		return (NULL);
+	}
+	return (cup_buffer);
+}
+
 char	*get_next_line(int fd)
 {
-	static char	*buffer;
+	char	*tank_buffer;
 
-	buffer = malloc(BUFFER_SIZE + 1 * sizeof(char));
-	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
-		return (NULL);
-	buffer = readandfill_buffer(fd, buffer);
-	if (!buffer)
-		return (NULL);
+	tank_buffer = read_file(fd);
+	return (tank_buffer);
 }
 
 int	main(void)

@@ -5,8 +5,8 @@
 /*                                                     +:+                    */
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2024/11/19 13:02:59 by llourens      #+#    #+#                 */
-/*   Updated: 2024/11/19 13:07:21 by llourens      ########   odam.nl         */
+/*   Created: 2024/11/10 15:42:53 by lilo          #+#    #+#                 */
+/*   Updated: 2024/11/20 10:02:12 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,4 +17,8 @@
 #  define BUFFER_SIZE 3
 # endif
 
-#endif
+void	ft_bzero(void *s, size_t n);
+void	*ft_calloc(size_t num, size_t size);
+
+#endif /* GET_NEXT_LINE_H */
+
