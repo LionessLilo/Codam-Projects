@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/11/19 13:02:59 by llourens      #+#    #+#                 */
-/*   Updated: 2024/11/21 09:45:56 by llourens      ########   odam.nl         */
+/*   Updated: 2024/11/21 10:45:27 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,4 +19,8 @@
 
 void	*ft_calloc(size_t num, size_t size);
 
-#endif
+void	ft_bzero(void *s, size_t n);
+void	*ft_calloc(size_t num, size_t size);
+
+#endif /* GET_NEXT_LINE_H */
+
