@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/11/19 13:02:27 by llourens      #+#    #+#                 */
-/*   Updated: 2024/11/21 10:42:47 by llourens      ########   odam.nl         */
+/*   Updated: 2024/11/21 10:56:51 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,19 +28,25 @@ char	*read_file(int fd)
 		return (free(cup_buffer), NULL);
 	}
 	bytes_read = read(fd, cup_buffer, BUFFER_SIZE);
+	if (bytes_read < 0)
+	{
+		printf("could not read file");
+		return (free(cup_buffer), NULL);
+	}
 	return (cup_buffer);
 }
 
-static char	*read_file(int fd)
+static char	*get_next_line(int fd)
 {
 	static char	*buffer;
+	// char		*line;
 
-	buffer = malloc(BUFFER_SIZE + 1 * sizeof(char));
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 		return (NULL);
-	buffer = readandfill_buffer(fd, buffer);
+	buffer = read_file(fd);
 	if (!buffer)
 		return (NULL);
+	return (buffer);
 }
 
 int	main(void)
