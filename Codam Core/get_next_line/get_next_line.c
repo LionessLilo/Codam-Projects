@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/11/19 13:02:27 by llourens      #+#    #+#                 */
-/*   Updated: 2024/11/21 10:56:51 by llourens      ########   odam.nl         */
+/*   Updated: 2024/11/21 19:39:19 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,37 +16,60 @@
 #include <unistd.h>
 #include "get_next_line.h"
 
-char	*read_file(int fd)
+char	*find_line(int fd, char *stash)
 {
-	char	*cup_buffer;
-	int		bytes_read;
+	int		i;
+	char	*temp;
+	char	*new_stash;
 
-	cup_buffer = ft_calloc(BUFFER_SIZE +1, sizeof(char));
-	if (!cup_buffer)
+	i = 0;
+	while (stash[i] && stash[i] != '\n')
+		i++;
+	temp = ft_calloc(i + 2, sizeof(char));
+	if (!temp)
+		return (NULL);
+	i = 0;
+	while (stash[i] && stash[i] != '\n')
 	{
-		printf("could not malloc cup_buffer");
-		return (free(cup_buffer), NULL);
+		temp[i] = stash[i];
+		i++;
 	}
-	bytes_read = read(fd, cup_buffer, BUFFER_SIZE);
-	if (bytes_read < 0)
+	if (!stash[i])
 	{
-		printf("could not read file");
-		return (free(cup_buffer), NULL);
+		new_stash = read_file(fd);
+		while (new_stash)
+		{
+			stash = ft_strjoin(stash, new_stash);
+			if (!new_stash)
+				return (free(new_stash), NULL);
+			i = 0;
+			while (stash[i] && stash[i] != '\n')
+			{
+				temp[i] = stash[i];
+				i++;
+			}
+			if (stash[i] == '\n')
+			{
+				temp[i] = stash[i];
+				i++;
+				return (temp);
+			}
+			new_stash = read_file(fd);
+		}
 	}
-	return (cup_buffer);
+	return (temp);
 }
 
 static char	*get_next_line(int fd)
 {
-	static char	*buffer;
-	// char		*line;
+	static char	*stash;
+	char		*line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 		return (NULL);
-	buffer = read_file(fd);
-	if (!buffer)
-		return (NULL);
-	return (buffer);
+	stash = read_file(fd);
+	line = find_line(fd, stash);
+	return (line);
 }
 
 int	main(void)
