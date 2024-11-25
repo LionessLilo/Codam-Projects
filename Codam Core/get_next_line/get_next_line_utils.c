@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/11/21 10:46:11 by llourens      #+#    #+#                 */
-/*   Updated: 2024/11/25 10:36:38 by lilo          ########   odam.nl         */
+/*   Updated: 2024/11/25 19:03:33 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,29 +80,4 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	}
 	*s3 = '\0';
 	return (ptr);
-}
-char	*ft_strchr(const char *s, int c)
-{
-	int				i;
-	unsigned char	uc;
-
-	i = 0;
-	uc = (unsigned char)c;
-	while (s[i] != '\0')
-	{
-		if ((unsigned char)s[i] == uc)
-		{
-			return ((char *)s + i);
-		}
-		i++;
-	}
-	if (uc == '\0')
-	{
-		while (s[i] != '\0')
-		{
-			i++;
-		}
-		return ((char *)s + i);
-	}
-	return (NULL);
 }

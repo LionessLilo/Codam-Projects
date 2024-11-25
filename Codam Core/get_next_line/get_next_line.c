@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/11/19 13:02:27 by llourens      #+#    #+#                 */
-/*   Updated: 2024/11/25 11:19:55 by lilo          ########   odam.nl         */
+/*   Updated: 2024/11/25 19:37:43 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,62 +16,58 @@
 #include <unistd.h>
 #include "get_next_line.h"
 
-char	*extract_line(char *stash)
-{
-	int		i;
-	char	*line;
-
-	i = 0;
-	while (stash[i] && stash[i] != '\n')
-		i++;
-	line = ft_calloc(i + 2, sizeof(char));
-	if (!line)
-		return (NULL);
-	i = 0;
-	while (stash[i] && stash[i] != '\n')
-	{
-		line[i] = stash[i];
-		i++;
-	}
-	if (stash[i] == '\n')
-	{
-		line[i++] = '\n';
-		line[i] = '\0';
-	}
-	return (line);
-}
-
-char	*read_and_append(int fd, char **stash)
+char	*add_to_line_buffer(int fd, char *stash, int i)
 {
 	char	*new_stash;
 	char	*temp;
 
-	while (1)
+	while (!stash[i])
 	{
 		new_stash = read_file(fd);
-		if (!new_stash)
-			return (NULL);
-		*stash = ft_strjoin(*stash, new_stash);
-		if (!*stash)
-			return (free(new_stash), NULL);
-		free(new_stash);
-		temp = extract_line(*stash);
-		if (temp && ft_strchr(temp, '\n'))
-			return (temp);
+		while (new_stash)
+		{
+			stash = ft_strjoin(stash, new_stash);
+			if (!stash)
+				return (free(new_stash), NULL);
+			i = 0;
+			while (stash[i] && stash[i] != '\n')
+			{
+				temp[i] = stash[i];
+				i++;
+			}
+			if (stash[i] == '\n')
+			{
+				temp[i++] = '\n';
+				temp[i] = '\0';
+				return (temp);
+			}
+			new_stash = read_file(fd);
+		}
 	}
+	return (NULL);
 }
 
-char	*find_line(int fd, char *stash)
+char	*fill_line_buffer(int fd, char *stash)
 {
-	char	*line;
-	char	*joined_line;
+	int		i;
+	char	*line_buffer;
 
-	line = extract_line(stash);
-	if (line && ft_strchr(line, '\n'))
-		return (line);
-	joined_line = read_and_append(fd, &stash);
-	return (joined_line);
+	i = 0;
+	while (stash[i] && stash[i] != '\n')
+		i++;
+	line_buffer = ft_calloc(i + 2, sizeof(char));
+	if (!line_buffer)
+		return (NULL);
+	while (stash[i] && stash[i] != '\n')
+	{
+		line_buffer[i] = stash[i];
+		i++;
+	}
+	if (stash[i] == '\0')
+		line_buffer = add_to_line_buffer(fd, stash, i); 
+	return (line_buffer);
 }
+
 
 char	*read_file(int fd)
 {
@@ -86,31 +82,26 @@ char	*read_file(int fd)
 	}
 	bytes_read = read(fd, cup_buffer, BUFFER_SIZE);
 	if (bytes_read <= 0)
-	{
-		if (bytes_read < 0)
-		{
-			printf("could not read file or is EOF");
-			return (free(cup_buffer), NULL);
-		}
 		return (free(cup_buffer), NULL);
-	}
 	return (cup_buffer);
 }
 
-static char	*get_next_line(int fd)
+char	*get_next_line(int fd)
 {
-	static char	*stash;
-	static char	*line;
+	static char	*next_line;
+	char		*line;
+	char		*line_buffer;
+	char		*stash;
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
+	{
+		printf("fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0");
 		return (NULL);
+	}
 	if (!stash)
 		stash = read_file(fd);
-	line = find_line(fd, stash);
-	return (line);
+	line_buffer = fill_line_buffer(fd, stash);
 }
-
-char *get_next_line(int fd);
 
 int main() {
     int fd;
