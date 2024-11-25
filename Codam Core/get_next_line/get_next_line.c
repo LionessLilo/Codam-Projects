@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/11/19 13:02:27 by llourens      #+#    #+#                 */
-/*   Updated: 2024/11/21 19:39:19 by llourens      ########   odam.nl         */
+/*   Updated: 2024/11/22 14:32:36 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ char	*find_line(int fd, char *stash)
 		temp[i] = stash[i];
 		i++;
 	}
-	if (!stash[i])
+	while (!stash[i])
 	{
 		new_stash = read_file(fd);
 		while (new_stash)
@@ -50,8 +50,8 @@ char	*find_line(int fd, char *stash)
 			}
 			if (stash[i] == '\n')
 			{
-				temp[i] = stash[i];
-				i++;
+				temp[i++] = '\n';
+				temp[i] = '\0';
 				return (temp);
 			}
 			new_stash = read_file(fd);
@@ -67,7 +67,8 @@ static char	*get_next_line(int fd)
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 		return (NULL);
-	stash = read_file(fd);
+	if (!stash)
+        stash = read_file(fd);
 	line = find_line(fd, stash);
 	return (line);
 }
@@ -80,7 +81,6 @@ int	main(void)
 	fd = open("read_file.txt", O_RDONLY);
 	if (fd < 0)
 	{
-		printf("Could not open file");
 		return ((long int) NULL);
 	}
 	next_line = get_next_line(fd);
