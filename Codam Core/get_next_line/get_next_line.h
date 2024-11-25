@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/11/19 13:02:59 by llourens      #+#    #+#                 */
-/*   Updated: 2024/11/21 19:43:31 by llourens      ########   odam.nl         */
+/*   Updated: 2024/11/25 10:54:04 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	*ft_calloc(size_t num, size_t size);
 int		ft_strlen(const char *s);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*read_file(int fd);
+char	*ft_strchr(const char *s, int c);
 
 #endif
 

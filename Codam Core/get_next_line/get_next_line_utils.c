@@ -6,13 +6,14 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/11/21 10:46:11 by llourens      #+#    #+#                 */
-/*   Updated: 2024/11/21 19:40:01 by llourens      ########   odam.nl         */
+/*   Updated: 2024/11/25 10:36:38 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include <string.h>
 #include "get_next_line.h"
 
 void	ft_bzero(void *s, size_t n)
@@ -80,27 +81,28 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	*s3 = '\0';
 	return (ptr);
 }
-
-char	*read_file(int fd)
+char	*ft_strchr(const char *s, int c)
 {
-	char	*cup_buffer;
-	int		bytes_read;
+	int				i;
+	unsigned char	uc;
 
-	cup_buffer = ft_calloc(BUFFER_SIZE +1, sizeof(char));
-	if (!cup_buffer)
+	i = 0;
+	uc = (unsigned char)c;
+	while (s[i] != '\0')
 	{
-		printf("could not malloc cup_buffer");
-		return (free(cup_buffer), NULL);
-	}
-	bytes_read = read(fd, cup_buffer, BUFFER_SIZE);
-	if (bytes_read <= 0)
-	{
-		if (bytes_read < 0)
+		if ((unsigned char)s[i] == uc)
 		{
-			printf("could not read file or is EOF");
-			return (free(cup_buffer), NULL);
+			return ((char *)s + i);
 		}
-		return (free(cup_buffer), NULL);
+		i++;
 	}
-	return (cup_buffer);
+	if (uc == '\0')
+	{
+		while (s[i] != '\0')
+		{
+			i++;
+		}
+		return ((char *)s + i);
+	}
+	return (NULL);
 }
