@@ -5,8 +5,8 @@
 /*                                                     +:+                    */
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2024/11/19 13:02:27 by llourens      #+#    #+#                 */
-/*   Updated: 2024/11/25 19:37:43 by llourens      ########   odam.nl         */
+/*   Created: 2024/11/28 13:30:40 by llourens      #+#    #+#                 */
+/*   Updated: 2024/12/03 16:56:54 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,82 +16,101 @@
 #include <unistd.h>
 #include "get_next_line.h"
 
-char	*add_to_line_buffer(int fd, char *stash, int i)
+char	*fill_stash(int fd, char *stash)
 {
-	char	*new_stash;
+	char	*next_stash;
 	char	*temp;
+	int		i;
 
-	while (!stash[i])
+	while (1)
 	{
-		new_stash = read_file(fd);
-		while (new_stash)
+		i = 0;
+		while (stash[i] && stash[i] != '\n')
+			i++;
+		if (stash[i] == '\n')
 		{
-			stash = ft_strjoin(stash, new_stash);
-			if (!stash)
-				return (free(new_stash), NULL);
-			i = 0;
-			while (stash[i] && stash[i] != '\n')
-			{
-				temp[i] = stash[i];
-				i++;
-			}
-			if (stash[i] == '\n')
-			{
-				temp[i++] = '\n';
-				temp[i] = '\0';
-				return (temp);
-			}
-			new_stash = read_file(fd);
+			printf("found new line");
+			break ;
 		}
+		next_stash = read_file(fd);
+		if (!next_stash)
+		{
+			if (!stash)
+				return (NULL);
+			printf("EOF / nothing to return");
+			break ;
+		}
+		temp = stash;
+		stash = ft_strjoin(stash, next_stash);
+		free(temp);
+		free(next_stash);
+		if (!stash)
+			return (NULL);
 	}
-	return (NULL);
+	return (stash);
 }
 
-char	*fill_line_buffer(int fd, char *stash)
+char	*line_from_stash(int fd, char *stash)
 {
+	char	*line;
 	int		i;
-	char	*line_buffer;
 
 	i = 0;
-	while (stash[i] && stash[i] != '\n')
-		i++;
-	line_buffer = ft_calloc(i + 2, sizeof(char));
-	if (!line_buffer)
+	if (!stash[i])
+	{
+		printf("found a NULL terminator at the start of line_from_stash");
 		return (NULL);
+	}
+	stash = fill_stash(fd, stash);
+	line = ft_calloc(ft_strlen(stash) + 1, sizeof(char));
+	if (!line)
+	{
+		printf("Could not calloc line");
+		return (NULL);
+	}
 	while (stash[i] && stash[i] != '\n')
 	{
-		line_buffer[i] = stash[i];
+		line[i] = stash[i];
 		i++;
 	}
-	if (stash[i] == '\0')
-		line_buffer = add_to_line_buffer(fd, stash, i); 
-	return (line_buffer);
+	if (stash[i] == '\n')
+	{
+		line[i++] = '\n';
+		return (line);
+	}
+	return (line);
 }
-
 
 char	*read_file(int fd)
 {
 	char	*cup_buffer;
 	int		bytes_read;
+	char	*return_cup_buffer;
 
 	cup_buffer = ft_calloc(BUFFER_SIZE +1, sizeof(char));
 	if (!cup_buffer)
 	{
 		printf("could not malloc cup_buffer");
-		return (free(cup_buffer), NULL);
+		return (NULL);
 	}
 	bytes_read = read(fd, cup_buffer, BUFFER_SIZE);
 	if (bytes_read <= 0)
+	{
+		if (bytes_read < 0)
+		{
+			printf("could not read file or is EOF");
+			return (free(cup_buffer), NULL);
+		}
 		return (free(cup_buffer), NULL);
-	return (cup_buffer);
+	}
+	return_cup_buffer = ft_strdup(cup_buffer);
+	return (free(cup_buffer), return_cup_buffer);
 }
 
-char	*get_next_line(int fd)
+static char	*get_next_line(int fd)
 {
-	static char	*next_line;
-	char		*line;
-	char		*line_buffer;
-	char		*stash;
+	char			*line;
+	static char		*stash;
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 	{
@@ -100,28 +119,21 @@ char	*get_next_line(int fd)
 	}
 	if (!stash)
 		stash = read_file(fd);
-	line_buffer = fill_line_buffer(fd, stash);
+	line = line_from_stash(fd, stash);
+	return (line);
 }
 
-int main() {
-    int fd;
-    char *line;
+int	main(void)
+{
+	int		fd;
+	char	*next_line;
 
-    // Open the file in read-only mode
-    fd = open("file 1.txt", O_RDONLY);  // Replace "test.txt" with your file name
-    if (fd == -1) {
-        perror("Error opening file");
-        return 1;
-    }
-
-    // Loop to read and print each line from the file
-    while ((line = get_next_line(fd)) != NULL) {
-        printf("%s", line);  // Print the line
-        free(line);          // Free the memory after printing the line (if your get_next_line allocates memory)
-    }
-
-    // Close the file
-    close(fd);
-
-    return 0;
+	fd = open("read_file.txt", O_RDONLY);
+	if (fd < 0)
+	{
+		return ((long int) NULL);
+	}
+	next_line = get_next_line(fd);
+	printf("%s", next_line);
+	return (0);
 }

@@ -1,45 +1,24 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        ::::::::            */
-/*   get_next_line_utils.c                              :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: llourens <llourens@student.codam.nl>         +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2024/11/21 10:46:11 by llourens      #+#    #+#                 */
-/*   Updated: 2024/11/25 19:03:33 by llourens      ########   odam.nl         */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
-#include <string.h>
 #include "get_next_line.h"
 
-void	ft_bzero(void *s, size_t n)
+void	*ft_calloc(size_t num, size_t size)
 {
-	unsigned char	*ns;
+	void			*pntr;
 	size_t			i;
+	unsigned char	*ns;
 
 	i = 0;
-	ns = (unsigned char *)s;
-	while (i < n)
+	pntr = malloc(num * size);
+	if (pntr == NULL)
+		return (NULL);
+	ns = (unsigned char *)pntr;
+	while (i < num * size)
 	{
 		ns[i] = '\0';
 		i++;
 	}
-}
-
-void	*ft_calloc(size_t num, size_t size)
-{
-	void	*pntr;
-
-	pntr = malloc(num * size);
-	if (pntr == NULL)
-	{
-		return (NULL);
-	}
-	ft_bzero(pntr, num * size);
 	return (pntr);
 }
 
@@ -80,4 +59,33 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	}
 	*s3 = '\0';
 	return (ptr);
+}
+
+void	*ft_memcpy(void *dest, const void *src, size_t n)
+{
+	size_t	i;
+
+	i = 0;
+	if (!dest && !src)
+		return (NULL);
+	while (i < n)
+	{
+		((unsigned char *)dest)[i] = ((unsigned char *)src)[i];
+		i++;
+	}
+	return (dest);
+}
+
+char	*ft_strdup(const char *s)
+{
+	char	*new_s;
+	int		len_s;
+
+	len_s = ft_strlen((char *)s);
+	new_s = malloc (sizeof(char) * (len_s + 1));
+	if (!new_s)
+		return (NULL);
+	ft_memcpy(new_s, s, len_s);
+	new_s[len_s] = '\0';
+	return (new_s);
 }

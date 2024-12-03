@@ -5,8 +5,8 @@
 /*                                                     +:+                    */
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2024/11/19 13:02:59 by llourens      #+#    #+#                 */
-/*   Updated: 2024/11/25 19:03:58 by llourens      ########   odam.nl         */
+/*   Created: 2024/11/28 13:30:33 by llourens      #+#    #+#                 */
+/*   Updated: 2024/12/03 15:34:51 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,15 @@
 #  define BUFFER_SIZE 1
 # endif
 
+#include <stdlib.h>
+
 void	*ft_calloc(size_t num, size_t size);
+
 void	ft_bzero(void *s, size_t n);
+void	*ft_calloc(size_t num, size_t size);
+int		ft_strlen(const char *s);
 char	*ft_strjoin(char const *s1, char const *s2);
+char	*read_file(int fd);
+char	*ft_strdup(const char *s);
 
 #endif
-
