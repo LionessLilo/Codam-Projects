@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/11/28 13:30:40 by llourens      #+#    #+#                 */
-/*   Updated: 2024/12/03 16:56:54 by llourens      ########   odam.nl         */
+/*   Updated: 2024/12/04 16:56:45 by root          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ static char	*get_next_line(int fd)
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 	{
 		printf("fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0");
-		return (NULL);
+		return (0);
 	}
 	
 	if (!stash) {
@@ -131,13 +131,13 @@ static char	*get_next_line(int fd)
 	return (line);
 }
 
-int main() {
-    char *line = NULL;
-    size_t len = 0; 
-    ssize_t nread;
+// int main() {
+//     char *line = NULL;
+//     size_t len = 0; 
+//     ssize_t nread;
 
-    while ((nread = getline(&line, &len, stdin)) != -1)
-        printf("Read line: %s", line);
-    free(line);
-    return 0;
-}
+//     while ((nread = getline(&line, &len, stdin)) != -1)
+//         printf("Read line: %s", line);
+//     free(line);
+//     return 0;
+// }
