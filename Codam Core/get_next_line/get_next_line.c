@@ -19,7 +19,6 @@
 char	*fill_stash(int fd, char *stash)
 {
 	char	*next_stash;
-	char	*temp;
 	int		i;
 
 	while (1)
@@ -28,21 +27,15 @@ char	*fill_stash(int fd, char *stash)
 		while (stash[i] && stash[i] != '\n')
 			i++;
 		if (stash[i] == '\n')
-		{
-			printf("found new line");
 			break ;
-		}
 		next_stash = read_file(fd);
 		if (!next_stash)
 		{
 			if (!stash)
 				return (NULL);
-			printf("EOF / nothing to return");
 			break ;
 		}
-		temp = stash;
 		stash = ft_strjoin(stash, next_stash);
-		free(temp);
 		free(next_stash);
 		if (!stash)
 			return (NULL);
@@ -50,33 +43,38 @@ char	*fill_stash(int fd, char *stash)
 	return (stash);
 }
 
-char	*line_from_stash(int fd, char *stash)
+char	*line_from_stash(int fd, char **stash)
 {
 	char	*line;
+	char	*local_stash;
+	char	*new_stash;
 	int		i;
+	int		j;
 
 	i = 0;
 	if (!stash[i])
-	{
-		printf("found a NULL terminator at the start of line_from_stash");
 		return (NULL);
-	}
-	stash = fill_stash(fd, stash);
-	line = ft_calloc(ft_strlen(stash) + 1, sizeof(char));
+	local_stash = fill_stash(fd, *stash);
+	line = ft_calloc(ft_strlen(local_stash) + 1, sizeof(char));
 	if (!line)
-	{
-		printf("Could not calloc line");
 		return (NULL);
-	}
-	while (stash[i] && stash[i] != '\n')
+	while (local_stash[i] && local_stash[i] != '\n')
 	{
-		line[i] = stash[i];
+		line[i] = local_stash[i];
 		i++;
 	}
-	if (stash[i] == '\n')
-	{
-		line[i++] = '\n';
-		return (line);
+	line[i] = '\n';
+	if (local_stash[i] == '\n') {
+		i++;
+		j = i;
+		new_stash = ft_calloc(((ft_strlen(local_stash) - j) + 1), sizeof(char));
+		while (local_stash[i])
+		{
+			new_stash[i-j] = local_stash[i];
+			i++;
+		}
+		new_stash[i] = '\0';
+		*stash = new_stash;
 	}
 	return (line);
 }
@@ -110,6 +108,7 @@ char	*read_file(int fd)
 static char	*get_next_line(int fd)
 {
 	char			*line;
+	char			*line_from_file;
 	static char		*stash;
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
@@ -117,23 +116,28 @@ static char	*get_next_line(int fd)
 		printf("fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0");
 		return (NULL);
 	}
-	if (!stash)
-		stash = read_file(fd);
-	line = line_from_stash(fd, stash);
+	
+	if (!stash) {
+		stash = "";
+	}
+
+	line_from_file = read_file(fd);
+	if (!line_from_file) {
+		line_from_file = "";
+	}
+
+	stash = ft_strjoin(stash, line_from_file);
+	line = line_from_stash(fd, &stash);
 	return (line);
 }
 
-int	main(void)
-{
-	int		fd;
-	char	*next_line;
+int main() {
+    char *line = NULL;
+    size_t len = 0; 
+    ssize_t nread;
 
-	fd = open("read_file.txt", O_RDONLY);
-	if (fd < 0)
-	{
-		return ((long int) NULL);
-	}
-	next_line = get_next_line(fd);
-	printf("%s", next_line);
-	return (0);
+    while ((nread = getline(&line, &len, stdin)) != -1)
+        printf("Read line: %s", line);
+    free(line);
+    return 0;
 }
