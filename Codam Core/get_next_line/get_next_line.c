@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/11/28 13:30:40 by llourens      #+#    #+#                 */
-/*   Updated: 2024/12/04 16:56:45 by root          ########   odam.nl         */
+/*   Updated: 2024/12/05 10:25:27 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,13 +64,14 @@ char	*line_from_stash(int fd, char **stash)
 		i++;
 	}
 	line[i] = '\n';
-	if (local_stash[i] == '\n') {
+	if (local_stash[i] == '\n')
+	{
 		i++;
 		j = i;
 		new_stash = ft_calloc(((ft_strlen(local_stash) - j) + 1), sizeof(char));
 		while (local_stash[i])
 		{
-			new_stash[i-j] = local_stash[i];
+			new_stash[i - j] = local_stash[i];
 			i++;
 		}
 		new_stash[i] = '\0';
@@ -93,14 +94,7 @@ char	*read_file(int fd)
 	}
 	bytes_read = read(fd, cup_buffer, BUFFER_SIZE);
 	if (bytes_read <= 0)
-	{
-		if (bytes_read < 0)
-		{
-			printf("could not read file or is EOF");
-			return (free(cup_buffer), NULL);
-		}
 		return (free(cup_buffer), NULL);
-	}
 	return_cup_buffer = ft_strdup(cup_buffer);
 	return (free(cup_buffer), return_cup_buffer);
 }
@@ -116,28 +110,46 @@ static char	*get_next_line(int fd)
 		printf("fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0");
 		return (0);
 	}
-	
-	if (!stash) {
+	if (!stash)
+	{
 		stash = "";
 	}
-
 	line_from_file = read_file(fd);
-	if (!line_from_file) {
+	if (!line_from_file)
+	{
 		line_from_file = "";
 	}
-
 	stash = ft_strjoin(stash, line_from_file);
 	line = line_from_stash(fd, &stash);
 	return (line);
 }
 
-// int main() {
-//     char *line = NULL;
-//     size_t len = 0; 
-//     ssize_t nread;
+int main(void)
+{
+    int fd;
+    char *line;
 
-//     while ((nread = getline(&line, &len, stdin)) != -1)
-//         printf("Read line: %s", line);
-//     free(line);
-//     return 0;
-// }
+    // Open the file for reading
+    fd = open("read_file.txt", O_RDONLY);
+    if (fd < 0)
+    {
+        perror("Error opening file");
+        return (1);  // Return error code if file can't be opened
+    }
+
+    // Read and print each line until the end of the file
+    while ((line = get_next_line(fd)) != NULL)
+    {
+        printf("%s", line);  // Print the line
+        free(line);  // Free the memory allocated for the line after printing
+    }
+
+    // Close the file
+    if (close(fd) < 0)
+    {
+        perror("Error closing file");
+        return (1);  // Return error code if file can't be closed
+    }
+
+    return (0);  // Return success code
+}
