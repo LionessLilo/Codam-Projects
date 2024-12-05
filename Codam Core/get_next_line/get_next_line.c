@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/11/28 13:30:40 by llourens      #+#    #+#                 */
-/*   Updated: 2024/12/05 10:25:27 by llourens      ########   odam.nl         */
+/*   Updated: 2024/12/05 15:18:05 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,8 @@ char	*line_from_stash(int fd, char **stash)
 		line[i] = local_stash[i];
 		i++;
 	}
-	line[i] = '\n';
+	if (local_stash[i] == '\n')
+		line[i] = '\n';
 	if (local_stash[i] == '\n')
 	{
 		i++;
@@ -77,6 +78,8 @@ char	*line_from_stash(int fd, char **stash)
 		new_stash[i] = '\0';
 		*stash = new_stash;
 	}
+	else
+		*stash = NULL;
 	return (line);
 }
 
@@ -108,11 +111,11 @@ static char	*get_next_line(int fd)
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 	{
 		printf("fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0");
-		return (0);
+		return (NULL);
 	}
 	if (!stash)
 	{
-		stash = "";
+		stash = NULL;
 	}
 	line_from_file = read_file(fd);
 	if (!line_from_file)
