@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/11/28 13:30:40 by llourens      #+#    #+#                 */
-/*   Updated: 2024/12/05 15:18:05 by llourens      ########   odam.nl         */
+/*   Updated: 2024/12/06 19:36:28 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	*fill_stash(int fd, char *stash)
 			i++;
 		if (stash[i] == '\n')
 			break ;
-		next_stash = read_file(fd);
+		next_stash = read_file(fd, stash);
 		if (!next_stash)
 		{
 			if (!stash)
@@ -52,7 +52,7 @@ char	*line_from_stash(int fd, char **stash)
 	int		j;
 
 	i = 0;
-	if (!stash[i])
+	if (!*stash)
 		return (NULL);
 	local_stash = fill_stash(fd, *stash);
 	line = ft_calloc(ft_strlen(local_stash) + 1, sizeof(char));
@@ -63,13 +63,14 @@ char	*line_from_stash(int fd, char **stash)
 		line[i] = local_stash[i];
 		i++;
 	}
-	if (local_stash[i] == '\n')
-		line[i] = '\n';
+	line[i] = '\n';
 	if (local_stash[i] == '\n')
 	{
 		i++;
 		j = i;
 		new_stash = ft_calloc(((ft_strlen(local_stash) - j) + 1), sizeof(char));
+		if (!new_stash)
+			return (free(local_stash), free(line), NULL);
 		while (local_stash[i])
 		{
 			new_stash[i - j] = local_stash[i];
@@ -77,82 +78,89 @@ char	*line_from_stash(int fd, char **stash)
 		}
 		new_stash[i] = '\0';
 		*stash = new_stash;
+		free(local_stash);
 	}
 	else
 		*stash = NULL;
 	return (line);
 }
 
-char	*read_file(int fd)
+char	*read_file(int fd, char *stash)
 {
 	char	*cup_buffer;
 	int		bytes_read;
 	char	*return_cup_buffer;
+	int		i;
+	int		j;
 
+	i = 0;
+	// if (*stash)
+	// {
+	// 	while (*stash && i < BUFFER_SIZE)
+	// 	{
+	// 		j = i;
+	// 		cup_buffer[j - i] = stash[i];
+	// 		i++;
+	// 	}
+	// }
 	cup_buffer = ft_calloc(BUFFER_SIZE +1, sizeof(char));
 	if (!cup_buffer)
-	{
-		printf("could not malloc cup_buffer");
 		return (NULL);
-	}
 	bytes_read = read(fd, cup_buffer, BUFFER_SIZE);
 	if (bytes_read <= 0)
 		return (free(cup_buffer), NULL);
 	return_cup_buffer = ft_strdup(cup_buffer);
-	return (free(cup_buffer), return_cup_buffer);
+	free(cup_buffer);
+	return (return_cup_buffer);
 }
 
-static char	*get_next_line(int fd)
+char	*get_next_line(int fd)
 {
 	char			*line;
 	char			*line_from_file;
 	static char		*stash;
+	char			*temp;
 
-	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
-	{
-		printf("fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0");
+	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	}
 	if (!stash)
-	{
-		stash = NULL;
-	}
-	line_from_file = read_file(fd);
+		stash = ft_strdup("");
+	line_from_file = read_file(fd, stash);
 	if (!line_from_file)
+		return (NULL);
+	if (line_from_file)
 	{
-		line_from_file = "";
+		temp = ft_strjoin(stash, line_from_file);
+		free(stash);
+		free(line_from_file);
+		stash = temp;
 	}
-	stash = ft_strjoin(stash, line_from_file);
 	line = line_from_stash(fd, &stash);
 	return (line);
 }
 
-int main(void)
+int main() 
 {
     int fd;
     char *line;
 
-    // Open the file for reading
     fd = open("read_file.txt", O_RDONLY);
-    if (fd < 0)
-    {
+    if (fd == -1) {
         perror("Error opening file");
-        return (1);  // Return error code if file can't be opened
+        return 1;
     }
 
-    // Read and print each line until the end of the file
-    while ((line = get_next_line(fd)) != NULL)
-    {
-        printf("%s", line);  // Print the line
-        free(line);  // Free the memory allocated for the line after printing
+    // Loop to read and print lines until the end of the file
+    while ((line = get_next_line(fd)) != NULL) {
+        printf("%s", line);
+        free(line);  // Don't forget to free the memory after each line
     }
 
-    // Close the file
-    if (close(fd) < 0)
-    {
-        perror("Error closing file");
-        return (1);  // Return error code if file can't be closed
-    }
+    // Close the file descriptor after finishing reading
+    close(fd);
 
-    return (0);  // Return success code
+    return 0;
 }
+
+// Think of if there is no new line in the first call. 
+// Only need to free stash when there is EOF so can get away with less mallocs. 
