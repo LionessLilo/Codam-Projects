@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/11/28 13:30:40 by llourens      #+#    #+#                 */
-/*   Updated: 2024/12/09 17:17:54 by llourens      ########   odam.nl         */
+/*   Updated: 2024/12/09 18:21:19 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ char	*line_from_stash(int fd, char *stash)
 			new_stash[i - j] = local_stash[i];
 			i++;
 		}
-		new_stash[i - 1] = '\0';
+		new_stash[i +1] = '\0';
 		*stash = *new_stash;
 		free(local_stash);
 	}
