@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/11/28 13:30:40 by llourens      #+#    #+#                 */
-/*   Updated: 2024/12/09 10:59:45 by root          ########   odam.nl         */
+/*   Updated: 2024/12/09 11:42:01 by root          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,7 @@ char	*fill_stash(int fd, char *stash)
 		if (next_stash == NULL)
 			break ;
 		if (!next_stash)
-		{
-			if (!stash)
-				return (NULL);
 			break ;
-		}
 		stash = ft_strjoin(stash, next_stash);
 		free(next_stash);
 		if (!stash)
@@ -83,7 +79,7 @@ char	*line_from_stash(int fd, char **stash)
 			new_stash[i - j] = local_stash[i];
 			i++;
 		}
-		new_stash[i] = '\0';
+		new_stash[i - 1] = '\0';
 		*stash = new_stash;
 		free(local_stash);
 	}
@@ -98,10 +94,6 @@ char	*read_file(int fd)
 	int		bytes_read;
 	char	*return_cup_buffer;
 
-	// if (*stash)
-	// {
-	// 	// read from stash instead :D
-	// }
 	cup_buffer = ft_calloc(BUFFER_SIZE +1, sizeof(char));
 	if (!cup_buffer)
 		return (NULL);
