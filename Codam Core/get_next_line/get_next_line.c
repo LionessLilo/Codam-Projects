@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/11/28 13:30:40 by llourens      #+#    #+#                 */
-/*   Updated: 2024/12/09 13:53:40 by llourens      ########   odam.nl         */
+/*   Updated: 2024/12/09 17:17:54 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,12 @@ char	*fill_stash(int fd, char *stash)
 {
 	char	*next_stash;
 	int		i;
+	char	*temp;
 
 	while (1)
 	{
 		i = 0;
-		if (!*stash && *stash != '\n')
+		if (!*stash)
 			break ;
 		while (stash[i] && stash[i] != '\n')
 			i++;
@@ -33,17 +34,17 @@ char	*fill_stash(int fd, char *stash)
 		next_stash = read_file(fd);
 		if (next_stash == NULL)
 			break ;
-		if (!next_stash)
-			break ;
-		stash = ft_strjoin(stash, next_stash);
+		temp = ft_strjoin(stash, next_stash);
+		free(stash);
 		free(next_stash);
+		stash = temp;
 		if (!stash)
 			return (NULL);
 	}
 	return (stash);
 }
 
-char	*line_from_stash(int fd, char **stash)
+char	*line_from_stash(int fd, char *stash)
 {
 	char	*line;
 	char	*local_stash;
@@ -52,9 +53,9 @@ char	*line_from_stash(int fd, char **stash)
 	int		j;
 
 	i = 0;
-	if (!*stash)
+	if (!(*stash))
 		return (NULL);
-	local_stash = fill_stash(fd, *stash);
+	local_stash = fill_stash(fd, stash);
 	line = ft_calloc(ft_strlen(local_stash) + 1, sizeof(char));
 	if (!line)
 	{
@@ -73,18 +74,22 @@ char	*line_from_stash(int fd, char **stash)
 		j = i;
 		new_stash = ft_calloc(((ft_strlen(local_stash) - j) + 1), sizeof(char));
 		if (!new_stash)
-			return (free(local_stash), free(line), NULL);
+		{
+			free(local_stash);
+			free(line);
+			return (NULL);
+		}
 		while (local_stash[i])
 		{
 			new_stash[i - j] = local_stash[i];
 			i++;
 		}
 		new_stash[i - 1] = '\0';
-		*stash = new_stash;
+		*stash = *new_stash;
 		free(local_stash);
 	}
 	else
-		*stash = NULL;
+		stash = NULL;
 	return (line);
 }
 
@@ -123,15 +128,16 @@ char	*get_next_line(int fd)
 		return (NULL);
 	line_from_file = read_file(fd);
 	if (!line_from_file)
-		return (NULL);
-	if (line_from_file)
 	{
-		temp = ft_strjoin(stash, line_from_file);
 		free(stash);
-		free(line_from_file);
-		stash = temp;
+		stash = NULL;
+    	return (NULL);
 	}
-	line = line_from_stash(fd, &stash);
+	temp = ft_strjoin(stash, line_from_file);
+	free(stash);
+	free(line_from_file);
+	stash = temp;
+	line = line_from_stash(fd, stash);
 	if (!line && stash)
 	{
 		free(stash);
@@ -162,6 +168,3 @@ char	*get_next_line(int fd)
 
 //     return 0;
 // }
-
-// Think of if there is no new line in the first call. 
-// Only need to free stash when there is EOF so can get away with less mallocs. 
