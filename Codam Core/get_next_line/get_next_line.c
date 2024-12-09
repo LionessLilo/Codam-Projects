@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/11/28 13:30:40 by llourens      #+#    #+#                 */
-/*   Updated: 2024/12/06 21:31:39 by llourens      ########   odam.nl         */
+/*   Updated: 2024/12/09 10:59:45 by root          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ char	*fill_stash(int fd, char *stash)
 			break ;
 		}
 		stash = ft_strjoin(stash, next_stash);
-		free(stash);
 		free(next_stash);
 		if (!stash)
 			return (NULL);
@@ -129,7 +128,7 @@ char	*get_next_line(int fd)
 	if (!stash)
 		stash = ft_strdup("");
 	if (!stash)
-        return (NULL);
+		return (NULL);
 	line_from_file = read_file(fd);
 	if (!line_from_file)
 		return (NULL);
