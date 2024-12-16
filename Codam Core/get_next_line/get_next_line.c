@@ -5,10 +5,11 @@
 /*                                                     +:+                    */
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2024/12/10 09:29:21 by llourens      #+#    #+#                 */
-/*   Updated: 2024/12/10 10:41:57 by llourens      ########   odam.nl         */
+/*   Created: 2024/12/16 13:26:21 by llourens      #+#    #+#                 */
+/*   Updated: 2024/12/16 18:32:09 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include <fcntl.h>
 #include <stdio.h>
@@ -16,7 +17,7 @@
 #include <unistd.h>
 #include "get_next_line.h"
 
-char	*leftover_line(char *stash)
+char	*leftover_stash(char *stash)
 {
 	int		i;
 	int		j;
@@ -26,67 +27,38 @@ char	*leftover_line(char *stash)
 	j = 0;
 	while (stash[i] != '\0' && stash[i] != '\n')
 		i++;
-	if (!stash[i])
-		return (ft_free(&stash), NULL);
-	line = ft_calloc((ft_strlen(stash) - i + 1), sizeof(char));
-	if (!line)
-		return (ft_free(&stash), NULL);
-	i++;
-	while (stash[i] != '\0')
-		line[j++] = stash[i++];
-	line[j] = '\0';
-	free(stash);
-	return (line);
 }
 
-char	*get_the_line(char *buffer)
+char	*get_line_from_buffer(char *stash)
 {
 	char	*line;
+	char	*temp;
 	int		i;
 
 	i = 0;
-	if (!buffer[i])
-		return (NULL);
-	while (buffer[i] != 0 && buffer[i] != '\n')
-		i++;
-	if (buffer[i] == '\n')
-		line = ft_calloc((i + 2), sizeof(char));
-	else
-		line = ft_calloc((i + 1), sizeof(char));
+	line = malloc(ft_strlen(stash) + 2);
 	if (!line)
-		return (NULL);
-	i = 0;
-	while (buffer[i] != 0 && buffer[i] != '\n')
+		return (ft_free(stash), NULL);
+	while (stash[i] && stash[i] != '\n')
 	{
-		line[i] = buffer[i];
+		line[i] = stash[i];
 		i++;
 	}
-	if (buffer[i] == '\n')
-		line[i++] = '\n';
+	if (stash[i] == '\n')
+	{
+		line[i] = '\n';
+		i++;
+	}
 	line[i] = '\0';
 	return (line);
 }
 
-int	buffercheck(char **buffer)
-{
-	if (!*buffer)
-	{
-		*buffer = ft_calloc(1, 1);
-		if (!*buffer)
-			return (1);
-		return (0);
-	}
-	return (0);
-}
-
-char	*read_file_fill_stash(int fd, char *stash)
+char	*read_and_fill_buffer(int fd, char *stash)
 {
 	char	*cup_buffer;
 	char	*temp;
 	int		chars_read;
 
-	if (buffercheck(&stash))
-		return (NULL);
 	cup_buffer = ft_calloc((BUFFER_SIZE + 1), sizeof(char));
 	if (!cup_buffer)
 		return (free(stash), NULL);
@@ -113,21 +85,39 @@ char	*get_next_line(int fd)
 	char		*line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
-	{
-		ft_free(&stash);
-		return (NULL);
-	}
-	stash = read_file_fill_stash(fd, stash);
+		return (ft_free(stash), NULL);
+	if (!stash)
+		stash = ft_strdup("");
+	stash = read_and_fill_buffer(fd, stash);
 	if (!stash)
 		return (NULL);
 	if (*stash == '\0')
-	{
-		ft_free(&stash);
-		return (NULL);
-	}
-	line = get_the_line(stash);
+		return (ft_free(&stash), NULL);
+	line = get_line_from_buffer(stash);
 	if (!line)
 		return (ft_free(&stash), NULL);
-	stash = leftover_line(stash);
-	return (line);
+	stash = leftover_stash(stash);
 }
+
+// int main() 
+// {
+//     int fd;
+//     char *line;
+
+//     fd = open("read_file.txt", O_RDONLY);
+//     if (fd == -1) {
+//         perror("Error opening file");
+//         return 1;
+//     }
+
+//     // Loop to read and print lines until the end of the file
+//     while ((line = get_next_line(fd)) != NULL) {
+//         printf("%s", line);
+//         free(line);  // Don't forget to free the memory after each line
+//     }
+
+//     // Close the file descriptor after finishing reading
+//     close(fd);
+
+//     return 0;
+// }
