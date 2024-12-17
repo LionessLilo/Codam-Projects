@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/10 09:29:12 by llourens      #+#    #+#                 */
-/*   Updated: 2024/12/16 17:36:41 by llourens      ########   odam.nl         */
+/*   Updated: 2024/12/17 12:56:28 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,39 +54,24 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	return (ptr);
 }
 
-void	*ft_memcpy(void *dest, const void *src, size_t n)
-{
-	size_t	i;
-
-	i = 0;
-	if (!dest && !src)
-		return (NULL);
-	while (i < n)
-	{
-		((unsigned char *)dest)[i] = ((unsigned char *)src)[i];
-		i++;
-	}
-	return (dest);
-}
-
 char	*ft_strdup(const char *s)
 {
 	char	*new_s;
 	int		len_s;
+	int		i;
 
 	len_s = ft_strlen((char *)s);
-	new_s = malloc (sizeof(char) * (len_s + 1));
+	new_s = malloc(sizeof(char) * (len_s + 1));
 	if (!new_s)
 		return (NULL);
-	ft_memcpy(new_s, s, len_s);
+	i = 0;
+	while (i < len_s)
+	{
+		new_s[i] = s[i];
+		i++;
+	}
 	new_s[len_s] = '\0';
 	return (new_s);
-}
-
-void	ft_free(char **memory)
-{
-	free(*memory);
-	*memory = (NULL);
 }
 
 char	*ft_strchr(const char *s, int c)
@@ -113,4 +98,19 @@ char	*ft_strchr(const char *s, int c)
 		return ((char *)s + i);
 	}
 	return (NULL);
+}
+
+void	*ft_memset(void *s, int c, size_t n)
+{
+	size_t			i;
+	unsigned char	*ns;
+
+	ns = (unsigned char *)s;
+	i = 0;
+	while (i < n)
+	{
+		ns[i] = (unsigned char)c;
+		i++;
+	}
+	return (s);
 }
