@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/10/31 14:03:31 by llourens      #+#    #+#                 */
-/*   Updated: 2024/11/12 15:14:34 by llourens      ########   odam.nl         */
+/*   Updated: 2024/12/18 17:05:48 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,30 +54,3 @@ int	ft_print_xx(unsigned long int nb, char specifier)
 	count += write(1, &number, 1);
 	return (count);
 }
-// 	int main(void)
-// {
-// 	int	count = 0;
-// 	// Hex
-// 	printf("\nhex: %x\n", 6);
-// 	ft_print_xx(6, 'x');
-
-// 	printf("\nhex: %x\n", 10);
-// 	ft_print_xx(10, 'x');
-
-// 	printf("\nhex: %x\n", 13);
-// 	ft_print_xx(13, 'x');
-
-// 	printf("\nhex: %x\n", 20);
-// 	ft_print_xx(20, 'x');
-
-// 	printf("\nhex: %x\n", 255);
-// 	ft_print_xx(255, 'x');
-
-// 	printf("\nhex: %X\n", 255);
-// 	count = ft_print_xx(255, 'X');
-// 	printf("\n%d", count);
-
-// 	printf("\nhex: %X\n", 2147483647);
-// 	count = ft_print_xx(2147483647, 'X');
-//     return (0);
-// }
