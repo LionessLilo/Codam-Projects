@@ -6,14 +6,14 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/16 13:26:21 by llourens      #+#    #+#                 */
-/*   Updated: 2024/12/29 22:23:53 by root          ########   odam.nl         */
+/*   Updated: 2024/12/29 22:25:14 by root          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <unistd.h>
 #include "libft.h"
-#define BUFFER_SIZE 10
+#define BUFFER_SIZE 5
 
 // void	ft_free(char **memory)
 // {
