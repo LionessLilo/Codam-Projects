@@ -3,39 +3,39 @@
 #                                                         ::::::::             #
 #    Makefile                                           :+:    :+:             #
 #                                                      +:+                     #
-#    By: llourens <llourens@student.codam.nl>         +#+                      #
+#    By: root <root@student.codam.nl>                 +#+                      #
 #                                                    +#+                       #
-#    Created: 2024/12/20 18:11:09 by llourens      #+#    #+#                  #
-#    Updated: 2024/12/20 18:42:37 by llourens      ########   odam.nl          #
+#    Created: 2025/01/02 15:29:05 by root          #+#    #+#                  #
+#    Updated: 2025/01/02 17:39:14 by root          ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libftprintf.a
+NAME = push_swap.a
 LIBFTNAME = libft.a
+PRINTFNAME = libftprintf.a
 CC = cc
 CFLAGS = -Wall -Werror -Wextra
+PUSHSWAPDIR = push_swap
 PRINTFDIR = printf
 LIBFTDIR = libft
 
-SRCS =  $(PRINTFDIR)/ft_print_c.c $(PRINTFDIR)/ft_print_di.c $(PRINTFDIR)/ft_print_p.c $(PRINTFDIR)/ft_print_str.c $(PRINTFDIR)/ft_print_u.c $(PRINTFDIR)/ft_print_xx.c $(PRINTFDIR)/ft_printf.c
+SRCS = src/test.c
 OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)
 
-makelibft:
-	@make -C $(PRINTFDIR)/$(LIBFTDIR)
-	@cp $(PRINTFDIR)/$(LIBFTDIR)/$(LIBFTNAME) .
-	@mv $(LIBFTNAME) $(NAME)
+makepushswap:
+	@make -C $(PRINTFDIR)
 
-$(NAME): $(OBJS) makelibft
-	@ar -rcs $(NAME) $(OBJS) $(PRINTFDIR)/$(LIBFTDIR)/$(LIBFTNAME)
+$(NAME): $(OBJS) makepushswap
+	@ar -rcs $(NAME) $(OBJS) $(PRINTFDIR)/$(PRINTFNAME)
 
 clean:
 	@rm -f $(OBJS)
-	@cd $(PRINTFDIR)/$(LIBFTDIR) && make clean
-	
+	@make -C $(PRINTFDIR) clean
+    
 fclean: clean
 	@rm -f $(NAME)
-	@cd $(PRINTFDIR)/$(LIBFTDIR) && make fclean
-	
+	@make -C $(PRINTFDIR) fclean
+    
 re: fclean all

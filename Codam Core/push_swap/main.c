@@ -1,23 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_free.c                                          :+:    :+:            */
+/*   main.c                                             :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: llourens <llourens@student.codam.nl>         +#+                     */
+/*   By: root <root@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2024/12/18 16:18:08 by llourens      #+#    #+#                 */
-/*   Updated: 2024/12/18 16:23:23 by llourens      ########   odam.nl         */
+/*   Created: 2025/01/02 15:26:55 by root          #+#    #+#                 */
+/*   Updated: 2025/01/02 17:41:24 by root          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include "libft.h"
+#include <stdio.h>
+#include <unistd.h>
+#include "./includes/push_swap.h"
 
-void	ft_free(char **memory)
+int	main(void)
 {
-	if (*memory)
-	{
-		free(*memory);
-		*memory = NULL;
-	}
+	int valid = is_it_a_digit('2');
+	
+	if (valid == 1)
+		printf("is a digit");
+	return (0);
 }

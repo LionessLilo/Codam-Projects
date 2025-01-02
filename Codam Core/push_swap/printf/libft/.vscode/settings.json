@@ -1,7 +1,0 @@
-{
-    "makefile.configureOnOpen": false,
-    "files.associations": {
-        "stdlib.h": "c",
-        "stdio.h": "c"
-    }
-}
