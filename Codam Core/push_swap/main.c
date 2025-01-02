@@ -5,20 +5,18 @@
 /*                                                     +:+                    */
 /*   By: root <root@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2025/01/02 15:26:55 by root          #+#    #+#                 */
-/*   Updated: 2025/01/02 17:41:24 by root          ########   odam.nl         */
+/*   Created: 2025/01/02 20:08:49 by root          #+#    #+#                 */
+/*   Updated: 2025/01/02 20:14:57 by root          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <unistd.h>
-#include "./includes/push_swap.h"
 
-int	main(void)
+
+int	main(int argc, char **argv)
 {
-	int valid = is_it_a_digit('2');
-	
-	if (valid == 1)
-		printf("is a digit");
-	return (0);
+	int	*stack_a;
+	int	stack_size;
+
+	if (!validate_input(argc, argv, &stack_a, &stack_size))
+		return (ft_printf("Not valid input"), 0);
 }
