@@ -6,7 +6,7 @@
 /*   By: root <root@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/02 15:45:56 by root          #+#    #+#                 */
-/*   Updated: 2025/01/02 17:06:13 by root          ########   odam.nl         */
+/*   Updated: 2025/01/03 17:14:19 by root          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,6 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-int	is_it_a_digit(int c);
+int	is_valid_int(const char *cchar_input_numbers);
 
 #endif

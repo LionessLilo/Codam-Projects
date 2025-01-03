@@ -6,7 +6,7 @@
 #    By: root <root@student.codam.nl>                 +#+                      #
 #                                                    +#+                       #
 #    Created: 2025/01/02 15:29:05 by root          #+#    #+#                  #
-#    Updated: 2025/01/02 17:39:14 by root          ########   odam.nl          #
+#    Updated: 2025/01/03 17:25:40 by root          ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,15 +19,17 @@ PUSHSWAPDIR = push_swap
 PRINTFDIR = printf
 LIBFTDIR = libft
 
-SRCS = src/test.c
+SRCS = utils/input_validation.c
 OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)
 
-makepushswap:
+makeprintf:
 	@make -C $(PRINTFDIR)
+	@cp $(PRINTFDIR)/$(PRINTFNAME) .
+	@mv $(PRINTFNAME) $(NAME)
 
-$(NAME): $(OBJS) makepushswap
+$(NAME): $(OBJS) makeprintf
 	@ar -rcs $(NAME) $(OBJS) $(PRINTFDIR)/$(PRINTFNAME)
 
 clean:

@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/10/09 11:30:38 by llourens      #+#    #+#                 */
-/*   Updated: 2024/10/25 08:56:29 by llourens      ########   odam.nl         */
+/*   Updated: 2025/01/03 16:02:12 by root          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 int		ft_atoi(const char *nptr);
 void	ft_bzero(void *s, size_t n);
 void	*ft_calloc(size_t num, size_t size);
+void	ft_free(char **memory);
 int		ft_isalnum(int c);
 int		ft_isalpha(int c);
 int		ft_isascii(int c);

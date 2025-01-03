@@ -6,7 +6,7 @@
 /*   By: root <root@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/02 20:11:43 by root          #+#    #+#                 */
-/*   Updated: 2025/01/02 21:15:52 by root          ########   odam.nl         */
+/*   Updated: 2025/01/03 17:30:45 by root          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "../printf/libft/libft.h"
 #include <stdlib.h>
 
-int	is_valid_int(const char *cchar_input_numbers)
+static int	is_valid_int(const char *cchar_input_numbers)
 {
 	int	i;
 
@@ -32,7 +32,7 @@ int	is_valid_int(const char *cchar_input_numbers)
 	return (1);
 }
 
-int	contains_duplicates(int *int_stack_a, int int_stack_size)
+static int	contains_duplicates(int *int_stack_a_array, int int_stack_size)
 {
 	int	i;
 	int	j;
@@ -43,7 +43,7 @@ int	contains_duplicates(int *int_stack_a, int int_stack_size)
 		j = i + 1;
 		while (j < int_stack_size)
 		{
-			if (int_stack_a[i] == int_stack_a[j])
+			if (int_stack_a_array[i] == int_stack_a_array[j])
 			{
 				ft_printf("You have entered a duplicate value");
 				return (1);
@@ -55,22 +55,29 @@ int	contains_duplicates(int *int_stack_a, int int_stack_size)
 	return (0);
 }
 
-int	validate_input(int argc, char **argv, int **stack_a, int *stack_size)
+int	validate_input(int argc, char **argv,
+		int **int_stack_a_array, int *stack_size)
 {
-	int	*int_temp_atoi;
+	int	*int_temp_atoi_array;
 	int	i;
 
 	i = 0;
 	if (argc < 2)
 		return (ft_printf("Not enough arguements"), 0);
-	int_temp_atoi = malloc((argc - 1) * sizeof(int));
-	if (!int_temp_atoi)
-		return (ft_printf("Could not malloc int_temp_atoi"), 0);
-	
-	// Validate each argument
-
-	// Check for duplicates
-	
-
-	// Pass valid input to stack_a
+	int_temp_atoi_array = malloc((argc - 1) * sizeof(int));
+	if (!int_temp_atoi_array)
+		return (ft_printf("Could not malloc int_temp_atoi_array_array"), 0);
+	i = 1;
+	while (i < argc)
+	{
+		if (!is_valid_int(argv[i]))
+			return (free(int_temp_atoi_array), 0);
+		int_temp_atoi_array[i - 1] = ft_atoi(argv[i]);
+		i++;
+	}
+	if (contains_duplicates(int_temp_atoi_array, argc - 1))
+		return (free(int_temp_atoi_array), 0);
+	*int_stack_a_array = int_temp_atoi_array;
+	*stack_size = argc - 1;
+	return (1);
 }
