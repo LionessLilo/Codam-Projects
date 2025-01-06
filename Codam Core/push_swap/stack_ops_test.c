@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/06 09:23:47 by llourens      #+#    #+#                 */
-/*   Updated: 2025/01/06 11:13:24 by llourens      ########   odam.nl         */
+/*   Updated: 2025/01/06 12:50:28 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,5 +103,30 @@ int	main(void)
 		i++;
 	}
 	ft_printf("\n");
+
+	//pa
+	ft_printf("Push a: \n");
+	i = 0;
+	ft_printf("current a: \n");
+	while (i < (stack_a_size))
+	{
+		ft_printf("%d", int_stack_a_array[i]);
+		i++;
+	}
+	ft_printf("\n");
+
+	i = 0;
+	ft_printf("Current b: \n");
+	while (i < (stack_b_size))
+	{
+		ft_printf("%d", int_stack_b_array[i]);
+		i++;
+	}
+	ft_printf("\n");
+
+	
+	
+	
+	
 	return (0);
 }
