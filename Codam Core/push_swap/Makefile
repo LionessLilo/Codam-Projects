@@ -6,7 +6,7 @@
 #    By: root <root@student.codam.nl>                 +#+                      #
 #                                                    +#+                       #
 #    Created: 2025/01/02 15:29:05 by root          #+#    #+#                  #
-#    Updated: 2025/01/03 17:25:40 by root          ########   odam.nl          #
+#    Updated: 2025/01/06 10:40:45 by llourens      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ PUSHSWAPDIR = push_swap
 PRINTFDIR = printf
 LIBFTDIR = libft
 
-SRCS = utils/input_validation.c
+SRCS = utils/input_validation.c utils/stack_operations.c
 OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)

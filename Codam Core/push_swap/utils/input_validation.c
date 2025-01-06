@@ -6,7 +6,7 @@
 /*   By: root <root@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/02 20:11:43 by root          #+#    #+#                 */
-/*   Updated: 2025/01/03 17:30:45 by root          ########   odam.nl         */
+/*   Updated: 2025/01/06 09:09:11 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int	is_valid_int(const char *cchar_input_numbers)
 		if (cchar_input_numbers[i] == '+' || cchar_input_numbers[i] == '-')
 			i++;
 		if (!cchar_input_numbers[i])
-			return (ft_printf("Please add a number"), 0);
+			return (ft_printf("Please add at least two numbers"), 0);
 		if (!ft_isdigit(cchar_input_numbers[i]))
 			return (ft_printf("You entered a value that is not a number"), 0);
 		i++;
@@ -32,16 +32,16 @@ static int	is_valid_int(const char *cchar_input_numbers)
 	return (1);
 }
 
-static int	contains_duplicates(int *int_stack_a_array, int int_stack_size)
+static int	contains_duplicates(int *int_stack_a_array, int int_stack_a_size)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	while (i < int_stack_size - 1)
+	while (i < int_stack_a_size - 1)
 	{
 		j = i + 1;
-		while (j < int_stack_size)
+		while (j < int_stack_a_size)
 		{
 			if (int_stack_a_array[i] == int_stack_a_array[j])
 			{
@@ -56,7 +56,7 @@ static int	contains_duplicates(int *int_stack_a_array, int int_stack_size)
 }
 
 int	validate_input(int argc, char **argv,
-		int **int_stack_a_array, int *stack_size)
+		int **int_stack_a_array, int *stack_a_size)
 {
 	int	*int_temp_atoi_array;
 	int	i;
@@ -78,6 +78,6 @@ int	validate_input(int argc, char **argv,
 	if (contains_duplicates(int_temp_atoi_array, argc - 1))
 		return (free(int_temp_atoi_array), 0);
 	*int_stack_a_array = int_temp_atoi_array;
-	*stack_size = argc - 1;
+	*stack_a_size = argc - 1;
 	return (1);
 }
