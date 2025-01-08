@@ -6,7 +6,7 @@
 /*   By: root <root@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/02 15:45:56 by root          #+#    #+#                 */
-/*   Updated: 2025/01/08 14:13:57 by root          ########   odam.nl         */
+/*   Updated: 2025/01/08 17:00:56 by root          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,13 @@ void	pa(int *int_stack_a_array, int *stack_a_size,
 			int *int_stack_b_array, int *stack_b_size);
 void	pb(int *int_stack_a_array, int *stack_a_size,
 			int *int_stack_b_array, int *stack_b_size);
+void	ra(int *int_stack_a_array, int stack_a_size);
+void	rb(int *int_stack_b_array, int stack_b_size);
+void	rr(int *int_stack_a_array, int stack_a_size,
+			int *int_stack_b_array, int stack_b_size);
+void	rra(int *int_stack_a_array, int stack_a_size);
+void	rrb(int *int_stack_b_array, int stack_b_size);
+void	rrr(int *int_stack_a_array, int stack_a_size,
+			int *int_stack_b_array, int stack_b_size);
 			
 #endif

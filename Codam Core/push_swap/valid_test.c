@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   main.c                                             :+:    :+:            */
+/*   valid_test.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: root <root@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/02 20:08:49 by root          #+#    #+#                 */
-/*   Updated: 2025/01/03 17:07:37 by root          ########   odam.nl         */
+/*   Updated: 2025/01/08 14:43:51 by root          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ int validate_input(int argc, char **argv, int **int_stack_a_array, int *stack_si
 
 int main(int argc, char **argv)
 {
-    int *stack_a_array = NULL; // Pointer to hold the validated array
-    int stack_size = 0;        // Variable to hold the size of the stack
+    int *stack_a_array = NULL;
+    int stack_size = 0;
 
     // Call validate_input to process and validate arguments
     if (!validate_input(argc, argv, &stack_a_array, &stack_size))
