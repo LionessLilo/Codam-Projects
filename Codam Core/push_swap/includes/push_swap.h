@@ -6,7 +6,7 @@
 /*   By: root <root@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/02 15:45:56 by root          #+#    #+#                 */
-/*   Updated: 2025/01/08 17:00:56 by root          ########   odam.nl         */
+/*   Updated: 2025/01/09 19:24:15 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,21 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdbool.h>
+# include <limits.h>
+
+typedef struct s_stack_node
+{
+	int					nbr;
+	int					i;
+	int					cost_to_push;
+	bool				is_above_median;	
+	bool				is_cheapest;
+	struct s_stack_node	*target_node;
+	struct s_stack_node	*next;
+	struct s_stack_node	*previous;
+}						t_stack_node;
+
 
 int	is_valid_int(const char *cchar_input_numbers);
 void	*sa(int *int_stack_a_array, int stack_a_size);
