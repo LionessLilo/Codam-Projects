@@ -6,7 +6,7 @@
 /*   By: root <root@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/02 15:45:56 by root          #+#    #+#                 */
-/*   Updated: 2025/01/10 20:33:46 by llourens      ########   odam.nl         */
+/*   Updated: 2025/01/10 21:58:06 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,17 @@ typedef struct s_stack_node
 }						t_stack_node;
 
 
-// Stack initialization
+// Error handling
+
+// stack inistiation
+
+// Nodes initialization
 
 // Stack utils
 
+// Commands
 
-// Input Validation
-
-
-// Operations
+// Algorithms
 
 
 #endif
