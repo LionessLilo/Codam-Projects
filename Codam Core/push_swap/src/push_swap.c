@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/10 21:58:36 by llourens      #+#    #+#                 */
-/*   Updated: 2025/01/14 14:46:27 by llourens      ########   odam.nl         */
+/*   Updated: 2025/01/14 16:28:20 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	main(int argc, char **argv)
 		else if (len == 3)
 			sort_three_nbr(&tstack_a);
 		else
-			sort_large(&tstack_a, &tstack_b);
+			sort_stacks(&tstack_a, &tstack_b);
 	}
 	free_stack(&tstack_a);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/14 13:10:43 by llourens      #+#    #+#                 */
-/*   Updated: 2025/01/14 14:30:06 by llourens      ########   odam.nl         */
+/*   Updated: 2025/01/14 18:20:18 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,9 @@ void	init_stack_a(t_stack_node **a, char **argv)
 		append_node(a, (int)long_nbr);
 		i++;
 	}
+}
+
+void	init_nodes_a(t_stack_node *a, t_stack_node *b)
+{
+	
 }
