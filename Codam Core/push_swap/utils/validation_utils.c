@@ -1,28 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   sort_three.c                                       :+:    :+:            */
+/*   validation_utils.c                                 :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2025/01/14 15:25:56 by llourens      #+#    #+#                 */
-/*   Updated: 2025/01/14 16:25:55 by llourens      ########   odam.nl         */
+/*   Created: 2025/01/15 20:42:41 by llourens      #+#    #+#                 */
+/*   Updated: 2025/01/15 20:55:08 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-
-
-void	sort_three_nbr(t_stack_node **tstack_a)
+int	is_syntax_error(char *number)
 {
-	t_stack_node	*tstack_largest_nbr_node;
+	int		i;
 
-	tstack_largest_nbr_node = find_largest_nbr(*tstack_a);
-	if (tstack_largest_nbr_node == *tstack_a)
-		ra(tstack_a, false);
-	else if ((*tstack_a)->next == tstack_largest_nbr_node)
-		rra(tstack_a, false);
-	if ((*tstack_a)->int_nbr > (*tstack_a)->next->int_nbr)
-		sa(&tstack_a, false);
+	i = 0;
+	if (number[i] == '+' || number[i] == '-')
+		i++;
+	while (number[i])
+	{
+		if (ft_isdigit(number[i]) == 0)
+			return (1);
+		if ((number[i] == '+' || number[i] == '-')
+			&& ((number[i - 1] == '+' || number[i - 1] == '-')
+				|| ft_isdigit(number[i - 1]) == 0))
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+int	is_duplicate(t_stack_node **stack_a, long nbr)
+{
+	
 }

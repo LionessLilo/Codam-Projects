@@ -59,6 +59,7 @@
   "files.associations": {
     "libft.h": "c",
     "push_swap.h": "c",
-    "random": "c"
+    "random": "c",
+    "unistd.h": "c"
   }
 }
