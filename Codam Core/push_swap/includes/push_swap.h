@@ -6,7 +6,7 @@
 /*   By: root <root@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/02 15:45:56 by root          #+#    #+#                 */
-/*   Updated: 2025/01/15 20:47:39 by llourens      ########   odam.nl         */
+/*   Updated: 2025/01/16 09:55:40 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ typedef struct s_stack_node
 	int					int_nbr;
 	int					int_i;
 	int					int_push_cost;
-	int					bool_is_above_median;
-	int					bool_is_cheapest;
+	int					is_above_median;
+	int					is_cheapest;
 	struct s_stack_node	*ptr_target_node;
 	struct s_stack_node	*ptr_next;
 	struct s_stack_node	*ptr_prev;
@@ -39,15 +39,17 @@ void	free_stack(t_stack_node *stack_a_node);
 
 // Initialisation
 void	init_stack_a(t_stack_node **stack_a_node, char **argv_list);
+void	append_node(t_stack_node **stack_a, long long_nbr);
 
 //Validation
 int		is_syntax_error(char *number);
+int		is_duplicate(t_stack_node *stack_a, long nbr);
 
 
 // Stack utils
 
 
-// Commands
+// Operations
 
 // Algorithms
 
