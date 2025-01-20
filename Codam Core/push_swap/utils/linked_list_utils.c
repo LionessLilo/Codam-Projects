@@ -1,26 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_lstsize.c                                       :+:    :+:            */
+/*   linked_list_utils.c                                :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: llourens <llourens@student.codam.nl>         +#+                     */
+/*   By: root <root@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2025/01/09 16:12:12 by llourens      #+#    #+#                 */
-/*   Updated: 2025/01/09 18:08:04 by llourens      ########   odam.nl         */
+/*   Created: 2025/01/20 14:14:09 by root          #+#    #+#                 */
+/*   Updated: 2025/01/20 14:17:07 by root          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/push_swap.h"
 
-int	ft_lstsize(t_list *lst)
+t_stack_node	*ft_lstlast(t_stack_node *lst)
 {
-	int	size;
-
-	size = 0;
-	while (lst)
-	{
-		size++;
-		lst = lst->next;
-	}
-	return (size);
+	if (!lst)
+		return (0);
+	while (lst->ptr_next)
+		lst = lst->ptr_next;
+	return (lst);
 }

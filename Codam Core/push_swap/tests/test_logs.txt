@@ -1,0 +1,7 @@
+Arg[0]: 5
+Arg[1]: 8
+Arg[2]: 7
+Operation: Result:
+8
+5
+7

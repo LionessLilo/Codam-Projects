@@ -6,7 +6,7 @@
 /*   By: root <root@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/02 15:45:56 by root          #+#    #+#                 */
-/*   Updated: 2025/01/16 09:55:40 by llourens      ########   odam.nl         */
+/*   Updated: 2025/01/20 15:43:04 by root          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,26 +31,28 @@ typedef struct s_stack_node
 }						t_stack_node;
 
 //main
-int		main(int argc, char **argv);
+int				main(int argc, char **argv);
 
 // Error handling
-void	free_and_handle(t_stack_node *stack_a_node, char *message);
-void	free_stack(t_stack_node *stack_a_node);
+void			free_and_handle(t_stack_node **stack_a_node, char *message);
+void			free_stack(t_stack_node **stack);
 
 // Initialisation
-void	init_stack_a(t_stack_node **stack_a_node, char **argv_list);
-void	append_node(t_stack_node **stack_a, long long_nbr);
+void			init_stack_a(t_stack_node **stack_a_node, char **argv_list);
+void			append_node(t_stack_node **stack_a, long long_nbr);
 
 //Validation
-int		is_syntax_error(char *number);
-int		is_duplicate(t_stack_node *stack_a, long nbr);
+int				is_syntax_error(char *number);
+int				is_duplicate(t_stack_node *stack_a, long nbr);
 
 
 // Stack utils
-
-
+// Linked list utils
+t_stack_node	*ft_lstlast(t_stack_node *lst);
 // Operations
-
+void			sa(t_stack_node **stack_a, int checker);
+void			sb(t_stack_node **stack_b, int checker);
+void			ss(t_stack_node **stack_a, t_stack_node **stack_b, int checker);
 // Algorithms
 
 
