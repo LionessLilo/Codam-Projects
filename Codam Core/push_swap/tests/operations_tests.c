@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/21 10:45:38 by llourens      #+#    #+#                 */
-/*   Updated: 2025/01/21 12:08:31 by llourens      ########   odam.nl         */
+/*   Updated: 2025/01/21 14:32:31 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,22 @@ int	main(void)
 		log_tick();
 	else 
 		log_error("\033[0;31mra failure\033[0;37m");
+	fprintf(fd, "\n");
+#pragma endregion
+
+#pragma region REVERSE ROTATE
+	rra(&a, checker);
+	fprintf(fd, "Result of rra:\n");
+	temp = a;
+	while (temp)
+	{
+		fprintf(fd, "%d\n", temp->int_nbr);
+		temp = temp->ptr_next;
+	}
+	if (a->int_nbr == 7 && a->ptr_next->int_nbr == 5 && a->ptr_next->ptr_next->int_nbr == 8)
+		log_tick();
+	else 
+		log_error("\033[0;31mrra failure\033[0;37m");
 	fprintf(fd, "\n");
 #pragma endregion
 

@@ -12,3 +12,8 @@ Result of ra:
 8
 7
 
+Result of rra:
+7
+5
+8
+

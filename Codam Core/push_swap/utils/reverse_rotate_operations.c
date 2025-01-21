@@ -6,14 +6,14 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/21 12:34:44 by llourens      #+#    #+#                 */
-/*   Updated: 2025/01/21 12:59:04 by llourens      ########   odam.nl         */
+/*   Updated: 2025/01/21 14:53:08 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 #include "../printf/ft_printf.h"
 
-void	reverse_rotate(t_stack_node **head)
+static void	reverse_rotate(t_stack_node **head)
 {
 	t_stack_node	*first_node;
 	t_stack_node	*second_node;
@@ -48,15 +48,9 @@ void rrb(t_stack_node **stack_b, int checker)
 		ft_printf("rrb\n");
 }
 
-void rrb(t_stack_node **stack_b, int checker)
-{
-	reverse_rotate(stack_b);
-	if (checker == 0)
-		ft_printf("rrb\n");
-}
-
 void rrr(t_stack_node **stack_a, t_stack_node **stack_b, int checker)
 {
+	reverse_rotate(stack_a);
 	reverse_rotate(stack_b);
 	if (checker == 0)
 		ft_printf("rrr\n");

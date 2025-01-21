@@ -6,7 +6,7 @@
 /*   By: root <root@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/02 15:45:56 by root          #+#    #+#                 */
-/*   Updated: 2025/01/21 11:05:36 by llourens      ########   odam.nl         */
+/*   Updated: 2025/01/21 14:29:24 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,10 @@ void			ss(t_stack_node **stack_a, t_stack_node **stack_b, int checker);
 void			ra(t_stack_node **stack_a, int checker);
 void			rb(t_stack_node **stack_b, int checker);
 void			rr(t_stack_node **stack_a, t_stack_node **stack_b, int checker);
+void 			rra(t_stack_node **stack_a, int checker);
+void 			rrb(t_stack_node **stack_b, int checker);
+void 			rrr(t_stack_node **stack_a, t_stack_node **stack_b, int checker);
+
 // Algorithms
 
 
