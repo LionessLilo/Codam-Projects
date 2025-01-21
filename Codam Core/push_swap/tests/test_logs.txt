@@ -8,5 +8,7 @@ Result of sa:
 8
 
 Result of ra:
+5
+8
 7
 
