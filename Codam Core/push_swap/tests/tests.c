@@ -6,7 +6,7 @@
 /*   By: root <root@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/20 14:32:23 by root          #+#    #+#                 */
-/*   Updated: 2025/01/20 21:52:14 by root          ########   odam.nl         */
+/*   Updated: 2025/01/21 08:15:53 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,14 @@
 #include "../printf/ft_printf.h"
 #include <stdio.h>
 
-void	log_tick(void)
+static void	log_tick(void)
 {
-	printf("\033[0;32m ✔ \n");
+	printf("\033[0;32m ✔ \033[0;37m \n");
 }
 
-void	log_error(char *message)
+static void	log_error(char *message)
 {
-	printf("\033[0;31m \n%s\n\n", message);
+	printf("\033[0;31m \033[0;37m \n%s\n\n", message);
 }
 
 int	main(int argc, char **argv)
@@ -48,6 +48,7 @@ int	main(int argc, char **argv)
 
 	#pragma region initialisation
 	// Arrange
+	fprintf(fd, "Argv list: \n");
 	i = 0;
 	while (argv_list[i])
 	{
@@ -55,13 +56,27 @@ int	main(int argc, char **argv)
 		i++;
 	}
 	init_stack_a(&a_node, argv_list);
-	fprintf(fd, "Operation: ");
-
+	fprintf(fd, "\n");
+	fprintf(fd, "Nodes in the stack: \n");
+	temp = a_node;
+	while (temp)
+	{
+		fprintf(fd, "%d\n", temp->int_nbr);
+		temp = temp->ptr_next;
+	}
+	temp = NULL;
+	fprintf(fd, "\n");
+	printf("\033[0;37mInitialise stack: ");
+	if (a_node->ptr_next)
+		log_tick();
+	#pragma endregion
+	
+	#pragma region sa
 	// Act
 	sa(&a_node, checker);
 
 	// Assert
-	fprintf(fd, "Result:\n");
+	fprintf(fd, "Result of sa:\n");
 	temp = a_node;
 	while (temp)
 	{
@@ -72,9 +87,7 @@ int	main(int argc, char **argv)
 		log_tick();
 	else 
 		log_error("init failure");
-
 	#pragma endregion
-
 
 	fclose(fd);
 	free_stack(&a_node);

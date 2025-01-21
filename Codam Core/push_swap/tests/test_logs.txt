@@ -1,7 +1,14 @@
+Argv list: 
 Arg[0]: 5
 Arg[1]: 8
 Arg[2]: 7
-Operation: Result:
+
+Nodes in the stack: 
+5
+8
+7
+
+Result of sa:
 8
 5
 7
