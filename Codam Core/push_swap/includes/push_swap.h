@@ -6,7 +6,7 @@
 /*   By: root <root@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/02 15:45:56 by root          #+#    #+#                 */
-/*   Updated: 2025/01/20 15:43:04 by root          ########   odam.nl         */
+/*   Updated: 2025/01/21 11:05:36 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ typedef struct s_stack_node
 }						t_stack_node;
 
 //main
-int				main(int argc, char **argv);
+// int				main(int argc, char **argv);
 
 // Error handling
 void			free_and_handle(t_stack_node **stack_a_node, char *message);
@@ -53,6 +53,9 @@ t_stack_node	*ft_lstlast(t_stack_node *lst);
 void			sa(t_stack_node **stack_a, int checker);
 void			sb(t_stack_node **stack_b, int checker);
 void			ss(t_stack_node **stack_a, t_stack_node **stack_b, int checker);
+void			ra(t_stack_node **stack_a, int checker);
+void			rb(t_stack_node **stack_b, int checker);
+void			rr(t_stack_node **stack_a, t_stack_node **stack_b, int checker);
 // Algorithms
 
 

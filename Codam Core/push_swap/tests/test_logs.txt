@@ -1,14 +1,12 @@
-Argv list: 
-Arg[0]: 5
-Arg[1]: 8
-Arg[2]: 7
-
-Nodes in the stack: 
+Stack: 
 5
-8
 7
-
+8
 Result of sa:
-8
-5
 7
+5
+8
+
+Result of ra:
+7
+

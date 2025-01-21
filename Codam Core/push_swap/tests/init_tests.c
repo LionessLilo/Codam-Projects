@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   initialisation_test.c                              :+:    :+:            */
+/*   init_tests.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: root <root@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/20 14:32:23 by root          #+#    #+#                 */
-/*   Updated: 2025/01/21 08:15:53 by llourens      ########   odam.nl         */
+/*   Updated: 2025/01/21 11:33:56 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,21 @@
 #include "../printf/libft/libft.h"
 #include "../printf/ft_printf.h"
 #include <stdio.h>
+
+void free_split(char **split)
+{
+    int i = 0;
+
+    if (!split)
+        return;
+    while (split[i])
+    {
+        free(split[i]);
+        i++;
+    }
+    free(split);
+}
+
 
 static void	log_tick(void)
 {
@@ -69,24 +84,6 @@ int	main(int argc, char **argv)
 	printf("\033[0;37mInitialise stack: ");
 	if (a_node->ptr_next)
 		log_tick();
-	#pragma endregion
-	
-	#pragma region sa
-	// Act
-	sa(&a_node, checker);
-
-	// Assert
-	fprintf(fd, "Result of sa:\n");
-	temp = a_node;
-	while (temp)
-	{
-		fprintf(fd, "%d\n", temp->int_nbr);
-		temp = temp->ptr_next;
-	}
-	if (a_node->int_nbr == 8 && a_node->ptr_next->int_nbr == 5 && a_node->ptr_next->ptr_next->int_nbr == 7)
-		log_tick();
-	else 
-		log_error("init failure");
 	#pragma endregion
 
 	fclose(fd);
