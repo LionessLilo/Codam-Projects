@@ -6,7 +6,7 @@
 /*   By: root <root@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/20 14:32:23 by root          #+#    #+#                 */
-/*   Updated: 2025/01/21 11:33:56 by llourens      ########   odam.nl         */
+/*   Updated: 2025/01/22 15:15:01 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,5 +88,6 @@ int	main(int argc, char **argv)
 
 	fclose(fd);
 	free_stack(&a_node);
+	free_split(argv_list);
 	return (0);
 }
