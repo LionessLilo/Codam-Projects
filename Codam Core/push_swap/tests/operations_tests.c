@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/21 10:45:38 by llourens      #+#    #+#                 */
-/*   Updated: 2025/01/22 15:30:15 by llourens      ########   odam.nl         */
+/*   Updated: 2025/01/22 21:38:17 by root          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -302,7 +302,7 @@ int	main(void)
 		log_error("\033[0;31mpa failure\033[0;37m");
 	fprintf(fd, "\n");
 
-	pb(&d, &a, checker);
+	pb(&a, &d, checker);
 	fprintf(fd, "Result of push b:\n");
 	//print stack a
 	fprintf(fd, " stack_a:\n");

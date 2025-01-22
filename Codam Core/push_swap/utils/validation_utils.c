@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/15 20:42:41 by llourens      #+#    #+#                 */
-/*   Updated: 2025/01/20 16:27:25 by root          ########   odam.nl         */
+/*   Updated: 2025/01/22 20:38:34 by root          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,11 @@ int	is_duplicate(t_stack_node *stack_a, long nbr)
 {
 	while (stack_a)
 	{
-		if (stack_a && stack_a->int_nbr == nbr)
+		if (stack_a->int_nbr && stack_a->int_nbr == nbr)
+		{
+			ft_printf("%d\n", stack_a->int_nbr);
 			return (1);
+		}
 		stack_a = stack_a->ptr_next;
 	}
 	return (0);
