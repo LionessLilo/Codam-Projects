@@ -11,6 +11,8 @@
 		"ostream": "c",
 		"streambuf": "c",
 		"functional": "c",
-		"tuple": "c"
+		"tuple": "c",
+		"algorithm": "c",
+		"numbers": "c"
 	}
 }

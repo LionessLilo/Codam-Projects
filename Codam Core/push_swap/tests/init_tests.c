@@ -6,7 +6,7 @@
 /*   By: root <root@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/20 14:32:23 by root          #+#    #+#                 */
-/*   Updated: 2025/01/23 11:20:49 by llourens      ########   odam.nl         */
+/*   Updated: 2025/01/23 12:46:08 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ int	main(void)
 	t_stack_node	*a_node;
 	int				i;
 	int				checker;
+	int				sorted;
 	t_stack_node	*temp;
 	FILE			*fd;
 
@@ -57,7 +58,7 @@ int	main(void)
 
 	#pragma region initialisation with 3 items
 	// Arrange
-	char *argv[] = {"4", "3", "1", NULL};
+	char *argv[] = {"1", "2", "3", NULL};
 	fprintf(fd, "Argv: \n");
 	i = 0;
 	while (argv[i])
@@ -164,7 +165,7 @@ int	main(void)
 	#pragma region initialisation with negative numbers and 10 items
 	a_node = NULL;
 	fprintf(fd, "Argv list: \n");
-	char *argv4[] = {"6",  "3", "1", "-2", "5", "16", "-45", "-7", "-9", "17", "8", NULL};
+	char *argv4[] = {"-7",  "-4", "-1", "7", "11", "15", "45", "50", "61", "72", "80", NULL};
 	fprintf(fd, "Argv: \n");
 	i = 0;
 	while (argv4[i])
@@ -199,6 +200,17 @@ int	main(void)
 		log_tick();
 	else
 		printf("\033[0;31mError\033[0;37m");
+
+	#pragma endregion
+
+	#pragma region testing is_sorted
+	printf("is_sorted returned 1: ");
+	sorted = is_sorted(a_node);
+	if (sorted == 1) //uses argv4
+		log_tick();
+	else if (sorted == 0)
+		log_error("is_sorted not correct");
+	fprintf(fd, "%d\n", sorted);
 
 	#pragma endregion
 

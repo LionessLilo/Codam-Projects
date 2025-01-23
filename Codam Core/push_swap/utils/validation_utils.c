@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/15 20:42:41 by llourens      #+#    #+#                 */
-/*   Updated: 2025/01/22 20:38:34 by root          ########   odam.nl         */
+/*   Updated: 2025/01/23 11:56:53 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,20 @@ int	is_duplicate(t_stack_node *stack_a, long nbr)
 		stack_a = stack_a->ptr_next;
 	}
 	return (0);
+}
+
+int	is_sorted(t_stack_node *stack)
+{
+	if (!stack)
+	{
+		ft_printf("No stack to check if sorted");
+		return (0);
+	}
+	while (stack->ptr_next)
+	{
+		if (stack->int_nbr > stack->ptr_next->int_nbr)
+			return (0);
+		stack = stack->ptr_next;
+	}
+	return (1);
 }
