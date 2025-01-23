@@ -1,91 +1,74 @@
-Stack a: 
-5
-7
-8
-Stack b: 
-1
-3
+Argv: 
+Arg[0]: 4
+Arg[1]: 3
+Arg[2]: 1
+
+Nodes in the stack: 
 4
-
-Result of sa:
-7
-5
-8
-
-Result of sb:
 3
 1
-4
 
-Result of ss:
-Stack a:
-5
-7
-8
-Stack b:
-1
+Argv list: 
+Argv: 
+Arg[0]: 6
+Arg[1]: 3
+Arg[2]: 1
+Arg[3]: 2
+Arg[4]: 5
+Arg[5]: 16
+Arg[6]: 45
+Arg[7]: 7
+Arg[8]: 9
+Arg[9]: 17
+Arg[10]: 8
+
+Nodes in the stack: 
+6
 3
-4
-
-Result of ra:
-7
-8
-5
-
-Result of sb:
-3
-4
 1
-
-Result of rr:
-Stack a:
-8
+2
 5
+16
+45
 7
-Stack b:
-4
-1
-3
-
-Result of rra:
-7
-8
-5
-
-Result of rrb:
-3
-4
-1
-
-Result of rrr:
-Stack a:
-5
-7
-8
-Stack b:
-1
-3
-4
-
-Result of push a:
- stack_a:
-1
-5
-7
+9
+17
 8
 
- stack_b:
-3
+Argv: 
+Arg[0]: 4
+Arg[1]: -3
+Arg[2]: 1
+
+Nodes in the stack: 
 4
-
-Result of push b:
- stack_a:
-5
-7
-8
-
- stack_b:
+-3
 1
+
+Argv list: 
+Argv: 
+Arg[0]: 6
+Arg[1]: 3
+Arg[2]: 1
+Arg[3]: 2
+Arg[4]: 5
+Arg[5]: 16
+Arg[6]: 45
+Arg[7]: 7
+Arg[8]: 9
+Arg[9]: 17
+Arg[10]: 8
+
+Nodes in the stack: 
+6
 3
-4
+1
+-2
+5
+16
+-45
+-7
+-9
+17
+8
 
