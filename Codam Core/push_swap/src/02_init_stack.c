@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/15 16:55:16 by llourens      #+#    #+#                 */
-/*   Updated: 2025/01/20 16:31:09 by root          ########   odam.nl         */
+/*   Updated: 2025/01/23 18:04:22 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "../printf/libft/libft.h"
 #include "../printf/ft_printf.h"
 
-void	init_stack_a(t_stack_node **stack_a_node, char **argv_list)
+void	init_stack(t_stack_node **stack_a_node, char **argv_list)
 {
 	int		i;
 	long	long_nbr;

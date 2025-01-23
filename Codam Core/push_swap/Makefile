@@ -6,7 +6,7 @@
 #    By: root <root@student.codam.nl>                 +#+                      #
 #                                                    +#+                       #
 #    Created: 2025/01/02 15:29:05 by root          #+#    #+#                  #
-#    Updated: 2025/01/22 14:31:26 by llourens      ########   odam.nl          #
+#    Updated: 2025/01/23 18:58:40 by llourens      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ PUSHSWAPDIR = push_swap
 PRINTFDIR = printf
 LIBFTDIR = libft
 
-SRCS = src/02_init_stack_a.c utils/error_handling.c utils/validation_utils.c utils/linked_list_utils.c utils/stack_operations.c utils/rotate_operations.c utils/reverse_rotate_operations.c utils/push_operations.c
+SRCS = src/02_init_stack.c src/03_sort_three.c src/04_sort_five.c utils/error_handling.c utils/validation_utils.c utils/linked_list_utils.c utils/stack_operations.c utils/rotate_operations.c utils/reverse_rotate_operations.c utils/push_operations.c utils/stack_smallsort_utils.c
 OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)

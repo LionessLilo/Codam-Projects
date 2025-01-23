@@ -6,7 +6,7 @@
 /*   By: root <root@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/02 15:45:56 by root          #+#    #+#                 */
-/*   Updated: 2025/01/23 11:58:28 by llourens      ########   odam.nl         */
+/*   Updated: 2025/01/23 18:59:11 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void			free_and_handle(t_stack_node **stack_a_node, char *message);
 void			free_stack(t_stack_node **stack);
 
 // Initialisation
-void			init_stack_a(t_stack_node **stack_a_node, char **argv_list);
+void			init_stack(t_stack_node **stack_a_node, char **argv_list);
 void			append_node(t_stack_node **stack_a, long long_nbr);
 
 //Validation
@@ -48,8 +48,11 @@ int				is_sorted(t_stack_node *stack);
 
 
 // Stack utils
+t_stack_node	*find_highest(t_stack_node *stack);
+t_stack_node	*find_smallest(t_stack_node *stack);
 // Linked list utils
 t_stack_node	*ft_lstlast(t_stack_node *lst);
+int				stack_len(t_stack_node *stack);
 // Operations
 void			sa(t_stack_node **stack_a, int checker);
 void			sb(t_stack_node **stack_b, int checker);
@@ -64,6 +67,7 @@ void			pa(t_stack_node **stack_a, t_stack_node **stack_b, int checker);
 void			pb(t_stack_node **stack_a, t_stack_node **stack_b, int checker);
 
 // Algorithms
-
+void			sort_three_nbr(t_stack_node **stack);
+void			sort_five(t_stack_node **a);
 
 #endif

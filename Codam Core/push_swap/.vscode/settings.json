@@ -13,6 +13,7 @@
 		"functional": "c",
 		"tuple": "c",
 		"algorithm": "c",
-		"numbers": "c"
+		"numbers": "c",
+		"random": "c"
 	}
 }
