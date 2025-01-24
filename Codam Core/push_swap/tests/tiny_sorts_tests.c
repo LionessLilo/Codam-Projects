@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/23 14:45:01 by llourens      #+#    #+#                 */
-/*   Updated: 2025/01/23 18:59:38 by llourens      ########   odam.nl         */
+/*   Updated: 2025/01/24 13:31:24 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	main(int argc, char **argv)
 	else if (argc == 2)
 		split_argv = ft_split(argv[1], ' ');
 	else
-		split_argv = argv;
+		split_argv = argv + 1;
 	init_stack(&a_node, split_argv);
 
 	fprintf(fd, "Stack before swap: \n");
@@ -76,8 +76,6 @@ int	main(int argc, char **argv)
 			sa(&a_node, false);
 		else if (len == 3)
 			sort_three_nbr(&a_node);
-		else if (len <= 5)
-			sort_five(&a_node);
 		else
 		{
 			printf("stack too large");

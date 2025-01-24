@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/10 21:58:36 by llourens      #+#    #+#                 */
-/*   Updated: 2025/01/23 18:04:06 by llourens      ########   odam.nl         */
+/*   Updated: 2025/01/24 13:33:33 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,11 @@ int	main(int argc, char **argv)
 	a_node = NULL;
 	b_node = NULL;
 	if (argc == 1 || (argc == 2 && !argv[1][0]))
-		return (1);
+		return (printf("issue with argc check"), 1);
 	else if (argc == 2)
 		split_argv = ft_split(argv[1], ' ');
 	else
-		split_argv = argv;
+		split_argv = argv + 1;
 	init_stack(&a_node, split_argv);
 	if (!is_sorted(a_node))
 	{

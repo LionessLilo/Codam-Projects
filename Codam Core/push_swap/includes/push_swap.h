@@ -6,7 +6,7 @@
 /*   By: root <root@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/02 15:45:56 by root          #+#    #+#                 */
-/*   Updated: 2025/01/23 18:59:11 by llourens      ########   odam.nl         */
+/*   Updated: 2025/01/24 17:40:48 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,7 @@
 typedef struct s_stack_node
 {
 	int					int_nbr;
-	int					int_i;
-	int					int_push_cost;
-	int					is_above_median;
-	int					is_cheapest;
-	struct s_stack_node	*ptr_target_node;
+	int					int_index_in_sorted_array;
 	struct s_stack_node	*ptr_next;
 	struct s_stack_node	*ptr_prev;
 }						t_stack_node;
@@ -68,6 +64,9 @@ void			pb(t_stack_node **stack_a, t_stack_node **stack_b, int checker);
 
 // Algorithms
 void			sort_three_nbr(t_stack_node **stack);
-void			sort_five(t_stack_node **a);
+
+//Algorithm utils
+int				*linkedlist_to_array(t_stack_node *stack);
+int				*sort_array(int *array, int len);
 
 #endif

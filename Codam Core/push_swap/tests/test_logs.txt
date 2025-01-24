@@ -1,0 +1,9 @@
+Stack before swap: 
+5
+1
+3
+
+Stack after swap: 
+1
+3
+5
