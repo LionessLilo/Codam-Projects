@@ -6,7 +6,7 @@
 /*   By: root <root@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/02 15:45:56 by root          #+#    #+#                 */
-/*   Updated: 2025/01/24 17:40:48 by llourens      ########   odam.nl         */
+/*   Updated: 2025/01/27 12:51:42 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ void			pb(t_stack_node **stack_a, t_stack_node **stack_b, int checker);
 
 // Algorithms
 void			sort_three_nbr(t_stack_node **stack);
+int				*linkedlist_to_array(t_stack_node *stack);
 
 //Algorithm utils
 int				*linkedlist_to_array(t_stack_node *stack);

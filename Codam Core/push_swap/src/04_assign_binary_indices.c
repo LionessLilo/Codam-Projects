@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/24 14:42:58 by llourens      #+#    #+#                 */
-/*   Updated: 2025/01/24 18:41:08 by llourens      ########   odam.nl         */
+/*   Updated: 2025/01/27 14:17:16 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	assign_indices(t_stack_node **stack)
 	array = linkedlist_to_array(*stack);
 	array_len = stack_len(*stack);
 	sorted_array = sort_array(array, array_len);
+	current_node = *stack;
 	while (current_node)
 	{
 		i = 0;

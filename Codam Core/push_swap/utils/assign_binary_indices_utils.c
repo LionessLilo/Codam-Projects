@@ -6,12 +6,13 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/24 15:27:57 by llourens      #+#    #+#                 */
-/*   Updated: 2025/01/24 17:21:11 by llourens      ########   odam.nl         */
+/*   Updated: 2025/01/27 14:29:30 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
-// #include "../printf/libft/libft.h"
+#include "../printf/libft/libft.h"
+#include <stdio.h>
 
 int	*linkedlist_to_array(t_stack_node *stack)
 {
@@ -37,11 +38,10 @@ int	*sort_array(int *array, int len)
 {
 	int	first_nbr_index;
 	int	second_nbr_index;
-	int	len;
 	int	temp;
 
 	first_nbr_index = 0;
-	while (first_nbr_index < len)
+	while (first_nbr_index < len - 1)
 	{
 		second_nbr_index = first_nbr_index + 1;
 		while (second_nbr_index < len)
