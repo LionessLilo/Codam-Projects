@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/27 12:15:26 by llourens      #+#    #+#                 */
-/*   Updated: 2025/01/27 14:32:58 by llourens      ########   odam.nl         */
+/*   Updated: 2025/01/27 14:55:07 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ int	main (void)
 	t_stack_node	*a;
 	t_stack_node	*b;
 	t_stack_node	*c;
+	t_stack_node	*temp_stack;
+	t_stack_node	*stack_indice_index;
 	int				*array;
 	int				array_len;
 	int				*sorted_array;
@@ -103,6 +105,22 @@ int	main (void)
 		log_tick();
 	else
 		log_error("Error: sort_array failed\n");
+	#pragma endregion
+
+	#pragma region assign_indices
+	assign_indices(&a);
+	fprintf(fd, "assign_indices:\n");
+	printf("assign_indices: ");
+	temp_stack = a;
+	while (temp_stack)
+	{
+		fprintf(fd, "%d\n", temp_stack->int_index_in_sorted_array);
+		temp_stack = temp_stack->ptr_next;
+	}
+	if (a->int_index_in_sorted_array == 0 && b->int_index_in_sorted_array == 2 && c->int_index_in_sorted_array == 1)
+		log_tick();
+	else
+		log_error("Error: assign_indices failed\n");
 	#pragma endregion
 
 		fclose(fd);
