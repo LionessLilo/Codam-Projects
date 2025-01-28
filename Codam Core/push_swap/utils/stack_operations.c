@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/16 10:02:21 by llourens      #+#    #+#                 */
-/*   Updated: 2025/01/20 18:12:54 by root          ########   odam.nl         */
+/*   Updated: 2025/01/28 13:46:58 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,14 @@ static void	swap(t_stack_node **head)
 void	sa(t_stack_node **stack_a, int checker)
 {
 	swap(stack_a);
-	if (checker == 0)
+	if (checker == 1)
 		ft_printf("sa\n");
 }
 
 void	sb(t_stack_node **stack_b, int checker)
 {
 	swap(stack_b);
-	if (checker == 0)
+	if (checker == 1)
 		ft_printf("sb\n");
 }
 
@@ -50,6 +50,6 @@ void	ss(t_stack_node **stack_a, t_stack_node **stack_b, int checker)
 {
 	swap(stack_a);
 	swap(stack_b);
-	if (checker == 0)
+	if (checker == 1)
 		ft_printf("ss\n");
 }
