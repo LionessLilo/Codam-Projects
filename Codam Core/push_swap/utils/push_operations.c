@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/21 14:35:05 by llourens      #+#    #+#                 */
-/*   Updated: 2025/01/28 13:46:17 by llourens      ########   odam.nl         */
+/*   Updated: 2025/01/29 14:18:50 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,13 @@ static void	push(t_stack_node **src, t_stack_node **dest)
 void	pa(t_stack_node **stack_a, t_stack_node **stack_b, int checker)
 {
 	push(stack_b, stack_a);
-	if (checker == 1)
+	if (checker == 1 || 1)
 		ft_printf("pa\n");
 }
 
 void	pb(t_stack_node **stack_a, t_stack_node **stack_b, int checker)
 {
 	push(stack_a, stack_b);
-	if (checker == 1)
+	if (checker == 1 || 1)
 		ft_printf("pb\n");
 }

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   01_push_swap.c                                     :+:    :+:            */
+/*   push_swap.c                                        :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/10 21:58:36 by llourens      #+#    #+#                 */
-/*   Updated: 2025/01/28 13:45:34 by llourens      ########   odam.nl         */
+/*   Updated: 2025/01/29 13:38:34 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "includes/push_swap.h"
 #include "../printf/libft/libft.h"
 #include "../printf/ft_printf.h"
 

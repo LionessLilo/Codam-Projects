@@ -6,31 +6,37 @@
 #    By: root <root@student.codam.nl>                 +#+                      #
 #                                                    +#+                       #
 #    Created: 2025/01/02 15:29:05 by root          #+#    #+#                  #
-#    Updated: 2025/01/28 13:37:40 by llourens      ########   odam.nl          #
+#    Updated: 2025/01/29 14:11:40 by llourens      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = push_swap.a
-LIBFTNAME = libft.a
-PRINTFNAME = libftprintf.a
+NAME = push_swap
+LIBFTNAME = libft/libft.a
+PRINTFNAME = printf/libftprintf.a
 CC = cc
 CFLAGS = -Wall -Werror -Wextra
+export CFLAGS
+INCLUDES = -I./includes -I./libft -I./printf
+VPATH = src utils libft printf
 PUSHSWAPDIR = push_swap
 PRINTFDIR = printf
 LIBFTDIR = libft
 
-SRCS = 01_push_swap.c src/02_init_stack.c src/03_sort_three.c src/04_assign_binary_indices.c src/05_radix_sort.c utils/error_handling.c utils/validation_utils.c utils/linked_list_utils.c utils/stack_operations.c utils/rotate_operations.c utils/reverse_rotate_operations.c utils/push_operations.c utils/stack_smallsort_utils.c utils/assign_binary_indices_utils.c
+SRCS = push_swap.c src/02_init_stack.c src/03_sort_three.c src/04_assign_binary_indices.c src/05_radix_sort.c utils/error_handling.c utils/validation_utils.c utils/linked_list_utils.c utils/stack_operations.c utils/rotate_operations.c utils/reverse_rotate_operations.c utils/push_operations.c utils/stack_smallsort_utils.c utils/assign_binary_indices_utils.c
 OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)
+debug: CFLAGS += -g
+debug: re
 
-makeprintf:
-	@make -C $(PRINTFDIR)
-	@cp $(PRINTFDIR)/$(PRINTFNAME) .
-	@mv $(PRINTFNAME) $(NAME)
+%.a:
+	+$(MAKE) -C $(dir $@) # dir returns the directory part of a path
 
-$(NAME): $(OBJS) makeprintf
-	@ar -rcs $(NAME) $(OBJS) $(PRINTFDIR)/$(PRINTFNAME)
+$(NAME): $(OBJS) $(PRINTFNAME)
+	$(CC) $(CFLAGS) $(OBJS) $(PRINTFNAME) -o $(NAME) $(INCLUDES)
+
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@ $(INCLUDES)
 
 clean:
 	@rm -f $(OBJS)
