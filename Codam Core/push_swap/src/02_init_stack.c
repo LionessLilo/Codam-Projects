@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/15 16:55:16 by llourens      #+#    #+#                 */
-/*   Updated: 2025/01/24 14:43:16 by llourens      ########   odam.nl         */
+/*   Updated: 2025/01/29 15:10:24 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@ void	init_stack(t_stack_node **stack_a_node, char **argv_list)
 	while (argv_list[i])
 	{
 		if (is_syntax_error(argv_list[i]) == 1)
-			free_and_handle(stack_a_node, "syntax error\n");
+			free_and_handle(stack_a_node);
 		long_nbr = ft_atol(argv_list[i]);
 		if (long_nbr < INT_MIN || long_nbr > INT_MAX)
-			free_and_handle(stack_a_node, "Not a valid int size\n");
+			free_and_handle(stack_a_node);
 		if (is_duplicate(*stack_a_node, long_nbr) == 1)
-			free_and_handle(stack_a_node, "Duplicate number\n");
+			free_and_handle(stack_a_node);
 		append_node(stack_a_node, long_nbr);
 		i++;
 	}

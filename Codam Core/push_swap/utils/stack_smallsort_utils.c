@@ -6,12 +6,13 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/23 14:40:38 by llourens      #+#    #+#                 */
-/*   Updated: 2025/01/23 18:36:50 by llourens      ########   odam.nl         */
+/*   Updated: 2025/01/29 15:49:29 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 #include "../printf/ft_printf.h"
+#include "../printf/libft/libft.h"
 
 t_stack_node	*find_highest(t_stack_node *stack)
 {
@@ -20,7 +21,7 @@ t_stack_node	*find_highest(t_stack_node *stack)
 
 	if (!stack)
 	{
-		ft_printf("No stack to find the highest number\n");
+		ft_putendl_fd("Error", 2);
 		return (NULL);
 	}
 	highest_node = NULL;
@@ -46,7 +47,7 @@ t_stack_node	*find_smallest(t_stack_node *stack)
 
 	if (!stack)
 	{
-		ft_printf("No stack to find the smallest number\n");
+		ft_putendl_fd("Error", 2);
 		return (NULL);
 	}
 	smallest_node = NULL;

@@ -1,5 +1,5 @@
 make re
 make clean
 clear
-cc ./tests/push_swap_test.c -L. -l:./push_swap.a -o push_swap_test_main
-./push_swap_test_main 18 74 82 37 32 30 87 46 45 79 38 100 85 95 77 33 54 19 8 21 96 6 3 42 13 73 50 51 39 76 48 5 34 89 41 75 16 86 53 26 44 57 99 60 58 15 22 92 88 69 93 94 68 2 29 4 90 52 12 63 23 7 28 66 10 35 97 25 14 83 40 61 84 1 17 81 71 91 64 62 80 59 55 47 24 27 43 78 67 49 11 9 20 72 31 70 36 56 98 65
+# cc ./tests/push_swap_test.c -L. -l:./push_swap.a -o push_swap_test_main
+./push_swap 1 5 4 1

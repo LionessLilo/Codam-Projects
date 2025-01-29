@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/21 10:22:28 by llourens      #+#    #+#                 */
-/*   Updated: 2025/01/29 14:40:11 by llourens      ########   odam.nl         */
+/*   Updated: 2025/01/29 15:50:15 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	rotate(t_stack_node **head)
 
 	if (!head || !(*head) || !(*head)->ptr_next)
 	{
-		ft_printf("Not enough nodes to rotate");
+		ft_putendl_fd("Error", 2);
 		return ;
 	}
 	first_node = *head;

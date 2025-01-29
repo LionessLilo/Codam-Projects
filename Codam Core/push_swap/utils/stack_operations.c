@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/16 10:02:21 by llourens      #+#    #+#                 */
-/*   Updated: 2025/01/29 14:18:26 by llourens      ########   odam.nl         */
+/*   Updated: 2025/01/29 15:52:17 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,11 @@ static void	swap(t_stack_node **head)
 	t_stack_node	*b;
 	t_stack_node	*c;
 
+	if (!head || !(*head) || !(*head)->ptr_next)
+	{
+		ft_putendl_fd("Error", 2);
+		return ;
+	}
 	a = *head;
 	b = (*head)->ptr_next;
 	c = (*head)->ptr_next->ptr_next;

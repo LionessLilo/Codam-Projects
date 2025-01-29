@@ -6,7 +6,7 @@
 /*   By: root <root@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/02 15:45:56 by root          #+#    #+#                 */
-/*   Updated: 2025/01/27 16:34:44 by llourens      ########   odam.nl         */
+/*   Updated: 2025/01/29 15:33:53 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <unistd.h>
 # include <stdbool.h>
 # include <limits.h>
+# include <stdio.h>
 
 typedef struct s_stack_node
 {
@@ -26,11 +27,9 @@ typedef struct s_stack_node
 	struct s_stack_node	*ptr_prev;
 }						t_stack_node;
 
-//main
-// int				main(int argc, char **argv);
 
 // Error handling
-void			free_and_handle(t_stack_node **stack_a_node, char *message);
+void			free_and_handle(t_stack_node **stack_a_node);
 void			free_stack(t_stack_node **stack);
 
 // Initialisation
