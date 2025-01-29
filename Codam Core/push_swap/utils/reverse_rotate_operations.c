@@ -6,12 +6,13 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/21 12:34:44 by llourens      #+#    #+#                 */
-/*   Updated: 2025/01/29 15:51:54 by llourens      ########   odam.nl         */
+/*   Updated: 2025/01/29 17:01:52 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 #include "../printf/ft_printf.h"
+#include "../printf/libft/libft.h"
 
 static void	reverse_rotate(t_stack_node **head)
 {

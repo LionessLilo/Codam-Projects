@@ -6,13 +6,13 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/21 10:22:28 by llourens      #+#    #+#                 */
-/*   Updated: 2025/01/29 15:50:15 by llourens      ########   odam.nl         */
+/*   Updated: 2025/01/29 17:02:02 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
+#include "../printf/libft/libft.h"
 #include "../printf/ft_printf.h"
-#include <stdio.h>
 
 static void	rotate(t_stack_node **head)
 {
