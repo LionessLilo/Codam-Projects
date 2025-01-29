@@ -6,14 +6,13 @@
 /*   By: root <root@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/20 14:32:23 by root          #+#    #+#                 */
-/*   Updated: 2025/01/23 12:46:08 by llourens      ########   odam.nl         */
+/*   Updated: 2025/01/29 17:25:13 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 #include "../printf/libft/libft.h"
 #include "../printf/ft_printf.h"
-#include <stdio.h>
 
 void free_split(char **split)
 {
@@ -58,7 +57,7 @@ int	main(void)
 
 	#pragma region initialisation with 3 items
 	// Arrange
-	char *argv[] = {"1", "2", "3", NULL};
+	char *argv[] = {"1", "2", "2", NULL};
 	fprintf(fd, "Argv: \n");
 	i = 0;
 	while (argv[i])
