@@ -6,7 +6,7 @@
 #    By: root <root@student.codam.nl>                 +#+                      #
 #                                                    +#+                       #
 #    Created: 2025/01/02 15:29:05 by root          #+#    #+#                  #
-#    Updated: 2025/01/29 14:11:40 by llourens      ########   odam.nl          #
+#    Updated: 2025/01/31 16:16:55 by llourens      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ PUSHSWAPDIR = push_swap
 PRINTFDIR = printf
 LIBFTDIR = libft
 
-SRCS = push_swap.c src/02_init_stack.c src/03_sort_three.c src/04_assign_binary_indices.c src/05_radix_sort.c utils/error_handling.c utils/validation_utils.c utils/linked_list_utils.c utils/stack_operations.c utils/rotate_operations.c utils/reverse_rotate_operations.c utils/push_operations.c utils/stack_smallsort_utils.c utils/assign_binary_indices_utils.c
+SRCS = push_swap.c src/02_init_stack.c src/03_sort_three.c src/04_sort_five.c src/05_assign_binary_indices.c src/06_radix_sort.c utils/error_handling.c utils/validation_utils.c utils/linked_list_utils.c utils/stack_operations.c utils/rotate_operations.c utils/reverse_rotate_operations.c utils/push_operations.c utils/stack_smallsort_utils.c utils/assign_binary_indices_utils.c
 OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)

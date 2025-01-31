@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/10 21:58:36 by llourens      #+#    #+#                 */
-/*   Updated: 2025/01/29 17:56:32 by llourens      ########   odam.nl         */
+/*   Updated: 2025/01/31 17:29:53 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ int	main(int argc, char **argv)
 		split_argv = ft_split(argv[1], ' ');
 	else
 		split_argv = argv + 1;
+	if (!split_argv[1])
+		return (ft_putendl_fd("Error", 2), 1);
 	init_stack(&a_node, split_argv);
 	if (!is_sorted(a_node))
 	{
@@ -50,8 +52,16 @@ int	main(int argc, char **argv)
 			sa(&a_node, 1);
 		else if (len == 3)
 			sort_three_nbr(&a_node);
+		else if (len <= 5)
+			sort_five_nbr(&a_node, &b_node, len);
 		else
 			radix_sort(&a_node, &b_node, len);
+	}
+	t_stack_node *temp = a_node;
+	while (temp)
+	{
+		ft_printf("%d\n", temp->int_nbr);
+		temp = temp->ptr_next;
 	}
 	free_stack(&a_node);
 	free_stack(&b_node);
