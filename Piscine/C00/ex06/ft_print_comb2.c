@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/09/12 21:39:24 by lilo          #+#    #+#                 */
-/*   Updated: 2024/09/25 15:23:22 by lilo          ########   odam.nl         */
+/*   Updated: 2025/01/31 22:11:13 by root          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,9 @@ void	ft_write(char left_tens, char left_units, char right_tens,
 		char right_units)
 {
 	if (left_tens > right_tens)
-	{
 		return ;
-	}
 	if (left_tens == right_tens && left_units >= right_units)
-	{
 		return ;
-	}
 	write(1, &left_tens, 1);
 	write(1, &left_units, 1);
 	write(1, " ", 1);
@@ -60,9 +56,3 @@ void	ft_print_comb2(void)
 		left_tens++;
 	}
 }
-
-// int main(void)
-// {
-// 	ft_print_comb2();
-// 	return (0);
-// }

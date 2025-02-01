@@ -1,25 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_is_negative.c                                   :+:    :+:            */
+/*   ft_ultimate_ft.c                                   :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: lilo <lilo@student.codam.nl>                 +#+                     */
+/*   By: root <root@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2024/09/10 16:30:07 by lilo          #+#    #+#                 */
-/*   Updated: 2025/01/31 22:10:06 by root          ########   odam.nl         */
+/*   Created: 2025/01/31 22:18:56 by root          #+#    #+#                 */
+/*   Updated: 2025/02/01 01:37:46 by root          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-
-void	ft_is_negative(int n)
+void	ft_ultimate_ft(int *********nbr)
 {
-	if (n < 0)
-	{
-		write(1, "N", 1);
-	}
-	else
-	{
-		write(1, "P", 1);
-	}
+	*********nbr = 42;
 }

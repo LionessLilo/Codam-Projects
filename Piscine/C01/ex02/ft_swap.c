@@ -1,25 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_is_negative.c                                   :+:    :+:            */
+/*   ft_swap.c                                          :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: lilo <lilo@student.codam.nl>                 +#+                     */
+/*   By: root <root@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2024/09/10 16:30:07 by lilo          #+#    #+#                 */
-/*   Updated: 2025/01/31 22:10:06 by root          ########   odam.nl         */
+/*   Created: 2025/01/31 22:23:13 by root          #+#    #+#                 */
+/*   Updated: 2025/01/31 22:48:17 by root          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-
-void	ft_is_negative(int n)
+void	ft_swap(int *a, int *b)
 {
-	if (n < 0)
-	{
-		write(1, "N", 1);
-	}
-	else
-	{
-		write(1, "P", 1);
-	}
+	int	*temp;
+
+	temp = a;
+	a = b;
+	b = temp;
 }

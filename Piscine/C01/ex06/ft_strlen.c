@@ -1,25 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_is_negative.c                                   :+:    :+:            */
+/*   ft_strlen.c                                        :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: lilo <lilo@student.codam.nl>                 +#+                     */
+/*   By: root <root@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2024/09/10 16:30:07 by lilo          #+#    #+#                 */
-/*   Updated: 2025/01/31 22:10:06 by root          ########   odam.nl         */
+/*   Created: 2025/01/31 23:27:44 by root          #+#    #+#                 */
+/*   Updated: 2025/01/31 23:30:27 by root          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-
-void	ft_is_negative(int n)
+int	ft_strlen(char *str)
 {
-	if (n < 0)
-	{
-		write(1, "N", 1);
-	}
-	else
-	{
-		write(1, "P", 1);
-	}
+	int	i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
 }

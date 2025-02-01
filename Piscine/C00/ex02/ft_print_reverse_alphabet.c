@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/09/10 15:14:28 by lilo          #+#    #+#                 */
-/*   Updated: 2024/09/25 15:28:56 by lilo          ########   odam.nl         */
+/*   Updated: 2025/01/31 22:09:36 by root          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,3 @@ void	ft_print_reverse_alphabet(void)
 		c = c - 1;
 	}
 }
-
-// int	main(void)
-// {
-// 	ft_print_reverse_alphabet();
-// 	return (0);
-// }

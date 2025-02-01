@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/09/10 14:42:16 by lilo          #+#    #+#                 */
-/*   Updated: 2024/09/25 15:26:15 by lilo          ########   odam.nl         */
+/*   Updated: 2025/02/01 01:37:46 by root          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,3 @@ void	ft_putchar(char c)
 {
 	write(1, &c, 1);
 }
-
-// int	main(void)
-// {
-// 	char	c;
-
-// 	c = 'A';
-// 	ft_putchar(c);
-// 	return (0);
-// }

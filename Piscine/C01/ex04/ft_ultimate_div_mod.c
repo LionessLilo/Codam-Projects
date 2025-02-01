@@ -1,25 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_is_negative.c                                   :+:    :+:            */
+/*   ft_ultimate_div_mod.c                              :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: lilo <lilo@student.codam.nl>                 +#+                     */
+/*   By: root <root@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2024/09/10 16:30:07 by lilo          #+#    #+#                 */
-/*   Updated: 2025/01/31 22:10:06 by root          ########   odam.nl         */
+/*   Created: 2025/01/31 23:01:00 by root          #+#    #+#                 */
+/*   Updated: 2025/01/31 23:22:07 by root          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-
-void	ft_is_negative(int n)
+void	ft_ultimate_div_mod(int *a, int *b)
 {
-	if (n < 0)
-	{
-		write(1, "N", 1);
-	}
-	else
-	{
-		write(1, "P", 1);
-	}
+	int	temp_a;
+	int	temp_b;
+
+	temp_a = *a / *b;
+	temp_b = *a % *b;
+	*a = temp_a;
+	*b = temp_b;
 }

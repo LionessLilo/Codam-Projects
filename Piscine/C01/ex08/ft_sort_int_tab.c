@@ -1,25 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_is_negative.c                                   :+:    :+:            */
+/*   ft_sort_int_tab.c                                  :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: lilo <lilo@student.codam.nl>                 +#+                     */
+/*   By: root <root@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2024/09/10 16:30:07 by lilo          #+#    #+#                 */
-/*   Updated: 2025/01/31 22:10:06 by root          ########   odam.nl         */
+/*   Created: 2025/02/01 01:11:52 by root          #+#    #+#                 */
+/*   Updated: 2025/02/01 01:37:46 by root          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-
-void	ft_is_negative(int n)
+void	ft_sort_int_tab(int *tab, int size)
 {
-	if (n < 0)
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (tab[i])
 	{
-		write(1, "N", 1);
+		
 	}
-	else
-	{
-		write(1, "P", 1);
-	}
+}
+
+int	main(void)
+{
+	int	tab[5] = {1, 8, 6, 4, 2};
+	int	size = 5;
+
+	ft_sort_int_tab(tab, size);
 }
