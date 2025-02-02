@@ -5,8 +5,8 @@
 /*                                                     +:+                    */
 /*   By: root <root@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2025/01/31 23:27:44 by root          #+#    #+#                 */
-/*   Updated: 2025/01/31 23:30:27 by root          ########   odam.nl         */
+/*   Created: 2025/02/02 15:56:17 by root          #+#    #+#                 */
+/*   Updated: 2025/02/02 15:58:41 by root          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@ int	ft_strlen(char *str)
 {
 	int	i;
 
-	i = 0;
 	while (str[i])
 		i++;
 	return (i);

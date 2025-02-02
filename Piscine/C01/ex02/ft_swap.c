@@ -5,16 +5,16 @@
 /*                                                     +:+                    */
 /*   By: root <root@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2025/01/31 22:23:13 by root          #+#    #+#                 */
-/*   Updated: 2025/01/31 22:48:17 by root          ########   odam.nl         */
+/*   Created: 2025/02/02 14:54:01 by root          #+#    #+#                 */
+/*   Updated: 2025/02/02 17:51:07 by root          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 void	ft_swap(int *a, int *b)
 {
-	int	*temp;
+	int	temp;
 
-	temp = a;
-	a = b;
-	b = temp;
+	temp = *a;
+	*a = *b;
+	*b = temp;
 }
