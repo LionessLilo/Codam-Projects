@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/10 21:58:36 by llourens      #+#    #+#                 */
-/*   Updated: 2025/01/31 17:29:53 by llourens      ########   odam.nl         */
+/*   Updated: 2025/02/04 09:29:39 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ int	main(int argc, char **argv)
 			sa(&a_node, 1);
 		else if (len == 3)
 			sort_three_nbr(&a_node);
-		else if (len <= 5)
-			sort_five_nbr(&a_node, &b_node, len);
+		else if (len > 3 && len <= 5)
+			sort_five(&a_node, &b_node, len);
 		else
 			radix_sort(&a_node, &b_node, len);
 	}
