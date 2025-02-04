@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/23 13:50:37 by llourens      #+#    #+#                 */
-/*   Updated: 2025/01/23 17:50:24 by llourens      ########   odam.nl         */
+/*   Updated: 2025/02/04 14:02:31 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ void	sort_three_nbr(t_stack_node **a)
 	t_stack_node	*biggest_node;
 
 	biggest_node = find_highest(*a);
-	if (biggest_node == *a) 
-		ra(a, 0); 
-	else if ((*a)->ptr_next == biggest_node) 
-		rra(a, 0); 
+	if (biggest_node == *a)
+		ra(a, 1);
+	else if ((*a)->ptr_next == biggest_node)
+		rra(a, 1); 
 	if ((*a)->int_nbr > (*a)->ptr_next->int_nbr)
-		sa(a, 0);
+		sa(a, 1);
 }
