@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/10 21:58:36 by llourens      #+#    #+#                 */
-/*   Updated: 2025/02/06 10:01:23 by llourens      ########   odam.nl         */
+/*   Updated: 2025/02/06 14:38:55 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int	main(int argc, char **argv)
 
 	a_node = NULL;
 	b_node = NULL;
-	len = NULL;
+	len = 0;
 	if (argc == 1 || (argc == 2 && !argv[1][0]))
 		return (ft_putendl_fd("Error", 2), 0);
 	handle_multiple_arguments(argc, argv, &split_argv);
