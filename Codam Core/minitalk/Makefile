@@ -6,7 +6,7 @@
 #    By: root <root@student.codam.nl>                 +#+                      #
 #                                                    +#+                       #
 #    Created: 2025/01/02 15:29:05 by root          #+#    #+#                  #
-#    Updated: 2025/02/06 11:50:15 by llourens      ########   odam.nl          #
+#    Updated: 2025/02/06 15:22:08 by llourens      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,8 @@ MINITALKDIR = minitalk
 PRINTFDIR = printf
 LIBFTDIR = libft
 
-SRCS = 
+SRCS = utils/error_handling.c \
+		input_error_handling.c
 OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)

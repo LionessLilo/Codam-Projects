@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/06 12:51:26 by llourens      #+#    #+#                 */
-/*   Updated: 2025/02/06 14:09:50 by llourens      ########   odam.nl         */
+/*   Updated: 2025/02/06 15:14:46 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,14 @@ Create a stop condition so that the server knows when it has finished receiving 
 
 int	main(int argc, char **argv)
 {
-	if (input_errors(argc, argv))
-	{
-		ft_putendl_fd("Error\n", 2);
-		exit (41);
-	}
+	int	pid;
 
+	pid = 0;
+	if (input_errors(argc, argv) == 1)
+		error_and_exit(41);
+	pid = ft_atol(argv[1]);
+	if (kill(pid, 0) == -1)
+		error_and_exit(136);
+	// Proceed with rest of the message sending
 	return (2);
 }
