@@ -6,7 +6,7 @@
 /*   By: root <root@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/02 15:45:56 by root          #+#    #+#                 */
-/*   Updated: 2025/02/04 14:12:36 by llourens      ########   odam.nl         */
+/*   Updated: 2025/02/06 09:12:41 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,12 @@ typedef struct s_stack_node
 	struct s_stack_node	*ptr_prev;
 }						t_stack_node;
 
+//Main
+void			sort_stack(t_stack_node **a_node,
+					t_stack_node **b_node, int len);
+void			handle_sorted_case(t_stack_node **a_node, int nbr_of_rotations);
+void			handle_single_argument(char **argv, char ***split_argv);
+void			free_split(char **split);
 
 // Error handling
 void			free_and_handle(t_stack_node **stack_a_node);
@@ -40,7 +46,9 @@ void			append_node(t_stack_node **stack_a, long long_nbr);
 int				is_syntax_error(char *number);
 int				is_duplicate(t_stack_node *stack_a, long nbr);
 int				is_sorted(t_stack_node *stack);
-
+int				is_reverse_sorted(t_stack_node *stack);
+void			handle_multiple_arguments(int argc,
+					char **argv, char ***split_argv);
 
 // Stack utils
 t_stack_node	*find_highest(t_stack_node *stack);

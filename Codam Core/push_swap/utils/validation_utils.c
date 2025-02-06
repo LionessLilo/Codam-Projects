@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/15 20:42:41 by llourens      #+#    #+#                 */
-/*   Updated: 2025/01/29 17:39:29 by llourens      ########   odam.nl         */
+/*   Updated: 2025/02/06 09:36:55 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,28 @@ int	is_sorted(t_stack_node *stack)
 		stack = stack->ptr_next;
 	}
 	return (1);
+}
+
+int	is_reverse_sorted(t_stack_node *stack)
+{
+	if (!stack)
+	{
+		ft_putendl_fd("Error", 2);
+		return (0);
+	}
+	while (stack->ptr_next)
+	{
+		if (stack->int_nbr < stack->ptr_next->int_nbr)
+			return (0);
+		stack = stack->ptr_next;
+	}
+	return (1);
+}
+
+void	handle_multiple_arguments(int argc, char **argv, char ***split_argv)
+{
+	if (argc == 2)
+		handle_single_argument(argv, split_argv);
+	else
+		*split_argv = argv + 1;
 }

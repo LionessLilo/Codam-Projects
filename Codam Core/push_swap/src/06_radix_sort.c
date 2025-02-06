@@ -6,12 +6,13 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/28 13:02:11 by llourens      #+#    #+#                 */
-/*   Updated: 2025/01/31 17:08:29 by llourens      ########   odam.nl         */
+/*   Updated: 2025/02/05 12:27:13 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 #include "../printf/ft_printf.h"
+#include "../printf/libft/libft.h"
 
 void	radix_sort(t_stack_node **stack_a, 
 		t_stack_node **stack_b, int stack_len)
@@ -21,7 +22,7 @@ void	radix_sort(t_stack_node **stack_a,
 
 	if (!stack_a || !*stack_a)
 	{
-		ft_printf("Error: stack_a is null\n");
+		ft_putendl_fd("Error", 2);
 		return ;
 	}
 	assign_indices(stack_a);

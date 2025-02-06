@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/21 12:34:44 by llourens      #+#    #+#                 */
-/*   Updated: 2025/01/29 17:01:52 by llourens      ########   odam.nl         */
+/*   Updated: 2025/02/05 12:31:52 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,21 +35,21 @@ static void	reverse_rotate(t_stack_node **head)
 	second_node->ptr_next = NULL;
 }
 
-void rra(t_stack_node **stack_a, int checker)
+void	rra(t_stack_node **stack_a, int checker)
 {
 	reverse_rotate(stack_a);
 	if (checker == 1 || 1)
 		ft_printf("rra\n");
 }
 
-void rrb(t_stack_node **stack_b, int checker)
+void	rrb(t_stack_node **stack_b, int checker)
 {
 	reverse_rotate(stack_b);
 	if (checker == 1 || 1)
 		ft_printf("rrb\n");
 }
 
-void rrr(t_stack_node **stack_a, t_stack_node **stack_b, int checker)
+void	rrr(t_stack_node **stack_a, t_stack_node **stack_b, int checker)
 {
 	reverse_rotate(stack_a);
 	reverse_rotate(stack_b);
