@@ -6,7 +6,7 @@
 /*   By: root <root@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/02 15:45:56 by root          #+#    #+#                 */
-/*   Updated: 2025/02/06 09:12:41 by llourens      ########   odam.nl         */
+/*   Updated: 2025/02/07 17:33:41 by root          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ typedef struct s_stack_node
 //Main
 void			sort_stack(t_stack_node **a_node,
 					t_stack_node **b_node, int len);
-void			handle_sorted_case(t_stack_node **a_node, int nbr_of_rotations);
+void			handle_sorted_case(t_stack_node **a_node,
+					t_stack_node **b_node, int len);
 void			handle_single_argument(char **argv, char ***split_argv);
 void			free_split(char **split);
 

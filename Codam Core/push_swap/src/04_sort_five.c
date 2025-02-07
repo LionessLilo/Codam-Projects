@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/04 08:58:57 by llourens      #+#    #+#                 */
-/*   Updated: 2025/02/04 10:27:29 by llourens      ########   odam.nl         */
+/*   Updated: 2025/02/07 18:23:28 by root          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void	sort_five(t_stack_node **stack_a, t_stack_node **stack_b, int len)
 	}
 	sort_three_nbr(stack_a);
 	pa(stack_a, stack_b, 1);
-	pa(stack_a, stack_b, 1);
+	if (stack_len(*stack_b) > 0)
+		pa(stack_a, stack_b, 1);
 }
 

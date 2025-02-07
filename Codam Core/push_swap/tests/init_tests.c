@@ -6,7 +6,7 @@
 /*   By: root <root@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/20 14:32:23 by root          #+#    #+#                 */
-/*   Updated: 2025/01/29 17:25:13 by llourens      ########   odam.nl         */
+/*   Updated: 2025/02/07 12:29:29 by root          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	main(void)
 		i++;
 	}
 	// Act
-	init_stack_a(&a_node, argv);
+	init_stack(&a_node, argv);
 	// Assert
 	fprintf(fd, "\n");
 	fprintf(fd, "Nodes in the stack: \n");
@@ -99,7 +99,7 @@ int	main(void)
 		fprintf(fd, "Arg[%d]: %s\n", i, argv2[i]);
 		i++;
 	}
-	init_stack_a(&a_node, argv2);
+	init_stack(&a_node, argv2);
 	fprintf(fd, "\n");
 	fprintf(fd, "Nodes in the stack: \n");
 	temp = a_node;
@@ -139,7 +139,7 @@ int	main(void)
 		i++;
 	}
 	// Act
-	init_stack_a(&a_node, argv3);
+	init_stack(&a_node, argv3);
 	// Assert
 	fprintf(fd, "\n");
 	fprintf(fd, "Nodes in the stack: \n");
@@ -172,7 +172,7 @@ int	main(void)
 		fprintf(fd, "Arg[%d]: %s\n", i, argv2[i]);
 		i++;
 	}
-	init_stack_a(&a_node, argv4);
+	init_stack(&a_node, argv4);
 	fprintf(fd, "\n");
 	fprintf(fd, "Nodes in the stack: \n");
 	temp = a_node;
@@ -211,6 +211,27 @@ int	main(void)
 		log_error("is_sorted not correct");
 	fprintf(fd, "%d\n", sorted);
 
+	#pragma endregion
+
+	#pragma region initialisation with 1 negative item
+	// Arrange
+	char *argv10[] = {"-2147483649", NULL};
+	fprintf(fd, "Argv: \n");
+	i = 0;
+	while (argv10[i])
+	{
+		fprintf(fd, "Arg[%d]: %s\n", i, argv10[i]);
+		i++;
+	}
+	// Act
+	init_stack(&a_node, argv10);
+	// Assert
+	fprintf(fd, "\n");
+	fprintf(fd, "Nodes in the stack: \n");
+	if (a_node == NULL)
+		log_tick();
+	else 
+		log_error("No error for 1 number");
 	#pragma endregion
 
 	fclose(fd);

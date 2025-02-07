@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/10 21:58:36 by llourens      #+#    #+#                 */
-/*   Updated: 2025/02/07 12:10:35 by root          ########   odam.nl         */
+/*   Updated: 2025/02/07 18:18:41 by root          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,16 +37,24 @@ void	handle_single_argument(char **argv, char ***split_argv)
 	}
 }
 
-void	handle_sorted_case(t_stack_node **a_node, int nbr_of_rotations)
+void	handle_sorted_case(t_stack_node **a_node, t_stack_node **b_node, int len)
 {
-	if (is_reverse_sorted(*a_node))
+	int	len_a;
+	int	len_og;
+
+	len_a = len;
+	len_og = len;
+	if (len_a > 5 && is_reverse_sorted(*a_node))
 	{
-		while (nbr_of_rotations > 0)
+		while (len_a-- > 0)
+			pb(a_node, b_node, 1);
+		len_a = len_og;
+		while (len_a-- > 1)
 		{
-			ra(a_node, 1);
-			nbr_of_rotations--;
+			rrb(b_node, 1);
+			pa(a_node, b_node, 1);
 		}
-		exit(0);
+		pa(a_node, b_node, 1);
 	}
 }
 
@@ -77,9 +85,9 @@ int	main(int argc, char **argv)
 	handle_multiple_arguments(argc, argv, &split_argv);
 	init_stack(&a_node, split_argv);
 	len = stack_len(a_node);
+	handle_sorted_case(&a_node, &b_node, len);
 	if (is_sorted(a_node))
 		return (0);
-	handle_sorted_case(&a_node, len);
 	sort_stack(&a_node, &b_node, len);
 	if (argc == 2)
 		free_split(split_argv);
