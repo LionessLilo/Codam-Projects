@@ -61,6 +61,7 @@
     "string.h": "c",
     "ft_printf.h": "c",
     "push_swap.h": "c",
-    "stdlib.h": "c"
+    "stdlib.h": "c",
+    "random": "c"
   }
 }

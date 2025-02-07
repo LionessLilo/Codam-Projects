@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/10 21:58:36 by llourens      #+#    #+#                 */
-/*   Updated: 2025/02/06 14:38:55 by llourens      ########   odam.nl         */
+/*   Updated: 2025/02/07 12:10:35 by root          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	free_split(char **split)
 void	handle_single_argument(char **argv, char ***split_argv)
 {
 	*split_argv = ft_split(argv[1], ' ');
-	if (!(*split_argv)[0])
+	if (!(*split_argv)[0] || !(*split_argv)[1])
 	{
 		ft_putendl_fd("Error", 2);
 		exit(1);
