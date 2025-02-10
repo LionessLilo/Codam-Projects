@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/24 15:27:57 by llourens      #+#    #+#                 */
-/*   Updated: 2025/02/10 14:31:39 by llourens      ########   odam.nl         */
+/*   Updated: 2025/02/10 21:54:36 by root          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int	*linkedlist_to_array(t_stack_node *stack)
 		i++;
 	}
 	return (array);
+	free(array);
 }
 
 int	*sort_array(int *array, int len)
@@ -57,4 +58,5 @@ int	*sort_array(int *array, int len)
 		first_nbr_index++;
 	}
 	return (array);
+	free(array);
 }
