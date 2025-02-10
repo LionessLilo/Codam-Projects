@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   04_assign_binary_indices.c                         :+:    :+:            */
+/*   05_assign_binary_indices.c                         :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/24 14:42:58 by llourens      #+#    #+#                 */
-/*   Updated: 2025/01/27 14:17:16 by llourens      ########   odam.nl         */
+/*   Updated: 2025/02/10 17:59:33 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,5 @@ void	assign_indices(t_stack_node **stack)
 		}
 		current_node = current_node->ptr_next;
 	}
+	free(array);
 }

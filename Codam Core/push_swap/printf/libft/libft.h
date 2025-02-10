@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/10/09 11:30:38 by llourens      #+#    #+#                 */
-/*   Updated: 2025/01/20 14:19:33 by root          ########   odam.nl         */
+/*   Updated: 2025/02/10 17:52:32 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 # include <stddef.h>
 
-int		ft_atol(const char *nptr);
+long	ft_atol(const char *nptr);
 int		ft_atoi(const char *nptr);
 void	ft_bzero(void *s, size_t n);
 void	*ft_calloc(size_t num, size_t size);

@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/24 15:27:57 by llourens      #+#    #+#                 */
-/*   Updated: 2025/02/04 08:16:07 by llourens      ########   odam.nl         */
+/*   Updated: 2025/02/10 14:31:39 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 int	*linkedlist_to_array(t_stack_node *stack)
 {
 	int				*array;
-	t_stack_node 	*current_node;
+	t_stack_node	*current_node;
 	int				i;
 
 	i = 0;

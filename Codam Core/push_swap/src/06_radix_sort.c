@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/28 13:02:11 by llourens      #+#    #+#                 */
-/*   Updated: 2025/02/10 14:19:26 by llourens      ########   odam.nl         */
+/*   Updated: 2025/02/10 14:30:09 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,14 @@ void	radix_sort(t_stack_node **stack_a,
 	while (current_bit_position < 9)
 	{
 		processed_nbrs = 0;
-		while (processed_nbrs++ < stack_len)
+		while (processed_nbrs < stack_len)
 		{
 			if (((*stack_a)->int_index_in_sorted_array
 					>> current_bit_position) & 1)
 				ra(stack_a, 0);
 			else
 				pb(stack_a, stack_b, 0);
+			processed_nbrs++;
 		}
 		while (*stack_b)
 			pa(stack_a, stack_b, 0);

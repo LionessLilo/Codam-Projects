@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   atol.c                                             :+:    :+:            */
+/*   ft_atol.c                                          :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/10 14:57:36 by llourens      #+#    #+#                 */
-/*   Updated: 2025/01/10 15:02:38 by llourens      ########   odam.nl         */
+/*   Updated: 2025/02/10 17:54:14 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int	ft_atol(const char *nptr)
+long	ft_atol(const char *nptr)
 {
 	int		i;
 	long	result;

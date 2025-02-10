@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/10 21:58:36 by llourens      #+#    #+#                 */
-/*   Updated: 2025/02/10 13:16:21 by llourens      ########   odam.nl         */
+/*   Updated: 2025/02/10 18:26:22 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,17 @@ void	free_split(char **split)
 void	handle_single_argument(char **argv, char ***split_argv)
 {
 	*split_argv = ft_split(argv[1], ' ');
-	if (!(*split_argv)[0] || !(*split_argv)[1])
+	if (!(*split_argv)[0] || (ft_isdigit((*split_argv)[0][0]) == 0
+		&& (*split_argv)[0][0] != '-' && ft_isdigit((*split_argv)[0][1]) == 0)
+		|| (ft_strlen((*split_argv)[0]) == 1 && (*split_argv)[0][0] == '-'))
 	{
 		ft_putendl_fd("Error", 2);
 		exit(1);
 	}
 }
 
-void	handle_sorted_case(t_stack_node **a_node, t_stack_node **b_node, int len)
+void	handle_sorted_case(t_stack_node **a_node,
+			t_stack_node **b_node, int len)
 {
 	int	len_a;
 	int	len_og;

@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/21 14:35:05 by llourens      #+#    #+#                 */
-/*   Updated: 2025/02/07 18:15:21 by root          ########   odam.nl         */
+/*   Updated: 2025/02/10 14:32:50 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,14 @@ static void	push(t_stack_node **src, t_stack_node **dest)
 	t_stack_node	*dest_a;
 
 	if (!src || !(*src))
-	{
-		ft_putendl_fd("Error", 2);
-		return ;
-	}
+		return (ft_putendl_fd("Error", 2));
 	src_a = *src;
 	src_b = (*src)->ptr_next;
 	dest_a = *dest;
-	if (!src || !(*src))
-		return ;
 	*src = src_b;
 	if (src_b)
-        src_b->ptr_prev = NULL;
-    src_a->ptr_prev = NULL;
+		src_b->ptr_prev = NULL;
+	src_a->ptr_prev = NULL;
 	if (!(*dest))
 	{
 		*dest = src_a;
