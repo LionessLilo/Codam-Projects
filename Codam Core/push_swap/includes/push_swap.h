@@ -6,7 +6,7 @@
 /*   By: root <root@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/02 15:45:56 by root          #+#    #+#                 */
-/*   Updated: 2025/02/07 17:33:41 by root          ########   odam.nl         */
+/*   Updated: 2025/02/11 20:20:56 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,6 @@ int				is_syntax_error(char *number);
 int				is_duplicate(t_stack_node *stack_a, long nbr);
 int				is_sorted(t_stack_node *stack);
 int				is_reverse_sorted(t_stack_node *stack);
-void			handle_multiple_arguments(int argc,
-					char **argv, char ***split_argv);
 
 // Stack utils
 t_stack_node	*find_highest(t_stack_node *stack);

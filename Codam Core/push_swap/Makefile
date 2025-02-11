@@ -6,7 +6,7 @@
 #    By: root <root@student.codam.nl>                 +#+                      #
 #                                                    +#+                       #
 #    Created: 2025/01/02 15:29:05 by root          #+#    #+#                  #
-#    Updated: 2025/02/07 12:50:42 by root          ########   odam.nl          #
+#    Updated: 2025/02/11 19:54:38 by llourens      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ debug: CFLAGS += -g
 debug: re
 
 %.a:
-	+$(MAKE) -C $(dir $@) # dir returns the directory part of a path
+	+$(MAKE) -C $(dir $@)
 
 $(NAME): $(OBJS) $(PRINTFNAME)
 	$(CC) $(CFLAGS) $(OBJS) $(PRINTFNAME) -o $(NAME) $(INCLUDES)
