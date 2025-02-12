@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/10 21:58:36 by llourens      #+#    #+#                 */
-/*   Updated: 2025/02/11 20:41:35 by llourens      ########   odam.nl         */
+/*   Updated: 2025/02/12 19:44:31 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,13 @@ void	free_split(char **split)
 void	handle_single_argument(char **argv, char ***split_argv)
 {
 	*split_argv = ft_split(argv[1], ' ');
-	if (!(*split_argv)[0] || (!ft_isdigit((*split_argv)[0][0]) &&
-		((*split_argv)[0][0] != '-' || !ft_isdigit((*split_argv)[0][1]))) ||
+	if (!*split_argv || !**split_argv || (!ft_isdigit(***split_argv)
+			&& ((***split_argv) != '-' || !ft_isdigit((*split_argv)[0][1]))) ||
 		(ft_strlen((*split_argv)[0]) == 1 && (*split_argv)[0][0] == '-'))
 	{
 		ft_putendl_fd("Error", 2);
-		free_split(*split_argv);
+		if (*split_argv)
+			free_split(*split_argv);
 		exit(1);
 	}
 }
@@ -90,7 +91,7 @@ int	main(int argc, char **argv)
 		handle_single_argument(argv, &split_argv);
 	else
 		split_argv = argv + 1;
-	init_stack(&a_node, split_argv);
+	init_stack(&a_node, split_argv, argc);
 	if (argc == 2)
 		free_split(split_argv);
 	len = stack_len(a_node);

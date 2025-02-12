@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/11 18:04:06 by llourens      #+#    #+#                 */
-/*   Updated: 2025/02/11 19:08:11 by llourens      ########   odam.nl         */
+/*   Updated: 2025/02/12 18:17:53 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,5 +16,7 @@
 
 int	main(void)
 {
+	int	fd[2];
+
 	
 }

@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/15 16:55:16 by llourens      #+#    #+#                 */
-/*   Updated: 2025/02/11 20:51:29 by llourens      ########   odam.nl         */
+/*   Updated: 2025/02/12 19:40:49 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "../printf/libft/libft.h"
 #include "../printf/ft_printf.h"
 
-void	init_stack(t_stack_node **stack_a_node, char **argv_list)
+void	init_stack(t_stack_node **stack_a_node, char **argv_list, int argc)
 {
 	int		i;
 	long	long_nbr;
@@ -25,7 +25,8 @@ void	init_stack(t_stack_node **stack_a_node, char **argv_list)
 	{
 		if (is_syntax_error(argv_list[i]) == 1)
 		{
-			free_split(argv_list);
+			if (argc == 2)
+				free_split(argv_list);
 			free_and_handle(stack_a_node);
 		}
 		long_nbr = ft_atol(argv_list[i]);

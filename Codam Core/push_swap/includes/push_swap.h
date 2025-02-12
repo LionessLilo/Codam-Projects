@@ -6,7 +6,7 @@
 /*   By: root <root@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/02 15:45:56 by root          #+#    #+#                 */
-/*   Updated: 2025/02/11 20:20:56 by llourens      ########   odam.nl         */
+/*   Updated: 2025/02/12 19:49:37 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,7 @@
 
 # include <stdlib.h>
 # include <unistd.h>
-# include <stdbool.h>
 # include <limits.h>
-# include <stdio.h>
 
 typedef struct s_stack_node
 {
@@ -40,7 +38,8 @@ void			free_and_handle(t_stack_node **stack_a_node);
 void			free_stack(t_stack_node **stack);
 
 // Initialisation
-void			init_stack(t_stack_node **stack_a_node, char **argv_list);
+void			init_stack(t_stack_node **stack_a_node,
+					char **argv_list, int argc);
 void			append_node(t_stack_node **stack_a, long long_nbr);
 
 //Validation
