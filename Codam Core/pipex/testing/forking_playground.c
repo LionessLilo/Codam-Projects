@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   playground.c                                       :+:    :+:            */
+/*   forking_playground.c                               :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/11 18:04:06 by llourens      #+#    #+#                 */
-/*   Updated: 2025/02/13 18:46:12 by llourens      ########   odam.nl         */
+/*   Updated: 2025/02/13 19:06:48 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	main(void)
 	pid = getpid();
 	printf("pid before fork: %d\n", pid);
 	pid = fork();
-	printf("first pid after fork: %d\n", pid);
+	printf("pid's of what parent returns and child returns: %d\n", pid);
 
 	if (pid == 0)
 		printf("This is the child\n");
