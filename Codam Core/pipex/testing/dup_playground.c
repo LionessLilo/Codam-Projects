@@ -6,37 +6,36 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/13 19:36:56 by llourens      #+#    #+#                 */
-/*   Updated: 2025/02/13 20:01:03 by llourens      ########   odam.nl         */
+/*   Updated: 2025/02/14 18:49:42 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fcntl.h>
 #include <unistd.h>
 #include <stdio.h>
+#include "../printf/libft/libft.h"
 
-int	main(void)
+int	main(int argc, char **argv)
 {
-	int		fd1;
-	int		dup_fd1;
+	int		fd;
 	int		fd2;
-	int		amount_read;
-	int		dup_amount_read;
-	char	buffer[10];
+	int		fd3;
+	char	*new_line;
 
-	fd1 = open("./testing/read.txt", O_RDONLY);
-	fd2 = open("./testing/write.txt", O_WRONLY | O_CREAT | O_TRUNC, 0644);
-	dup_fd1 = dup(fd1);
-	printf("fd1: %d\n", fd1);
-	printf("fd2: %d\n", fd2);
-	printf("dup_fd1: %d\n", dup_fd1);
+	// if (argc < 2)
+	// {
+	// 	printf("Please provide some text\n");
+	// 	return (1);
+	// }
+	fd = open("./testing/read.txt", O_RDONLY);
+	fd3 = open("./testing/read_2.txt", O_RDONLY);
+	new_line = get_next_line(fd2);
+	printf("Before dup2: %s\n", new_line);
 
-	amount_read = read(fd1, buffer, 10);
-	dup_amount_read = read(dup_fd1, buffer, 10);
+	// fd2 = dup2(fd3, fd);
 
-	printf("Straight read: %s\n", buffer);
-	printf("Duplicated fd read: %s\n", buffer);
-
-	close(fd1);
-	close(fd2);
+	printf("fd: %d\n", fd2);
+	new_line = get_next_line(fd2);
+	printf("After dup2: %s\n", new_line);
 	return (0);
 }
