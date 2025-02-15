@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/13 19:36:56 by llourens      #+#    #+#                 */
-/*   Updated: 2025/02/14 18:49:42 by llourens      ########   odam.nl         */
+/*   Updated: 2025/02/15 14:34:48 by root          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,24 @@ int	main(int argc, char **argv)
 	// }
 	fd = open("./testing/read.txt", O_RDONLY);
 	fd3 = open("./testing/read_2.txt", O_RDONLY);
+
+	printf("fd: %d\n", fd);
+	printf("fd3: %d\n", fd3);
+	
 	new_line = get_next_line(fd2);
 	printf("Before dup2: %s\n", new_line);
 
-	// fd2 = dup2(fd3, fd);
+	fd2 = dup2(fd, fd3);
+	/* - fd3 and fd2 are essentially the same thing
+	   - fd3 + fd2 are a copy of fd
+	   - fd3 was closed before it was duplicated
+	*/
 
-	printf("fd: %d\n", fd2);
+	printf("fd2: %d\n", fd2);
 	new_line = get_next_line(fd2);
-	printf("After dup2: %s\n", new_line);
+	printf("After dup2 fd2: %s\n", new_line);
+
+	new_line = get_next_line(fd3);
+	printf("After dup2, fd3: %s\n", new_line);
 	return (0);
 }
