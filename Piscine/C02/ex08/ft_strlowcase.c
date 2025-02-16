@@ -1,35 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_sort_int_tab.c                                  :+:    :+:            */
+/*   ft_strlowcase.c                                    :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: root <root@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2025/02/02 16:35:38 by root          #+#    #+#                 */
-/*   Updated: 2025/02/16 12:26:22 by root          ########   odam.nl         */
+/*   Created: 2025/02/16 16:04:02 by root          #+#    #+#                 */
+/*   Updated: 2025/02/16 16:13:11 by root          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 
-void	ft_sort_int_tab(int *tab, int size)
+static int	ft_chr_is_uppercase(int chr)
+{
+	if (chr >= 'A' && chr <= 'Z')
+		return (1);
+	else
+		return (0);
+	return (1);
+}
+
+char	*ft_strlowcase(char *str)
 {
 	int	i;
-	int	j;
-	int	temp_nbr;
 
 	i = 0;
-	j = 1;
-	while (i < size - 1)
+	while (str[i])
 	{
-		if ((tab[i] > tab[j]))
-		{
-			temp_nbr = tab[i];
-			tab[i] = tab[j];
-			tab[j] = temp_nbr;
-			ft_sort_int_tab(tab, size);
-		}
+		if (ft_chr_is_uppercase(str[i]) == 1)
+			str[i] = str[i] + 32;
 		i++;
-		j++;
 	}
+	return (str);
 }

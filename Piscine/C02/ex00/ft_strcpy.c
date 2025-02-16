@@ -1,35 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_sort_int_tab.c                                  :+:    :+:            */
+/*   ft_strcpy.c                                        :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: root <root@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2025/02/02 16:35:38 by root          #+#    #+#                 */
-/*   Updated: 2025/02/16 12:26:22 by root          ########   odam.nl         */
+/*   Created: 2025/02/16 12:42:21 by root          #+#    #+#                 */
+/*   Updated: 2025/02/16 13:23:24 by root          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-
-void	ft_sort_int_tab(int *tab, int size)
+char	*ft_strcpy(char *dest, char *src)
 {
 	int	i;
-	int	j;
-	int	temp_nbr;
 
 	i = 0;
-	j = 1;
-	while (i < size - 1)
+	while (src[i])
 	{
-		if ((tab[i] > tab[j]))
-		{
-			temp_nbr = tab[i];
-			tab[i] = tab[j];
-			tab[j] = temp_nbr;
-			ft_sort_int_tab(tab, size);
-		}
+		dest[i] = src[i];
 		i++;
-		j++;
 	}
+	dest[i] = '\0';
+	return (dest);
 }

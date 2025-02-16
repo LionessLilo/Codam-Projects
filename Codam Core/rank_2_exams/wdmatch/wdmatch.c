@@ -6,7 +6,7 @@
 /*   By: root <root@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/15 15:59:44 by root          #+#    #+#                 */
-/*   Updated: 2025/02/15 17:42:45 by root          ########   odam.nl         */
+/*   Updated: 2025/02/16 12:40:40 by root          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ int	main(int argc, char **argv)
 	s2 = argv[2];
 	if (argc < 3)
 		return (write(1, "\n", 1), 0);
+		
 	while (s1[s1_i])
 	{
 		while (s2[s2_i])
