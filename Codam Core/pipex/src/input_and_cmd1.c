@@ -1,26 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   error_handling.c                                   :+:    :+:            */
+/*   input_and_cmd1.c                                   :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: root <root@student.codam.nl>                 +#+                     */
+/*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2025/02/15 22:12:17 by root          #+#    #+#                 */
-/*   Updated: 2025/02/17 15:33:59 by llourens      ########   odam.nl         */
+/*   Created: 2025/02/17 14:48:11 by llourens      #+#    #+#                 */
+/*   Updated: 2025/02/17 17:53:05 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../pipex.h"
 
-void	usage_error_message(char *message)
+void	input_and_cmd1(char *input_file, char *cmd1, int pipe_fd[0])
 {
-	ft_putendl_fd(message, 2);
-	ft_putendl_fd("Usage: ./pipex file1 cmd1 cmd2 file2", 2);
-	exit (2);
+	int	input_file_fd;
+
+	input_file_fd = open(input_file, O_RDONLY);
+	dup2(input_file_fd, STDIN_FILENO);
+	dup2(pipe_fd[1], STDOUT_FILENO);
 }
 
-void	perror_and_exit(char *message)
-{
-	perror(message);
-	exit (EXIT_FAILURE);
-}

@@ -6,7 +6,7 @@
 #    By: llourens <llourens@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2025/02/11 17:51:04 by llourens      #+#    #+#                  #
-#    Updated: 2025/02/15 23:27:14 by root          ########   odam.nl          #
+#    Updated: 2025/02/17 15:43:55 by llourens      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ PRINTFDIR = printf
 LIBFTDIR = libft
 
 SRCS = pipex.c \
+	   input_and_cmd1.c \
 	   error_handling.c \
 	   input_checks.c
 OBJS = $(SRCS:.c=.o)
