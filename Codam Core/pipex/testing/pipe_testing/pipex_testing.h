@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   pipex.h                                            :+:    :+:            */
+/*   pipex_testing.h                                    :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2025/02/11 17:53:31 by llourens      #+#    #+#                 */
-/*   Updated: 2025/02/19 19:23:48 by llourens      ########   odam.nl         */
+/*   Created: 2025/02/19 17:56:33 by llourens      #+#    #+#                 */
+/*   Updated: 2025/02/19 19:04:54 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#ifndef PIPEX_TESTING_H
+# define PIPEX_TESTING_H
 
-# include "../printf/ft_printf.h"
-# include "../printf/libft/libft.h"
+# include "../../printf/ft_printf.h"
+# include "../../printf/libft/libft.h"
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h> 
