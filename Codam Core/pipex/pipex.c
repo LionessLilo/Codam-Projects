@@ -6,18 +6,17 @@
 /*   By: root <root@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/15 19:17:46 by root          #+#    #+#                 */
-/*   Updated: 2025/02/19 19:19:56 by llourens      ########   odam.nl         */
+/*   Updated: 2025/02/20 09:39:38 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-int	main(void)
+int	main(int argc, char **argv)
 {
 	int		pipe_fd[2];
 	pid_t	pid_fork1;
 	pid_t	pid_fork2;
-	char	*message = "Hello World!";
 
 	if (pipe(pipe_fd) < 0)
 		perror_and_exit("Pipe failed: ");
@@ -25,7 +24,7 @@ int	main(void)
 	if (pid_fork1 < 0)
 		perror_and_exit("Fork1 failed: ");
 	if (pid_fork1 == 0)
-		input_and_cmd1(message, pipe_fd[1], pipe_fd[0]);
+		input_and_cmd1(argv[1], pipe_fd[1], pipe_fd[0]);
 	pid_fork2 = fork();
 	if (pid_fork2 < 0)
 		perror_and_exit("Fork2 failed: ");

@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/19 17:54:02 by llourens      #+#    #+#                 */
-/*   Updated: 2025/02/19 19:14:25 by llourens      ########   odam.nl         */
+/*   Updated: 2025/02/20 09:37:31 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ int	main(int argc, char **argv)
 	pid_t	pid_fork1;
 	pid_t	pid_fork2;
 
+	if (argc < 2)
+		exit(0);
 	if (pipe(pipe_fd) < 0)
 		perror_and_exit("Pipe failed: ");
 	pid_fork1 = fork();
