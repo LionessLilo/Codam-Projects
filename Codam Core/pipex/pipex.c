@@ -6,7 +6,7 @@
 /*   By: root <root@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/15 19:17:46 by root          #+#    #+#                 */
-/*   Updated: 2025/02/20 09:39:38 by llourens      ########   odam.nl         */
+/*   Updated: 2025/02/21 14:28:45 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ int	main(int argc, char **argv)
 	pid_t	pid_fork1;
 	pid_t	pid_fork2;
 
+	if (argc < 2)
+		usage_error_message("Too few arguments");
 	if (pipe(pipe_fd) < 0)
 		perror_and_exit("Pipe failed: ");
 	pid_fork1 = fork();
