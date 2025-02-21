@@ -6,27 +6,27 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/19 17:54:02 by llourens      #+#    #+#                 */
-/*   Updated: 2025/02/21 15:21:40 by llourens      ########   odam.nl         */
+/*   Updated: 2025/02/21 15:30:49 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex_testing.h"
 
-int	main(void)
+int	main(int argc, char **argv)
 {
 	int		pipe_fd[2];
 	pid_t	pid_fork1;
 	pid_t	pid_fork2;
 
-	// if (argc < 2)
-	// 	exit(0);
+	if (argc < 2)
+		exit(0);
 	if (pipe(pipe_fd) < 0)
 		perror_and_exit("Pipe failed: ");
 	pid_fork1 = fork();
 	if (pid_fork1 < 0)
 		perror_and_exit("Fork1 failed: ");
 	if (pid_fork1 == 0)
-		input_and_cmd1(pipe_fd[1], pipe_fd[0]);
+		input_and_cmd1(&argv[1], pipe_fd[1], pipe_fd[0]);
 	pid_fork2 = fork();
 	if (pid_fork2 < 0)
 		perror_and_exit("Fork2 failed: ");

@@ -6,21 +6,22 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/17 14:48:11 by llourens      #+#    #+#                 */
-/*   Updated: 2025/02/21 15:20:54 by llourens      ########   odam.nl         */
+/*   Updated: 2025/02/21 15:45:27 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../pipex.h"
+#include <errno.h>
 
-void	input_and_cmd1(int pipe_fd_write, int pipe_fd_read)
+void	input_and_cmd1(char **input_file, int pipe_fd_write, int pipe_fd_read)
 {
 	int		input_file_fd;
 	char	*fetched_input;
 
 	close(pipe_fd_read);
-	input_file_fd = open("./input_file.txt", O_RDONLY);
-	if (input_file_fd < 0)
-		perror_and_exit("Could not open file1");
+	if (input_file == NULL || *input_file == NULL)
+		perror_and_exit("Input file is NULL");
+	input_file_fd = open(*input_file, O_RDONLY);
 	fetched_input = get_next_line(input_file_fd);
 	if (fetched_input == NULL)
 		perror_and_exit("Failed to read from file1");

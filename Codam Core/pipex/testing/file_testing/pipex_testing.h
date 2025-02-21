@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/19 17:56:33 by llourens      #+#    #+#                 */
-/*   Updated: 2025/02/21 15:20:14 by llourens      ########   odam.nl         */
+/*   Updated: 2025/02/21 15:28:38 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	usage_error_message(char *message);
 void	perror_and_exit(char *message);
 
 /* Input and cmd1 */
-void	input_and_cmd1(int pipe_fd_write, int pipe_fd_read);
+void	input_and_cmd1(char **input_file, int pipe_fd_write, int pipe_fd_read);
 void	output_and_cmd2(int pipe_fd_write, int pipe_fd_read);
 
 #endif

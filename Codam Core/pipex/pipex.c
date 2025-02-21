@@ -6,7 +6,7 @@
 /*   By: root <root@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/15 19:17:46 by root          #+#    #+#                 */
-/*   Updated: 2025/02/21 14:28:45 by llourens      ########   odam.nl         */
+/*   Updated: 2025/02/21 15:30:41 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	main(int argc, char **argv)
 	if (pid_fork1 < 0)
 		perror_and_exit("Fork1 failed: ");
 	if (pid_fork1 == 0)
-		input_and_cmd1(argv[1], pipe_fd[1], pipe_fd[0]);
+		input_and_cmd1(&argv[1], pipe_fd[1], pipe_fd[0]);
 	pid_fork2 = fork();
 	if (pid_fork2 < 0)
 		perror_and_exit("Fork2 failed: ");
