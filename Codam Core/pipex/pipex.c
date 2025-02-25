@@ -6,7 +6,7 @@
 /*   By: root <root@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/15 19:17:46 by root          #+#    #+#                 */
-/*   Updated: 2025/02/25 17:38:42 by llourens      ########   odam.nl         */
+/*   Updated: 2025/02/25 18:19:05 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ int	main(int argc, char **argv)
 
 	if (argc < 3)
 		exit(0);
-
 	if (pipe(fd_pipe) < 0)
 		perror_and_exit("Failed to pipe");
 	populate_pipe_data(&pipe_data, fd_pipe, argv[1], argv[2]);
