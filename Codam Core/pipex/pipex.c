@@ -6,38 +6,46 @@
 /*   By: root <root@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/15 19:17:46 by root          #+#    #+#                 */
-/*   Updated: 2025/02/21 15:30:41 by llourens      ########   odam.nl         */
+/*   Updated: 2025/02/25 16:56:20 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
+void	populate_pipe_data(t_pipex *pipe_data, int fd_pipe[2],
+			char *input_file, char *output_file);
+
 int	main(int argc, char **argv)
 {
-	int		pipe_fd[2];
+	int		fd_pipe[2];
 	pid_t	pid_fork1;
-	pid_t	pid_fork2;
+	t_pipex	pipe_data;
 
-	if (argc < 2)
-		usage_error_message("Too few arguments");
-	if (pipe(pipe_fd) < 0)
-		perror_and_exit("Pipe failed: ");
+	if (argc < 3)
+		exit(0);
+
+	if (pipe(fd_pipe) < 0)
+		perror_and_exit("Failed to pipe");
+	populate_pipe_data(&pipe_data, fd_pipe, argv[1], argv[2]);
 	pid_fork1 = fork();
 	if (pid_fork1 < 0)
-		perror_and_exit("Fork1 failed: ");
+		perror_and_exit("failed to fork");
 	if (pid_fork1 == 0)
-		input_and_cmd1(&argv[1], pipe_fd[1], pipe_fd[0]);
-	pid_fork2 = fork();
-	if (pid_fork2 < 0)
-		perror_and_exit("Fork2 failed: ");
-	if (pid_fork2 == 0)
-		output_and_cmd2(pipe_fd[1], pipe_fd[0]);
+		input_and_cmd1(pipe_data);
 	else
 	{
-		waitpid(pid_fork1, NULL, 0);
-		waitpid(pid_fork2, NULL, 0);
-		close(pipe_fd[1]);
-		close(pipe_fd[0]);
-		return (0);
+		output_and_cmd2(pipe_data);
+		waitpid(0, NULL, 0);
 	}
+	return (0);
+}
+
+static void	populate_pipe_data(t_pipex *pipe_data, int fd_pipe[2],
+		char *input_file, char *output_file)
+{
+	pipe_data->pipe_read = fd_pipe[0];
+	pipe_data->pipe_write = fd_pipe[1];
+	pipe_data->fd_input_file = open(input_file, O_RDONLY);
+	pipe_data->fd_output_file = open(output_file, O_WRONLY
+			| O_CREAT | O_TRUNC, 0664);
 }
