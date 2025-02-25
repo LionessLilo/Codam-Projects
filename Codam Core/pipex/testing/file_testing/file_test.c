@@ -1,19 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   pipex.c                                            :+:    :+:            */
+/*   file_test.c                                        :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: root <root@student.codam.nl>                 +#+                     */
+/*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2025/02/15 19:17:46 by root          #+#    #+#                 */
-/*   Updated: 2025/02/25 17:38:42 by llourens      ########   odam.nl         */
+/*   Created: 2025/02/25 17:37:57 by llourens      #+#    #+#                 */
+/*   Updated: 2025/02/25 17:57:28 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
-
-void	populate_pipe_data(t_pipex *pipe_data, int fd_pipe[2],
-			char *input_file, char *output_file);
+#include "../pipex.h"
 
 int	main(int argc, char **argv)
 {

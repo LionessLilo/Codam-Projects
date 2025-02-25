@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/11 17:53:31 by llourens      #+#    #+#                 */
-/*   Updated: 2025/02/25 16:49:19 by llourens      ########   odam.nl         */
+/*   Updated: 2025/02/25 17:39:23 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,9 @@ void	perror_and_exit(char *message);
 /* Input and cmd1 */
 void	input_and_cmd1(t_pipex pipe_data);
 void	output_and_cmd2(t_pipex pipe_data);
+
+/* Struct*/
+void	populate_pipe_data(t_pipex *pipe_data, int fd_pipe[2],
+			char *input_file, char *output_file);
 
 #endif
