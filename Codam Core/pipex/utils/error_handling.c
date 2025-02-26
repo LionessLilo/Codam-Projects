@@ -6,7 +6,7 @@
 /*   By: root <root@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/15 22:12:17 by root          #+#    #+#                 */
-/*   Updated: 2025/02/17 15:33:59 by llourens      ########   odam.nl         */
+/*   Updated: 2025/02/26 15:21:31 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,11 @@ void	usage_error_message(char *message)
 void	perror_and_exit(char *message)
 {
 	perror(message);
-	exit (EXIT_FAILURE);
+	exit (1);
+}
+
+void	custom_error_and_exit(char *message, int exit_code)
+{
+	ft_putendl_fd(message, 2);
+	exit (exit_code);
 }

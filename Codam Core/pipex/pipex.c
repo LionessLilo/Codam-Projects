@@ -6,26 +6,25 @@
 /*   By: root <root@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/15 19:17:46 by root          #+#    #+#                 */
-/*   Updated: 2025/02/25 18:19:05 by llourens      ########   odam.nl         */
+/*   Updated: 2025/02/26 14:17:25 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
 void	populate_pipe_data(t_pipex *pipe_data, int fd_pipe[2],
-			char *input_file, char *output_file);
+			char **argv, char **env);
 
-int	main(int argc, char **argv)
+int	main(int argc, char **argv, char **env)
 {
 	int		fd_pipe[2];
 	pid_t	pid_fork1;
 	t_pipex	pipe_data;
 
-	if (argc < 3)
-		exit(0);
+	input_checks(argc, argv, env);
 	if (pipe(fd_pipe) < 0)
 		perror_and_exit("Failed to pipe");
-	populate_pipe_data(&pipe_data, fd_pipe, argv[1], argv[2]);
+	populate_pipe_data(&pipe_data, fd_pipe, &argv, env);
 	pid_fork1 = fork();
 	if (pid_fork1 < 0)
 		perror_and_exit("failed to fork");
@@ -40,11 +39,13 @@ int	main(int argc, char **argv)
 }
 
 void	populate_pipe_data(t_pipex *pipe_data, int fd_pipe[2],
-		char *input_file, char *output_file)
+		char **argv, char **env)
 {
 	pipe_data->pipe_read = fd_pipe[0];
 	pipe_data->pipe_write = fd_pipe[1];
-	pipe_data->fd_input_file = open(input_file, O_RDONLY);
-	pipe_data->fd_output_file = open(output_file, O_WRONLY
+	pipe_data->fd_input_file = open(argv[1], O_RDONLY);
+	pipe_data->fd_output_file = open(argv[4], O_WRONLY
 			| O_CREAT | O_TRUNC, 0664);
+	pipe_data->cmd1 = get_cmd_path(argv[2], env);
+	pipe_data->cmd2 = get_cmd_path(argv[3], env);
 }

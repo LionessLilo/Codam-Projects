@@ -6,7 +6,7 @@
 #    By: llourens <llourens@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2025/02/11 17:51:04 by llourens      #+#    #+#                  #
-#    Updated: 2025/02/25 18:02:51 by llourens      ########   odam.nl          #
+#    Updated: 2025/02/26 18:00:55 by llourens      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,8 +25,10 @@ LIBFTDIR = libft
 SRCS = pipex.c \
 	   input_and_cmd1.c \
 	   output_and_cmd2.c \
+	   get_cmd_path.c \
 	   error_handling.c \
-	#    input_checks.c
+	   input_checks.c \
+	   free.c \
 
 FILES_SRCS = ./testing/file_testing/file_test.c \
 	   input_and_cmd1.c \
