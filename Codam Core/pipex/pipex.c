@@ -6,7 +6,7 @@
 /*   By: root <root@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/15 19:17:46 by root          #+#    #+#                 */
-/*   Updated: 2025/02/26 14:17:25 by llourens      ########   odam.nl         */
+/*   Updated: 2025/03/03 14:03:50 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	main(int argc, char **argv, char **env)
 	input_checks(argc, argv, env);
 	if (pipe(fd_pipe) < 0)
 		perror_and_exit("Failed to pipe");
-	populate_pipe_data(&pipe_data, fd_pipe, &argv, env);
+	populate_pipe_data(&pipe_data, fd_pipe, argv, env);
 	pid_fork1 = fork();
 	if (pid_fork1 < 0)
 		perror_and_exit("failed to fork");

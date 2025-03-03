@@ -1,19 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   free.c                                             :+:    :+:            */
+/*   env_check.c                                        :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2025/02/26 17:56:58 by llourens      #+#    #+#                 */
-/*   Updated: 2025/02/26 17:59:21 by llourens      ########   odam.nl         */
+/*   Created: 2025/03/03 17:24:44 by llourens      #+#    #+#                 */
+/*   Updated: 2025/03/03 17:46:12 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./printf/libft/libft.h"
+#include <stdio.h>
+#include <unistd.h>
 
-void	free_variables(char **temp_path, char **path_join)
-{
-	ft_free(temp_path);
-	ft_free(path_join);
+extern char **environ;
+
+int main() {
+    char **env = environ;
+    while (*env) 
+	{
+        printf("%s\n", *env);
+        env++;
+    }
+    return 0;
 }

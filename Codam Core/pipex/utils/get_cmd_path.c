@@ -6,74 +6,60 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/26 14:13:34 by llourens      #+#    #+#                 */
-/*   Updated: 2025/02/26 18:07:12 by llourens      ########   odam.nl         */
+/*   Updated: 2025/03/03 20:01:21 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./pipex.h"
+#include "../pipex.h"
 
-char	*search_directories(char **directories, char *cmd);
-char	*find_path_in_env(char **env, char *key);
+char	*ft_get_env(char **envp);
 
 char	*get_cmd_path(char *cmd, char **env)
 {
-	char	*path;
+	char	*path_from_env;
 	char	**directories;
 	char	*cmd_directory;
-	char	**cmd_with_args;
 
-	path = find_path_in_env(env, "PATH");
-	if (!path)
-		custom_error_and_exit("Error: PATH not found", 127);
-	directories = ft_split(path, ':');
-	ft_free(&path);
-	cmd_directory = search_directories(&directories, cmd);
-	if (!cmd_directory)
-		custom_error_and_exit("Error: Failed to access directory", 127);
-	return (cmd_directory);
+	path_from_env = ft_get_env(env);
+	if (!path_from_env)
+		custom_error_and_exit("failed to find PATH", 127);
+	directories = ft_split(path_from_env, ':');
+	cmd_directory = find_cmd_directory(directories, cmd);
 }
 
-char	*find_path_in_env(char **env, char *key)
+char	*ft_get_env(char **envp)
 {
-	int		i;
-	int		key_len;
+	int		pos_in_list;
+	char	*path_directories;
+	char	*start_copying;
 
-	i = 0;
-	key_len = ft_strlen(key);
-	while (env[i])
+	pos_in_list = 0;
+	while (envp[pos_in_list])
 	{
-		if ((ft_strncmp(env[i], key, key_len) == 0)
-			&& (env[i][key_len] == '='))
-			return (ft_strdup(env[i] + key_len + 1));
-		i++;
+		if (ft_strncmp(envp[pos_in_list], "PATH", 4) == 0)
+		{
+			start_copying = ft_strchr(envp[pos_in_list], '=');
+			path_directories = ft_strdup(start_copying + 1);
+			return (path_directories);
+		}
+		pos_in_list++;
 	}
 	return (NULL);
 }
 
-char	*search_directories(char **directories, char *cmd)
+char	*find_cmd_directory(char **directories, char *cmd)
 {
-	int		i;
-	int		full_path_len;
-	char	*full_path;
-	char	*path_join;
-	char	*temp_path;
+	char	*directory_and_slash;
+	char	*full_directory;
+	int		pos_in_directories;
 
-	i = 0;
-	while (directories[i])
+	while (directories[pos_in_directories])
 	{
-		full_path_len = ((ft_strlen(directories[i]))
-				+ (ft_strlen(cmd)) + 2);
-		full_path = malloc(sizeof(char) * full_path_len);
-		if (!full_path)
+		directory_and_slash = malloc(sizeof(char)
+				* ft_strlen(directories[pos_in_directories]) + 1);
+		if (!directory_and_slash)
 			return (NULL);
-		ft_strlcpy(temp_path, directories[i], full_path_len);
-		path_join = ft_strjoin(temp_path, "/");
-		full_path = ft_strjoin(path_join, cmd[0]);
-		free_variables(&temp_path, &path_join);
-		if (access(full_path, F_OK | X_OK) == 0)
-			return (full_path);
-		i++;
+		directory_and_slash = 
+		
 	}
-	ft_putendl_fd("Error: Command not found", STDERR_FILENO);
-	return (NULL);
 }
