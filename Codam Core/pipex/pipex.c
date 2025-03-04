@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   pipex.c                                            :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: root <root@student.codam.nl>                 +#+                     */
+/*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2025/02/15 19:17:46 by root          #+#    #+#                 */
-/*   Updated: 2025/03/04 19:59:42 by llourens      ########   odam.nl         */
+/*   Created: 2025/02/15 19:17:46 by llourens      #+#    #+#                 */
+/*   Updated: 2025/03/04 20:05:41 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
