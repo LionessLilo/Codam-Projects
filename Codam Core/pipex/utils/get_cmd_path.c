@@ -6,12 +6,13 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/26 14:13:34 by llourens      #+#    #+#                 */
-/*   Updated: 2025/03/03 20:01:21 by llourens      ########   odam.nl         */
+/*   Updated: 2025/03/04 18:55:20 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../pipex.h"
 
+char	*find_cmd_directory(char **directories, char *cmd);
 char	*ft_get_env(char **envp);
 
 char	*get_cmd_path(char *cmd, char **env)
@@ -22,9 +23,14 @@ char	*get_cmd_path(char *cmd, char **env)
 
 	path_from_env = ft_get_env(env);
 	if (!path_from_env)
-		custom_error_and_exit("failed to find PATH", 127);
+		return (NULL);
 	directories = ft_split(path_from_env, ':');
+	if (!directories)
+		return (NULL);
 	cmd_directory = find_cmd_directory(directories, cmd);
+	if (!cmd_directory)
+		return (NULL);
+	return (cmd_directory);
 }
 
 char	*ft_get_env(char **envp)
@@ -53,13 +59,19 @@ char	*find_cmd_directory(char **directories, char *cmd)
 	char	*full_directory;
 	int		pos_in_directories;
 
+	pos_in_directories = 0;
 	while (directories[pos_in_directories])
 	{
-		directory_and_slash = malloc(sizeof(char)
-				* ft_strlen(directories[pos_in_directories]) + 1);
+		directory_and_slash = ft_strjoin(directories[pos_in_directories], "/");
 		if (!directory_and_slash)
 			return (NULL);
-		directory_and_slash = 
-		
+		full_directory = ft_strjoin(directory_and_slash, cmd);
+		if (!full_directory)
+			return (NULL);
+		free(directory_and_slash);
+		if (access(full_directory, X_OK) == 0)
+			return (full_directory);
+		pos_in_directories++;
 	}
+	return (NULL);
 }
