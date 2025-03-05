@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/26 14:13:34 by llourens      #+#    #+#                 */
-/*   Updated: 2025/03/04 18:55:20 by llourens      ########   odam.nl         */
+/*   Updated: 2025/03/05 18:06:06 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ char	*ft_get_env(char **envp)
 		}
 		pos_in_list++;
 	}
+	perror("Failed to get path of directories");
 	return (NULL);
 }
 
@@ -73,5 +74,6 @@ char	*find_cmd_directory(char **directories, char *cmd)
 			return (full_directory);
 		pos_in_directories++;
 	}
+	perror("Failed to find cmd directory");
 	return (NULL);
 }

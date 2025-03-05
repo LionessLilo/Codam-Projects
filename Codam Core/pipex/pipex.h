@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/11 17:53:31 by llourens      #+#    #+#                 */
-/*   Updated: 2025/03/05 13:18:18 by llourens      ########   odam.nl         */
+/*   Updated: 2025/03/05 20:08:00 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,10 @@ typedef struct s_pipex
 /* Error handling */
 void	usage_error_message(char *message);
 void	perror_and_exit(char *message);
-void	perror_and_return(char *message, int return_code);
 void	free_split(char **split);
 
 /* Utils*/
-void	input_checks(int argc, char **argv, char **env);
+void	input_checks(t_pipex *pipe_data, int argc, char **argv, char **env);
 char	*get_cmd_path(char *cmd, char **env);
 char	*ft_get_env(char **envp);
 

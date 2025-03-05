@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/21 14:35:05 by llourens      #+#    #+#                 */
-/*   Updated: 2025/02/10 14:32:50 by llourens      ########   odam.nl         */
+/*   Updated: 2025/03/05 18:21:15 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,18 @@
 #include "../printf/ft_printf.h"
 #include "../printf/libft/libft.h"
 
-static void	push(t_stack_node **src, t_stack_node **dest)
+static void	push(t_stack_node **head, t_stack_node **dest)
 {
 	t_stack_node	*src_a;
 	t_stack_node	*src_b;
 	t_stack_node	*dest_a;
 
-	if (!src || !(*src))
+	if (!head || !(*head))
 		return (ft_putendl_fd("Error", 2));
-	src_a = *src;
-	src_b = (*src)->ptr_next;
+	src_a = *head;
+	src_b = (*head)->ptr_next;
 	dest_a = *dest;
-	*src = src_b;
+	*head = src_b;
 	if (src_b)
 		src_b->ptr_prev = NULL;
 	src_a->ptr_prev = NULL;

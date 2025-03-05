@@ -6,7 +6,7 @@
 #    By: llourens <llourens@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2025/02/11 17:51:04 by llourens      #+#    #+#                  #
-#    Updated: 2025/03/03 19:04:00 by llourens      ########   odam.nl          #
+#    Updated: 2025/03/05 17:58:52 by llourens      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,7 +57,8 @@ re: fclean all
 # TESTING
 #Gets the path directories(not sereated).
 GET_CMD_PATH_SRCS = get_env_check.c \
-					get_cmd_path.c
+					get_cmd_path.c \
+					error_handling.c \
 
 GET_CMD_PATH_OBJS = $(GET_CMD_PATH_SRCS:.c=.o)
 
