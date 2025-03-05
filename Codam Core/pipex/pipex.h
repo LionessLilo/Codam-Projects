@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/11 17:53:31 by llourens      #+#    #+#                 */
-/*   Updated: 2025/03/04 17:15:32 by llourens      ########   odam.nl         */
+/*   Updated: 2025/03/05 13:18:18 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,14 @@ typedef struct s_pipex
 	int		fd_output_file;
 	char	*cmd1;
 	char	*cmd2;
+	char	**environment;
 }				t_pipex;
 
 /* Error handling */
 void	usage_error_message(char *message);
 void	perror_and_exit(char *message);
-void	custom_error_and_exit(char *message, int exit_code);
+void	perror_and_return(char *message, int return_code);
+void	free_split(char **split);
 
 /* Utils*/
 void	input_checks(int argc, char **argv, char **env);
@@ -43,8 +45,8 @@ char	*get_cmd_path(char *cmd, char **env);
 char	*ft_get_env(char **envp);
 
 /* Src | Files and cmd*/
-void	input_and_cmd1(t_pipex pipe_data);
-void	output_and_cmd2(t_pipex pipe_data);
+void	input_and_cmd1(t_pipex pipe_data, char *orig_cmd1);
+void	output_and_cmd2(t_pipex pipe_data, char *orig_cmd2);
 
 /* Struct*/
 void	populate_pipe_data(t_pipex *pipe_data, int fd_pipe[2],

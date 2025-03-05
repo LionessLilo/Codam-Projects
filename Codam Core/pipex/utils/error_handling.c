@@ -6,7 +6,7 @@
 /*   By: root <root@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/15 22:12:17 by root          #+#    #+#                 */
-/*   Updated: 2025/03/04 20:13:16 by llourens      ########   odam.nl         */
+/*   Updated: 2025/03/05 13:10:35 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,17 @@ void	perror_and_return(char *message, int return_code)
 {
 	perror(message);
 	exit (return_code);
+}
+
+void	free_split(char **split)
+{
+	int	i;
+
+	i = 0;
+	while (split[i])
+	{
+		free(split[i]);
+		i++;
+	}
+	free(split);
 }

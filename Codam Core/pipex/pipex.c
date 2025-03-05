@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/15 19:17:46 by llourens      #+#    #+#                 */
-/*   Updated: 2025/03/04 20:05:41 by llourens      ########   odam.nl         */
+/*   Updated: 2025/03/05 13:19:24 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ int	main(int argc, char **argv, char **env)
 	if (pid_fork1 < 0)
 		perror_and_exit("failed to fork");
 	if (pid_fork1 == 0)
-		input_and_cmd1(pipe_data);
+		input_and_cmd1(pipe_data, argv[2]);
 	else
 	{
-		output_and_cmd2(pipe_data);
+		output_and_cmd2(pipe_data, argv[3]);
 		waitpid(0, NULL, 0);
 	}
 	return (0);
@@ -48,4 +48,5 @@ void	populate_pipe_data(t_pipex *pipe_data, int fd_pipe[2],
 			| O_CREAT | O_TRUNC, 0664);
 	pipe_data->cmd1 = get_cmd_path(argv[2], env);
 	pipe_data->cmd2 = get_cmd_path(argv[3], env);
+	pipe_data->environment = env;
 }

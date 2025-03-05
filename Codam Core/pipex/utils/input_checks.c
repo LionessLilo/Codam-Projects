@@ -6,7 +6,7 @@
 /*   By: root <root@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/15 20:19:01 by root          #+#    #+#                 */
-/*   Updated: 2025/02/17 16:46:04 by llourens      ########   odam.nl         */
+/*   Updated: 2025/03/05 13:37:42 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ void	input_checks(int argc, char **argv, char **envp)
 		usage_error_message("pipex: error: too few arguments");
 	if (argc > 5 && argc != 2)
 		usage_error_message("pipex: error: too many arguments");
-	if (!access(argv[1], F_OK) || !access(argv[4], F_OK))
+	if ((access(argv[1], F_OK) != 0) || (access(argv[4], F_OK) != 0))
 		usage_error_message("pipex: error: A file does not exist");
-	if (!access(argv[1], R_OK))
+	if (access(argv[1], R_OK) != 0)
 		usage_error_message("pipex: error: cannot read from file1");
-	if (!access(argv[4], W_OK) || !access(".", W_OK))
+	if ((access(argv[4], W_OK) != 0) || (access(".", W_OK) != 0))
 		usage_error_message("pipex: error: cannot write to file2");
 	if (!envp)
 		perror_and_exit("envp is NULL");
