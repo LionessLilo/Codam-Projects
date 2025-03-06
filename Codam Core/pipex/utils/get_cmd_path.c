@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/26 14:13:34 by llourens      #+#    #+#                 */
-/*   Updated: 2025/03/05 18:06:06 by llourens      ########   odam.nl         */
+/*   Updated: 2025/03/06 21:25:11 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,12 @@ char	*get_cmd_path(char *cmd, char **env)
 		return (NULL);
 	cmd_directory = find_cmd_directory(directories, cmd);
 	if (!cmd_directory)
-		return (NULL);
+	{
+		free_split(directories);
+		return (free(path_from_env), NULL);
+	}
+	free_split(directories);
+	free(path_from_env);
 	return (cmd_directory);
 }
 
@@ -46,11 +51,12 @@ char	*ft_get_env(char **envp)
 		{
 			start_copying = ft_strchr(envp[pos_in_list], '=');
 			path_directories = ft_strdup(start_copying + 1);
+			if (!path_directories)
+				return (NULL);
 			return (path_directories);
 		}
 		pos_in_list++;
 	}
-	perror("Failed to get path of directories");
 	return (NULL);
 }
 
@@ -68,12 +74,12 @@ char	*find_cmd_directory(char **directories, char *cmd)
 			return (NULL);
 		full_directory = ft_strjoin(directory_and_slash, cmd);
 		if (!full_directory)
-			return (NULL);
+			return (free(full_directory), NULL);
 		free(directory_and_slash);
 		if (access(full_directory, X_OK) == 0)
 			return (full_directory);
+		free(full_directory);
 		pos_in_directories++;
 	}
-	perror("Failed to find cmd directory");
 	return (NULL);
 }

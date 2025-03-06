@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/25 15:09:58 by llourens      #+#    #+#                 */
-/*   Updated: 2025/03/05 17:37:59 by llourens      ########   odam.nl         */
+/*   Updated: 2025/03/06 20:17:26 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,5 @@ void	input_and_cmd1(t_pipex pipe_data, char *orig_cmd1)
 		close(pipe_data.fd_input_file);
 		close(pipe_data.pipe_write);
 		free_split(cmd_with_flags);
-		perror_and_exit("Failed to execve cmd1");
 	}
 }

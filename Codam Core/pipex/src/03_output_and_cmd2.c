@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/25 16:28:50 by llourens      #+#    #+#                 */
-/*   Updated: 2025/03/05 19:15:19 by llourens      ########   odam.nl         */
+/*   Updated: 2025/03/06 20:17:31 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void	output_and_cmd2(t_pipex pipe_data, char *orig_cmd2)
 	{
 		close(pipe_data.fd_output_file);
 		close(pipe_data.pipe_read);
-		perror("Failed execve for cmd2");
 		free_split(cmd_with_flags);
 	}
 }

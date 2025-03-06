@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/11 17:53:31 by llourens      #+#    #+#                 */
-/*   Updated: 2025/03/05 20:08:00 by llourens      ########   odam.nl         */
+/*   Updated: 2025/03/06 19:31:49 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ typedef struct s_pipex
 }				t_pipex;
 
 /* Error handling */
-void	usage_error_message(char *message);
 void	perror_and_exit(char *message);
 void	free_split(char **split);
 
