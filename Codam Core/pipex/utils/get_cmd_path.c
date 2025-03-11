@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/26 14:13:34 by llourens      #+#    #+#                 */
-/*   Updated: 2025/03/06 21:25:11 by llourens      ########   odam.nl         */
+/*   Updated: 2025/03/07 20:13:03 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,10 @@ char	*find_cmd_directory(char **directories, char *cmd)
 	{
 		directory_and_slash = ft_strjoin(directories[pos_in_directories], "/");
 		if (!directory_and_slash)
-			return (NULL);
+			exit (1);
 		full_directory = ft_strjoin(directory_and_slash, cmd);
 		if (!full_directory)
-			return (free(full_directory), NULL);
+			exit(1);
 		free(directory_and_slash);
 		if (access(full_directory, X_OK) == 0)
 			return (full_directory);

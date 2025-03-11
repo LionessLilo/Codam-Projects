@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   input_checks.c                                     :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: root <root@student.codam.nl>                 +#+                     */
+/*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/15 20:19:01 by root          #+#    #+#                 */
-/*   Updated: 2025/03/06 20:33:00 by llourens      ########   odam.nl         */
+/*   Updated: 2025/03/07 19:55:45 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 

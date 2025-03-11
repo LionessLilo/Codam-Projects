@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/15 19:17:46 by llourens      #+#    #+#                 */
-/*   Updated: 2025/03/06 20:57:30 by llourens      ########   odam.nl         */
+/*   Updated: 2025/03/07 20:39:23 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ int	main(int argc, char **argv, char **env)
 		if (WIFEXITED(1))
 			return (1);
 	}
+	free(pipe_data.cmd1);
+	free(pipe_data.cmd2);
 	return (0);
 }
 
@@ -54,6 +56,8 @@ void	populate_pipe_data(t_pipex *pipe_data, int fd_pipe[2],
 	pipe_data->fd_input_file = open(argv[1], O_RDONLY);
 	pipe_data->cmd1 = get_cmd_path(cmd1_split[0], env);
 	pipe_data->cmd2 = get_cmd_path(cmd2_split[0], env);
+	if (!pipe_data->cmd1 || !pipe_data->cmd2)
+		perror("Failed to find command");
 	pipe_data->environment = env;
 	free_split(cmd1_split);
 	free_split(cmd2_split);

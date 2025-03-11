@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   error_handling.c                                   :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: root <root@student.codam.nl>                 +#+                     */
+/*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/15 22:12:17 by root          #+#    #+#                 */
-/*   Updated: 2025/03/06 19:31:41 by llourens      ########   odam.nl         */
+/*   Updated: 2025/03/07 19:55:19 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 

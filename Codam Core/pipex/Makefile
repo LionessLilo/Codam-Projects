@@ -6,7 +6,7 @@
 #    By: llourens <llourens@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2025/02/11 17:51:04 by llourens      #+#    #+#                  #
-#    Updated: 2025/03/05 17:58:52 by llourens      ########   odam.nl          #
+#    Updated: 2025/03/07 20:42:39 by llourens      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ SRCS = pipex.c \
 OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)
-debug: CFLAGS += -g
+debug: CFLAGS += -g3 -fsanitize=address
 debug: re
 
 %.a:
@@ -45,7 +45,7 @@ $(NAME): $(OBJS) $(PRINTFNAME)
 	$(CC) $(CFLAGS) -c $< -o $@ $(INCLUDES)
 
 clean:
-	@rm -f $(OBJS) $(GET_CMD_PATH_OBJS)
+	@rm -f $(OBJS)
 	@make -C $(PRINTFDIR) clean
     
 fclean: clean
@@ -53,14 +53,3 @@ fclean: clean
 	@make -C $(PRINTFDIR) fclean
     
 re: fclean all
-
-# TESTING
-#Gets the path directories(not sereated).
-GET_CMD_PATH_SRCS = get_env_check.c \
-					get_cmd_path.c \
-					error_handling.c \
-
-GET_CMD_PATH_OBJS = $(GET_CMD_PATH_SRCS:.c=.o)
-
-get_cmd_path: $(GET_CMD_PATH_OBJS) $(PRINTFNAME)
-	$(CC) $(CFLAGS) $(GET_CMD_PATH_OBJS) $(PRINTFNAME) -o get_cmd_path $(INCLUDES)
