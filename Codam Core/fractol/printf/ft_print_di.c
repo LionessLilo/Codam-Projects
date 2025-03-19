@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   fractol.h                                          :+:    :+:            */
+/*   ft_print_di.c                                      :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2025/03/13 09:15:31 by llourens      #+#    #+#                 */
-/*   Updated: 2025/03/19 12:51:21 by llourens      ########   odam.nl         */
+/*   Created: 2024/10/31 14:30:11 by llourens      #+#    #+#                 */
+/*   Updated: 2024/12/18 17:05:25 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRACTOL_H
-# define FRACTOL_H
+#include "libft/libft.h"
+#include "ft_printf.h"
+#include <stdio.h>
+#include <stdlib.h>
 
-# include "./MLX42/include/MLX42/MLX42.h"
-# include "./MLX42/include/MLX42/MLX42_Int.h"
-# include "./printf/ft_printf.h"
-# include "./printf/libft/libft.h"
-# include <stdlib.h>
-# include <aio.h>
+int	ft_print_di(int nbr)
+{
+	char	*str_to_print;
+	int		count;
 
-# define WIDTH 1000
-# define HEIGHT 1000
-
-void	create_mandelbrot_image(mlx_t mandelbrot_window);
-
-#endif
+	str_to_print = ft_itoa(nbr);
+	if (!str_to_print)
+		return (0);
+	count = ft_print_str(str_to_print);
+	free(str_to_print);
+	return (count);
+}

@@ -1,28 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   fractol.h                                          :+:    :+:            */
+/*   ft_strrchr.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2025/03/13 09:15:31 by llourens      #+#    #+#                 */
-/*   Updated: 2025/03/19 12:51:21 by llourens      ########   odam.nl         */
+/*   Created: 2024/10/11 11:53:28 by llourens      #+#    #+#                 */
+/*   Updated: 2024/10/24 12:46:12 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRACTOL_H
-# define FRACTOL_H
+#include <stdio.h>
+#include <unistd.h>
+#include <string.h>
+#include "libft.h"
 
-# include "./MLX42/include/MLX42/MLX42.h"
-# include "./MLX42/include/MLX42/MLX42_Int.h"
-# include "./printf/ft_printf.h"
-# include "./printf/libft/libft.h"
-# include <stdlib.h>
-# include <aio.h>
+char	*ft_strrchr(const char *s, int c)
+{
+	int	i;
+	int	s_len;
 
-# define WIDTH 1000
-# define HEIGHT 1000
-
-void	create_mandelbrot_image(mlx_t mandelbrot_window);
-
-#endif
+	if (c > 256)
+		c %= 256;
+	s_len = ft_strlen((char *)s);
+	if (c == '\0')
+		return ((char *)&s[s_len]);
+	i = s_len - 1;
+	while (i >= 0)
+	{
+		if (s[i] == (char)c)
+			return ((char *)&s[i]);
+		i--;
+	}
+	return (NULL);
+}

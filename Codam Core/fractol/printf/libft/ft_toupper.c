@@ -1,28 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   fractol.h                                          :+:    :+:            */
+/*   ft_toupper.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2025/03/13 09:15:31 by llourens      #+#    #+#                 */
-/*   Updated: 2025/03/19 12:51:21 by llourens      ########   odam.nl         */
+/*   Created: 2024/10/10 23:34:12 by llourens      #+#    #+#                 */
+/*   Updated: 2024/10/11 10:44:56 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRACTOL_H
-# define FRACTOL_H
+#include <stdio.h>
+#include <unistd.h>
 
-# include "./MLX42/include/MLX42/MLX42.h"
-# include "./MLX42/include/MLX42/MLX42_Int.h"
-# include "./printf/ft_printf.h"
-# include "./printf/libft/libft.h"
-# include <stdlib.h>
-# include <aio.h>
-
-# define WIDTH 1000
-# define HEIGHT 1000
-
-void	create_mandelbrot_image(mlx_t mandelbrot_window);
-
-#endif
+int	ft_toupper(int c)
+{
+	if (c >= 'a' && c <= 'z')
+	{
+		c = c - 32;
+	}
+	return (c);
+}

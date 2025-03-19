@@ -6,7 +6,7 @@
 #    By: llourens <llourens@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2025/03/13 09:06:24 by llourens      #+#    #+#                  #
-#    Updated: 2025/03/13 09:12:34 by llourens      ########   odam.nl          #
+#    Updated: 2025/03/19 12:45:13 by llourens      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,14 +17,15 @@ CC = cc
 CFLAGS = -Wall -Werror -Wextra
 export CFLAGS
 INCLUDES = -I./libft -I./printf -I. $(LIBMLX)/include
-VPATH = src utils libft printf testing
-PUSHSWAPDIR = push_swap
+VPATH = src utils libft printf
+FRACTOLDIR = fractol
 PRINTFDIR = printf
 LIBFTDIR = libft
 LIBMLX42 = ./MLX42
 LINKING = $(LIBMLX42)/build/libmlx42.a -ldl -lglfw -pthread -lm
 
-SRCS = 
+SRCS = fractol.c \
+		mandelbrot.c
 
 OBJS = $(SRCS:.c=.o)
 
@@ -39,10 +40,10 @@ libmlx42:
 	+$(MAKE) -C $(dir $@)
 
 $(NAME): $(OBJS) $(PRINTFNAME)
-	$(CC) $(CFLAGS) $(INCLUDES) $(OBJS) $(LINKING) $(PRINTFNAME) -o $(NAME)
+	$(CC) $(CFLAGS) $(INCLUDE) $(OBJS) $(LINKING) $(PRINTFNAME) -o $(NAME)
 
 %.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@ $(INCLUDES)
+	$(CC) $(CFLAGS) -c $< -o $@ $(INCLUDE)
 
 clean:
 	@rm -rf $(LIBMLX42)/build

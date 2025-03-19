@@ -1,28 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   fractol.h                                          :+:    :+:            */
+/*   ft_strncpy.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2025/03/13 09:15:31 by llourens      #+#    #+#                 */
-/*   Updated: 2025/03/19 12:51:21 by llourens      ########   odam.nl         */
+/*   Created: 2024/10/21 09:51:04 by llourens      #+#    #+#                 */
+/*   Updated: 2024/10/21 10:28:05 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRACTOL_H
-# define FRACTOL_H
+#include <stdio.h>
+#include <stdlib.h>
 
-# include "./MLX42/include/MLX42/MLX42.h"
-# include "./MLX42/include/MLX42/MLX42_Int.h"
-# include "./printf/ft_printf.h"
-# include "./printf/libft/libft.h"
-# include <stdlib.h>
-# include <aio.h>
+char	*ft_strncpy(char *dst, const char *src, size_t size)
+{
+	size_t	i;
 
-# define WIDTH 1000
-# define HEIGHT 1000
-
-void	create_mandelbrot_image(mlx_t mandelbrot_window);
-
-#endif
+	i = 0;
+	while (i < size && src[i] != '\0')
+	{
+		dst[i] = src[i];
+		i++;
+	}
+	if (src[i] == '\0' && i < size)
+	{
+		dst[i] = '\0';
+		i++;
+	}
+	return (dst);
+}

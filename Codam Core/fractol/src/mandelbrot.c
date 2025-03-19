@@ -6,33 +6,27 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/13 15:55:33 by llourens      #+#    #+#                 */
-/*   Updated: 2025/03/13 16:21:44 by llourens      ########   odam.nl         */
+/*   Updated: 2025/03/19 12:50:39 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fractol.h"
 
-void	create_mandelbrot_image(double x_coordinate,
-								double y_coordinate,
-								mlx_image_t *canvas)
+void	create_mandelbrot_image(mlx_t mandelbrot_window)
 {
-	while (y_coordinate < (HEIGHT * 0.9))
+	mlx_image_t	*img;
+
+	img = mlx_new_image(&mandelbrot_window, WIDTH, HEIGHT);
+	int	y = 1000 * 0.1;
+	while (y < (1000 * 0.9))
 	{
-		while(x_coordinate < (WIDTH * 0.9))
-			convert_to_complex_numbers(x_coordinate, y_coordinate);
-		y_coordinate++;
+		int x = 1000 * 0.1;
+		while (x < (1000 * 0.9))
+		{
+			mlx_put_pixel(img, x, y, (rand() % 0x1000000));
+			x++;
+		}
+		y++;
 	}
-}
-
-void	convert_to_complex_numbers(double x_coordinate,
-									double y_coordinate)
-{
-	double	real_number;
-	double	imaginary_number;
-	double	complex_number;
-
-	real_number = 0;
-	imaginary_number = 0;
-	complex_number = 0;
-	real_number = -2 + (x_coordinate)
+	mlx_image_to_window(&mandelbrot_window, img, 0, 0);
 }

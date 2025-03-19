@@ -1,28 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   fractol.h                                          :+:    :+:            */
+/*   ft_putnbr_fd.c                                     :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2025/03/13 09:15:31 by llourens      #+#    #+#                 */
-/*   Updated: 2025/03/19 12:51:21 by llourens      ########   odam.nl         */
+/*   Created: 2024/10/21 18:28:01 by llourens      #+#    #+#                 */
+/*   Updated: 2024/10/24 10:26:42 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRACTOL_H
-# define FRACTOL_H
+#include "libft.h"
+#include <unistd.h>	
 
-# include "./MLX42/include/MLX42/MLX42.h"
-# include "./MLX42/include/MLX42/MLX42_Int.h"
-# include "./printf/ft_printf.h"
-# include "./printf/libft/libft.h"
-# include <stdlib.h>
-# include <aio.h>
+void	ft_putnbr_fd(int n, int fd)
+{
+	char	str;
 
-# define WIDTH 1000
-# define HEIGHT 1000
-
-void	create_mandelbrot_image(mlx_t mandelbrot_window);
-
-#endif
+	if (n == -2147483648)
+	{
+		ft_putnbr_fd(n / 10, fd);
+		write(fd, "8", 1);
+		return ;
+	}
+	else if (n < 0)
+	{
+		write(fd, "-", 1);
+		n = n * -1;
+	}
+	if (n >= 10)
+	{
+		ft_putnbr_fd(n / 10, fd);
+		str = '0' + n % 10;
+	}
+	else
+		str = '0' + n;
+	write(fd, &str, 1);
+}
