@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/13 09:15:31 by llourens      #+#    #+#                 */
-/*   Updated: 2025/03/21 18:00:28 by lilo          ########   odam.nl         */
+/*   Updated: 2025/03/24 15:46:59 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,10 @@ typedef struct s_coordinates
 
 /*Mandelbrot*/
 void	create_mandelbrot_image(mlx_t mandelbrot_window);
-int		iterations(t_coordinates s_coordinates);
+int		iterations(t_coordinates coordinates);
 
 /*Utils*/
 bool	inside_mandelbrot(t_coordinates coordinates);
+void	find_new_coordinates(t_coordinates *coordinates);
 
 #endif

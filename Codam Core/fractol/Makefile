@@ -6,7 +6,7 @@
 #    By: llourens <llourens@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2025/03/13 09:06:24 by llourens      #+#    #+#                  #
-#    Updated: 2025/03/21 18:02:26 by lilo          ########   odam.nl          #
+#    Updated: 2025/03/24 12:46:47 by llourens      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ LIBFTDIR = libft
 LIBMLX42 = ./MLX42
 LINKING = $(LIBMLX42)/build/libmlx42.a -ldl -lglfw -pthread -lm
 
-SRCS = fractol.c \
+SRCS = ./testing/coordinate_functions.c \
 		mandelbrot.c \
 		mandelbrot_utils.c
 
