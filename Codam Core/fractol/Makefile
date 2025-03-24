@@ -6,7 +6,7 @@
 #    By: llourens <llourens@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2025/03/13 09:06:24 by llourens      #+#    #+#                  #
-#    Updated: 2025/03/19 12:45:13 by llourens      ########   odam.nl          #
+#    Updated: 2025/03/21 18:02:26 by lilo          ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,8 @@ LIBMLX42 = ./MLX42
 LINKING = $(LIBMLX42)/build/libmlx42.a -ldl -lglfw -pthread -lm
 
 SRCS = fractol.c \
-		mandelbrot.c
+		mandelbrot.c \
+		mandelbrot_utils.c
 
 OBJS = $(SRCS:.c=.o)
 
