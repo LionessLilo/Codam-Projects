@@ -3,18 +3,17 @@
 /*                                                        ::::::::            */
 /*   ft_isalpha.c                                       :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: root <root@student.codam.nl>                 +#+                     */
+/*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2025/02/03 19:53:10 by root          #+#    #+#                 */
-/*   Updated: 2025/02/03 20:03:17 by root          ########   odam.nl         */
+/*   Created: 2025/05/02 11:16:05 by llourens      #+#    #+#                 */
+/*   Updated: 2025/05/02 11:19:25 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-
 int	ft_isalpha(int c)
 {
-	if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))
+	if ((c >= 'A' && c <= 'Z')
+		|| (c >= 'a' && c <= 'z'))
 		return (1);
 	else
 		return (0);

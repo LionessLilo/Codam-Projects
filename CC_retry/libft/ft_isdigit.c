@@ -3,16 +3,16 @@
 /*                                                        ::::::::            */
 /*   ft_isdigit.c                                       :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: root <root@student.codam.nl>                 +#+                     */
+/*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2025/02/03 20:06:23 by root          #+#    #+#                 */
-/*   Updated: 2025/02/03 20:46:32 by root          ########   odam.nl         */
+/*   Created: 2025/05/02 11:38:17 by llourens      #+#    #+#                 */
+/*   Updated: 2025/05/02 11:39:48 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_isdigit(int c)
 {
-	if (c >= '0' && c <= '9')
+	if (c >= '1' && c <= '9')
 		return (1);
 	else
 		return (0);

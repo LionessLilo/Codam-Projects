@@ -1,19 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_isascii.c                                       :+:    :+:            */
+/*   ft_strlcpy.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2025/05/02 12:10:37 by llourens      #+#    #+#                 */
-/*   Updated: 2025/05/02 12:13:18 by llourens      ########   odam.nl         */
+/*   Created: 2025/05/02 15:34:57 by llourens      #+#    #+#                 */
+/*   Updated: 2025/05/02 17:21:57 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isascii(int c)
+#include "./libft.h"
+
+int	ft_strlcpy(char *dst, const char *src, size_t size)
 {
-	if (c >= 0 && c <= 127)
-		return (1);
-	else
-		return (0);
+	size_t	src_i;
+	size_t	dest_i;
+	size_t	src_len;
+
+	src_i = 0;
+	dest_i = 0;
+	src = (char *)src;
+	src_len = ft_strlen(src);
+	if (src_len == 0)
+		return (src_len);
+	while (src[src_i] && src_i < (size - 1))
+	{
+		dst[dest_i] = src[src_i];
+		src_i++;
+		dest_i++;
+	}
+	dst[dest_i] = '\0';
+
+	return (src_len);
 }
