@@ -1,23 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_strlen.c                                        :+:    :+:            */
+/*   ft_toupper.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2025/05/02 12:32:02 by llourens      #+#    #+#                 */
-/*   Updated: 2025/05/06 14:09:23 by llourens      ########   odam.nl         */
+/*   Created: 2025/05/06 14:23:30 by llourens      #+#    #+#                 */
+/*   Updated: 2025/05/06 14:45:00 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-
-size_t	ft_strlen(const char *string)
+int	ft_toupper(int chr)
 {
-	int	length;
-
-	length = 0;
-	while (string[length])
-		length++;
-	return (length);
+	if (chr >= 'a' && chr <= 'z')
+		chr -= 32;
+	return (chr);
 }

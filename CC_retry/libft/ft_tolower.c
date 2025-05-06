@@ -1,23 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_strlen.c                                        :+:    :+:            */
+/*   ft_tolower.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2025/05/02 12:32:02 by llourens      #+#    #+#                 */
-/*   Updated: 2025/05/06 14:09:23 by llourens      ########   odam.nl         */
+/*   Created: 2025/05/06 14:46:04 by llourens      #+#    #+#                 */
+/*   Updated: 2025/05/06 14:49:37 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-
-size_t	ft_strlen(const char *string)
+int	ft_tolower(int chr)
 {
-	int	length;
-
-	length = 0;
-	while (string[length])
-		length++;
-	return (length);
+	if (chr >= 'A' && chr <= 'Z')
+		chr += 32;
+	return (chr);
 }

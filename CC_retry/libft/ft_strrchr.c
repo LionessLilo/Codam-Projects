@@ -1,23 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_strlen.c                                        :+:    :+:            */
+/*   ft_strrchr.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2025/05/02 12:32:02 by llourens      #+#    #+#                 */
-/*   Updated: 2025/05/06 14:09:23 by llourens      ########   odam.nl         */
+/*   Created: 2025/05/06 15:19:18 by llourens      #+#    #+#                 */
+/*   Updated: 2025/05/06 18:21:46 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include "./libft.h"
 
-size_t	ft_strlen(const char *string)
+char	*ft_strrchr(const char *str, int chr)
 {
-	int	length;
+	const char	*end_of_str;
 
-	length = 0;
-	while (string[length])
-		length++;
-	return (length);
+	end_of_str = str + ft_strlen(str) - 1;
+	while (*end_of_str >= *str && *end_of_str != chr)
+		end_of_str--;
+	if (*end_of_str == chr)
+		return ((char *)end_of_str);
+	return (NULL);
 }
