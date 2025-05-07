@@ -1,4 +1,4 @@
-NAME = fractol
+NAME = mlx_sandbox
 CC = cc
 CFLAGS = -Werror -Wall -Wextra
 LIBMLX42 = ./MLX42
