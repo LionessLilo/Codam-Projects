@@ -3,7 +3,7 @@ CC = cc
 CFLAGS = -Werror -Wall -Wextra
 LIBMLX42 = ./MLX42
 
-SRCS = pixel_math.c
+SRCS = fractol.c mandelbrot_utils.c mandelbrot.c
 OBJS = $(SRCS:.c=.o)
 INCLUDE = -I./MLX42
 
@@ -29,6 +29,7 @@ clean:
     
 fclean: clean
 	@rm -f $(NAME)
-	@rm -f mlx_sandbox.a
+	@rm -f fractol
+	@rm -rf $(LIBMLX42)
     
 re: clean all
