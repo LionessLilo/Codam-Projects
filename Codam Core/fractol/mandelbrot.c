@@ -6,12 +6,15 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/13 16:33:09 by llourens      #+#    #+#                 */
-/*   Updated: 2025/05/14 16:14:30 by llourens      ########   odam.nl         */
+/*   Updated: 2025/05/15 14:28:22 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./include/fractol.h"
 
+
+void	mandelbrot_scroll(double x_scroll, double y_scroll, void *own_param);
+void	display_mandelbrot(void);
 void	place_pixels(int iterations, t_window window, t_pixels pixels);
 
 /* 
@@ -56,4 +59,43 @@ void	place_pixels(int iterations, t_window window, t_pixels pixels)
 	else
 		color = 0x8d2c66FF;
 	mlx_put_pixel(window.image, pixels.x, pixels.y, color);
+}
+
+void	display_mandelbrot(void)
+{
+	t_window	window;
+	t_pixels	pixels;
+	t_zoom		zoom;
+	int			iterations;
+
+	window.mlx = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT, "fractol", false);
+	window.image = mlx_new_image(window.mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
+	mlx_scroll_hook(zoom.window->mlx, (void *)mandelbrot_scroll, &zoom);
+	pixels.y = 0;
+	while (pixels.y < WINDOW_HEIGHT)
+	{
+		pixels.x = 0;
+		while (pixels.x < WINDOW_WIDTH)
+		{
+			iterations = mandelbrot(pixels);
+			place_pixels(iterations, window, pixels);
+			pixels.x++;
+		}
+		pixels.y++;
+	}
+	window.image_instance = mlx_image_to_window(window.mlx, window.image, 0, 0);
+	mlx_loop(window.mlx);
+	mlx_terminate(window.mlx);
+}
+
+void	mandelbrot_scroll(double x_scroll, double y_scroll, void *own_param)
+{
+	t_zoom	*zoom_data;
+
+	(void)x_scroll;
+	zoom_data = (t_zoom *)own_param;
+	if (y_scroll > 0)
+		zoom_data->zoom *= 1.5
+	else if (y_scroll < 0)
+		zoom_data->zoom *= 0.5
 }

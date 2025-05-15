@@ -3,7 +3,7 @@ CC = cc
 CFLAGS = -Werror -Wall -Wextra
 LIBMLX42 = ./MLX42
 
-SRCS = pixel_math.c
+SRCS = zoom.c
 OBJS = $(SRCS:.c=.o)
 INCLUDE = -I./MLX42
 
@@ -11,7 +11,7 @@ all: clone_libmlx42 libmlx42 $(NAME)
 
 clone_libmlx42:
 	@if [ ! -d "$(LIBMLX42)" ]; then \
-		git clone https://github.com/codam-coding-college/MLX42.git $(LIBMLX42); \
+		git clone --recurse-submodules https://github.com/codam-coding-college/MLX42.git $(LIBMLX42); \
 	fi
 
 libmlx42: clone_libmlx42
