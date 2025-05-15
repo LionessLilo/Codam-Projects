@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/14 11:43:34 by llourens      #+#    #+#                 */
-/*   Updated: 2025/05/14 17:26:11 by llourens      ########   odam.nl         */
+/*   Updated: 2025/05/15 11:34:17 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void	display_mandelbrot(void)
 {
 	t_window	window;
 	t_pixels	pixels;
-	t_zoom		zoom;
 	int			iterations;
 
 	window.mlx = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT, "fractol", false);

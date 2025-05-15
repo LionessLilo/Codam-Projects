@@ -1,5 +1,6 @@
 {
-	"files.associations": {
-		"mlx42.h": "c"
-	}
+  "files.associations": {
+    "mlx42.h": "c"
+  },
+  "C_Cpp_Runner.msvcBatchPath": ""
 }
