@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/13 15:00:37 by llourens      #+#    #+#                 */
-/*   Updated: 2025/05/14 17:14:46 by llourens      ########   odam.nl         */
+/*   Updated: 2025/05/16 16:08:48 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,6 @@ t_complex_coord	pixels_to_complex(t_pixels pixels);
 int				mandelbrot(t_pixels pixels);
 void			place_pixels(int iterations, t_window window, t_pixels pixels);
 void			display_mandelbrot(void);
-void			scroll_function(mouse_key_t mlx_scroll_hook);
+void			scroll(double x_scroll, double y_scroll, void *own_param);
 
 #endif
