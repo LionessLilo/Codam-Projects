@@ -1,40 +1,90 @@
 #include "./MLX42/include/MLX42/MLX42.h"
 #include <stdio.h>
 
-typedef struct
+#define WINDOW_WIDTH 800
+#define WINDOW_HEIGHT 600
 
-void	my_scroll_funct(double xdelta, double y_delta, void *param)
+double	g_zoom = 1.0;
+void	*mlx;
+
+void	draw_square(void *image, double g_zoom);
+void	clear_image(mlx_image_t *image);
+
+void	clear_image(mlx_image_t *image)
 {
-	(void)xdelta;
-	(void)param;
+	uint32_t x, y;
 
-	if (y_delta > 0)
-		printf("Scrolled up\n");
-	else if (y_delta < 0)
-		printf("Scrolled down\n");
-}
-
-int	main(void)
-{
-	void	*mlx;
-	void	*image;
-	int		image_instance;
-
-	mlx = mlx_init(800, 400, "mlx_sandbox", false);
-	image = mlx_new_image(mlx, 64, 64);
-	mlx_scroll_hook(mlx, (void *)my_scroll_funct, NULL);
-	int y = 0;
-	while (y < 50)
+	y = 0;
+	while (y < image->height)
 	{
-		int x = 0;
-		while (x < 50)
+		x = 0;
+		while (x < image->width)
 		{
-			mlx_put_pixel(image, x, y, 0xFFFFFFFF);
+			mlx_put_pixel(image, x, y, 0x00000000); // Fully transparent or black
 			x++;
 		}
 		y++;
 	}
-	image_instance = mlx_image_to_window(mlx, image, 400, 200);
+}
+
+void	my_scroll_funct(double xdelta, double y_delta, void *param)
+{
+	(void)xdelta;
+	mlx_image_t *image = (mlx_image_t *)param;
+
+	if (y_delta > 0)
+		g_zoom *= 1.1; // Zoom in
+	else if (y_delta < 0)
+		g_zoom /= 1.1; // Zoom out
+
+	clear_image(image);
+	draw_square(image, g_zoom);
+}
+
+
+void	draw_square(void *image, double g_zoom)
+{
+	int		x, y;
+	int		size = 50 * g_zoom;
+
+	y = 0;
+	while (y < size && y < (int)((mlx_image_t *)image)->height)
+	{
+		x = 0;
+		while (x < size && x < (int)((mlx_image_t *)image)->width)
+		{
+			mlx_put_pixel((mlx_image_t *)image, x, y, 0xFFFFFFFF);
+			x++;
+		}
+		y++;
+	}
+}
+
+int	main(void)
+{
+	
+	mlx_image_t	*image;
+	int			image_instance;
+	int			size;
+
+	
+	mlx = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT, "Zoom Example", true);
+	if (!mlx)
+	{
+		fprintf(stderr, "Failed to initialize MLX\n");
+		return (1);
+	}
+	size = 50 * g_zoom;
+	image = mlx_new_image(mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
+	if (!image)
+	{
+		fprintf(stderr, "Failed to create image\n");
+		mlx_terminate(mlx);
+		return (1);
+	}
+	draw_square(image, g_zoom);
+	image_instance = mlx_image_to_window(mlx, image, 400, 200); //where to place the image in the window
+	mlx_scroll_hook(mlx, (void *)my_scroll_funct, image);
 	mlx_loop(mlx);
 	mlx_terminate(mlx);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/13 16:33:09 by llourens      #+#    #+#                 */
-/*   Updated: 2025/05/15 14:28:22 by lilo          ########   odam.nl         */
+/*   Updated: 2025/05/16 14:51:04 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,12 +70,11 @@ void	display_mandelbrot(void)
 
 	window.mlx = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT, "fractol", false);
 	window.image = mlx_new_image(window.mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
-	mlx_scroll_hook(zoom.window->mlx, (void *)mandelbrot_scroll, &zoom);
 	pixels.y = 0;
-	while (pixels.y < WINDOW_HEIGHT)
+	while (pixels.y < WINDOW_HEIGHT && pixels.y < (int)((mlx_image_t *)window.image)->height)
 	{
 		pixels.x = 0;
-		while (pixels.x < WINDOW_WIDTH)
+		while (pixels.x < WINDOW_WIDTH && pixels.x < (int)((mlx_image_t *)window.image)->width)
 		{
 			iterations = mandelbrot(pixels);
 			place_pixels(iterations, window, pixels);
@@ -84,18 +83,17 @@ void	display_mandelbrot(void)
 		pixels.y++;
 	}
 	window.image_instance = mlx_image_to_window(window.mlx, window.image, 0, 0);
+	mlx_scroll_hook(zoom.window->mlx, (void *)mandelbrot_scroll, &zoom);
 	mlx_loop(window.mlx);
 	mlx_terminate(window.mlx);
 }
 
 void	mandelbrot_scroll(double x_scroll, double y_scroll, void *own_param)
 {
-	t_zoom	*zoom_data;
-
 	(void)x_scroll;
-	zoom_data = (t_zoom *)own_param;
+	(void)own_param;
 	if (y_scroll > 0)
-		zoom_data->zoom *= 1.5
+		zoom_out();
 	else if (y_scroll < 0)
-		zoom_data->zoom *= 0.5
+		zoom_in();
 }

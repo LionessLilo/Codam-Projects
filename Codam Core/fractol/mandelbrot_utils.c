@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/07 17:45:52 by llourens      #+#    #+#                 */
-/*   Updated: 2025/05/15 11:33:56 by lilo          ########   odam.nl         */
+/*   Updated: 2025/05/16 12:20:24 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,4 +20,8 @@ t_complex_coord	pixels_to_complex(t_pixels pixels)
 	coords.c_real = REAL_MIN + pixels.x * (REAL_MAX - REAL_MIN) / WINDOW_WIDTH;
 	coords.c_imag = IMAG_MAX - pixels.y * (IMAG_MAX - IMAG_MIN) / WINDOW_HEIGHT;
 	return (coords);
+}
+void	zoom_in(void)
+{
+
 }
