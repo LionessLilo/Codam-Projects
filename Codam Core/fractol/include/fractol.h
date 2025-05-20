@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/13 15:00:37 by llourens      #+#    #+#                 */
-/*   Updated: 2025/05/16 16:08:48 by llourens      ########   odam.nl         */
+/*   Updated: 2025/05/20 17:54:11 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,24 @@
 # include <stdio.h>
 # include "../MLX42/include/MLX42/MLX42.h"
 
-# define WINDOW_WIDTH 800
-# define WINDOW_HEIGHT 600
-# define REAL_MAX 1.0
-# define REAL_MIN -2.0
-# define IMAG_MAX 1.5
-# define IMAG_MIN -1.5
-# define MAX_ITER 1000
+// # define WINDOW_WIDTH 800
+// # define WINDOW_HEIGHT 600
+// # define REAL_MAX 1.0
+// # define REAL_MIN -2.0
+// # define IMAG_MAX 1.5
+// # define IMAG_MIN -1.5
+// # define MAX_ITER 1000
+
+typedef struct s_data
+{
+	int	window_width;
+	int	window_height;
+	float	real_max;
+	float	real_min;
+	float	imag_max;
+	float	imag_min;
+	int	max_iter;
+}			t_data;
 
 typedef struct s_window
 {
@@ -51,10 +62,12 @@ typedef struct s_zoom
 	double		zoom;
 }				t_zoom;
 
-t_complex_coord	pixels_to_complex(t_pixels pixels);
-int				mandelbrot(t_pixels pixels);
-void			place_pixels(int iterations, t_window window, t_pixels pixels);
-void			display_mandelbrot(void);
+void			init_data(t_data *data);
+t_complex_coord	pixels_to_complex(t_pixels pixels, t_data data);
+int				mandelbrot(t_pixels pixels, t_data data);
+void			place_pixels(int iterations, t_window window,
+					t_pixels pixels, t_data data);
+void			display_mandelbrot(t_data data);
 void			scroll(double x_scroll, double y_scroll, void *own_param);
 
 #endif
