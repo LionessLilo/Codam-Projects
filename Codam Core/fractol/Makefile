@@ -3,7 +3,7 @@ CC = cc
 CFLAGS = -Werror -Wall -Wextra
 LIBMLX42 = ./MLX42
 
-SRCS = fractol.c mandelbrot_utils.c mandelbrot.c
+SRCS = fractol.c mandelbrot_utils.c fractol_utils.c mandelbrot.c
 OBJS = $(SRCS:.c=.o)
 INCLUDE = -I./MLX42
 
