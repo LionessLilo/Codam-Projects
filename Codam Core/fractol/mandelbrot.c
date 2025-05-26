@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/13 16:33:09 by llourens      #+#    #+#                 */
-/*   Updated: 2025/05/20 17:50:58 by lilo          ########   odam.nl         */
+/*   Updated: 2025/05/21 13:02:30 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,10 @@ void	place_pixels(int iterations, t_window window,
 	runs it through the mandelbrot equation and returns 
 	the number of iterations
 */
-int	mandelbrot(t_pixels pixels, t_data data)
+int	mandelbrot(
+	t_pixels pixels,
+	t_data data
+)
 {
 	t_complex_coord	coords;
 	int				iterations;
@@ -44,7 +47,12 @@ int	mandelbrot(t_pixels pixels, t_data data)
 	return (iterations);
 }
 
-void	place_pixels(int iterations, t_window window, t_pixels pixels, t_data data)
+void	place_pixels(
+	int iterations,
+	t_window window,
+	t_pixels pixels,
+	t_data data
+)
 {
 	uint32_t	color;
 
@@ -65,19 +73,24 @@ void	display_mandelbrot(t_data data)
 {
 	t_window	window;
 	t_pixels	pixels;
-	// t_zoom		zoom;
 
-	window.mlx = mlx_init(data.window_width, data.window_height, "fractol", false);
-	window.image = mlx_new_image(window.mlx, data.window_width, data.window_height);
+	window.mlx = mlx_init(data.window_width, data.window_height,
+			"fractol", false);
+	window.image = mlx_new_image(window.mlx, data.window_width,
+			data.window_height);
 	pixels.y = 0;
 	draw_image(pixels, window, data);
 	window.image_instance = mlx_image_to_window(window.mlx, window.image, 0, 0);
-	// mlx_scroll_hook(zoom.window->mlx, (void *)scroll, &zoom);
+	mlx_scroll_hook(window.mlx, (void *)handle_scroll, &data);
 	mlx_loop(window.mlx);
 	mlx_terminate(window.mlx);
 }
 
-void	draw_image(t_pixels pixels, t_window window, t_data data)
+void	draw_mandelbrot(
+	t_pixels pixels,
+	t_window window,
+	t_data data
+)
 {
 	int			iterations;
 

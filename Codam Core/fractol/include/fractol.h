@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/13 15:00:37 by llourens      #+#    #+#                 */
-/*   Updated: 2025/05/20 17:54:11 by lilo          ########   odam.nl         */
+/*   Updated: 2025/05/21 13:27:57 by llourens      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,8 @@
 # define FRACTOL_H
 
 # include <stdio.h>
+# include <stdlib.h>
 # include "../MLX42/include/MLX42/MLX42.h"
-
-// # define WINDOW_WIDTH 800
-// # define WINDOW_HEIGHT 600
-// # define REAL_MAX 1.0
-// # define REAL_MIN -2.0
-// # define IMAG_MAX 1.5
-// # define IMAG_MIN -1.5
-// # define MAX_ITER 1000
-
-typedef struct s_data
-{
-	int	window_width;
-	int	window_height;
-	float	real_max;
-	float	real_min;
-	float	imag_max;
-	float	imag_min;
-	int	max_iter;
-}			t_data;
 
 typedef struct s_window
 {
@@ -41,6 +23,24 @@ typedef struct s_window
 	void	*image;
 	int		image_instance;
 }			t_window;
+typedef struct s_zoom
+{
+	t_window	*window;
+	double		zoom;
+}				t_zoom;
+
+typedef struct s_data
+{
+	int			window_width;
+	int			window_height;
+	float		real_max;
+	float		real_min;
+	float		imag_max;
+	float		imag_min;
+	int			max_iter;
+	t_zoom		*zoom;
+}				t_data;
+
 
 typedef struct s_pixels
 {
@@ -56,11 +56,6 @@ typedef struct s_complex_coord
 	double	c_imag;
 }			t_complex_coord;
 
-typedef struct s_zoom
-{
-	t_window	*window;
-	double		zoom;
-}				t_zoom;
 
 void			init_data(t_data *data);
 t_complex_coord	pixels_to_complex(t_pixels pixels, t_data data);
@@ -68,6 +63,8 @@ int				mandelbrot(t_pixels pixels, t_data data);
 void			place_pixels(int iterations, t_window window,
 					t_pixels pixels, t_data data);
 void			display_mandelbrot(t_data data);
-void			scroll(double x_scroll, double y_scroll, void *own_param);
+void			handle_scroll(double x_scroll,
+					double y_scroll, void *own_param, void *window);
+void			draw_mandelbrot(t_pixels pixels, t_window window, t_data data);
 
 #endif
