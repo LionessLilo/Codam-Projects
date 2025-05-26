@@ -6,14 +6,14 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/02 11:51:52 by llourens      #+#    #+#                 */
-/*   Updated: 2025/05/06 20:30:25 by llourens      ########   odam.nl         */
+/*   Updated: 2025/05/22 13:35:16 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libft.h"
 #include <stdio.h>
 #include <string.h>
-#include <bsd/string.h>
+#include <string.h>
 
 static void	log_tick(void)
 {
