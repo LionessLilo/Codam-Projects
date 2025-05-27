@@ -6,12 +6,15 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/07 17:45:52 by llourens      #+#    #+#                 */
-/*   Updated: 2025/05/26 16:28:59 by lilo          ########   odam.nl         */
+/*   Updated: 2025/05/27 11:05:33 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./include/fractol.h"
 
+/*Initialises the variables needed for the instance and the 
+	set values the program needs to work with.
+*/
 void	init_data(t_data *data)
 {
 	data->window_width = 800;

@@ -38,7 +38,6 @@ void	my_scroll_funct(double xdelta, double y_delta, void *param)
 		g_zoom /= 1.1; // Zoom out
 
 	clear_image(image);
-	draw_square(image, g_zoom);
 }
 
 
@@ -64,8 +63,6 @@ int	main(void)
 {
 	
 	mlx_image_t	*image;
-	int			image_instance;
-	int			size;
 
 	
 	mlx = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT, "Zoom Example", true);
@@ -74,7 +71,6 @@ int	main(void)
 		fprintf(stderr, "Failed to initialize MLX\n");
 		return (1);
 	}
-	size = 50 * g_zoom;
 	image = mlx_new_image(mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
 	if (!image)
 	{
@@ -83,8 +79,9 @@ int	main(void)
 		return (1);
 	}
 	draw_square(image, g_zoom);
-	image_instance = mlx_image_to_window(mlx, image, 400, 200); //where to place the image in the window
+	mlx_image_to_window(mlx, image, 400, 200); //where to place the image in the window
 	mlx_scroll_hook(mlx, (void *)my_scroll_funct, image);
+	draw_square(image,g_zoom);
 	mlx_loop(mlx);
 	mlx_terminate(mlx);
 	return (0);

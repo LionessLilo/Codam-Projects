@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/21 13:05:52 by llourens      #+#    #+#                 */
-/*   Updated: 2025/05/21 13:29:32 by llourens      ########   odam.nl         */
+/*   Updated: 2025/05/27 11:45:23 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void			zoom_in(t_data *zoom_data);
 void			zoom_out(t_data *zoom_data);
-t_complex_coord	pixels_to_complex(t_pixels pixels, t_data data);
-void			clear_image(t_window window);
+t_complex_coord	pixels_to_complex(t_data data, t_complex_coord coords);
+void			clear_image(t_data *data);
 
 
 void	zoom_in(t_data *zoom_data)
@@ -56,16 +56,12 @@ void	zoom_out(t_data *zoom_data)
 	zoom_data->imag_max = centre_imag + range_imag * 2;
 }
 
-t_complex_coord	pixels_to_complex(
-	t_pixels pixels,
-	t_data data
-)
+t_complex_coord	pixels_to_complex(t_data data, t_complex_coord coords)
 {
-	t_complex_coord	coords;
 
-	coords.c_real = data.real_min + pixels.x
+	coords.c_real = data.real_min + coords.pixel_x
 		*(data.real_max - data.real_min) / data.window_width;
-	coords.c_imag = data.imag_max - pixels.y
+	coords.c_imag = data.imag_max - coords.pixel_y
 		* (data.imag_max - data.imag_min) / data.window_height;
 	return (coords);
 }
@@ -73,37 +69,36 @@ t_complex_coord	pixels_to_complex(
 void	handle_scroll(
 	double x_scroll,
 	double y_scroll,
-	void *own_param,
-	void *window
-)
-{
-	t_data		*zoom_data;
+	void *own_param
+){
+	t_complex_coord	*coordinates;
+	t_data			*zoom_data;
 
 	(void)x_scroll;
-	zoom_data = (t_data *)own_param;
+	coordinates = (t_complex_coord *)own_param;
+	zoom_data = (t_data *)(long int)own_param;
 	if (y_scroll > 0)
 		zoom_in(zoom_data);
 	else if (y_scroll < 0)
 		zoom_out(zoom_data);
-	clear_image((t_window *)window);
+	clear_image(zoom_data);
+	draw_mandelbrot(*coordinates, *zoom_data);
 }
 
-void	clear_image(t_window window)
+void	clear_image(t_data *data)
 {
 	int	x;
 	int	y;
 
-	while (y < data.window_height
-		&& pixels.y < (int)((mlx_image_t *)window.image)->height)
+	y = 0;
+	while (y < data->window_height)
 	{
-		pixels.x = 0;
-		while (pixels.x < data.window_width
-			&& pixels.x < (int)((mlx_image_t *)window.image)->width)
+		x = 0;
+		while (x < data->window_width)
 		{
-			iterations = mandelbrot(pixels, data);
-			place_pixels(iterations, window, pixels, data);
-			pixels.x++;
+			mlx_put_pixel(data->image, x, y, 0x00000000);
+			x++;
 		}
-		pixels.y++;
+		y++;
 	}
 }

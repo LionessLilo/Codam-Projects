@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/13 15:00:37 by llourens      #+#    #+#                 */
-/*   Updated: 2025/05/21 13:27:57 by llourens      ########   odam.nl         */
+/*   Updated: 2025/05/27 11:44:36 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,11 @@
 # include <stdlib.h>
 # include "../MLX42/include/MLX42/MLX42.h"
 
-typedef struct s_window
-{
-	void	*mlx;
-	void	*image;
-	int		image_instance;
-}			t_window;
-typedef struct s_zoom
-{
-	t_window	*window;
-	double		zoom;
-}				t_zoom;
-
 typedef struct s_data
 {
+	void		*mlx;
+	void		*image;
+	int			image_instance;
 	int			window_width;
 	int			window_height;
 	float		real_max;
@@ -38,18 +29,13 @@ typedef struct s_data
 	float		imag_max;
 	float		imag_min;
 	int			max_iter;
-	t_zoom		*zoom;
+	float		zoom;
 }				t_data;
-
-
-typedef struct s_pixels
-{
-	int	x;
-	int	y;
-}		t_pixels;
 
 typedef struct s_complex_coord
 {
+	int		pixel_x;
+	int		pixel_y;
 	double	z_real;
 	double	z_imag;
 	double	c_real;
@@ -58,13 +44,13 @@ typedef struct s_complex_coord
 
 
 void			init_data(t_data *data);
-t_complex_coord	pixels_to_complex(t_pixels pixels, t_data data);
-int				mandelbrot(t_pixels pixels, t_data data);
-void			place_pixels(int iterations, t_window window,
-					t_pixels pixels, t_data data);
+t_complex_coord	pixels_to_complex(t_data data, t_complex_coord coords);
+long int				mandelbrot(t_complex_coord coords,t_data data);
+void			place_pixels(int iterations, t_complex_coord coordinates,
+					t_data data);
 void			display_mandelbrot(t_data data);
 void			handle_scroll(double x_scroll,
-					double y_scroll, void *own_param, void *window);
-void			draw_mandelbrot(t_pixels pixels, t_window window, t_data data);
+					double y_scroll, void *own_param);
+void			draw_mandelbrot(t_complex_coord coordinates, t_data data);
 
 #endif
