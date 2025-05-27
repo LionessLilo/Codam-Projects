@@ -6,11 +6,10 @@
 /*   By: root <root@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/16 16:04:02 by root          #+#    #+#                 */
-/*   Updated: 2025/02/16 16:13:11 by root          ########   odam.nl         */
+/*   Updated: 2025/05/27 13:59:53 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 
 static int	ft_chr_is_uppercase(int chr)
 {
@@ -18,7 +17,6 @@ static int	ft_chr_is_uppercase(int chr)
 		return (1);
 	else
 		return (0);
-	return (1);
 }
 
 char	*ft_strlowcase(char *str)
