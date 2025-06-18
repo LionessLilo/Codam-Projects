@@ -1,6 +1,6 @@
 NAME = philo
 CC = cc
-CFLAGS = -Werror -Wall -Wextra -Wconversion
+CFLAGS = -Werror -Wall -Wextra -Wconversion -pthread
 
 VPATH = src
 SRCS = main.c
