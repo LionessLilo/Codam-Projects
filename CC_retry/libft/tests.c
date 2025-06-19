@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/02 11:51:52 by llourens      #+#    #+#                 */
-/*   Updated: 2025/05/22 13:35:16 by lilo          ########   odam.nl         */
+/*   Updated: 2025/06/19 19:05:50 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,11 @@
 #include <stdio.h>
 #include <string.h>
 #include <string.h>
+#include <bsd/string.h>
 
 static void	log_tick(void)
 {
-	printf("\033[0;32m ✔ \033[0;37m \n");
+	printf("\033[0;32m ✔\033[0;37m");
 }
 
 static void	log_error(char *message)
@@ -28,7 +29,7 @@ static void	log_error(char *message)
 int	main(void)
 {
 	/* ft_isalpha */
-	printf("\033[0;37mft_isalpha:\n");
+	printf("\033[0;37mft_isalpha:");
 	if (ft_isalpha('A') == 1)
 		log_tick();
 	else
@@ -39,7 +40,7 @@ int	main(void)
 		log_error("Says number is alpha");
 
 	/* ft_isdigit */
-	printf("ft_isdigit:\n");
+	printf("\nft_isdigit:");
 	if (ft_isdigit('1') == 1)
 		log_tick();
 	else
@@ -50,7 +51,7 @@ int	main(void)
 		log_error("Says an integer is a digit");
 	
 	/* ft_ft_isalnum */
-	printf("ft_ft_isalnum\n");
+	printf("\nft_ft_isalnum");
 	if (ft_isalnum('A') == 1)
 		log_tick();
 	else
@@ -65,7 +66,7 @@ int	main(void)
 		log_error("Thinks $ is alnum");
 
 	/* ft_isprint */
-	printf("ft_isprint:\n");
+	printf("\nft_isprint:");
 	if (ft_isprint('\n') == 0)
 		log_tick();
 	else
@@ -76,14 +77,14 @@ int	main(void)
 		log_error("Does not think that '~' is not printable");
 	
 	/* ft_strlen */
-	printf("ft_strlen:\n");
+	printf("\nft_strlen:");
 	if (ft_strlen("Hello") == 5)
 		log_tick();
 	else
 		log_error("Length is incorrect");
 	
 	/* ft_memset */
-	printf("ft_memset:\n");
+	printf("\nft_memset:");
 	char	memset_str1[] = "Hello";
 	char	memset_str2[] = "Hello";
 	if (memcmp(ft_memset(memset_str1, 'f', 4), memset(memset_str2, 'f', 4), 5) == 0)
@@ -95,7 +96,7 @@ int	main(void)
 	}
 
 	/* ft_bzero */
-	printf("ft_bzero:\n");
+	printf("\nft_bzero:");
 	char	bzero_str1[] = "Hello";
 	char	bzero_str2[] = "Hello";
 	ft_bzero(memset_str1, 4);
@@ -109,7 +110,7 @@ int	main(void)
 	}
 
 	/* ft_memcpy */
-	printf("ft_memcpy:\n");
+	printf("\nft_memcpy:");
 	char	memcpy_src[] = "Hello";
 	char	memcpy_dest[] = "World";
 	char	*ftmemcpy_result = ft_memcpy(memcpy_dest, memcpy_src, 4);
@@ -123,7 +124,7 @@ int	main(void)
 	}
 
 	/* ft_memmove */
-	printf("ft_memmove:\n");
+	printf("\nft_memmove:");
 	char	memmove_src[] = "Hello";
 	char	memmove_dest[] = "World";
 	char	*ft_memmove_result = ft_memmove(memmove_dest, memmove_src, 4);
@@ -137,7 +138,7 @@ int	main(void)
 	}
 
 	/* ft_strlcpy */
-	printf("ft_strlcpy:\n");
+	printf("\nft_strlcpy:");
 	char	src1[] = "Hello, World!";
 	char	dest1[20];
 	char	src2[] = "Hello, World!";
@@ -154,7 +155,7 @@ int	main(void)
 	}
 
 	/* ft_strlcat */
-	printf("ft_strlcat:\n");
+	printf("\nft_strlcat:");
 
 char strlcat_src1[] = "Hello, World!";
 char strlcat_dest1[20] = {0};
@@ -174,7 +175,7 @@ else
 }
 
 /* ft_toupper */
-printf("\033[0;37mft_toupper:\n");
+printf("\033[0;37m\nft_toupper:");
 if (ft_toupper('a') == 'A')
 	log_tick();
 else
@@ -188,7 +189,7 @@ else
 	log_error("Changed the input (1)");
 
 /* ft_tolower */
-printf("\033[0;37mft_tolower:\n");
+printf("\033[0;37m\nft_tolower:");
 if (ft_tolower('A') == 'a')
 	log_tick();
 else
@@ -202,7 +203,7 @@ else
 	log_error("Changed the input (1)");
 
 /* ft_strchr */
-printf("\033[0;37mft_strchr:\n");
+printf("\033[0;37m\nft_strchr:");
 char *ft_returned_ptr = ft_strchr("Hello", 'l');
 char *man_strchr = strchr("Hello", 'l');
 if (memcmp(ft_returned_ptr, man_strchr, 1) == 0)
@@ -214,7 +215,7 @@ else
 }
 
 /* ft_strrchr */
-printf("\033[0;37mft_strrchr:\n");
+printf("\033[0;37m\nft_strrchr:");
 char *ft_strrchr_returned_ptr = ft_strrchr("Hello", 'l');
 char *man_strrchr = strrchr("Hello", 'l');
 if (memcmp(ft_strrchr_returned_ptr, man_strrchr, 1) == 0)
@@ -236,14 +237,22 @@ else
 }
 
 /* ft_strncmp */
-printf("\033[0;37mft_strncmp:\n");
-int ft_strncmp_result = ft_strncmp("Hello", "Help!", 4);
-if (ft_strncmp_result == -4)
+printf("\033[0;37m\nft_strncmp:");
+int ft_strncmp_result1 = ft_strncmp("Hello", "Help!", 4);
+int ft_strncmp_result2 = ft_strncmp("Hello", "Hello", 4);
+if (ft_strncmp_result1 == -4)
 	log_tick();
 else
 {
 	log_error("ft_strncmp result does not match strncmp result");
-	printf("%d", ft_strncmp_result);
+	printf("%d", ft_strncmp_result1);
+}
+if (ft_strncmp_result2 == 0)
+	log_tick();
+else
+{
+	log_error("ft_strncmp result does not match strncmp result");
+	printf("%d", ft_strncmp_result2);
 }
 
 int ft_strncmp_reverse_result = ft_strncmp("Help!", "Hello", 4);
@@ -256,7 +265,7 @@ else
 }
 
 /* ft_memchr */
-printf("\033[0;37mft_memchr:\n");
+printf("\033[0;37m\nft_memchr:");
 char *ft_memchr_ptr = ft_memchr("Hello", 'l', 3);
 char *man_memchr = memchr("Hello", 'l', 3);
 if (memcmp(ft_memchr_ptr, man_memchr, 1) == 0)
@@ -268,9 +277,9 @@ else
 }
 
 /* ft_memcmp */
-printf("\033[0;37mft_memcmp:\n");
-char *ft_memcmp_ptr = ft_memcmp("Hello", "Help!", 5);
-char *man_memcmp = memcmp("Hello", "Help!", 5);
+printf("\033[0;37m\nft_memcmp:");
+int ft_memcmp_result = ft_memcmp("Hello", "Help!", 5);
+int man_memcmp = memcmp("Hello", "Help!", 5);
 if (memcmp(ft_memchr_ptr, man_memchr, 1) == 0)
 	log_tick();
 else
@@ -278,6 +287,15 @@ else
 	log_error("Not returning the correct pointer");
 	printf("%p", (void *)ft_returned_ptr);
 }
+
+/* ft_strnstr */
+printf("\033[0;37m\nft_strnstr:");
+const char	*ft_needlefound = ft_strnstr("Hello World", "llo", 7);
+const char	*needle_found = strnstr("Hello World", "llo", 7);
+if (strcmp(ft_needlefound, needle_found) == 0)
+	log_tick();
+else
+	log_error("Not correct");
 
 	/*  End of function */
 	return (0);

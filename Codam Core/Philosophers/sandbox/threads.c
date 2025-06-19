@@ -18,7 +18,7 @@ void    *print(void *arg)
 
 int main(void)
 {
-    pthread_t       threads[NBR_THREADS];
+    pthread_t       threads[NBR_THREADS]; //You can call the ID in later threads
     unsigned int    i;
     int             args[NBR_THREADS];
 

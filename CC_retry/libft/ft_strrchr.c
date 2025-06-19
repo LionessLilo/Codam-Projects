@@ -6,13 +6,14 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/06 15:19:18 by llourens      #+#    #+#                 */
-/*   Updated: 2025/05/06 18:21:46 by llourens      ########   odam.nl         */
+/*   Updated: 2025/06/19 13:51:57 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libft.h"
 
-char	*ft_strrchr(const char *str, int chr)
+char	*ft_strrchr(const char *str,
+					int chr)
 {
 	const char	*end_of_str;
 

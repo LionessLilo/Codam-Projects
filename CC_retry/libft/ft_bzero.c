@@ -6,18 +6,23 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/02 14:15:47 by llourens      #+#    #+#                 */
-/*   Updated: 2025/05/02 14:35:29 by llourens      ########   odam.nl         */
+/*   Updated: 2025/06/19 19:19:38 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libft.h"
 
-void	ft_bzero(void *memory, size_t size)
+/*Erases the data by filling size bytes of memory with zeros*/
+
+void	ft_bzero(void *memory,
+				size_t size)
 {
 	size_t			i;
 	unsigned char	*uc_buffer;
 
 	i = 0;
+	if (size == 0)
+		return ;
 	uc_buffer = (unsigned char *)memory;
 	while (i < size)
 	{

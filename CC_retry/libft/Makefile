@@ -6,7 +6,7 @@
 #    By: llourens <llourens@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2025/05/02 11:04:34 by llourens      #+#    #+#                  #
-#    Updated: 2025/05/06 20:12:30 by llourens      ########   odam.nl          #
+#    Updated: 2025/06/19 15:14:00 by lilo          ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,8 @@ SCRS = ft_isalpha.c \
 		ft_strrchr.c \
 		ft_strncmp.c \
 		ft_memchr.c \
-		ft_memcmp.c
+		ft_memcmp.c \
+		ft_strnstr.c
 
 OBJS = $(SCRS:.c=.o)
 
