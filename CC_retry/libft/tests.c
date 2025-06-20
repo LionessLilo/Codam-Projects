@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/02 11:51:52 by llourens      #+#    #+#                 */
-/*   Updated: 2025/06/20 13:40:40 by lilo          ########   odam.nl         */
+/*   Updated: 2025/06/20 21:44:27 by lionesslilo   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -307,6 +307,53 @@ else
 {
 	log_error("Not matching with atoi: ");
 	printf("%d vs %d", my_atoi, std_atoi);
+}
+
+/* ft_calloc*/
+printf("\033[0;37m\nft_calloc:");
+size_t n = 5;
+size_t size = sizeof(int);
+int *ft_calloc_arr = (int *)ft_calloc(n, size);
+int *std_calloc_arr = (int *)calloc(n, size);
+if (ft_calloc_arr && std_calloc_arr && memcmp(ft_calloc_arr, std_calloc_arr, n * size) == 0)
+	log_tick();
+else
+	log_error("ft_calloc does not match calloc (memory not zeroed or allocation failed)");
+free(ft_calloc_arr);
+free(std_calloc_arr);
+
+/* ft_strdup */
+printf("\033[0;37m\nft_strdup:");
+char	*my_strdup = ft_strdup("Hello");
+char	*std_strdup = strdup("Hello");
+if (memcmp(my_strdup, std_strdup, 5) == 0)
+	log_tick();
+else
+{
+	log_error("Not duplicating correctly");
+	printf("%s vs %s", my_strdup, std_strdup);
+}
+
+/*ft_substr*/
+printf("\033[0;37m\nft_substr:");
+char	*my_substring = ft_substr("Hello World", 7, 3);
+char	*sub_str = "orl";
+if (memcmp(my_substring, sub_str, 3) == 0)
+	log_tick();
+else
+{
+	log_error("Not duplicating correctly");
+	printf("%s vs %s", my_substring, sub_str);
+}
+
+char	*my_substring2 = ft_substr("Hello World", 2, 3);
+char	*sub_str2 = "llo";
+if (memcmp(my_substring2, sub_str2, 3) == 0)
+	log_tick();
+else
+{
+	log_error(" Not duplicating correctly");
+	printf("%s vs %s", my_substring2, sub_str2);
 }
 
 	/*  End of function */
