@@ -6,11 +6,13 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/06 20:05:23 by llourens      #+#    #+#                 */
-/*   Updated: 2025/06/19 13:35:39 by lilo          ########   odam.nl         */
+/*   Updated: 2025/06/20 10:57:12 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libft.h"
+
+/* Returns the difference between two pieces of memory */
 
 int	ft_memcmp(const void *str_1,
 			const void *str_2,

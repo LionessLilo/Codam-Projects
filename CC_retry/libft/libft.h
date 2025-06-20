@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/02 11:13:32 by llourens      #+#    #+#                 */
-/*   Updated: 2025/06/19 15:22:48 by lilo          ########   odam.nl         */
+/*   Updated: 2025/06/20 13:40:06 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+
 
 int			ft_isalpha(int c);
 int			ft_isdigit(int c);
@@ -37,5 +38,6 @@ void		*ft_memchr(const void *str, int byte, size_t size);
 void		*ft_memchr(const void *str, int byte, size_t size);
 int			ft_memcmp(const void *str_1, const void *str_2, size_t size);
 const char	*ft_strnstr(const char *haystack, const char *needle, size_t size);
+int			ft_atoi(const char *str);
 
 #endif

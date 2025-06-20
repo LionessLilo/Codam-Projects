@@ -6,13 +6,13 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/02 17:09:49 by llourens      #+#    #+#                 */
-/*   Updated: 2025/06/19 13:34:18 by lilo          ########   odam.nl         */
+/*   Updated: 2025/06/20 11:07:28 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libft.h"
 
-static size_t	strlcat_dest_len(char *dst, 
+static size_t	strlcat_dest_len(char *dst,
 									size_t size)
 {
 	size_t	i;
@@ -23,8 +23,14 @@ static size_t	strlcat_dest_len(char *dst,
 	return (i);
 }
 
-int	ft_strlcat(char *dst, 
-				const char *src, 
+/* 
+	Concatanates src to dest at most size - 1 (Always
+	NULL terminates unless size is less than or equal to
+	the length of dest)
+*/
+
+int	ft_strlcat(char *dst,
+				const char *src,
 				size_t size)
 {
 	size_t	return_value;

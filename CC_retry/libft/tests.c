@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/02 11:51:52 by llourens      #+#    #+#                 */
-/*   Updated: 2025/06/19 19:05:50 by lilo          ########   odam.nl         */
+/*   Updated: 2025/06/20 13:40:40 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -296,6 +296,18 @@ if (strcmp(ft_needlefound, needle_found) == 0)
 	log_tick();
 else
 	log_error("Not correct");
+
+/* ft_atoi */
+printf("\033[0;37m\nft_atoi:");
+int	my_atoi = ft_atoi("-1234");
+int	std_atoi = atoi("-1234");
+if (my_atoi == std_atoi)
+	log_tick();
+else
+{
+	log_error("Not matching with atoi: ");
+	printf("%d vs %d", my_atoi, std_atoi);
+}
 
 	/*  End of function */
 	return (0);

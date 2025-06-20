@@ -6,11 +6,13 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/02 14:37:04 by llourens      #+#    #+#                 */
-/*   Updated: 2025/06/19 15:01:31 by lilo          ########   odam.nl         */
+/*   Updated: 2025/06/20 10:57:55 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libft.h"
+
+/* Copies memory up to size from src to dest */
 
 void	*ft_memcpy(void *dest,
 					const void *src,

@@ -6,11 +6,13 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/02 12:48:30 by llourens      #+#    #+#                 */
-/*   Updated: 2025/06/19 13:55:38 by lilo          ########   odam.nl         */
+/*   Updated: 2025/06/20 11:00:13 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libft.h"
+
+/* Fills the memory up to size with the filler */
 
 void	*ft_memset(void *memory,
 					int filler,

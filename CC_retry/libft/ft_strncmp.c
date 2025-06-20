@@ -6,11 +6,13 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/06 18:22:28 by llourens      #+#    #+#                 */
-/*   Updated: 2025/06/19 18:51:34 by lilo          ########   odam.nl         */
+/*   Updated: 2025/06/20 11:13:18 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libft.h"
+
+/* Compares two strings up to size and returns the difference */
 
 int	ft_strncmp(const char *str_1,
 				const char *str_2,

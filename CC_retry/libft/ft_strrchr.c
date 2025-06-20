@@ -6,11 +6,13 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/06 15:19:18 by llourens      #+#    #+#                 */
-/*   Updated: 2025/06/19 13:51:57 by lilo          ########   odam.nl         */
+/*   Updated: 2025/06/20 11:17:56 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libft.h"
+
+/* Looks for a character in a string starting from the end of the string */
 
 char	*ft_strrchr(const char *str,
 					int chr)

@@ -6,12 +6,16 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/06/19 13:36:32 by lilo          #+#    #+#                 */
-/*   Updated: 2025/06/19 19:12:40 by lilo          ########   odam.nl         */
+/*   Updated: 2025/06/20 11:16:18 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
+
+/* 
+	Looks for a substring within a string and returns a pointer to the 
+	first occurance of the substring.
+*/
 
 const char	*ft_strnstr(const char *haystack,
 						const char *needle,

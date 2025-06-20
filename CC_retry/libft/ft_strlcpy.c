@@ -6,11 +6,16 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/02 15:34:57 by llourens      #+#    #+#                 */
-/*   Updated: 2025/06/19 15:03:47 by lilo          ########   odam.nl         */
+/*   Updated: 2025/06/20 11:12:14 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libft.h"
+
+/* 
+	Copies a string up to size from src to dst. Size - 1 characters
+	will be copied and it NULL terminates.
+*/
 
 int	ft_strlcpy(char *dst,
 				const char *src,

@@ -6,11 +6,13 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/02 15:05:03 by llourens      #+#    #+#                 */
-/*   Updated: 2025/06/19 13:33:36 by lilo          ########   odam.nl         */
+/*   Updated: 2025/06/20 10:58:24 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libft.h"
+
+/* Moves memory up to size from src to dest */
 
 void	*ft_memmove(void *dest, 
 					const void *src, 
