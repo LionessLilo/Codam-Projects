@@ -6,7 +6,7 @@
 #    By: llourens <llourens@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2025/05/02 11:04:34 by llourens      #+#    #+#                  #
-#    Updated: 2025/06/20 12:07:27 by lilo          ########   odam.nl          #
+#    Updated: 2025/06/23 16:35:46 by lilo          ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,11 @@ SCRS = ft_isalpha.c \
 
 OBJS = $(SCRS:.c=.o)
 
-all: $(NAME)
+all: $(NAME) clean
+.PHONY: tests
+
+tests: $(NAME) clean
+	cc -Wall -Wextra -Werror -g tests/*.c $(NAME) -o tests/test_libft
 
 $(NAME): $(OBJS)
 	ar rcs $(NAME) $(OBJS)
@@ -52,5 +56,6 @@ clean:
 fclean: clean
 	rm -f $(NAME)
 	rm -f main
+	rm -f ./tests/test_main
 
 re: fclean all
