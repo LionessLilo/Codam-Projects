@@ -17,7 +17,7 @@
 	integer overflow. 
 */
 
-void	*calloc(size_t nbrof_items, size_t size_item)
+void	*ft_calloc(size_t nbrof_items, size_t size_item)
 {
 	void	*memory;
 

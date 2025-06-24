@@ -6,11 +6,11 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/02 11:13:32 by llourens      #+#    #+#                 */
-/*   Updated: 2025/06/23 13:32:51 by lilo          ########   odam.nl         */
+/*   Updated: 2025/06/24 11:49:06 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
+# ifndef LIBFT_H
 # define LIBFT_H
 
 # include <stdlib.h>
@@ -39,5 +39,9 @@ void		*ft_memchr(const void *str, int byte, size_t size);
 int			ft_memcmp(const void *str_1, const void *str_2, size_t size);
 const char	*ft_strnstr(const char *haystack, const char *needle, size_t size);
 int			ft_atoi(const char *str);
+void	    *ft_calloc(size_t nbrof_items, size_t size_item);
+char        *ft_strdup(const char *string);
+char        *ft_substr(char const *string, unsigned int start, size_t len);
+
 
 #endif
