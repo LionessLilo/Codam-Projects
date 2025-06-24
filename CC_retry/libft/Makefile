@@ -6,7 +6,7 @@
 #    By: llourens <llourens@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2025/05/02 11:04:34 by llourens      #+#    #+#                  #
-#    Updated: 2025/06/24 11:49:38 by lilo          ########   odam.nl          #
+#    Updated: 2025/06/24 13:55:17 by lilo          ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,7 @@ all: $(NAME) clean
 .PHONY: tests
 
 tests: $(NAME) clean
-	cc -Wall -Wextra -Werror -g tests/*.c $(NAME) -o tests/test_libft
+	cc -Wall -Wextra -Werror -g tests/*.c -lbsd $(NAME) -o tests/test_libft
 
 $(NAME): $(OBJS)
 	ar rcs $(NAME) $(OBJS)

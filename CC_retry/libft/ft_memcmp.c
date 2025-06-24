@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/06 20:05:23 by llourens      #+#    #+#                 */
-/*   Updated: 2025/06/20 10:57:12 by lilo          ########   odam.nl         */
+/*   Updated: 2025/06/24 16:40:06 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ int	ft_memcmp(const void *str_1,
 	unsigned char	*uc_str_1;
 	unsigned char	*uc_str_2;
 
+	if (size == 0)
+		return (0);
 	i = 0;
 	uc_str_1 = (unsigned char *)str_1;
 	uc_str_2 = (unsigned char *)str_2;

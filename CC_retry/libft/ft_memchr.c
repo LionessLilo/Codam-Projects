@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/06 19:32:30 by llourens      #+#    #+#                 */
-/*   Updated: 2025/06/20 10:55:18 by lilo          ########   odam.nl         */
+/*   Updated: 2025/06/24 16:06:33 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 	pointed to by str.
 */
 
-void	*ft_memchr(const void *str, 
-					int byte, 
+void	*ft_memchr(const void *str,
+					int byte,
 					size_t size)
 {
 	size_t		i;

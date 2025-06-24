@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/06/23 12:48:32 by lilo          #+#    #+#                 */
-/*   Updated: 2025/06/23 16:31:10 by lilo          ########   odam.nl         */
+/*   Updated: 2025/06/24 16:42:43 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,14 @@ void	test_memset(void);
 void	test_bzero(void);
 void	test_memcpy(void);
 void	test_memmove(void);
-
+void	test_strlcpy(void);
+void	test_strlcat(void);
+void	test_toupper(void);
+void	test_tolower(void);
+void	test_strchr(void);
+void	test_strrchr(void);
+void	test_strncmp(void);
+void	test_memchr(void);
+void	test_memcmp(void);
 
 #endif
