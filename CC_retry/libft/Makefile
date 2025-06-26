@@ -6,7 +6,7 @@
 #    By: llourens <llourens@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2025/05/02 11:04:34 by llourens      #+#    #+#                  #
-#    Updated: 2025/06/24 13:55:17 by lilo          ########   odam.nl          #
+#    Updated: 2025/06/26 16:36:26 by lilo          ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,11 +37,12 @@ SCRS = ft_isalpha.c \
 		ft_atoi.c \
 		ft_calloc.c \
 		ft_strdup.c \
-		ft_substr.c
+		ft_substr.c \
+		ft_strjoin.c
 
 OBJS = $(SCRS:.c=.o)
 
-all: $(NAME) clean
+all: $(NAME)
 .PHONY: tests
 
 tests: $(NAME) clean

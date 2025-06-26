@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/06/23 12:48:32 by lilo          #+#    #+#                 */
-/*   Updated: 2025/06/24 16:42:43 by lilo          ########   odam.nl         */
+/*   Updated: 2025/06/26 15:35:34 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,10 @@ void	test_strrchr(void);
 void	test_strncmp(void);
 void	test_memchr(void);
 void	test_memcmp(void);
+void	test_strnstr(void);
+void	test_atoi(void);
+void	test_strdup(void);
+void	test_substr(void);
+void	test_strjoin(void);
 
 #endif

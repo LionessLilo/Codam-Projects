@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/02 11:51:52 by llourens      #+#    #+#                 */
-/*   Updated: 2025/06/24 16:34:18 by lilo          ########   odam.nl         */
+/*   Updated: 2025/06/26 15:35:04 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,38 +55,13 @@ int	main(void)
 	test_memchr();
 	printf("\nft_memcmp: ");
 	test_memcmp();
-
-// int ft_memcmp_result = ft_memcmp("Hello", "Help!", 5);
-// int man_memcmp = memcmp("Hello", "Help!", 5);
-// if (memcmp(ft_memchr_ptr, man_memchr, 1) == 0)
-// 	log_tick();
-// else
-// {
-// 	log_error("Not returning the correct pointer");
-// 	printf("%p", (void *)ft_returned_ptr);
-// }
-
-// /* ft_strnstr */
-// printf("\033[0;37m\nft_strnstr:");
-// const char	*ft_needlefound = ft_strnstr("Hello World", "llo", 7);
-// const char	*needle_found = strnstr("Hello World", "llo", 7);
-// if (strcmp(ft_needlefound, needle_found) == 0)
-// 	log_tick();
-// else
-// 	log_error("Not correct");
-
-// /* ft_atoi */
-// printf("\033[0;37m\nft_atoi:");
-// int	my_atoi = ft_atoi("-1234");
-// int	std_atoi = atoi("-1234");
-// if (my_atoi == std_atoi)
-// 	log_tick();
-// else
-// {
-// 	log_error("Not matching with atoi: ");
-// 	printf("%d vs %d", my_atoi, std_atoi);
-// }
-
-// 	/*  End of function */
+	printf("\nft_atoi: ");
+	test_atoi();
+	printf("\nft_strdup: ");
+	test_strdup();
+	printf("\nft_substr: ");
+	test_substr();
+	printf("\nft_strjoin: ");
+	test_strjoin();
 	return (printf("\n"), 0);
 }
