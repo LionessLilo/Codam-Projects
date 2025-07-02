@@ -1,35 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   test_utils.c                                       :+:    :+:            */
+/*   ft_striteri.c                                      :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2025/06/23 12:37:52 by lilo          #+#    #+#                 */
-/*   Updated: 2025/06/27 15:56:48 by lilo          ########   odam.nl         */
+/*   Created: 2025/06/30 17:31:28 by lilo          #+#    #+#                 */
+/*   Updated: 2025/07/01 09:59:00 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./test_utils.h"
-#include "../libft.h"
+#include "./libft.h"
 
-void	log_tick(void);
-void	log_error(const char *message);
+/*
+	Applies the function on each character of the string passed 
+	as argument, passing its index's first argument. Each character 
+	is passed by address to the function to be modified if necessary.
+*/
 
-void	log_test(int condition, const char *message)
+void	ft_striteri(char *str,
+					void (*function)(unsigned int, char*))
 {
-	if (condition)
-		log_tick();
-	else
-		log_error(message);
-}
+	int	i;
 
-void	log_tick(void)
-{
-	printf(GREEN "✓" RESET);
-}
-
-void	log_error(const char *message)
-{
-	printf(RED "\n✗ %s" RESET, message);
+	if (!str || !function)
+		return ;
+	i = 0;
+	while (str[i])
+	{
+		function(i, &str[i]);
+		i++;
+	}
 }

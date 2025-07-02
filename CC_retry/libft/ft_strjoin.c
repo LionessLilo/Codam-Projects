@@ -6,16 +6,23 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/06/26 15:09:52 by lilo          #+#    #+#                 */
-/*   Updated: 2025/06/26 16:46:56 by lilo          ########   odam.nl         */
+/*   Updated: 2025/06/30 16:59:17 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libft.h"
 
+/* 
+	Creates a new string and joins the two strings in the new string.
+	You will need to free the resulting string when you call the function.
+*/
+
 char	*ft_strjoin(char const *str1, char const *str2)
 {
 	char	*new_string;
 
+	if (!str1 || !str2)
+		return (NULL);
 	new_string = malloc(sizeof(char) * (ft_strlen(str1) + ft_strlen(str2) + 1));
 	if (!new_string)
 		return (NULL);

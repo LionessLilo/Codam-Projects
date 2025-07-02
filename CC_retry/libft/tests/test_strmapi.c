@@ -1,35 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   test_utils.c                                       :+:    :+:            */
+/*   test_strmapi.c                                     :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2025/06/23 12:37:52 by lilo          #+#    #+#                 */
-/*   Updated: 2025/06/27 15:56:48 by lilo          ########   odam.nl         */
+/*   Created: 2025/06/30 17:00:51 by lilo          #+#    #+#                 */
+/*   Updated: 2025/06/30 17:27:03 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./test_utils.h"
 #include "../libft.h"
+#include "test_utils.h"
 
-void	log_tick(void);
-void	log_error(const char *message);
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
 
-void	log_test(int condition, const char *message)
+
+static char	map_func(unsigned int i, char c)
 {
-	if (condition)
-		log_tick();
-	else
-		log_error(message);
+	return (c + i);
 }
 
-void	log_tick(void)
+void	test_strmapi(void)
 {
-	printf(GREEN "✓" RESET);
-}
+	char	*result;
 
-void	log_error(const char *message)
-{
-	printf(RED "\n✗ %s" RESET, message);
+	result = ft_strmapi("hello", map_func);
+	if (!result)
+	{
+		printf("result returned NULL");
+		exit(-1);
+	}
+	log_test(strcmp(result, "hfnos") == 0, "Did not map properly");
+	free(result);
 }

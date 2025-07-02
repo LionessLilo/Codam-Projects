@@ -6,13 +6,13 @@
 #    By: llourens <llourens@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2025/05/02 11:04:34 by llourens      #+#    #+#                  #
-#    Updated: 2025/06/26 16:36:26 by lilo          ########   odam.nl          #
+#    Updated: 2025/07/02 11:02:29 by lilo          ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
 CC = cc
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -ggdb
 
 SCRS = ft_isalpha.c \
 		ft_isdigit.c \
@@ -38,7 +38,12 @@ SCRS = ft_isalpha.c \
 		ft_calloc.c \
 		ft_strdup.c \
 		ft_substr.c \
-		ft_strjoin.c
+		ft_strjoin.c \
+		ft_itoa.c \
+		ft_strtrim.c \
+		ft_strmapi.c \
+		ft_striteri.c \
+		ft_split.c
 
 OBJS = $(SCRS:.c=.o)
 
@@ -46,7 +51,7 @@ all: $(NAME)
 .PHONY: tests
 
 tests: $(NAME) clean
-	cc -Wall -Wextra -Werror -g tests/*.c -lbsd $(NAME) -o tests/test_libft
+	cc -Wall -Wextra -Werror -ggdb tests/*.c -lbsd $(NAME) -o tests/test_libft
 
 $(NAME): $(OBJS)
 	ar rcs $(NAME) $(OBJS)
@@ -60,6 +65,6 @@ clean:
 fclean: clean
 	rm -f $(NAME)
 	rm -f main
-	rm -f ./tests/test_main
+	rm -f ./tests/test_libft
 
 re: fclean all

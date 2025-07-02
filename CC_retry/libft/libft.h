@@ -6,11 +6,11 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/02 11:13:32 by llourens      #+#    #+#                 */
-/*   Updated: 2025/06/26 15:30:30 by lilo          ########   odam.nl         */
+/*   Updated: 2025/07/01 12:54:29 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-# ifndef LIBFT_H
+#ifndef LIBFT_H
 # define LIBFT_H
 
 # include <stdlib.h>
@@ -43,6 +43,10 @@ void		*ft_calloc(size_t nbrof_items, size_t size_item);
 char		*ft_strdup(const char *string);
 char		*ft_substr(char const *string, unsigned int start, size_t len);
 char		*ft_strjoin(char const *str1, char const *str2);
-
+char		*ft_itoa(int nbr);
+char		*ft_strtrim(char const *str, char const *exclusion_set);
+char		*ft_strmapi(char const *str, char (*function)(unsigned int, char));
+void		ft_striteri(char *str, void (*function)(unsigned int, char*));
+char		**ft_split(char const *str, char chr);
 
 #endif

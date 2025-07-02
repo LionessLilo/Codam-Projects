@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/02 11:51:52 by llourens      #+#    #+#                 */
-/*   Updated: 2025/06/26 15:35:04 by lilo          ########   odam.nl         */
+/*   Updated: 2025/07/01 12:52:27 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,15 @@ int	main(void)
 	test_substr();
 	printf("\nft_strjoin: ");
 	test_strjoin();
+	printf("\nft_itoa: ");
+	test_itoa();
+	printf("\nft_strtrim: ");
+	test_strtrim();
+	printf("\nft_strmapi: ");
+	test_strmapi();
+	printf("\nft_striteri: ");
+	test_striteri();
+	printf("\nft_split: ");
+	test_split();
 	return (printf("\n"), 0);
 }
