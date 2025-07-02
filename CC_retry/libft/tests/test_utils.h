@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/06/23 12:48:32 by lilo          #+#    #+#                 */
-/*   Updated: 2025/07/01 15:04:37 by lilo          ########   odam.nl         */
+/*   Updated: 2025/07/02 17:00:14 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <string.h>
 # include <bsd/string.h>
 # include <ctype.h>
+#include <fcntl.h>
 
 # define GREEN   "\033[0;32m"
 # define RED     "\033[0;31m"
@@ -58,5 +59,8 @@ void	test_strtrim(void);
 void	test_strmapi(void);
 void	test_striteri(void);
 void	test_split(void);
+void	test_putchar_fd(void);
+void	test_putstr_fd(void);
+void 	test_putendl_fd(void);
 
 #endif
