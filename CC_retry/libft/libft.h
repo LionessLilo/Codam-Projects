@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/02 11:13:32 by llourens      #+#    #+#                 */
-/*   Updated: 2025/07/02 16:56:55 by lilo          ########   odam.nl         */
+/*   Updated: 2025/07/03 16:20:52 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,16 @@ void		*ft_memset(void *memory, int filler, size_t size);
 void		ft_bzero(void *memory, size_t size);
 void		*ft_memcpy(void *dest, const void *src, size_t size);
 void		*ft_memmove(void *dest, const void *src, size_t size);
-int			ft_strlcpy(char *dst, const char *src, size_t size);
-int			ft_strlcat(char *dst, const char *src, size_t size);
+size_t		ft_strlcpy(char *dst, const char *src, size_t size);
+size_t		ft_strlcat(char *dst, const char *src, size_t size);
 int			ft_toupper(int chr);
 int			ft_tolower(int chr);
 char		*ft_strchr(const char *str, int chr);
 char		*ft_strrchr(const char *str, int chr);
 int			ft_strncmp(const char *str_1, const char *str_2, size_t size);
 void		*ft_memchr(const void *str, int byte, size_t size);
-void		*ft_memchr(const void *str, int byte, size_t size);
 int			ft_memcmp(const void *str_1, const void *str_2, size_t size);
-const char	*ft_strnstr(const char *haystack, const char *needle, size_t size);
+char		*ft_strnstr(const char *haystack, const char *needle, size_t size);
 int			ft_atoi(const char *str);
 void		*ft_calloc(size_t nbrof_items, size_t size_item);
 char		*ft_strdup(const char *string);
@@ -47,8 +46,8 @@ char		*ft_strtrim(char const *str, char const *exclusion_set);
 char		*ft_strmapi(char const *str, char (*function)(unsigned int, char));
 void		ft_striteri(char *str, void (*function)(unsigned int, char*));
 char		**ft_split(char const *str, char chr);
-void 		ft_putchar_fd(char chr, int fd);
-void 		ft_putstr_fd(char *str, int fd);
-void 		ft_putendl_fd(char *str, int fd);
+void		ft_putchar_fd(char chr, int fd);
+void		ft_putstr_fd(char *str, int fd);
+void		ft_putendl_fd(char *str, int fd);
 
 #endif

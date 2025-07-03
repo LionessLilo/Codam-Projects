@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/06/24 12:22:26 by lilo          #+#    #+#                 */
-/*   Updated: 2025/06/24 13:19:37 by lilo          ########   odam.nl         */
+/*   Updated: 2025/07/03 16:13:57 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,19 +66,24 @@ void	test_strlcpy(void)
 		"There is no NULL terminator in larger src");
 	free(my_dest);
 	free(std_dest);
-}
 
-//	char	src1[] = "Hello, World!";
-// 	char	dest1[20];
-// 	char	src2[] = "Hello, World!";
-// 	char	dest2[20];
-// 	size_t	ft_result = ft_strlcpy(dest1, src1, sizeof(dest1));
-// 	size_t	manual_result = strlcpy(dest2, src2, sizeof(dest2));
-// 	if (ft_result == manual_result && strcmp(dest1, dest2) == 0)
-// 		log_tick();
-// 	else
-// 	{
-// 		printf("ft_strlcpy result: %zu, dest: %s\n", ft_result, dest1);
-// 		printf("strlcpy result: %zu, dest: %s\n", manual_result, dest2);
-// 		log_error("ft_strlcpy does not match strlcpy");
-// 	}
+	my_src = "Hello, World!";
+	memset(my_dest, 'A', 10);
+	log_test(ft_strlcpy(my_dest, my_src, 0) == strlen(my_src) && my_dest[0] == 'A',
+		"If the copy size is zero it does not create dest correctly");
+	free(my_dest);
+
+	my_src = "";
+	my_dest = malloc(10);
+	memset(my_dest, 'A', 10);
+	log_test(ft_strlcpy(my_dest, my_src, 42) == 0 && !memcmp("", my_dest, 1),
+		"If src is empty it does not create dest correctly");
+	free(my_dest);
+
+	my_src = "coucou";
+	my_dest = malloc(10);
+	memset(my_dest, 'A', 10);
+	log_test(ft_strlcpy(my_dest, my_src, 2) == strlen(my_src) && my_dest[0] == 'c' && my_dest[1] == 0  && my_dest[2] == 'A',
+		"If size is 2 it does not create dest correctly");
+	free(my_dest);
+}

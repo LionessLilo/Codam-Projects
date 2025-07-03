@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/01 10:01:00 by lilo          #+#    #+#                 */
-/*   Updated: 2025/07/02 13:21:33 by lilo          ########   odam.nl         */
+/*   Updated: 2025/07/03 10:25:20 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@
 	must end with a NULL pointer.
 */
 
-static size_t 	find_list_size(const char *str, char chr);
+static size_t	find_list_size(const char *str, char chr);
 static size_t	get_item_len(const char *str, char chr);
 static char		**populate_list(const char *str, char chr, char **list);
 static void		free_list(char **list_start, char **list);
 
-char	**ft_split(char const *str, 
+char	**ft_split(char const *str,
 					char chr)
 {
 	char	**list;
@@ -39,7 +39,7 @@ static char	**populate_list(const char *str,
 							char chr,
 							char **list)
 {
-	size_t 	item_len;
+	size_t	item_len;
 	char	**list_start;
 
 	list_start = list;
@@ -64,7 +64,7 @@ static char	**populate_list(const char *str,
 	return (list_start);
 }
 
-static size_t find_list_size(const char *str,
+static size_t	find_list_size(const char *str,
 							char chr)
 {
 	size_t	nbr_items;

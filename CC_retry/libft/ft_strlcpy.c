@@ -6,38 +6,37 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/02 15:34:57 by llourens      #+#    #+#                 */
-/*   Updated: 2025/06/20 11:12:14 by lilo          ########   odam.nl         */
+/*   Updated: 2025/07/03 16:13:34 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libft.h"
+#include <stdio.h>
 
 /* 
 	Copies a string up to size from src to dst. Size - 1 characters
 	will be copied and it NULL terminates.
 */
 
-int	ft_strlcpy(char *dst,
+size_t	ft_strlcpy(char *dst,
 				const char *src,
 				size_t size)
 {
-	size_t	src_i;
-	size_t	dest_i;
-	size_t	src_len;
-
-	src_i = 0;
-	dest_i = 0;
-	src = (char *)src;
-	src_len = ft_strlen(src);
-	if (src_len == 0)
-		return (src_len);
-	while (src[src_i] && src_i < (size - 1))
+	size_t		len_src;
+	const char	*end;
+	
+	len_src = ft_strlen(src);
+	if (!dst || !src)
+		return (len_src);
+	if (size == 0)
+		return (len_src);
+	end = src + size - 1;
+	while (*src && src != end)
 	{
-		dst[dest_i] = src[src_i];
-		src_i++;
-		dest_i++;
+		*dst = *src;
+		dst++;
+		src++;
 	}
-	dst[dest_i] = '\0';
-
-	return (src_len);
+	*dst = '\0';
+	return (len_src);
 }

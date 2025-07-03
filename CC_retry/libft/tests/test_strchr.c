@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/06/24 14:39:02 by lilo          #+#    #+#                 */
-/*   Updated: 2025/06/24 14:51:18 by lilo          ########   odam.nl         */
+/*   Updated: 2025/07/03 13:37:48 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,8 @@ void	test_strchr(void)
 	log_test(memcmp(std_ptr_returned, my_ptr_returned,
 			sizeof(char) * strlen(std_ptr_returned)) == 0,
 		"The returned pointers for NULL do not match");
+	
+	char *s = "tripouille";
+	log_test(ft_strchr(s, 't' + 256) == s,
+		"ft_strchr should return the original string when searching for 't' + 256");
 }

@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/02 15:05:03 by llourens      #+#    #+#                 */
-/*   Updated: 2025/06/20 10:58:24 by lilo          ########   odam.nl         */
+/*   Updated: 2025/07/03 13:04:37 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 /* Moves memory up to size from src to dest */
 
-void	*ft_memmove(void *dest, 
-					const void *src, 
+void	*ft_memmove(void *dest,
+					const void *src,
 					size_t size)
 {
 	size_t			src_i;
@@ -29,7 +29,7 @@ void	*ft_memmove(void *dest,
 		return (dest);
 	uc_dest = (unsigned char *)dest;
 	uc_src = (unsigned char *)src;
-	if (dest > src)
+	if (dest < src)
 		ft_memcpy(uc_dest, uc_src, size);
 	else
 	{

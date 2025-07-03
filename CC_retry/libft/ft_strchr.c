@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/06 14:54:14 by llourens      #+#    #+#                 */
-/*   Updated: 2025/06/20 11:02:01 by lilo          ########   odam.nl         */
+/*   Updated: 2025/07/03 13:52:41 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,10 @@
 char	*ft_strchr(const char *str,
 					int chr)
 {
-	while (*str && *str != chr)
+	while (*str >= '\0' && (unsigned char)*str != (unsigned char)chr)
 		str++;
-	if (*str && *str == chr)
+	if (*str >= '\0' && (unsigned char)*str == (unsigned char)chr)
 		return ((char *)str);
+	
 	return (NULL);
 }

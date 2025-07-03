@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/02 17:09:49 by llourens      #+#    #+#                 */
-/*   Updated: 2025/06/20 11:07:28 by lilo          ########   odam.nl         */
+/*   Updated: 2025/07/03 10:43:15 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static size_t	strlcat_dest_len(char *dst,
 	the length of dest)
 */
 
-int	ft_strlcat(char *dst,
+size_t	ft_strlcat(char *dst,
 				const char *src,
 				size_t size)
 {

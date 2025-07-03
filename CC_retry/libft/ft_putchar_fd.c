@@ -6,13 +6,13 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/02 14:56:01 by lilo          #+#    #+#                 */
-/*   Updated: 2025/07/02 16:48:21 by lilo          ########   odam.nl         */
+/*   Updated: 2025/07/03 10:28:15 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libft.h"
 
-void ft_putchar_fd(char chr, int fd)
+void	ft_putchar_fd(char chr, int fd)
 {
 	if (!chr || fd == -1)
 		return ;
