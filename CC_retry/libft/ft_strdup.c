@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/06/20 17:49:39 by lionesslilo   #+#    #+#                 */
-/*   Updated: 2025/07/04 11:25:35 by lilo          ########   odam.nl         */
+/*   Updated: 2025/07/04 12:15:57 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,16 @@ char	*ft_strdup(const char *string)
 {
 	size_t	str_len;
 	char	*str_duplicated;
+	char	*end;
 
+	if (!string)
+		return (NULL);
 	str_len = ft_strlen(string);
-	str_duplicated = malloc(sizeof(char) * str_len + 1);
+	str_duplicated = malloc(str_len + 1 * sizeof(char));
 	if (!str_duplicated)
 		return (NULL);
-	ft_memcpy(str_duplicated, string, str_len + 1);
-	str_duplicated[str_len] = '\0';
-	printf("%s", str_duplicated);
+	ft_memcpy(str_duplicated, string, (str_len + 1));
+	end = str_duplicated + str_len;
+	*end = '\0';
 	return (str_duplicated);
 }

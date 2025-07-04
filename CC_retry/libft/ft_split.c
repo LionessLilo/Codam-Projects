@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/01 10:01:00 by lilo          #+#    #+#                 */
-/*   Updated: 2025/07/03 10:25:20 by lilo          ########   odam.nl         */
+/*   Updated: 2025/07/04 13:19:12 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,8 @@ static size_t	find_list_size(const char *str,
 	if (str[0] == chr)
 		while (*str == chr)
 			str++;
+	if (*str == '\0')
+		return (0);
 	while (*str)
 	{
 		if (*str == chr && *(str + 1) != chr)
