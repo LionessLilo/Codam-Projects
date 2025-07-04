@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/01 10:01:00 by lilo          #+#    #+#                 */
-/*   Updated: 2025/07/04 13:19:12 by lilo          ########   odam.nl         */
+/*   Updated: 2025/07/04 23:50:52 by lionesslilo   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,11 @@ static char	**populate_list(const char *str,
 {
 	size_t	item_len;
 	char	**list_start;
+	char	**end;
 
 	list_start = list;
-	while (*str)
+	end = list + find_list_size(str, chr);
+	while (*str && list < end)
 	{
 		while (*str == chr)
 			str++;
@@ -70,6 +72,8 @@ static size_t	find_list_size(const char *str,
 	size_t	nbr_items;
 
 	nbr_items = 0;
+	if (!str || *str == '\0')
+		return (0);
 	if (str[0] == chr)
 		while (*str == chr)
 			str++;
