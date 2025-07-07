@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/01 10:01:00 by lilo          #+#    #+#                 */
-/*   Updated: 2025/07/07 12:26:55 by lilo          ########   odam.nl         */
+/*   Updated: 2025/07/07 17:14:32 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ char	**ft_split(char const *str,
 {
 	char	**list;
 
+	if (!str)
+		return (NULL);
 	list = malloc(sizeof(char *) * (find_list_size(str, chr) + 1));
 	if (!list)
 		return (NULL);
@@ -39,14 +41,11 @@ static char	**populate_list(const char *str,
 							char chr,
 							char **list)
 {
-	size_t		item_len;
+	size_t	item_len;
 	char	**list_start;
-	char	**end;
 
-	end = list + find_list_size(str, chr);
 	list_start = list;
-	end = list + find_list_size(str, chr);
-	while (*str && list < end)
+	while (*str)
 	{
 		while (*str == chr)
 			str++;
@@ -61,7 +60,7 @@ static char	**populate_list(const char *str,
 		}
 		ft_strlcpy(*list, str, item_len + 1);
 		str = str + item_len;
-			list++;
+		list++;
 	}
 	*list = NULL;
 	return (list_start);
@@ -73,7 +72,7 @@ static size_t	find_list_size(const char *str,
 	size_t	nbr_items;
 
 	nbr_items = 0;
-	if (!str || *str == '\0')
+	if (*str == '\0')
 		return (0);
 	if (str[0] == chr)
 		while (*str == chr)
@@ -82,7 +81,7 @@ static size_t	find_list_size(const char *str,
 		return (0);
 	while (*str)
 	{
-		if (*(str + 1) != '\0' && *str == chr && *(str + 1) != chr)
+		if (*str == chr && *(str + 1) != chr)
 			nbr_items++;
 		str++;
 	}
