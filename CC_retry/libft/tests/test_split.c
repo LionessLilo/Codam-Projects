@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/01 12:52:34 by lilo          #+#    #+#                 */
-/*   Updated: 2025/07/02 13:16:39 by lilo          ########   odam.nl         */
+/*   Updated: 2025/07/04 14:31:29 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,12 @@ void	test_split(void)
 			&& strcmp(returned_list[2], "eggs") == 0
 			&& returned_list[3] == NULL, 
 			"Did not correctly create delimiter in the middle list");
+	free_list(returned_list);
+	returned_list = NULL;
+
+	returned_list = ft_split("     ", ' ');
+	log_test(returned_list[0] == NULL, 
+			"Did not correctly handle string with only spaces");
 	free_list(returned_list);
 	returned_list = NULL;
 }
