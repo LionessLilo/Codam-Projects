@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/01 10:01:00 by lilo          #+#    #+#                 */
-/*   Updated: 2025/07/07 17:14:32 by lilo          ########   odam.nl         */
+/*   Updated: 2025/07/08 16:47:02 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,10 @@ static size_t	get_item_len(const char *str,
 static void	free_list(char **list_start,
 					char **list)
 {
-	while (list_start < list)
-		free(*list_start++);
+	char	**item;
+
+	item = list_start;
+	while (item < list)
+		free(*item++);
 	free(list_start);
 }

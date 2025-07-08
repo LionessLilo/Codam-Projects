@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/06/20 17:49:39 by lionesslilo   #+#    #+#                 */
-/*   Updated: 2025/07/04 12:15:57 by lilo          ########   odam.nl         */
+/*   Updated: 2025/07/08 16:38:19 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@ char	*ft_strdup(const char *string)
 	char	*str_duplicated;
 	char	*end;
 
-	if (!string)
-		return (NULL);
 	str_len = ft_strlen(string);
 	str_duplicated = malloc(str_len + 1 * sizeof(char));
 	if (!str_duplicated)

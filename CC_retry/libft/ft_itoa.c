@@ -6,82 +6,101 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/06/26 17:07:31 by lilo          #+#    #+#                 */
-/*   Updated: 2025/06/27 16:56:54 by lilo          ########   odam.nl         */
+/*   Updated: 2025/07/08 17:30:23 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libft.h"
 
-static char	*exceptions(int nbr);
-static int	count_digits(int nbr);
-static char	*calculations_and_fill(int nbr, char *printable_nbr);
+static char	*exceptions(long l_nbr);
+static int	count_digits(long l_nbr);
+static char	*calculations_and_fill(long l_nbr, char *printable_nbr);
 
-/* Converts an integer into a string. You need to free the itoa */
+/* 
+	Converts an integer into a null terminated string. 
+	You need to free the itoa.
+*/
 
 char	*ft_itoa(int nbr)
 {
 	int		nbr_size;
 	char	*printable_nbr;
 	char	*str_end;
+	long	l_nbr;
 
-	printable_nbr = exceptions(nbr);
+	l_nbr = (long)nbr;
+	printable_nbr = exceptions(l_nbr);
 	if (printable_nbr)
 		return (printable_nbr);
+	else if (l_nbr == 0 || l_nbr == -2147483648)
+		return (NULL);
 	nbr_size = count_digits(nbr);
 	printable_nbr = malloc(sizeof(char) * (nbr_size + 1));
 	if (!printable_nbr)
 		return (NULL);
 	str_end = printable_nbr + nbr_size;
 	*str_end = '\0';
-	printable_nbr = calculations_and_fill(nbr, str_end);
+	calculations_and_fill(nbr, str_end);
 	if (!printable_nbr)
 		return (NULL);
 	return (printable_nbr);
 }
 
-static char	*exceptions(int nbr)
+static char	*exceptions(long l_nbr)
 {
-	if (nbr == -2147483648)
-		return (ft_strdup("-2147483648"));
-	else if (nbr == 0)
-		return (ft_strdup("0"));
+	char	*return_str;
+
+	if (l_nbr == -2147483648)
+	{
+		return_str = ft_strdup("-2147483648");
+		if (!return_str)
+			return (NULL);
+		return (return_str);
+	}
+	else if (l_nbr == 0)
+	{
+		return_str = ft_strdup("0");
+		if (!return_str)
+			return (NULL);
+		return (return_str);
+	}
 	else
 		return (NULL);
 }
 
-static int	count_digits(int nbr)
+static int	count_digits(long l_nbr)
 {
 	int	size;
 
 	size = 1;
-	if (nbr < 0)
+	if (l_nbr < 0)
 	{
 		size++;
-		nbr = -nbr;
+		l_nbr = -l_nbr;
 	}
-	while (nbr >= 10)
+	while (l_nbr >= 10)
 	{
-		nbr = nbr / 10;
+		l_nbr = l_nbr / 10;
 		size++;
 	}
 	return (size);
 }
 
-static char	*calculations_and_fill(int nbr, char *printable_nbr)
+static char	*calculations_and_fill(long l_nbr, char *printable_nbr)
 {
 	int		sign;
 
-	sign = nbr;
-	if (nbr < 0)
-		nbr = -nbr;
-	while (nbr / 10)
+	sign = l_nbr;
+	if (l_nbr < 0)
+		l_nbr = -l_nbr;
+	while (l_nbr / 10)
 	{
 		printable_nbr--;
-		*printable_nbr = (nbr % 10) + '0';
-		nbr = nbr / 10;
+		*printable_nbr = (l_nbr % 10) + '0';
+		l_nbr = l_nbr / 10;
 	}
 	printable_nbr--;
-	*printable_nbr = (nbr % 10) + '0';
+	*printable_nbr = (l_nbr % 10) + '0';
 	if (sign < 0)
 	{
 		printable_nbr--;

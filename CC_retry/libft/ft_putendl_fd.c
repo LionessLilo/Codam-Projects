@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/02 16:50:04 by lilo          #+#    #+#                 */
-/*   Updated: 2025/07/02 16:56:31 by lilo          ########   odam.nl         */
+/*   Updated: 2025/07/07 18:17:00 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,5 @@ void	ft_putendl_fd(char *str,
 	if (!str || fd == -1)
 		return ;
 	ft_putstr_fd(str, fd);
-	write(1, "\n", 1);
+	write(fd, "\n", 1);
 }
