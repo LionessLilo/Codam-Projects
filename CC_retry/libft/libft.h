@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/02 11:13:32 by llourens      #+#    #+#                 */
-/*   Updated: 2025/07/08 11:33:18 by lilo          ########   odam.nl         */
+/*   Updated: 2025/07/09 15:45:14 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,13 @@
 # include <unistd.h>
 # include <stdint.h>
 # include <limits.h>
+
+typedef struct s_list
+{
+	void			*content;
+	struct s_list	*next;
+}					t_list;
+
 
 int			ft_isalpha(int c);
 int			ft_isdigit(int c);
@@ -52,5 +59,13 @@ void		ft_putchar_fd(char chr, int fd);
 void		ft_putstr_fd(char *str, int fd);
 void		ft_putendl_fd(char *str, int fd);
 void		ft_putnbr_fd(int nbr, int fd);
+
+/* Bonus */
+t_list		*ft_lstnew(void *content);
+void		ft_lstadd_front(t_list **list, t_list *new);
+int			ft_lstsize(t_list *list);
+t_list		*ft_lstlast(t_list *list);
+void		ft_lstadd_back(t_list **list, t_list *new);
+void		ft_lstdelone(t_list *list, void (*del)(void*));
 
 #endif

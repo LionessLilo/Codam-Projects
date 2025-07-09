@@ -6,7 +6,7 @@
 #    By: llourens <llourens@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2025/05/02 11:04:34 by llourens      #+#    #+#                  #
-#    Updated: 2025/07/07 17:39:12 by lilo          ########   odam.nl          #
+#    Updated: 2025/07/09 16:00:21 by lilo          ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,18 +48,31 @@ SCRS = ft_isalpha.c \
 		ft_putstr_fd.c \
 		ft_putendl_fd.c \
 		ft_putnbr_fd.c
+	
+BONUS_SCRS = ft_lstnew_bonus.c \
+				ft_lstadd_front_bonus.c \
+				ft_lstsize_bonus.c \
+				ft_lstlast_bonus.c \
+				ft_lstadd_back_bonus.c \
+				ft_lstdelone_bonus.c \
+				ft_lstclear_bonus.c
 
 OBJS = $(SCRS:.c=.o)
+BONUS_OBJS = $(BONUS_SCRS:.c=.o)
 
 all: $(NAME)
 .PHONY: tests
 
-tests: $(NAME) clean
-	cc -Wall -Wextra -Werror -ggdb tests/*.c -lbsd $(NAME) -o tests/test_libft
-
 $(NAME): $(OBJS)
 	ar rcs $(NAME) $(OBJS)
+
+tests: $(NAME) clean
+	cc -Wall -Wextra -Werror -ggdb tests/*.c -lbsd $(NAME) -o tests/test_libft
 	
+
+bonus: $(OBJS) $(BONUS_OBJS)
+	ar rcs $(NAME) $(OBJS) $(BONUS_OBJS)
+
 %.o:%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
