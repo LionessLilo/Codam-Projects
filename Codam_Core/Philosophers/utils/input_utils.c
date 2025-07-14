@@ -1,34 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_lstclear_bonus.c                                :+:    :+:            */
+/*   input_utils.c                                      :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2025/07/09 16:01:28 by lilo          #+#    #+#                 */
-/*   Updated: 2025/07/10 15:25:57 by lilo          ########   odam.nl         */
+/*   Created: 2025/07/14 15:13:59 by lilo          #+#    #+#                 */
+/*   Updated: 2025/07/14 17:28:14 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <utils.h>
 
-/* 
-	Deletes and frees the given node and every successor of that node, 
-	using the function ’del’and free. Finally, the pointer to the 
-	list must be set to NULL.
-*/
-
-void	ft_lstclear(t_list **list,
-					void (*del)(void*))
+int	ft_isdigit(int c)
 {
-	t_list	*temp;
-
-	if (!list || !del)
-		return ;
-	while (*list)
+	if (c >= '0' && c <= '9')
 	{
-		temp = (*list)->next;
-		ft_lstdelone(*list, del);
-		*list = temp;
+		return (1);
 	}
+	return (0);
 }
+
+int	digit_check()

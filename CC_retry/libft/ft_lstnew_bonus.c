@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/09 12:53:50 by lilo          #+#    #+#                 */
-/*   Updated: 2025/07/09 13:36:46 by lilo          ########   odam.nl         */
+/*   Updated: 2025/07/10 13:33:23 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ t_list	*ft_lstnew(void *content)
 	t_list	*new_node;
 
 	new_node = malloc(sizeof(t_list));
+	if (!new_node)
+		return (NULL);
 	new_node->content = content;
 	new_node->next = NULL;
 	return (new_node);

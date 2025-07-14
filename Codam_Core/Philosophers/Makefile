@@ -1,11 +1,11 @@
 NAME = philo
 CC = cc
+INCLUDE = -I./include
 CFLAGS = -Werror -Wall -Wextra -Wconversion -pthread
 
-VPATH = src
+VPATH = src utils
 SRCS = main.c
 OBJS = $(SRCS:.c=.o)
-INCLUDE = -I./include
 
 all: $(NAME)
 debug: CFLAGS += -g
@@ -15,7 +15,7 @@ $(NAME): $(OBJS)
 	$(CC) $(OBJS) -o $(NAME) $(INCLUDE)
 
 %.o: %.c
-	$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@ $(INCLUDE)
+	$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 
 clean:
 	@rm -f $(OBJS)

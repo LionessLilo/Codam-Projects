@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/09 14:19:58 by lilo          #+#    #+#                 */
-/*   Updated: 2025/07/09 14:36:17 by lilo          ########   odam.nl         */
+/*   Updated: 2025/07/10 13:42:40 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,13 @@
 
 int	ft_lstsize(t_list *list)
 {
-	int	size;
+	int	size_list;
 
-	if (!list)
-		return (0);
-	size = 0;
+	size_list = 0;
 	while (list)
 	{
-		size++;
 		list = list->next;
+		size_list++;
 	}
-	return (size);
+	return (size_list);
 }

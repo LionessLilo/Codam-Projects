@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/02 11:13:32 by llourens      #+#    #+#                 */
-/*   Updated: 2025/07/09 15:45:14 by lilo          ########   odam.nl         */
+/*   Updated: 2025/07/10 15:35:27 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,5 +67,9 @@ int			ft_lstsize(t_list *list);
 t_list		*ft_lstlast(t_list *list);
 void		ft_lstadd_back(t_list **list, t_list *new);
 void		ft_lstdelone(t_list *list, void (*del)(void*));
+void		ft_lstclear(t_list **list, void (*del)(void*));
+void		ft_lstiter(t_list *list, void (*function)(void *));
+t_list		*ft_lstmap(t_list *list, void *(*function)(void *),
+				void (*del)(void *));
 
 #endif

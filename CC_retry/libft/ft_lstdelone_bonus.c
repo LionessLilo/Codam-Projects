@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/09 15:40:44 by lilo          #+#    #+#                 */
-/*   Updated: 2025/07/09 15:49:09 by lilo          ########   odam.nl         */
+/*   Updated: 2025/07/10 15:12:01 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@
 void	ft_lstdelone(t_list *list,
 					void (*del)(void*))
 {
-	if (!list || !del)
-		return ;
 	del(list->content);
 	free(list);
 }

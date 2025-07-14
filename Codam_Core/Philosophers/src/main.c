@@ -1,34 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_lstclear_bonus.c                                :+:    :+:            */
+/*   main.c                                             :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2025/07/09 16:01:28 by lilo          #+#    #+#                 */
-/*   Updated: 2025/07/10 15:25:57 by lilo          ########   odam.nl         */
+/*   Created: 2025/07/14 12:47:54 by lilo          #+#    #+#                 */
+/*   Updated: 2025/07/14 17:40:35 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <philo.h>
 
-/* 
-	Deletes and frees the given node and every successor of that node, 
-	using the function ’del’and free. Finally, the pointer to the 
-	list must be set to NULL.
-*/
-
-void	ft_lstclear(t_list **list,
-					void (*del)(void*))
+int	main(int argc, char **argv)
 {
-	t_list	*temp;
+	int	result_input_check;
 
-	if (!list || !del)
-		return ;
-	while (*list)
+	result_input_check = input_checks(argc, argv);
+	if (result_input_check != 0)
 	{
-		temp = (*list)->next;
-		ft_lstdelone(*list, del);
-		*list = temp;
+		write(2, "Error: Invalid user input. Please consult project pdf.", 55);
+		return (result_input_check);
 	}
+	//If it is valid, assign input values to where they need to go.
+	//Start logic
+	//Handle bubbled up errors. 
+	return (0);
 }

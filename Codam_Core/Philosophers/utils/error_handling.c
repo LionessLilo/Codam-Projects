@@ -1,34 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_lstclear_bonus.c                                :+:    :+:            */
+/*   error_handling.c                                   :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2025/07/09 16:01:28 by lilo          #+#    #+#                 */
-/*   Updated: 2025/07/10 15:25:57 by lilo          ########   odam.nl         */
+/*   Created: 2025/07/14 14:24:52 by lilo          #+#    #+#                 */
+/*   Updated: 2025/07/14 14:43:41 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <utils.h>
 
-/* 
-	Deletes and frees the given node and every successor of that node, 
-	using the function ’del’and free. Finally, the pointer to the 
-	list must be set to NULL.
-*/
-
-void	ft_lstclear(t_list **list,
-					void (*del)(void*))
+int	error_message(char *message)
 {
-	t_list	*temp;
-
-	if (!list || !del)
-		return ;
-	while (*list)
-	{
-		temp = (*list)->next;
-		ft_lstdelone(*list, del);
-		*list = temp;
-	}
+	write(2, "Error: ", 8);
+	write(2, &message, ft_strlen(message));
+	write(2, "\n", 1);
 }

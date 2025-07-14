@@ -1,34 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_lstclear_bonus.c                                :+:    :+:            */
+/*   philo.h                                            :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2025/07/09 16:01:28 by lilo          #+#    #+#                 */
-/*   Updated: 2025/07/10 15:25:57 by lilo          ########   odam.nl         */
+/*   Created: 2025/07/14 12:25:35 by lilo          #+#    #+#                 */
+/*   Updated: 2025/07/14 16:08:37 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef PHILO_H
+# define PHILO_H
 
-/* 
-	Deletes and frees the given node and every successor of that node, 
-	using the function ’del’and free. Finally, the pointer to the 
-	list must be set to NULL.
-*/
+# include <stdlib.h>
+# include <stdio.h>
+# include <pthread.h>
+# include <unistd.h>
+# include <utils.h>
 
-void	ft_lstclear(t_list **list,
-					void (*del)(void*))
-{
-	t_list	*temp;
+// typedef struct s_rules
+// {
+	
+// }	t_rules;
 
-	if (!list || !del)
-		return ;
-	while (*list)
-	{
-		temp = (*list)->next;
-		ft_lstdelone(*list, del);
-		*list = temp;
-	}
-}
+// typedef struct s_philo
+// {
+// 	t_rules	philo_rules;
+// }	t_philo;
+
+int	input_checks(int argc, char **input_list);
+
+
+
+#endif

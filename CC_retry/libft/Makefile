@@ -6,7 +6,7 @@
 #    By: llourens <llourens@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2025/05/02 11:04:34 by llourens      #+#    #+#                  #
-#    Updated: 2025/07/09 16:00:21 by lilo          ########   odam.nl          #
+#    Updated: 2025/07/10 17:25:32 by lilo          ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,7 +55,9 @@ BONUS_SCRS = ft_lstnew_bonus.c \
 				ft_lstlast_bonus.c \
 				ft_lstadd_back_bonus.c \
 				ft_lstdelone_bonus.c \
-				ft_lstclear_bonus.c
+				ft_lstclear_bonus.c \
+				ft_lstiter_bonus.c \
+				ft_lstmap_bonus.c
 
 OBJS = $(SCRS:.c=.o)
 BONUS_OBJS = $(BONUS_SCRS:.c=.o)
@@ -69,7 +71,6 @@ $(NAME): $(OBJS)
 tests: $(NAME) clean
 	cc -Wall -Wextra -Werror -ggdb tests/*.c -lbsd $(NAME) -o tests/test_libft
 	
-
 bonus: $(OBJS) $(BONUS_OBJS)
 	ar rcs $(NAME) $(OBJS) $(BONUS_OBJS)
 
