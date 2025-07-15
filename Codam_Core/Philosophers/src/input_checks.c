@@ -6,15 +6,16 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/14 13:17:52 by lilo          #+#    #+#                 */
-/*   Updated: 2025/07/14 17:44:56 by lilo          ########   odam.nl         */
+/*   Updated: 2025/07/15 17:45:51 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <philo.h>
+#include <utils.h>
 
-static int	check_argc(int argc);
-static int	argv_check(int argc, char **input_list);
-static int	check_single_arg(int argc, char *input_str);
+int	check_argc(int argc);
+int	argv_check(char **input_list);
+int	check_single_arg(char *input_str);
 
 int	input_checks(int argc,
 				char **input_list)
@@ -24,27 +25,26 @@ int	input_checks(int argc,
 	return_check = 0;
 	if (argc == 2)
 	{
-		return_check = check_single_arg(argc, input_list[1]);
+		return_check = check_single_arg(input_list[1]);
 		if (return_check != 0)
 			return (return_check);
 	}
-	return_check = argc_check(argc, input_list);
+	return_check = check_argc(argc);
 	if (return_check != 0)
 		return (return_check);
-	return_check = argv_check(argc, input_list);
+	return_check = argv_check(input_list);
 	if (return_check != 0)
 		return (return_check);
 	return (0);
 }
 
-static int	check_single_arg(int argc,
-							  char *input_str)
+int	check_single_arg(char *input_str)
 {
-	int	new_argc;
-	int	result;
+	size_t	new_argc;
+	int		result;
 
 	new_argc = find_list_size(input_str, ' ');
-	result = check_argc(new_argc);
+	result = check_argc((int)new_argc);
 	if (result != 0)
 		return (result);
 	while (input_str)
@@ -59,7 +59,7 @@ static int	check_single_arg(int argc,
 	return (0);
 }
 
-static int	check_argc(int argc)
+int	check_argc(int argc)
 {
 	if (argc < 5)
 		return (41);
@@ -68,8 +68,7 @@ static int	check_argc(int argc)
 	return (0);
 }
 
-static int	argv_check(int argc,
-					   char **input_list)
+int	argv_check(char **input_list)
 {
 	char	*item;
 

@@ -6,16 +6,17 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/14 15:45:27 by lilo          #+#    #+#                 */
-/*   Updated: 2025/07/14 15:51:49 by lilo          ########   odam.nl         */
+/*   Updated: 2025/07/15 17:54:55 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <utils.h>
+#include <tests.h>
 
-static size_t	find_list_size(const char *str, char chr);
-static size_t	get_item_len(const char *str, char chr);
-static char		**populate_list(const char *str, char chr, char **list);
-static void		free_list(char **list_start, char **list);
+size_t	find_list_size(const char *str, char chr);
+size_t	get_item_len(const char *str, char chr);
+char	**populate_list(const char *str, char chr, char **list);
+void	free_list(char **list_start, char **list);
 
 char	**ft_split(char const *str,
 					char chr)

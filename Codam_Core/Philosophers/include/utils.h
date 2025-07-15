@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/14 14:01:39 by lilo          #+#    #+#                 */
-/*   Updated: 2025/07/14 15:52:40 by lilo          ########   odam.nl         */
+/*   Updated: 2025/07/15 17:46:42 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define UTILS_H
 
 # include <philo.h>
+#include <utils.h>
 
 size_t	ft_strlen(const char *string);
 int		error_message(char *message);

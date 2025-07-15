@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/14 12:25:35 by lilo          #+#    #+#                 */
-/*   Updated: 2025/07/14 16:08:37 by lilo          ########   odam.nl         */
+/*   Updated: 2025/07/15 16:43:21 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 // }	t_philo;
 
 int	input_checks(int argc, char **input_list);
+int	check_argc(int argc);
 
 
 

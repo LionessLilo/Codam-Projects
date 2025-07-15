@@ -1,24 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   input_utils.c                                      :+:    :+:            */
+/*   test_argc.c                                        :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2025/07/14 15:13:59 by lilo          #+#    #+#                 */
-/*   Updated: 2025/07/15 17:47:45 by lilo          ########   odam.nl         */
+/*   Created: 2025/07/15 16:16:11 by lilo          #+#    #+#                 */
+/*   Updated: 2025/07/15 18:02:18 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <utils.h>
+#include <philo.h>
+#include <tests.h>
 
-int	ft_isdigit(int c)
+int	check_argc(int argc);
+
+void	test_argc(void)
 {
-	if (c >= '0' && c <= '9')
-	{
-		return (1);
-	}
-	return (0);
-}
+	int	argc;
+	int	result_argc;
 
-// int	digit_check()
+	argc = 5;
+	result_argc = check_argc(argc);
+	log_test(result_argc == 0, "Did not return correct int for argc");
+}
