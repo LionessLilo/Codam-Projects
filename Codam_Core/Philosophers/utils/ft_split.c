@@ -6,12 +6,11 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/14 15:45:27 by lilo          #+#    #+#                 */
-/*   Updated: 2025/07/15 17:54:55 by lilo          ########   odam.nl         */
+/*   Updated: 2025/07/16 13:56:29 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <utils.h>
-#include <tests.h>
+#include <philo.h>
 
 size_t	find_list_size(const char *str, char chr);
 size_t	get_item_len(const char *str, char chr);

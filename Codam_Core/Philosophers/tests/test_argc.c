@@ -5,22 +5,34 @@
 /*                                                     +:+                    */
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2025/07/15 16:16:11 by lilo          #+#    #+#                 */
-/*   Updated: 2025/07/15 18:02:18 by lilo          ########   odam.nl         */
+/*   Created: 2025/07/16 14:11:13 by lilo          #+#    #+#                 */
+/*   Updated: 2025/07/16 16:55:30 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <philo.h>
-#include <tests.h>
+#include "./tests.h"
 
 int	check_argc(int argc);
 
 void	test_argc(void)
 {
 	int	argc;
-	int	result_argc;
+	int	result;
 
 	argc = 5;
-	result_argc = check_argc(argc);
-	log_test(result_argc == 0, "Did not return correct int for argc");
+	result = check_argc(argc);
+	log_test(result == 0, "Check argc did not return 0 for argc 5");
+
+	argc = 6;
+	result = check_argc(argc);
+	log_test(result == 0, "Check argc did not return 0 for argc 6");
+
+	argc = 4;
+	result = check_argc(argc);
+	log_test(result == 41, "Did not error for argc smaller than 5");
+
+	argc = 7;
+	result = check_argc(argc);
+	log_test(result == 41, "Did not error for argc greater than 6");
+
 }
