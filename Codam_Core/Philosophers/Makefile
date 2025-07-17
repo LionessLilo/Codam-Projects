@@ -1,13 +1,19 @@
 NAME = philo
 CC = cc
 INCLUDE = -I./include
-CFLAGS = -Werror -Wall -Wextra -Wconversion -pthread
+CFLAGS = -Werror -Wall -Wextra -Wconversion -pthread -ggdb
 
 VPATH = src utils
-SRCS = main.c \
+SRCS = cleanup.c \
+		init.c \
 		input_checks.c \
-		lib_utils.c \
+		main.c \
+		monitor.c \
+		philo.c \
+		routine.c \
+		error_handling.c \
 		ft_split.c \
+		lib_utils.c
 
 OBJS = $(SRCS:.c=.o)
 

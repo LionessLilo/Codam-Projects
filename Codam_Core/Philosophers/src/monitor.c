@@ -6,7 +6,11 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/17 12:29:27 by lilo          #+#    #+#                 */
-/*   Updated: 2025/07/17 12:29:29 by lilo          ########   odam.nl         */
+/*   Updated: 2025/07/17 14:06:34 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
+int	monitor_function(void)
+{
+	return (0);
+}

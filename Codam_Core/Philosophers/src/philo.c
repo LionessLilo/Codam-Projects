@@ -6,9 +6,13 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/14 13:20:53 by lilo          #+#    #+#                 */
-/*   Updated: 2025/07/14 13:21:16 by lilo          ########   odam.nl         */
+/*   Updated: 2025/07/17 14:06:39 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <philo.h>
 
+int	philo_function(void)
+{
+	return (0);
+}

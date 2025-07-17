@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/14 12:25:35 by lilo          #+#    #+#                 */
-/*   Updated: 2025/07/16 17:42:22 by lilo          ########   odam.nl         */
+/*   Updated: 2025/07/17 13:57:42 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,9 @@ size_t		ft_strlcpy(char *dst, const char *src, size_t size);
 size_t		ft_strlen(const char *string);
 int			ft_isdigit(int c);
 long int	ft_atol(const char *str);
+void		report_error(int code);
+size_t		find_list_size(const char *str, char chr);
+void		cleanup_list(char **list_start);
 
 
 

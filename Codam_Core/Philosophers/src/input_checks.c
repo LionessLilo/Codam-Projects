@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/14 13:17:52 by lilo          #+#    #+#                 */
-/*   Updated: 2025/07/17 11:07:52 by lilo          ########   odam.nl         */
+/*   Updated: 2025/07/17 14:23:05 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,27 @@ int	input_checks(int argc,
 				char **argv)
 {
 	int		return_check;
+	int		argc_working;
 	char	**input_list;
+	
 	return_check = 0;
+	argc_working = argc;
 	if (argc == 2)
-		input_list = ft_split(argv[1], ' ');
-	input_list = argv;
-	return_check = check_argc(argc);
+		argc_working = ((int)find_list_size(argv[1], ' ')) + 1;
+	return_check = check_argc(argc_working);
 	if (return_check != 0)
 		return (return_check);
+	if (argc == 2)
+	{
+		input_list = ft_split(argv[1], ' ');
+		if (!input_list)
+			return (-1);
+	}
+	else
+		input_list = argv + 1;
 	return_check = argv_check(input_list);
+	if (argc == 2)
+		cleanup_list(input_list);
 	if (return_check != 0)
 		return (return_check);
 	return (0);
@@ -50,7 +62,6 @@ int	argv_check(char **input_list)
 
 	if (!input_list)
 		return (41);
-	input_list++;
 	result = check_digits(input_list);
 	if (result != 0)
 		return (41);

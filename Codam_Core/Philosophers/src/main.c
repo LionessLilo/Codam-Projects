@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/14 12:47:54 by lilo          #+#    #+#                 */
-/*   Updated: 2025/07/17 11:56:43 by lilo          ########   odam.nl         */
+/*   Updated: 2025/07/17 13:11:15 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	main(int argc, char **argv)
 	result_input_check = input_checks(argc, argv);
 	if (result_input_check != 0)
 	{
-		write(2, "Error: Invalid user input. Please consult project pdf.", 55);
+		report_error(result_input_check);
 		return (result_input_check);
 	}
 	//If it is valid, assign input values to where they need to go.

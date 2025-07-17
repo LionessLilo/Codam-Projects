@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/16 16:25:47 by lilo          #+#    #+#                 */
-/*   Updated: 2025/07/16 17:57:25 by lilo          ########   odam.nl         */
+/*   Updated: 2025/07/17 13:05:15 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,8 @@ void	test_input_checks(void)
 	char 	*test5[] = {"name", "600", "200", "200", "200", NULL};
 	result = input_checks(argc, test5);
 	log_test(result == 41, "Input checks is not returning an error for greater than 500 philosophers");
+
+	char 	*test6[] = {NULL};
+	result = input_checks(argc, test6);
+	log_test(result == 41, "Input checks is not returning an error for NULL input");
 }
