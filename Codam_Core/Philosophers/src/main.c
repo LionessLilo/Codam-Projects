@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/14 12:47:54 by lilo          #+#    #+#                 */
-/*   Updated: 2025/07/17 13:11:15 by lilo          ########   odam.nl         */
+/*   Updated: 2025/07/17 18:09:50 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,20 @@
 
 int	main(int argc, char **argv)
 {
-	int	result_input_check;
+	int				result_check;
+	t_whiteboard	*whiteboard;
 
-	result_input_check = input_checks(argc, argv);
-	if (result_input_check != 0)
+	result_check = input_checks(argc, argv);
+	if (result_check != 0)
 	{
-		report_error(result_input_check);
-		return (result_input_check);
+		report_error(result_check);
+		return (result_check);
 	}
-	//If it is valid, assign input values to where they need to go.
+	if (argc == 2)
+		argv = ft_split(argv[1], ' ');
+	else
+		argv = argv + 1;
+	whiteboard = init_whiteboard(argv);
 	//Start logic
 	//Handle bubbled up errors. 
 	return (0);

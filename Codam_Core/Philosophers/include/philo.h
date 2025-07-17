@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/14 12:25:35 by lilo          #+#    #+#                 */
-/*   Updated: 2025/07/17 13:57:42 by lilo          ########   odam.nl         */
+/*   Updated: 2025/07/17 18:08:39 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,35 @@
 # include <unistd.h>
 # include <limits.h>
 
-// typedef struct s_rules
-// {
-	
-// }	t_rules;
+typedef struct s_whiteboard
+{
+	int				nbr_philosophers;
+	int				time_to_die;
+	int				time_to_eat;
+	int				time_to_sleep;
+	int				times_to_eat;
+	int				is_dead;
+	long			event_start;
+	pthread_mutex_t	*protect_forks_ptr;
+	pthread_mutex_t	protect_print;
+	pthread_mutex_t	protect_dead;
+	t_philosopher	*philosophers;
+}	t_whiteboard;
 
-// typedef struct s_philo
-// {
-// 	t_rules	philo_rules;
-// }	t_philo;
+typedef struct s_philosopher
+{
+	int				id;
+	int				nbr_meals_eaten;
+	long			time_last_ate;
+	pthread_t		thread;
+	pthread_mutex_t	*left_fork_ptr;
+	pthread_mutex_t	*right_fork_ptr;
+	t_whiteboard	*check_whiteboard_ptr;
+}					t_philosopher;
 
 /* Src Functions */
-int			input_checks(int argc, char **argv);
+int				input_checks(int argc, char **argv);
+t_whiteboard	*init_whiteboard(char **input_list);
 
 /* Util Functions */
 char		**ft_split(char const *str, char chr);

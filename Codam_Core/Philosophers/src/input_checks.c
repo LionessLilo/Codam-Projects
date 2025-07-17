@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/14 13:17:52 by lilo          #+#    #+#                 */
-/*   Updated: 2025/07/17 14:23:05 by lilo          ########   odam.nl         */
+/*   Updated: 2025/07/17 17:01:00 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ int	check_int(char **input_list)
 	{
 		item = *input_list;
 		str_to_nbr = ft_atol(item);
-		if (input_list[0] && str_to_nbr > 500)
+		if (input_list[0] && str_to_nbr > 200)
 			return (41);
 		if (str_to_nbr > INT_MAX)
 			return (41);
