@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/16 14:09:17 by lilo          #+#    #+#                 */
-/*   Updated: 2025/07/16 18:01:36 by lilo          ########   odam.nl         */
+/*   Updated: 2025/07/18 14:57:28 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ int	main(void)
 	test_argv();
 	printf("\ninput_checks: \n");
 	test_input_checks();
+	printf("\ninput_to_whiteboard: \n");
+	test_input_to_whiteboard();
 	printf("\n");
 	return (0);
 }

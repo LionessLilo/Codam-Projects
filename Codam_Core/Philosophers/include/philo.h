@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/14 12:25:35 by lilo          #+#    #+#                 */
-/*   Updated: 2025/07/17 18:08:39 by lilo          ########   odam.nl         */
+/*   Updated: 2025/07/18 15:14:38 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,13 @@ typedef struct s_whiteboard
 	int				time_to_sleep;
 	int				times_to_eat;
 	int				is_dead;
+	int				error_code;
 	long			event_start;
 	pthread_mutex_t	*protect_forks_ptr;
 	pthread_mutex_t	protect_print;
 	pthread_mutex_t	protect_dead;
-	t_philosopher	*philosophers;
-}	t_whiteboard;
+	// t_philosopher	*philosophers;
+}					t_whiteboard;
 
 typedef struct s_philosopher
 {
@@ -56,6 +57,7 @@ size_t		ft_strlen(const char *string);
 int			ft_isdigit(int c);
 long int	ft_atol(const char *str);
 void		report_error(int code);
+void		error_message(char *message);
 size_t		find_list_size(const char *str, char chr);
 void		cleanup_list(char **list_start);
 

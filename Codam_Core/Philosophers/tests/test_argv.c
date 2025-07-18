@@ -6,21 +6,19 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/16 14:54:29 by lilo          #+#    #+#                 */
-/*   Updated: 2025/07/16 16:55:43 by lilo          ########   odam.nl         */
+/*   Updated: 2025/07/18 16:17:27 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <philo.h>
 #include "./tests.h"
-
-int	argv_check(char **input_list);
-int	ft_isdigit(int c);
 
 void	test_argv(void)
 {
 	int		result;
 
 	/* Valid input */
-	char	*test1[] = {"name", "15", "200", "200", "200", NULL};
+	char	*test1[] = {"15", "200", "200", "200", NULL};
 	result = argv_check(test1);
 	log_test(result == 0, "argv_check did not  return 0 with valid numbers");
 

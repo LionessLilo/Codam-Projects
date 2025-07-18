@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/16 14:20:42 by lilo          #+#    #+#                 */
-/*   Updated: 2025/07/16 16:38:19 by lilo          ########   odam.nl         */
+/*   Updated: 2025/07/18 15:55:41 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ void	log_error(const char *message);
 /* Test functions*/
 void	test_argc(void);
 void	test_argv(void);
+int		argv_check(char **input_list);
 void	test_input_checks(void);
+void	test_input_to_whiteboard(void);
 
 #endif
