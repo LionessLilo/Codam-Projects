@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/14 12:25:35 by lilo          #+#    #+#                 */
-/*   Updated: 2025/07/18 15:14:38 by lilo          ########   odam.nl         */
+/*   Updated: 2025/07/21 13:29:34 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ t_whiteboard	*init_whiteboard(char **input_list);
 
 /* Util Functions */
 char		**ft_split(char const *str, char chr);
+void		free_list(char **list_start, char **list);
 size_t		ft_strlcpy(char *dst, const char *src, size_t size);
 size_t		ft_strlen(const char *string);
 int			ft_isdigit(int c);
