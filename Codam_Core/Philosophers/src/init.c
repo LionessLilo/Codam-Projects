@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/17 12:28:52 by lilo          #+#    #+#                 */
-/*   Updated: 2025/07/18 16:22:47 by lilo          ########   odam.nl         */
+/*   Updated: 2025/07/21 17:01:37 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,11 @@
 
 t_whiteboard	*input_to_whiteboard(t_whiteboard *s_whiteboard, char **input_list);
 t_whiteboard	*init_whiteboard_mutexes(t_whiteboard *whiteboard);
+
+/*
+	- Turns the input into whiteboard variables
+	- Initialises the whiteboard mutexes
+*/
 
 t_whiteboard	*init_whiteboard(char **input_list)
 {
@@ -25,12 +30,12 @@ t_whiteboard	*init_whiteboard(char **input_list)
 		return (NULL);
 	whiteboard->error_code = 0;
 	whiteboard = input_to_whiteboard(whiteboard, input_list);
-	// whiteboard = init_whiteboard_mutexes(whiteboard);
-	// if (whiteboard->error_code != 0)
-	// {
-	// 	// clean_whiteboard(whiteboard);
-	// 	return (whiteboard);
-	// }
+	whiteboard = init_whiteboard_mutexes(whiteboard);
+	if (whiteboard->error_code != 0)
+	{
+		clean_whiteboard(whiteboard);
+		return (whiteboard);
+	}
 	return (whiteboard);
 }
 
@@ -48,28 +53,41 @@ t_whiteboard	*input_to_whiteboard(t_whiteboard *whiteboard, char **input_list)
 	return (whiteboard);
 }
 
-// t_whiteboard	*init_whiteboard_mutexes(t_whiteboard *whiteboard)
-// {
-// 	int				i;
-	
-// 	i = 0;
-// 	whiteboard->protect_forks_ptr = malloc(sizeof(pthread_mutex_t)
-// 		* whiteboard->nbr_philosophers);
-// 	while (i < whiteboard->nbr_philosophers)
-// 	{
-// 		whiteboard->error_code = pthread_mutex_init(&whiteboard->protect_forks_ptr[i], NULL);
-// 		if (whiteboard->error_code != 0)
-// 		{
-// 			whiteboard->error_code = 7303;
-// 			return (whiteboard);
-// 		}
-// 		i++;
-// 	}
-// 	whiteboard->error_code = pthread_mutex_init(&whiteboard->protect_print, NULL);
-// 	if (whiteboard->error_code != 0)
-// 		whiteboard->error_code = 7304;
-// 	whiteboard->error_code = pthread_mutex_init(&whiteboard->protect_dead, NULL);
-// 	if (whiteboard->error_code != 0)
-// 		whiteboard->error_code = 7305;
-// 	return (whiteboard);
-// }
+t_whiteboard	*init_whiteboard_mutexes(t_whiteboard *whiteboard)
+{
+	whiteboard->protect_forks_ptr = malloc(sizeof(pthread_mutex_t)
+		* whiteboard->nbr_philosophers);
+	if (!whiteboard->protect_forks_ptr)
+	{
+		whiteboard->error_code = 5304;
+		return (whiteboard);
+	}
+	whiteboard = init_forks(whiteboard);
+	if (whiteboard->error_code != 0)
+		return (whiteboard->error_code);
+	whiteboard->error_code = pthread_mutex_init(&whiteboard->protect_print, NULL);
+	if (whiteboard->error_code != 0)
+		whiteboard->error_code = 7306;
+	whiteboard->error_code = pthread_mutex_init(&whiteboard->protect_dead, NULL);
+	if (whiteboard->error_code != 0)
+		whiteboard->error_code = 7307;
+	return (whiteboard);
+}
+
+t_whiteboard	*init_forks(t_whiteboard *whiteboard)
+{
+	int	i;
+
+	i = 0;
+	while (i < whiteboard->nbr_philosophers)
+	{
+		whiteboard->error_code = pthread_mutex_init(&whiteboard->protect_forks_ptr[i], NULL);
+		if (whiteboard->error_code != 0)
+		{
+			whiteboard->error_code = 7305;
+			return (whiteboard);
+		}
+		i++;
+	}
+	return (whiteboard);
+}

@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/14 13:17:52 by lilo          #+#    #+#                 */
-/*   Updated: 2025/07/21 14:00:42 by lilo          ########   odam.nl         */
+/*   Updated: 2025/07/21 16:06:27 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,12 @@ int	check_argc(int argc);
 int	argv_check(char **input_list);
 int	check_digits(char **input_list);
 int	check_int(char **input_list);
+
+/*
+	- Checks argc
+	- Checks argv
+	- Cleans up list after ft_split if it was used.
+*/
 
 int	input_checks(int argc,
 				char **argv)
@@ -35,7 +41,7 @@ int	input_checks(int argc,
 	{
 		input_list = ft_split(argv[1], ' ');
 		if (!input_list)
-			return (-1);
+			return (-1301);
 	}
 	else
 		input_list = argv + 1;
