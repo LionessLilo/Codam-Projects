@@ -6,17 +6,14 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/16 14:20:42 by lilo          #+#    #+#                 */
-/*   Updated: 2025/07/23 15:28:16 by lionesslilo   ########   odam.nl         */
+/*   Updated: 2025/07/23 17:31:27 by lionesslilo   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TESTS_H
 # define TESTS_H
 
-# include <stdio.h>
-# include <unistd.h>
-# include <stdlib.h>
-# include <pthread.h>
+#include <philo.h>
 
 # define GREEN   "\033[0;32m"
 # define RED     "\033[0;31m"
@@ -33,5 +30,6 @@ void	test_argv(void);
 int		argv_check(char **input_list);
 void	test_input_checks(void);
 void	test_input_to_whiteboard(void);
+t_error	init_whiteboard_mutexes(t_whiteboard **whiteboard);
 
 #endif
