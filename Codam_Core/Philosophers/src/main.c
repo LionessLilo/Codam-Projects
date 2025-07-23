@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/14 12:47:54 by lilo          #+#    #+#                 */
-/*   Updated: 2025/07/21 16:56:55 by lilo          ########   odam.nl         */
+/*   Updated: 2025/07/23 15:19:37 by lionesslilo   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,38 +30,37 @@
 	- Checks input
 	- Initialises whiteboard struct
 	- Starts the project
-	-  Handles bubbled up errors
+	- Handles bubbled up errors
 	- Cleans up
 */
 
+char	**create_argv(int argc, char **argv);
+
 int	main(int argc, char **argv)
 {
-	int				result_check;
 	t_whiteboard	*whiteboard;
+	t_error			error_check;
 	
-	result_check = input_checks(argc, argv);
-	if (result_check != 0)
-		return (result_check);
+	error_check = input_checks(argc, argv);
+	if (error_check != SUCCESS)
+		return (error_check);
 	argv = create_argv(argc, argv);
-	whiteboard = init_whiteboard(argv);
-	if (!whiteboard)
-		return (5303);
-	else if (whiteboard->error_code != 0)
-		return (whiteboard->error_code);
+	if (!argv)
+		return (FUNCT_ERROR);
+	error_check = init_whiteboard(&whiteboard, argv);
+	if (error_check != SUCCESS)
+	{
+		clean_whiteboard(&whiteboard);
+		cleanup_list(argv);
+		return (error_check);
+	}
 	//Start logic
-	//Handle bubbled up errors. 
-	return (0);
+	return (SUCCESS);
 }
 
-static char	**create_argv(int argc, char **argv)
+char	**create_argv(int argc, char **argv)
 {
 	if (argc == 2)
-	{
 		argv = ft_split(argv[1], ' ');
-		if (!argv)
-			return (-1302);
-	}
-	else
-		argv = argv + 1;
-	return (argv);
+	return (argv + 1);
 }

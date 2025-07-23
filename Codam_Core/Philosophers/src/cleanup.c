@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/17 12:29:45 by lilo          #+#    #+#                 */
-/*   Updated: 2025/07/18 14:55:36 by lilo          ########   odam.nl         */
+/*   Updated: 2025/07/23 15:20:35 by lionesslilo   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,20 @@ void	cleanup_list(char **list)
 	free (list_start);
 }
 
-// void	clean_whiteboard(t_whiteboard *s_whiteboard)
-// {
+void	clean_whiteboard(t_whiteboard **whiteboard)
+{
+	int	i;
 	
-// }
+	i = 0;
+	if (!whiteboard)
+		return ;
+	if ((*whiteboard)->protect_forks_ptr)
+	{
+		while (i < (*whiteboard)->nbr_philosophers)
+		{
+			pthread_mutex_destroy(&(*whiteboard)->protect_forks_ptr[i]);
+			i++;
+		}
+		free((*whiteboard)->protect_forks_ptr);
+	}
+}

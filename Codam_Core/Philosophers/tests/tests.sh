@@ -10,7 +10,8 @@ test_utils.c \
 test_argc.c \
 test_argv.c \
 test_input_checks.c \
-test_input_to_whiteboard.c"
+test_input_to_whiteboard.c \
+test_init_whiteboard_mutexes.c"
 
 cc  -ggdb -Wall -Wextra -Werror -Wconversion $SRCS -I../include -o test_philo
 ./test_philo

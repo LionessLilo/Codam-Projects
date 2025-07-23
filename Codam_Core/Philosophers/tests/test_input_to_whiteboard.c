@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/18 14:59:46 by lilo          #+#    #+#                 */
-/*   Updated: 2025/07/18 16:21:11 by lilo          ########   odam.nl         */
+/*   Updated: 2025/07/23 15:31:09 by lionesslilo   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	test_input_to_whiteboard(void)
 	t_whiteboard	*whiteboard_test;
 
 	char 	*test1[] = {"10", "400", "200", "100", "15", NULL};
-	whiteboard_test = init_whiteboard(test1);
+	init_whiteboard(&whiteboard_test, test1);
 	log_test(whiteboard_test->nbr_philosophers == 10
 		  && whiteboard_test->time_to_die == 400
 		  && whiteboard_test->time_to_eat == 200
@@ -27,7 +27,7 @@ void	test_input_to_whiteboard(void)
 		  "Whiteboard did not initialise input correctly");
 	
 	char 	*test2[] = {"10", "400", "200", "100", NULL};
-	whiteboard_test = init_whiteboard(test2);
+	init_whiteboard(&whiteboard_test, test2);
 	log_test(whiteboard_test->nbr_philosophers == 10
 		  && whiteboard_test->time_to_die == 400
 		  && whiteboard_test->time_to_eat == 200

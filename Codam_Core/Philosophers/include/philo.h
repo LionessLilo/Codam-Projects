@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/14 12:25:35 by lilo          #+#    #+#                 */
-/*   Updated: 2025/07/21 13:29:34 by lilo          ########   odam.nl         */
+/*   Updated: 2025/07/23 15:21:54 by lionesslilo   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ typedef struct s_whiteboard
 	int				time_to_sleep;
 	int				times_to_eat;
 	int				is_dead;
-	int				error_code;
 	long			event_start;
 	pthread_mutex_t	*protect_forks_ptr;
 	pthread_mutex_t	protect_print;
@@ -46,10 +45,22 @@ typedef struct s_philosopher
 	t_whiteboard	*check_whiteboard_ptr;
 }					t_philosopher;
 
-/* Src Functions */
-int				input_checks(int argc, char **argv);
-t_whiteboard	*init_whiteboard(char **input_list);
+typedef enum e_error
+{
+	FUNCT_ERROR = -1,
+	SUCCESS = 0,
+	TRUE = 1,
+	FALSE = 2,
+	GEN_ERROR = 3,
+	MALLOC_FAIL = 5,
+	THREAD_ERROR = 6,
+	MUTEX_ERROR = 7,
+	USER_INPUT_ERROR = 41,
+}	t_error;
 
+/* Src Functions */
+t_error		input_checks(int argc, char **argv);
+t_error		init_whiteboard(t_whiteboard **whiteboard, char **input_list);
 /* Util Functions */
 char		**ft_split(char const *str, char chr);
 void		free_list(char **list_start, char **list);
@@ -61,6 +72,7 @@ void		report_error(int code);
 void		error_message(char *message);
 size_t		find_list_size(const char *str, char chr);
 void		cleanup_list(char **list_start);
+void		clean_whiteboard(t_whiteboard **whiteboard);
 
 
 
