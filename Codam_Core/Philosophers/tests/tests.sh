@@ -5,6 +5,7 @@ SRCS="\
 ../utils/ft_split.c \
 ../utils/lib_utils.c \
 ../utils/error_handling.c \
+../utils/clean_up_utils.c \
 tests_main.c \
 test_utils.c \
 test_argc.c \

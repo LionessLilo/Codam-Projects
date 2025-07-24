@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/14 12:25:35 by lilo          #+#    #+#                 */
-/*   Updated: 2025/07/23 17:30:52 by lionesslilo   ########   odam.nl         */
+/*   Updated: 2025/07/24 17:46:11 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,11 @@
 # include <unistd.h>
 # include <limits.h>
 
+typedef struct s_philosopher	t_philosopher;
+
 typedef struct s_whiteboard
 {
-	int				nbr_philosophers;
+	size_t			nbr_philosophers;
 	int				time_to_die;
 	int				time_to_eat;
 	int				time_to_sleep;
@@ -31,12 +33,12 @@ typedef struct s_whiteboard
 	pthread_mutex_t	*protect_forks_ptr;
 	pthread_mutex_t	protect_print;
 	pthread_mutex_t	protect_dead;
-	// t_philosopher	*philosophers;
+	t_philosopher	*philosophers;
 }					t_whiteboard;
 
 typedef struct s_philosopher
 {
-	int				id;
+	size_t			id;
 	int				nbr_meals_eaten;
 	long			time_last_ate;
 	pthread_t		thread;
@@ -57,12 +59,15 @@ typedef enum e_error
 	THREAD_ERROR = 7,
 	MUTEX_INIT_ERROR = 8,
 	MUTEX_LOCK_ERROR = 9,
+	MUTEX_UNLOCK_ERROR = 10,
 	USER_INPUT_ERROR = 41,
 }	t_error;
 
 /* Src Functions */
 t_error		input_checks(int argc, char **argv);
 t_error		init_whiteboard(t_whiteboard **whiteboard, char **input_list);
+void		cleanup_list(char **list_start);
+void		clean_whiteboard(t_whiteboard **whiteboard);
 /* Util Functions */
 char		**ft_split(char const *str, char chr);
 void		free_list(char **list_start, char **list);
@@ -73,9 +78,8 @@ long int	ft_atol(const char *str);
 void		report_error(int code);
 void		error_message(char *message);
 size_t		find_list_size(const char *str, char chr);
-void		cleanup_list(char **list_start);
-void		clean_whiteboard(t_whiteboard **whiteboard);
-
-
+void		clean_forks(t_whiteboard **whiteboard);
+void		clean_philosophers(t_whiteboard **whiteboard);
+void 		free_and_null(void *incoming_memory);
 
 #endif

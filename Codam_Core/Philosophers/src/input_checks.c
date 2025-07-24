@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/14 13:17:52 by lilo          #+#    #+#                 */
-/*   Updated: 2025/07/23 15:18:58 by lionesslilo   ########   odam.nl         */
+/*   Updated: 2025/07/24 15:45:23 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ t_error	input_checks(int argc,
 	int		argc_working;
 	char	**input_list;
 	t_error	error_check;
-	
+
 	argc_working = argc;
 	if (argc == 2)
 		argc_working = ((int)find_list_size(argv[1], ' ')) + 1;
@@ -79,7 +79,7 @@ t_error	argv_check(char **input_list)
 t_error	check_digits(char **input_list)
 {
 	char	*item;
-	
+
 	while (*input_list)
 	{
 		item = *input_list;
@@ -98,9 +98,8 @@ t_error	check_digits(char **input_list)
 
 t_error	check_int(char **input_list)
 {
-	char 		*item;
+	char		*item;
 	long int	str_to_nbr;
-	// t_error		error_check;
 
 	while (*input_list)
 	{

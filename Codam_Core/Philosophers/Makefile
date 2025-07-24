@@ -13,7 +13,8 @@ SRCS = cleanup.c \
 		routine.c \
 		error_handling.c \
 		ft_split.c \
-		lib_utils.c
+		lib_utils.c \
+		clean_up_utils.c
 
 OBJS = $(SRCS:.c=.o)
 
