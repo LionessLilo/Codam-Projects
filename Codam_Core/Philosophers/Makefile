@@ -11,7 +11,6 @@ SRCS = cleanup.c \
 		monitor.c \
 		philo.c \
 		routine.c \
-		error_handling.c \
 		ft_split.c \
 		lib_utils.c \
 		clean_up_utils.c

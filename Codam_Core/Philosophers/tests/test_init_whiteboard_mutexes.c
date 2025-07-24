@@ -6,23 +6,23 @@
 /*   By: lionesslilo <lionesslilo@student.codam.      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/23 16:15:05 by lionesslilo   #+#    #+#                 */
-/*   Updated: 2025/07/24 13:22:15 by lilo          ########   odam.nl         */
+/*   Updated: 2025/07/24 19:06:14 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <philo.h>
 #include "tests.h"
 
-void    test_init_whiteboard_mutexes(void)
+void	test_init_whiteboard_mutexes(void)
 {
-	t_error         error_check;
+	t_error			error_check;
 	int				funct_return;
 	t_whiteboard    *whiteboard;
 	size_t				i;
 
 	whiteboard = malloc(sizeof(t_whiteboard));
 	whiteboard->nbr_philosophers = 5;
-	error_check = init_whiteboard_mutexes(&whiteboard);
+	error_check = init_whiteboard_mutexes(whiteboard);
 	log_test(error_check == SUCCESS, ft_itoa(error_check));
 
 	i = 0;

@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/16 14:09:17 by lilo          #+#    #+#                 */
-/*   Updated: 2025/07/24 11:59:24 by lilo          ########   odam.nl         */
+/*   Updated: 2025/07/24 19:08:22 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ int	main(void)
 	test_input_to_whiteboard();
 	printf("\ninit whiteboard mutexes: \n");
 	test_init_whiteboard_mutexes();
+	printf("\ninit philosophers: \n");
+	test_init_philosophers();
 	printf("\n");
-	
 	return (0);
 }

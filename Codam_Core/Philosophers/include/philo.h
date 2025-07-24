@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/14 12:25:35 by lilo          #+#    #+#                 */
-/*   Updated: 2025/07/24 17:46:11 by lilo          ########   odam.nl         */
+/*   Updated: 2025/07/24 17:53:46 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,6 @@ void		error_message(char *message);
 size_t		find_list_size(const char *str, char chr);
 void		clean_forks(t_whiteboard **whiteboard);
 void		clean_philosophers(t_whiteboard **whiteboard);
-void 		free_and_null(void *incoming_memory);
+void		free_and_null(void *incoming_memory);
 
 #endif
