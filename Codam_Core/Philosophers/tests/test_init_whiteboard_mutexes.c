@@ -6,7 +6,7 @@
 /*   By: lionesslilo <lionesslilo@student.codam.      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/23 16:15:05 by lionesslilo   #+#    #+#                 */
-/*   Updated: 2025/07/24 19:06:14 by lilo          ########   odam.nl         */
+/*   Updated: 2025/07/28 15:31:02 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,14 @@ void	test_init_whiteboard_mutexes(void)
 	if (funct_return != 0)
 			log_error(ft_itoa(MUTEX_LOCK_ERROR));
 	funct_return = pthread_mutex_unlock(&whiteboard->protect_dead);
+	if (funct_return != 0)
+			log_error(ft_itoa(MUTEX_UNLOCK_ERROR));
+	log_tick();
+
+	funct_return = pthread_mutex_lock(&whiteboard->protect_door);
+	if (funct_return != 0)
+			log_error(ft_itoa(MUTEX_LOCK_ERROR));
+	funct_return = pthread_mutex_unlock(&whiteboard->protect_door);
 	if (funct_return != 0)
 			log_error(ft_itoa(MUTEX_UNLOCK_ERROR));
 	log_tick();

@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/17 12:29:45 by lilo          #+#    #+#                 */
-/*   Updated: 2025/07/24 17:38:21 by lilo          ########   odam.nl         */
+/*   Updated: 2025/07/28 11:53:50 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,5 @@ void	clean_whiteboard(t_whiteboard **whiteboard)
 		return ;
 	if ((*whiteboard)->protect_forks_ptr)
 		clean_forks(whiteboard);
-	if ((*whiteboard)->philosophers)
-		free_and_null((void *)&(*whiteboard)->philosophers);
 	free_and_null((void *)&(*whiteboard));
 }

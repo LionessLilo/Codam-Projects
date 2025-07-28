@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/14 12:25:35 by lilo          #+#    #+#                 */
-/*   Updated: 2025/07/24 17:53:46 by lilo          ########   odam.nl         */
+/*   Updated: 2025/07/28 19:57:57 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@
 # include <unistd.h>
 # include <limits.h>
 
+# define TRUE 1
+# define FALSE 2
+
 typedef struct s_philosopher	t_philosopher;
 
 typedef struct s_whiteboard
@@ -28,11 +31,14 @@ typedef struct s_whiteboard
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				times_to_eat;
+	int				current_time;
 	int				is_dead;
-	long			event_start;
+	int				event_start;
+	int				event_start_time;
 	pthread_mutex_t	*protect_forks_ptr;
 	pthread_mutex_t	protect_print;
 	pthread_mutex_t	protect_dead;
+	pthread_mutex_t	protect_door;
 	t_philosopher	*philosophers;
 }					t_whiteboard;
 
@@ -51,8 +57,6 @@ typedef enum e_error
 {
 	FUNCT_ERROR = -1,
 	SUCCESS = 0,
-	TRUE = 1,
-	FALSE = 2,
 	GEN_ERROR = 3,
 	MALLOC_FAIL = 5,
 	THREAD_INIT_ERROR = 6,
@@ -64,22 +68,36 @@ typedef enum e_error
 }	t_error;
 
 /* Src Functions */
+/* Input checks*/
 t_error		input_checks(int argc, char **argv);
+
+/* Init */
 t_error		init_whiteboard(t_whiteboard **whiteboard, char **input_list);
+
+/* Cleanup*/
 void		cleanup_list(char **list_start);
 void		clean_whiteboard(t_whiteboard **whiteboard);
+
+/* Event */
+t_error		start_event(t_whiteboard *whiteboard);
+
+/* Routine */
+void		*philosopher_routine(void *thread_arg);
+
 /* Util Functions */
+/* cleanup utils */
+void		clean_forks(t_whiteboard **whiteboard);
+void		free_and_null(void *incoming_memory);
+
+/* Lib utils */
+size_t		ft_strlen(const char *string);
+size_t		ft_strlcpy(char *dst, const char *src, size_t size);
+long int	ft_atol(const char *str);
+int			ft_isdigit(int c);
+
+/* ft_split */
 char		**ft_split(char const *str, char chr);
 void		free_list(char **list_start, char **list);
-size_t		ft_strlcpy(char *dst, const char *src, size_t size);
-size_t		ft_strlen(const char *string);
-int			ft_isdigit(int c);
-long int	ft_atol(const char *str);
-void		report_error(int code);
-void		error_message(char *message);
 size_t		find_list_size(const char *str, char chr);
-void		clean_forks(t_whiteboard **whiteboard);
-void		clean_philosophers(t_whiteboard **whiteboard);
-void		free_and_null(void *incoming_memory);
 
 #endif

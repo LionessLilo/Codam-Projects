@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/14 12:47:54 by lilo          #+#    #+#                 */
-/*   Updated: 2025/07/24 15:41:38 by lilo          ########   odam.nl         */
+/*   Updated: 2025/07/28 20:18:23 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,11 @@ int	main(int argc, char **argv)
 		cleanup_list(argv);
 		return (error_check);
 	}
-	// To do: Start logic
+	error_check = start_event(whiteboard);
 	clean_whiteboard(&whiteboard);
 	if (argc == 2)
 		cleanup_list(argv);
-	return (SUCCESS);
+	return (error_check);
 }
 
 char	**create_argv(int argc, char **argv)

@@ -9,7 +9,7 @@ SRCS = cleanup.c \
 		input_checks.c \
 		main.c \
 		monitor.c \
-		philo.c \
+		event.c \
 		routine.c \
 		ft_split.c \
 		lib_utils.c \

@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/17 12:28:52 by lilo          #+#    #+#                 */
-/*   Updated: 2025/07/24 17:42:33 by lilo          ########   odam.nl         */
+/*   Updated: 2025/07/28 15:35:20 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	input_to_whiteboard(t_whiteboard *whiteboard, char **input_list)
 		whiteboard->times_to_eat = (int)ft_atol(input_list[4]);
 	else
 		whiteboard->times_to_eat = -1;
-	whiteboard->is_dead = 0;
+	whiteboard->is_dead = FALSE;
 	whiteboard->event_start = 0;
 }
 
@@ -72,6 +72,9 @@ t_error	init_whiteboard_mutexes(t_whiteboard *whiteboard)
 	if (funct_result != 0)
 		return (MUTEX_INIT_ERROR);
 	funct_result = pthread_mutex_init(&whiteboard->protect_dead, NULL);
+	if (funct_result != 0)
+		return (MUTEX_INIT_ERROR);
+	funct_result = pthread_mutex_init(&whiteboard->protect_door, NULL);
 	if (funct_result != 0)
 		return (MUTEX_INIT_ERROR);
 	return (SUCCESS);

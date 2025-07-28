@@ -6,11 +6,63 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/17 12:29:11 by lilo          #+#    #+#                 */
-/*   Updated: 2025/07/17 14:06:44 by lilo          ########   odam.nl         */
+/*   Updated: 2025/07/28 20:15:34 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	routine_function(void)
+#include <philo.h>
+
+t_error	wait_at_door(t_philosopher *philosopher);
+
+void	*philosopher_routine(void *thread_arg)
 {
-	return (0);
+	t_philosopher	*philosopher;
+	t_whiteboard	*whiteboard;
+	int				i;
+
+	printf("It gets into routine");
+	philosopher = (t_philosopher *)thread_arg;
+	whiteboard = philosopher->check_whiteboard_ptr;
+	if (wait_at_door(philosopher) != SUCCESS)
+		return (printf("wait at door failed"), NULL);
+	//To do:start routine
+	while (i < 4)
+	{
+		pthread_mutex_lock(&whiteboard->protect_print);
+		printf("Philosopher %ld is eating", philosopher->id);
+		pthread_mutex_unlock(&whiteboard->protect_print);
+		pthread_mutex_lock(&whiteboard->protect_print);
+		printf("Philosopher %ld is sleeping", philosopher->id);
+		pthread_mutex_unlock(&whiteboard->protect_print);
+		pthread_mutex_lock(&whiteboard->protect_print);
+		printf("Philosopher %ld is thinking", philosopher->id);
+		pthread_mutex_unlock(&whiteboard->protect_print);
+		i++;
+	}
+	return (NULL);
+}
+
+t_error	wait_at_door(t_philosopher *philosopher)
+{
+	t_whiteboard	*whiteboard;
+	pthread_mutex_t	*door_mutex;
+
+	whiteboard = philosopher->check_whiteboard_ptr;
+	door_mutex = &whiteboard->protect_door;
+	while (1)
+	{
+		if (pthread_mutex_lock(&(*door_mutex)) != 0)
+			return (MUTEX_LOCK_ERROR);
+		if (whiteboard->event_start == TRUE)
+		{
+			if (pthread_mutex_unlock(&(*door_mutex)) != 0)
+				return (MUTEX_UNLOCK_ERROR);
+			break ;
+		}
+		else
+			if (pthread_mutex_unlock(&(*door_mutex)) != 0)
+				return (MUTEX_UNLOCK_ERROR);
+		usleep(100);
+	}
+	return (SUCCESS);
 }
