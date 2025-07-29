@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/14 13:20:53 by lilo          #+#    #+#                 */
-/*   Updated: 2025/07/28 20:35:14 by lilo          ########   odam.nl         */
+/*   Updated: 2025/07/29 10:31:47 by lionesslilo   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,19 +28,17 @@ t_error	start_event(t_whiteboard *whiteboard)
 		if (pthread_create(&whiteboard->philosophers[i].thread, NULL,
 				philosopher_routine, (void *)&whiteboard->philosophers[i]) != 0)
 			return (THREAD_INIT_ERROR);
-		printf("thread %ld created\n", whiteboard->philosophers->id);
-		whiteboard->philosophers++;
 		i++;
 	}
 	whiteboard->event_start = TRUE;
 	//To do: set event start time
 	if (pthread_mutex_unlock(&whiteboard->protect_door) != 0)
 		return (MUTEX_UNLOCK_ERROR);
-	// i = 0;
-	// while (i < whiteboard->nbr_philosophers)
-	// {
-	// 	pthread_join(whiteboard->philosophers[i].thread, NULL);
-	// 	i++;
-	// }
+	i = 0;
+	while (i < whiteboard->nbr_philosophers)
+	{
+		pthread_join(whiteboard->philosophers[i].thread, NULL);
+		i++;
+	}
 	return (SUCCESS);
 }
