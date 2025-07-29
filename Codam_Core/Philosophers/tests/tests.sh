@@ -12,7 +12,8 @@ test_argv.c \
 test_input_checks.c \
 test_input_to_whiteboard.c \
 test_init_whiteboard_mutexes.c
-test_init_philosophers.c"
+test_init_philosophers.c \
+test_spawn_guests.c"
 
 cc  -ggdb -Wall -Wextra -Werror -Wconversion $SRCS -I../include -o test_philo
 ./test_philo
