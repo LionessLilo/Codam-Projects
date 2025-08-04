@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/14 12:25:35 by lilo          #+#    #+#                 */
-/*   Updated: 2025/07/28 19:57:57 by lilo          ########   odam.nl         */
+/*   Updated: 2025/07/31 13:21:44 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,11 @@ typedef enum e_error
 	GEN_ERROR = 3,
 	MALLOC_FAIL = 5,
 	THREAD_INIT_ERROR = 6,
-	THREAD_ERROR = 7,
-	MUTEX_INIT_ERROR = 8,
-	MUTEX_LOCK_ERROR = 9,
-	MUTEX_UNLOCK_ERROR = 10,
+	THREAD_JOIN_ERROR = 7,
+	THREAD_ERROR = 8,
+	MUTEX_INIT_ERROR = 9,
+	MUTEX_LOCK_ERROR = 10,
+	MUTEX_UNLOCK_ERROR = 11,
 	USER_INPUT_ERROR = 41,
 }	t_error;
 

@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/14 13:20:53 by lilo          #+#    #+#                 */
-/*   Updated: 2025/07/29 14:13:15 by lilo          ########   odam.nl         */
+/*   Updated: 2025/08/04 17:01:19 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,12 @@
 
 t_error	spawn_guests(t_whiteboard *whiteboard);
 
+/* 
+	 - Acts as the "host" of the event
+	 - Waits for the threads to be created
+	 - Tells the threads when they can start their routine.
+	 - Sets up the start time of the event
+*/
 t_error	start_event(t_whiteboard *whiteboard)
 {
 	size_t	i;
@@ -23,13 +29,14 @@ t_error	start_event(t_whiteboard *whiteboard)
 	error_code = spawn_guests(whiteboard);
 	if (error_code != SUCCESS)
 		return (error_code);
-	whiteboard->event_start = TRUE;
 	//To do: set event start time
+	whiteboard->event_start = TRUE;
 	if (pthread_mutex_unlock(&whiteboard->protect_door) != 0)
 		return (MUTEX_UNLOCK_ERROR);
 	while (i < whiteboard->nbr_philosophers)
 	{
-		pthread_join(whiteboard->philosophers[i].thread, NULL);
+		if (pthread_join(whiteboard->philosophers[i].thread, NULL) != 0)
+			return (THREAD_JOIN_ERROR);
 		i++;
 	}
 	return (SUCCESS);
@@ -37,7 +44,8 @@ t_error	start_event(t_whiteboard *whiteboard)
 
 t_error	spawn_guests(t_whiteboard *whiteboard)
 {
-	size_t	i;
+	size_t			i;
+	t_philosopher	*philosopher;
 
 	i = 0;
 	if (pthread_mutex_lock(&whiteboard->protect_door) != 0)
@@ -45,10 +53,15 @@ t_error	spawn_guests(t_whiteboard *whiteboard)
 	whiteboard->event_start = FALSE;
 	while (i < whiteboard->nbr_philosophers)
 	{
-		if (pthread_create(&whiteboard->philosophers[i].thread, NULL,
-				philosopher_routine, (void *)&whiteboard->philosophers[i]) != 0)
+		philosopher = &whiteboard->philosophers[i];
+		philosopher->id = i;
+		if (pthread_create(&philosopher->thread, NULL,
+				philosopher_routine, philosopher) != 0)
 			return (THREAD_INIT_ERROR);
-		usleep(100);
+		philosopher->left_fork_ptr
+			= &philosopher->check_whiteboard_ptr->protect_forks_ptr[i];
+		philosopher->right_fork_ptr = &philosopher->check_whiteboard_ptr
+			->protect_forks_ptr[(i + 1) % whiteboard->nbr_philosophers];
 		i++;
 	}
 	return (SUCCESS);

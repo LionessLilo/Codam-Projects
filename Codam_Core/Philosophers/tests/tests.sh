@@ -2,6 +2,8 @@ SRCS="\
 ../src/input_checks.c \
 ../src/init.c \
 ../src/cleanup.c \
+../src/event.c \
+../src/routine.c \
 ../utils/ft_split.c \
 ../utils/lib_utils.c \
 ../utils/clean_up_utils.c \

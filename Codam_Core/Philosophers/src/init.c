@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/17 12:28:52 by lilo          #+#    #+#                 */
-/*   Updated: 2025/07/28 15:35:20 by lilo          ########   odam.nl         */
+/*   Updated: 2025/07/31 11:53:43 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ t_error	init_philosophers(t_whiteboard *whiteboard);
 /*
 	- Turns the input into whiteboard variables
 	- Initialises the whiteboard mutexes
+	- initialises the philosophers struct
 */
 
 t_error	init_whiteboard(t_whiteboard **whiteboard, char **input_list)

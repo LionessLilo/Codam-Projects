@@ -31,5 +31,6 @@ clean:
 fclean: clean
 	@rm -f $(NAME)
 	@rm -f philo
+	@rm -f ./tests/test_philo
     
 re: clean all
