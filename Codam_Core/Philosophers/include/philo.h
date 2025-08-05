@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/14 12:25:35 by lilo          #+#    #+#                 */
-/*   Updated: 2025/07/31 13:21:44 by lilo          ########   odam.nl         */
+/*   Updated: 2025/08/05 15:45:24 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,5 +100,8 @@ int			ft_isdigit(int c);
 char		**ft_split(char const *str, char chr);
 void		free_list(char **list_start, char **list);
 size_t		find_list_size(const char *str, char chr);
+
+/* Routine_utils*/
+t_error	print_action(t_philosopher *philosopher, char *action);
 
 #endif

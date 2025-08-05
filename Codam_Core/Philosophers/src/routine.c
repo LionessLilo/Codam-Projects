@@ -6,17 +6,22 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/17 12:29:11 by lilo          #+#    #+#                 */
-/*   Updated: 2025/08/04 17:30:43 by lilo          ########   odam.nl         */
+/*   Updated: 2025/08/05 17:01:14 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <philo.h>
 
+t_error	run_routine(t_philosopher *philosopher);
+t_error	eat_routine(t_philosopher *philosopher);
+t_error	sleep_routine(t_philosopher *philosopher);
+t_error	think_routine(t_philosopher *philosopher);
 
 void	*philosopher_routine(void *thread_arg)
 {
 	t_philosopher	*philosopher;
 	t_whiteboard	*whiteboard;
+	t_error			error_code;
 	int				i;
 
 	i = 0;
@@ -25,30 +30,89 @@ void	*philosopher_routine(void *thread_arg)
 	while (whiteboard->event_start == FALSE)
 		usleep(200);
 	if (philosopher->id % 2 != 0)
-		sleep_routine(philosopher);
-	while (i < 4)
-	{
-		eat_routine(philosopher);
-		sleep_routine(philosopher);
 		think_routine(philosopher);
+	while (i < philosopher->check_whiteboard_ptr->times_to_eat)
+	{
+		error_code = run_routine(philosopher);
+		if (error_code != SUCCESS)
+		{
+			ft_i
+		}
+			write(2, , 1);
+		philosopher->check_whiteboard_ptr->times_to_eat++;
 	}
 	return (NULL);
 }
+
+t_error	run_routine(t_philosopher *philosopher)
+{
+	t_error	error_code;
+
+	error_code = eat_routine(philosopher);
+	if (error_code != SUCCESS)
+	{
+		write(2, "Eat routine error with error code: ", 36);
+		return (error_code);
+	}
+	error_code = sleep_routine(philosopher);
+	if (error_code != SUCCESS)
+	{
+		write(2, "Sleep routine error with error code: ", 38);
+		return (error_code);
+	}
+	error_code = think_routine(philosopher);
+	if (error_code != SUCCESS)
+	{
+		write(2, "Thinking routine error with error code: ", 41);
+		return (error_code);
+	}
+	return (SUCCESS);
+}
+
+//To do: 
 t_error	eat_routine(t_philosopher *philosopher)
 {
-	pthread_mutex_lock(&philosopher->left_fork_ptr)
+	t_error	error_code;
+
+	if (pthread_mutex_lock(philosopher->left_fork_ptr) != SUCCESS)
+		return (MUTEX_LOCK_ERROR);
+	error_code = print_action(philosopher, "has taken a fork");
+	if (error_code != SUCCESS)
+		return (error_code);
+	if (pthread_mutex_lock(philosopher->right_fork_ptr) != SUCCESS)
+		return (MUTEX_LOCK_ERROR);
+	error_code = print_action(philosopher, "has taken a fork");
+	if (error_code != SUCCESS)
+		return (error_code);
+	error_code = print_action(philosopher, "is eating");
+	if (error_code != SUCCESS)
+		return (error_code);
+	usleep(philosopher->check_whiteboard_ptr->time_to_eat * 1000);
+	if (pthread_mutex_unlock(philosopher->left_fork_ptr) != SUCCESS)
+		return (MUTEX_UNLOCK_ERROR);
+	if (pthread_mutex_unlock(philosopher->right_fork_ptr) != SUCCESS)
+		return (MUTEX_UNLOCK_ERROR);
+	return (SUCCESS);
 }
 
 t_error	sleep_routine(t_philosopher *philosopher)
 {
-	pthread_mutex_lock(&philosopher->check_whiteboard_ptr->protect_print);
-	//get the time
-	printf("Philosopher %ld is sleeping\n");
-	pthread_mutex_unlock(&philosopher->check_whiteboard_ptr->protect_print);
+	t_error	error_code;
+
+	error_code = print_action(philosopher, "is sleeping");
+	if (error_code != SUCCESS)
+		return (error_code);
+	usleep(philosopher->check_whiteboard_ptr->time_to_sleep * 1000);
+	return (SUCCESS);
 }
 
 
 t_error	think_routine(t_philosopher *philosopher)
 {
-	
+	t_error	error_code;
+
+	error_code = print_action(philosopher, "is thinking");
+	if (error_code != SUCCESS)
+		return (error_code);
+	return (SUCCESS);
 }

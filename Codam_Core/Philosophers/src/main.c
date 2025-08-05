@@ -6,25 +6,11 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/14 12:47:54 by lilo          #+#    #+#                 */
-/*   Updated: 2025/07/28 20:18:23 by lilo          ########   odam.nl         */
+/*   Updated: 2025/08/05 16:39:36 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <philo.h>
-
-/*
-	Exit codes legend:
-	- All error id's are greater that 300
-	-1301 = function error -1 + error id 301
-
-	-1 = Other process return error
-		0 = Success
-		3 = General error
-		5 = Failed to malloc
-		6 = Thread error
-		7 = Mutex error
-	41 = Uer input error
-*/
 
 /*
 	- Checks input

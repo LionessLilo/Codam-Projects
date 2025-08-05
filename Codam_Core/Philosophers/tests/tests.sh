@@ -7,6 +7,7 @@ SRCS="\
 ../utils/ft_split.c \
 ../utils/lib_utils.c \
 ../utils/clean_up_utils.c \
+../utils/routine_utils.c \
 tests_main.c \
 test_utils.c \
 test_argc.c \

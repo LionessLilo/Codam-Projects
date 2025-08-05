@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/14 13:20:53 by lilo          #+#    #+#                 */
-/*   Updated: 2025/08/04 17:01:19 by lilo          ########   odam.nl         */
+/*   Updated: 2025/08/05 16:07:24 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ t_error	spawn_guests(t_whiteboard *whiteboard)
 	while (i < whiteboard->nbr_philosophers)
 	{
 		philosopher = &whiteboard->philosophers[i];
-		philosopher->id = i;
+		philosopher->id = i + 1;
 		if (pthread_create(&philosopher->thread, NULL,
 				philosopher_routine, philosopher) != 0)
 			return (THREAD_INIT_ERROR);
