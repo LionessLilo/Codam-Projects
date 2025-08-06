@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/17 12:29:11 by lilo          #+#    #+#                 */
-/*   Updated: 2025/08/05 17:01:14 by lilo          ########   odam.nl         */
+/*   Updated: 2025/08/06 12:28:13 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,18 @@ t_error	eat_routine(t_philosopher *philosopher);
 t_error	sleep_routine(t_philosopher *philosopher);
 t_error	think_routine(t_philosopher *philosopher);
 
+/* 
+	- Delegates starting philosophers
+	- Runs the philosophers routines
+	- Writes the error and error code if an error occurs
+*/
+
 void	*philosopher_routine(void *thread_arg)
 {
 	t_philosopher	*philosopher;
 	t_whiteboard	*whiteboard;
 	t_error			error_code;
-	int				i;
+	unsigned int	i;
 
 	i = 0;
 	philosopher = (t_philosopher *)thread_arg;
@@ -36,9 +42,9 @@ void	*philosopher_routine(void *thread_arg)
 		error_code = run_routine(philosopher);
 		if (error_code != SUCCESS)
 		{
-			ft_i
+			write_error_code(error_code);
+			return (NULL);
 		}
-			write(2, , 1);
 		philosopher->check_whiteboard_ptr->times_to_eat++;
 	}
 	return (NULL);
@@ -64,6 +70,7 @@ t_error	run_routine(t_philosopher *philosopher)
 	if (error_code != SUCCESS)
 	{
 		write(2, "Thinking routine error with error code: ", 41);
+		write(2, ft_itoa(error_code), 2);
 		return (error_code);
 	}
 	return (SUCCESS);
