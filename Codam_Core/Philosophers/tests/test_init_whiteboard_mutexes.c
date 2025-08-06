@@ -6,7 +6,7 @@
 /*   By: lionesslilo <lionesslilo@student.codam.      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/23 16:15:05 by lionesslilo   #+#    #+#                 */
-/*   Updated: 2025/07/28 15:31:02 by lilo          ########   odam.nl         */
+/*   Updated: 2025/08/06 17:22:07 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,5 @@ void	test_init_whiteboard_mutexes(void)
 	if (funct_return != 0)
 			log_error(ft_itoa(MUTEX_UNLOCK_ERROR));
 	log_tick();
-
 	clean_whiteboard(&whiteboard);
 }

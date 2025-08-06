@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/31 11:32:51 by lilo          #+#    #+#                 */
-/*   Updated: 2025/08/04 14:22:40 by lilo          ########   odam.nl         */
+/*   Updated: 2025/08/06 17:36:55 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ void	test_spawn_guests(void)
 		log_error("Issue with init philosophers");
 	error = spawn_guests(whiteboard);
 	log_test(error == SUCCESS, ft_itoa(error));
-	log_test(whiteboard->philosophers[0].id == 0
-		&& whiteboard->philosophers[1].id == 1
-		&& whiteboard->philosophers[2].id == 2,
+	log_test(whiteboard->philosophers[0].id == 1
+		&& whiteboard->philosophers[1].id == 2
+		&& whiteboard->philosophers[2].id == 3,
 		"Philosopher not inistialising with correct information");
 	log_test(whiteboard->philosophers[0].check_whiteboard_ptr->time_to_die
 		== 200

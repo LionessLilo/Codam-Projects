@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/14 12:25:35 by lilo          #+#    #+#                 */
-/*   Updated: 2025/08/06 12:27:32 by lilo          ########   odam.nl         */
+/*   Updated: 2025/08/06 17:28:18 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ typedef struct s_philosopher	t_philosopher;
 typedef struct s_whiteboard
 {
 	size_t			nbr_philosophers;
-	unsigned int	time_to_die;
+	int				time_to_die;
 	unsigned int	time_to_eat;
-	unsigned int	time_to_sleep;
-	unsigned int	times_to_eat;
+	int				time_to_sleep;
+	int				times_to_eat;
 	int				current_time;
 	int				is_dead;
 	int				event_start;
@@ -96,6 +96,7 @@ size_t		ft_strlen(const char *string);
 size_t		ft_strlcpy(char *dst, const char *src, size_t size);
 long int	ft_atol(const char *str);
 int			ft_isdigit(int c);
+char		*ft_strdup(const char *s);
 
 /* ft_split */
 char		**ft_split(char const *str, char chr);
@@ -104,6 +105,9 @@ size_t		find_list_size(const char *str, char chr);
 
 /* ft_itoa*/
 char	*ft_itoa(int nbr);
+
+/* Write utils*/
+char	*ft_strdup(const char *s);
 
 /* Routine_utils*/
 t_error	print_action(t_philosopher *philosopher, char *action);

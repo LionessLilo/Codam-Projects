@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/08/06 10:58:53 by lilo          #+#    #+#                 */
-/*   Updated: 2025/08/06 12:31:41 by lilo          ########   odam.nl         */
+/*   Updated: 2025/08/06 17:07:20 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ static char	*calculations_and_fill(long l_nbr, char *printable_nbr);
 
 char	*ft_itoa(int nbr)
 {
-	long int unsugned	nbr_size;
-	char				*printable_nbr;
-	char				*str_end;
-	long		l_nbr;
+	int		nbr_size;
+	char	*printable_nbr;
+	char	*str_end;
+	long	l_nbr;
 
 	l_nbr = (long)nbr;
 	printable_nbr = exceptions(l_nbr);
@@ -30,7 +30,7 @@ char	*ft_itoa(int nbr)
 	else if (l_nbr == 0 || l_nbr == -2147483648)
 		return (NULL);
 	nbr_size = count_digits(nbr);
-	printable_nbr = malloc(sizeof(char) * (nbr_size + 1));
+	printable_nbr = malloc(sizeof(char) * (size_t)(nbr_size + 1));
 	if (!printable_nbr)
 		return (NULL);
 	str_end = printable_nbr + nbr_size;
@@ -83,7 +83,7 @@ static int	count_digits(long l_nbr)
 
 static char	*calculations_and_fill(long l_nbr, char *printable_nbr)
 {
-	int		sign;
+	long	sign;
 
 	sign = l_nbr;
 	if (l_nbr < 0)
@@ -91,11 +91,11 @@ static char	*calculations_and_fill(long l_nbr, char *printable_nbr)
 	while (l_nbr / 10)
 	{
 		printable_nbr--;
-		*printable_nbr = (l_nbr % 10) + '0';
+		*printable_nbr = (char)(l_nbr % 10) + '0';
 		l_nbr = l_nbr / 10;
 	}
 	printable_nbr--;
-	*printable_nbr = (l_nbr % 10) + '0';
+	*printable_nbr = (char)(l_nbr % 10) + '0';
 	if (sign < 0)
 	{
 		printable_nbr--;

@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/17 12:29:11 by lilo          #+#    #+#                 */
-/*   Updated: 2025/08/06 12:28:13 by lilo          ########   odam.nl         */
+/*   Updated: 2025/08/06 18:02:31 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	*philosopher_routine(void *thread_arg)
 	t_philosopher	*philosopher;
 	t_whiteboard	*whiteboard;
 	t_error			error_code;
-	unsigned int	i;
+	int				i;
 
 	i = 0;
 	philosopher = (t_philosopher *)thread_arg;
@@ -45,7 +45,7 @@ void	*philosopher_routine(void *thread_arg)
 			write_error_code(error_code);
 			return (NULL);
 		}
-		philosopher->check_whiteboard_ptr->times_to_eat++;
+		i++;
 	}
 	return (NULL);
 }
@@ -109,7 +109,7 @@ t_error	sleep_routine(t_philosopher *philosopher)
 	error_code = print_action(philosopher, "is sleeping");
 	if (error_code != SUCCESS)
 		return (error_code);
-	usleep(philosopher->check_whiteboard_ptr->time_to_sleep * 1000);
+	usleep((unsigned int)(philosopher->check_whiteboard_ptr->time_to_sleep * 1000));
 	return (SUCCESS);
 }
 

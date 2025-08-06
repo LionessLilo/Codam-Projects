@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/17 12:28:52 by lilo          #+#    #+#                 */
-/*   Updated: 2025/07/31 11:53:43 by lilo          ########   odam.nl         */
+/*   Updated: 2025/08/06 17:28:41 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	input_to_whiteboard(t_whiteboard *whiteboard, char **input_list)
 {
 	whiteboard->nbr_philosophers = (long unsigned)ft_atol(input_list[0]);
 	whiteboard->time_to_die = (int)ft_atol(input_list[1]);
-	whiteboard->time_to_eat = (int)ft_atol(input_list[2]);
+	whiteboard->time_to_eat = (unsigned)ft_atol(input_list[2]);
 	whiteboard->time_to_sleep = (int)ft_atol(input_list[3]);
 	if (input_list[4])
 		whiteboard->times_to_eat = (int)ft_atol(input_list[4]);
