@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/14 12:47:54 by lilo          #+#    #+#                 */
-/*   Updated: 2025/08/05 16:39:36 by lilo          ########   odam.nl         */
+/*   Updated: 2025/08/07 11:41:51 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,10 @@ int	main(int argc, char **argv)
 
 	error_check = input_checks(argc, argv);
 	if (error_check != SUCCESS)
+	{
+		printf("Error: Invalid arguments");
 		return (error_check);
+	}
 	argv = create_argv(argc, argv);
 	if (!argv)
 		return (FUNCT_ERROR);

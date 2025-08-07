@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/14 13:20:53 by lilo          #+#    #+#                 */
-/*   Updated: 2025/08/06 11:12:53 by lilo          ########   odam.nl         */
+/*   Updated: 2025/08/07 12:04:07 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,11 @@ t_error	start_event(t_whiteboard *whiteboard)
 	t_error	error_code;
 
 	i = 0;
+	if (whiteboard->nbr_philosophers == 1)
+	{
+		usleep(whiteboard->time_to_die * 1000);
+		return (SUCCESS);
+	}
 	error_code = spawn_guests(whiteboard);
 	if (error_code != SUCCESS)
 		return (error_code);
@@ -46,6 +51,7 @@ t_error	spawn_guests(t_whiteboard *whiteboard)
 {
 	size_t			i;
 	t_philosopher	*philosopher;
+	pthread_t		monitor_thread;
 
 	i = 0;
 	if (pthread_mutex_lock(&whiteboard->protect_door) != 0)
@@ -64,5 +70,7 @@ t_error	spawn_guests(t_whiteboard *whiteboard)
 			->protect_forks_ptr[(i + 1) % whiteboard->nbr_philosophers];
 		i++;
 	}
+	if (pthread_create(&monitor_thread, NULL, monitor_routine, whiteboard) != SUCCESS)
+		return (THREAD_INIT_ERROR);
 	return (SUCCESS);
 }

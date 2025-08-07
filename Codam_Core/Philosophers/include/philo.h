@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/14 12:25:35 by lilo          #+#    #+#                 */
-/*   Updated: 2025/08/06 17:28:18 by lilo          ########   odam.nl         */
+/*   Updated: 2025/08/07 13:57:08 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,13 @@
 # include <pthread.h>
 # include <unistd.h>
 # include <limits.h>
+#include <sys/time.h>
 
 # define TRUE 1
 # define FALSE 2
 
 typedef struct s_philosopher	t_philosopher;
+typedef struct timeval	t_time;
 
 typedef struct s_whiteboard
 {
@@ -65,6 +67,7 @@ typedef enum e_error
 	MUTEX_INIT_ERROR = 9,
 	MUTEX_LOCK_ERROR = 10,
 	MUTEX_UNLOCK_ERROR = 11,
+	PHILOSOPHER_DIED = 12,
 	USER_INPUT_ERROR = 41,
 }	t_error;
 
@@ -104,12 +107,16 @@ void		free_list(char **list_start, char **list);
 size_t		find_list_size(const char *str, char chr);
 
 /* ft_itoa*/
-char	*ft_itoa(int nbr);
+char		*ft_itoa(int nbr);
 
 /* Write utils*/
-char	*ft_strdup(const char *s);
+char		*ft_strdup(const char *s);
 
 /* Routine_utils*/
-t_error	print_action(t_philosopher *philosopher, char *action);
+t_error		print_action(t_philosopher *philosopher, char *action);
+
+/* Monitor */
+int			monitor_routine(void);
+t_error		check_if_dead(t_philosopher *philosopher, int routine_time);
 
 #endif

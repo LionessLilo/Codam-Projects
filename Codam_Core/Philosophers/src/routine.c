@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/17 12:29:11 by lilo          #+#    #+#                 */
-/*   Updated: 2025/08/06 18:02:31 by lilo          ########   odam.nl         */
+/*   Updated: 2025/08/07 13:56:40 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ void	*philosopher_routine(void *thread_arg)
 		usleep(200);
 	if (philosopher->id % 2 != 0)
 		think_routine(philosopher);
-	while (i < philosopher->check_whiteboard_ptr->times_to_eat)
+	while (i < philosopher->check_whiteboard_ptr->times_to_eat
+		|| philosopher->check_whiteboard_ptr->is_dead == FALSE)
 	{
 		error_code = run_routine(philosopher);
 		if (error_code != SUCCESS)
@@ -95,6 +96,7 @@ t_error	eat_routine(t_philosopher *philosopher)
 	if (error_code != SUCCESS)
 		return (error_code);
 	usleep(philosopher->check_whiteboard_ptr->time_to_eat * 1000);
+	philosopher->time_last_ate = gettimeofday(&time, NULL);
 	if (pthread_mutex_unlock(philosopher->left_fork_ptr) != SUCCESS)
 		return (MUTEX_UNLOCK_ERROR);
 	if (pthread_mutex_unlock(philosopher->right_fork_ptr) != SUCCESS)
@@ -106,6 +108,8 @@ t_error	sleep_routine(t_philosopher *philosopher)
 {
 	t_error	error_code;
 
+	if (check_if_dead(philosopher, philosopher->check_whiteboard_ptr->time_to_sleep) == TRUE)
+		return (SUCCESS);
 	error_code = print_action(philosopher, "is sleeping");
 	if (error_code != SUCCESS)
 		return (error_code);
