@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/14 12:25:35 by lilo          #+#    #+#                 */
-/*   Updated: 2025/08/07 13:57:08 by lilo          ########   odam.nl         */
+/*   Updated: 2025/08/11 17:01:20 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,35 +55,20 @@ typedef struct s_philosopher
 	t_whiteboard	*check_whiteboard_ptr;
 }					t_philosopher;
 
-typedef enum e_error
-{
-	FUNCT_ERROR = -1,
-	SUCCESS = 0,
-	GEN_ERROR = 3,
-	MALLOC_FAIL = 5,
-	THREAD_INIT_ERROR = 6,
-	THREAD_JOIN_ERROR = 7,
-	THREAD_ERROR = 8,
-	MUTEX_INIT_ERROR = 9,
-	MUTEX_LOCK_ERROR = 10,
-	MUTEX_UNLOCK_ERROR = 11,
-	PHILOSOPHER_DIED = 12,
-	USER_INPUT_ERROR = 41,
-}	t_error;
-
 /* Src Functions */
 /* Input checks*/
-t_error		input_checks(int argc, char **argv);
+int			input_checks(int argc, char **argv);
 
 /* Init */
-t_error		init_whiteboard(t_whiteboard **whiteboard, char **input_list);
+int			init_whiteboard(t_whiteboard **whiteboard, char **input_list);
 
 /* Cleanup*/
 void		cleanup_list(char **list_start);
 void		clean_whiteboard(t_whiteboard **whiteboard);
+void		write_error(char *message, int error_code);
 
 /* Event */
-t_error		start_event(t_whiteboard *whiteboard);
+int			start_event(t_whiteboard *whiteboard);
 
 /* Routine */
 void		*philosopher_routine(void *thread_arg);

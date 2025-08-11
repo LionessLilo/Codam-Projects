@@ -6,16 +6,16 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/14 13:17:52 by lilo          #+#    #+#                 */
-/*   Updated: 2025/07/24 15:45:23 by lilo          ########   odam.nl         */
+/*   Updated: 2025/08/11 16:13:20 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <philo.h>
 
-t_error	check_argc(int argc);
-t_error	argv_check(char **input_list);
-t_error	check_digits(char **input_list);
-t_error	check_int(char **input_list);
+int	check_argc(int argc);
+int	argv_check(char **input_list);
+int	check_digits(char **input_list);
+int	check_int(char **input_list);
 
 /*
 	- Checks argc
@@ -23,60 +23,55 @@ t_error	check_int(char **input_list);
 	- Cleans up list after ft_split if it was used.
 */
 
-t_error	input_checks(int argc,
+int	input_checks(int argc,
 				char **argv)
 {
 	int		argc_working;
 	char	**input_list;
-	t_error	error_check;
+	int		error_check;
 
 	argc_working = argc;
 	if (argc == 2)
 		argc_working = ((int)find_list_size(argv[1], ' ')) + 1;
-	error_check = check_argc(argc_working);
-	if (error_check != SUCCESS)
-		return (error_check);
+	if (check_argc(argc_working) == 41);
+		return (write_error("Invalid user input", 41), -1);
 	if (argc == 2)
 	{
 		input_list = ft_split(argv[1], ' ');
 		if (!input_list)
-			return (FUNCT_ERROR);
+			return (write_error("Input split failed", -1), -1);
 	}
 	else
 		input_list = argv + 1;
 	error_check = argv_check(input_list);
 	if (argc == 2)
 		cleanup_list(input_list);
-	if (error_check != SUCCESS)
-		return (error_check);
-	return (SUCCESS);
+	if (error_check != 0)
+		return (write_error("Invalid user input", 41), -1);
+	return (0);
 }
 
-t_error	check_argc(int argc)
+int	check_argc(int argc)
 {
 	if (argc < 5)
-		return (USER_INPUT_ERROR);
+		return (write_error("Invalid user input", 41), 41);
 	if (argc > 6)
-		return (USER_INPUT_ERROR);
-	return (SUCCESS);
+		return (write_error("Invalid user input", 41), 41);
+	return (0);
 }
 
-t_error	argv_check(char **input_list)
+int	argv_check(char **input_list)
 {
-	t_error	error_check;
-
 	if (!input_list)
-		return (USER_INPUT_ERROR);
-	error_check = check_digits(input_list);
-	if (error_check != SUCCESS)
-		return (USER_INPUT_ERROR);
-	error_check = check_int(input_list);
-	if (error_check != SUCCESS)
-		return (USER_INPUT_ERROR);
-	return (SUCCESS);
+		return (41);
+	if (check_digits(input_list) == 41);
+		return (41);
+	if (check_int(input_list) == 41);
+		return (41);
+	return (0);
 }
 
-t_error	check_digits(char **input_list)
+int	check_digits(char **input_list)
 {
 	char	*item;
 
@@ -84,19 +79,19 @@ t_error	check_digits(char **input_list)
 	{
 		item = *input_list;
 		if (!item || *item == '\0')
-			return (USER_INPUT_ERROR);
+			return (41);
 		while (*item)
 		{
 			if (ft_isdigit(*item) == 0)
-				return (USER_INPUT_ERROR);
+				return (41);
 			item++;
 		}
 		input_list++;
 	}
-	return (SUCCESS);
+	return (0);
 }
 
-t_error	check_int(char **input_list)
+int	check_int(char **input_list)
 {
 	char		*item;
 	long int	str_to_nbr;
@@ -106,10 +101,10 @@ t_error	check_int(char **input_list)
 		item = *input_list;
 		str_to_nbr = ft_atol(item);
 		if (input_list[0] && str_to_nbr > 200)
-			return (USER_INPUT_ERROR);
+			return (41);
 		if (str_to_nbr > INT_MAX)
-			return (USER_INPUT_ERROR);
+			return (41);
 		input_list++;
 	}
-	return (SUCCESS);
+	return (0);
 }

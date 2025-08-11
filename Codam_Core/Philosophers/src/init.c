@@ -6,16 +6,16 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/17 12:28:52 by lilo          #+#    #+#                 */
-/*   Updated: 2025/08/06 17:28:41 by lilo          ########   odam.nl         */
+/*   Updated: 2025/08/11 17:06:30 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <philo.h>
 
 void	input_to_whiteboard(t_whiteboard *whiteboard, char **input_list);
-t_error	init_whiteboard_mutexes(t_whiteboard *whiteboard);
-t_error	init_forks(t_whiteboard *whiteboard);
-t_error	init_philosophers(t_whiteboard *whiteboard);
+int		init_whiteboard_mutexes(t_whiteboard *whiteboard);
+int		init_forks(t_whiteboard *whiteboard);
+int		init_philosophers(t_whiteboard *whiteboard);
 
 /*
 	- Turns the input into whiteboard variables
@@ -23,24 +23,17 @@ t_error	init_philosophers(t_whiteboard *whiteboard);
 	- initialises the philosophers struct
 */
 
-t_error	init_whiteboard(t_whiteboard **whiteboard, char **input_list)
+int	init_whiteboard(t_whiteboard **whiteboard, char **input_list)
 {
-	t_error	error;
-
 	*whiteboard = malloc(sizeof(t_whiteboard));
 	if (!*whiteboard)
-		return (MALLOC_FAIL);
+		return (write_error("Whiteboard malloc fail", 5), -1);
 	input_to_whiteboard(*whiteboard, input_list);
-	error = init_whiteboard_mutexes(*whiteboard);
-	if (error != SUCCESS)
-		return (error);
-	error = init_philosophers(*whiteboard);
-	if (error != SUCCESS)
-	{
-		clean_whiteboard((void *)&whiteboard);
-		return (error);
-	}
-	return (SUCCESS);
+	if (init_whiteboard_mutexes(*whiteboard) != 0);
+		return (-1);
+	if (init_philosophers(*whiteboard) != 0)
+		return (clean_whiteboard((void *)&whiteboard), -1);
+	return (0);
 }
 
 void	input_to_whiteboard(t_whiteboard *whiteboard, char **input_list)
@@ -57,31 +50,26 @@ void	input_to_whiteboard(t_whiteboard *whiteboard, char **input_list)
 	whiteboard->event_start = 0;
 }
 
-t_error	init_whiteboard_mutexes(t_whiteboard *whiteboard)
+int	init_whiteboard_mutexes(t_whiteboard *whiteboard)
 {
-	t_error	error_check;
 	int		funct_result;
 
 	whiteboard->protect_forks_ptr = malloc(sizeof(pthread_mutex_t)
 			* whiteboard->nbr_philosophers);
 	if (!whiteboard->protect_forks_ptr)
-		return (MALLOC_FAIL);
-	error_check = init_forks(whiteboard);
-	if (error_check != SUCCESS)
-		return (MUTEX_INIT_ERROR);
-	funct_result = pthread_mutex_init(&whiteboard->protect_print, NULL);
-	if (funct_result != 0)
-		return (MUTEX_INIT_ERROR);
-	funct_result = pthread_mutex_init(&whiteboard->protect_dead, NULL);
-	if (funct_result != 0)
-		return (MUTEX_INIT_ERROR);
-	funct_result = pthread_mutex_init(&whiteboard->protect_door, NULL);
-	if (funct_result != 0)
-		return (MUTEX_INIT_ERROR);
-	return (SUCCESS);
+		return (write_error("Forks array malloc fail.", 5), -1);
+	if (init_forks(whiteboard) == 7);
+		return (write_error("Failed to initilaise forks", 7), -1);
+	if (pthread_mutex_init(&whiteboard->protect_print, NULL) != 0);
+		return (write_error("Print mutex failed to initialise.", 7), -1);
+	if (pthread_mutex_init(&whiteboard->protect_dead, NULL) != 0);
+		return (write_error("Dead mutex failed to initialise", 7), -1);
+	if (pthread_mutex_init(&whiteboard->protect_door, NULL) != 0);
+		return (write_error("Door mutex failed to initialise", 7), -1);
+	return (0);
 }
 
-t_error	init_forks(t_whiteboard *whiteboard)
+int	init_forks(t_whiteboard *whiteboard)
 {
 	size_t	i;
 	int		funct_result;
@@ -89,19 +77,15 @@ t_error	init_forks(t_whiteboard *whiteboard)
 	i = 0;
 	while (i < whiteboard->nbr_philosophers)
 	{
-		funct_result = pthread_mutex_init(&whiteboard->protect_forks_ptr[i],
-				NULL);
-		if (funct_result != 0)
-		{
-			clean_whiteboard(&whiteboard);
-			return (MUTEX_INIT_ERROR);
-		}
+		if (pthread_mutex_init(&whiteboard->protect_forks_ptr[i],
+				NULL) != 0);	
+			return (clean_whiteboard(&whiteboard), 7);
 		i++;
 	}
-	return (SUCCESS);
+	return (0);
 }
 
-t_error	init_philosophers(t_whiteboard *whiteboard)
+int	init_philosophers(t_whiteboard *whiteboard)
 {
 	size_t			i;
 	long unsigned	right_fork_calc;
@@ -110,7 +94,7 @@ t_error	init_philosophers(t_whiteboard *whiteboard)
 	whiteboard->philosophers = malloc(sizeof(t_philosopher)
 			* whiteboard->nbr_philosophers);
 	if (!whiteboard->philosophers)
-		return (MALLOC_FAIL);
+		return (write_error("Philosophers failed to initialise", 5), -1);
 	while (i < whiteboard->nbr_philosophers)
 	{
 		whiteboard->philosophers[i].id = i;
@@ -124,5 +108,5 @@ t_error	init_philosophers(t_whiteboard *whiteboard)
 			= &whiteboard->protect_forks_ptr[right_fork_calc];
 		i++;
 	}
-	return (SUCCESS);
+	return (0);
 }
