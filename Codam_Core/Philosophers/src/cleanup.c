@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/17 12:29:45 by lilo          #+#    #+#                 */
-/*   Updated: 2025/08/11 17:18:23 by lilo          ########   odam.nl         */
+/*   Updated: 2025/08/18 11:45:04 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,11 @@ void	write_error(char *message, int error_code)
 {
 	char	*error_to_write;
 
-	write(2, "Error ", 8);
+	write(2, "Error ", 7);
 	error_to_write = ft_itoa(error_code);
-	write(2, &error_to_write, ft_strlen(error_to_write));
-	write(2, ": ", 1);
-	write(2, &message, ft_strlen(message));
+	write(2, error_to_write, ft_strlen(error_to_write));
+	write(2, ": ", 2);
+	write(2, message, ft_strlen(message));
+	write(2, "\n", 1);
+	free(error_to_write);
 }

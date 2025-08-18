@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/17 12:28:52 by lilo          #+#    #+#                 */
-/*   Updated: 2025/08/11 17:06:30 by lilo          ########   odam.nl         */
+/*   Updated: 2025/08/15 11:01:45 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	init_whiteboard(t_whiteboard **whiteboard, char **input_list)
 	if (!*whiteboard)
 		return (write_error("Whiteboard malloc fail", 5), -1);
 	input_to_whiteboard(*whiteboard, input_list);
-	if (init_whiteboard_mutexes(*whiteboard) != 0);
+	if (init_whiteboard_mutexes(*whiteboard) != 0)
 		return (-1);
 	if (init_philosophers(*whiteboard) != 0)
 		return (clean_whiteboard((void *)&whiteboard), -1);
@@ -39,7 +39,7 @@ int	init_whiteboard(t_whiteboard **whiteboard, char **input_list)
 void	input_to_whiteboard(t_whiteboard *whiteboard, char **input_list)
 {
 	whiteboard->nbr_philosophers = (long unsigned)ft_atol(input_list[0]);
-	whiteboard->time_to_die = (int)ft_atol(input_list[1]);
+	whiteboard->time_to_die = (unsigned)ft_atol(input_list[1]);
 	whiteboard->time_to_eat = (unsigned)ft_atol(input_list[2]);
 	whiteboard->time_to_sleep = (int)ft_atol(input_list[3]);
 	if (input_list[4])
@@ -52,19 +52,17 @@ void	input_to_whiteboard(t_whiteboard *whiteboard, char **input_list)
 
 int	init_whiteboard_mutexes(t_whiteboard *whiteboard)
 {
-	int		funct_result;
-
 	whiteboard->protect_forks_ptr = malloc(sizeof(pthread_mutex_t)
 			* whiteboard->nbr_philosophers);
 	if (!whiteboard->protect_forks_ptr)
 		return (write_error("Forks array malloc fail.", 5), -1);
-	if (init_forks(whiteboard) == 7);
+	if (init_forks(whiteboard) == 7)
 		return (write_error("Failed to initilaise forks", 7), -1);
-	if (pthread_mutex_init(&whiteboard->protect_print, NULL) != 0);
+	if (pthread_mutex_init(&whiteboard->protect_print, NULL) != 0)
 		return (write_error("Print mutex failed to initialise.", 7), -1);
-	if (pthread_mutex_init(&whiteboard->protect_dead, NULL) != 0);
+	if (pthread_mutex_init(&whiteboard->protect_dead, NULL) != 0)
 		return (write_error("Dead mutex failed to initialise", 7), -1);
-	if (pthread_mutex_init(&whiteboard->protect_door, NULL) != 0);
+	if (pthread_mutex_init(&whiteboard->protect_door, NULL) != 0)
 		return (write_error("Door mutex failed to initialise", 7), -1);
 	return (0);
 }
@@ -72,13 +70,12 @@ int	init_whiteboard_mutexes(t_whiteboard *whiteboard)
 int	init_forks(t_whiteboard *whiteboard)
 {
 	size_t	i;
-	int		funct_result;
 
 	i = 0;
 	while (i < whiteboard->nbr_philosophers)
 	{
 		if (pthread_mutex_init(&whiteboard->protect_forks_ptr[i],
-				NULL) != 0);	
+				NULL) != 0)
 			return (clean_whiteboard(&whiteboard), 7);
 		i++;
 	}

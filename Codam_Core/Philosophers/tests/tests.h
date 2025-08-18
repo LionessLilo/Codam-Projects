@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/16 14:20:42 by lilo          #+#    #+#                 */
-/*   Updated: 2025/07/31 13:21:49 by lilo          ########   odam.nl         */
+/*   Updated: 2025/08/15 10:55:25 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ void	log_tick(void);
 void	log_error(const char *message);
 char	*ft_itoa(int nbr);
 int		argv_check(char **input_list);
-t_error	init_whiteboard_mutexes(t_whiteboard *whiteboard);
-t_error	init_forks(t_whiteboard *whiteboard);
-t_error	init_philosophers(t_whiteboard *whiteboard);
-t_error	spawn_guests(t_whiteboard *whiteboard);
+int		init_whiteboard_mutexes(t_whiteboard *whiteboard);
+int		init_forks(t_whiteboard *whiteboard);
+int		init_philosophers(t_whiteboard *whiteboard);
+int		spawn_guests(t_whiteboard *whiteboard);
 
 /* Test functions*/
 void	test_argc(void);

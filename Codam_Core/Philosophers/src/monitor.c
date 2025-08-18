@@ -6,18 +6,13 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/17 12:29:27 by lilo          #+#    #+#                 */
-/*   Updated: 2025/08/07 14:17:00 by lilo          ########   odam.nl         */
+/*   Updated: 2025/08/15 10:52:42 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <philo.h>
-t_error	monitor_routine(t_whiteboard *whiteboard)
-{
-	
-	return (SUCCESS);
-}
 
-t_error	check_if_dead(t_philosopher *philosopher, int routine_time)
+int	check_if_dead(t_philosopher *philosopher, int routine_time)
 {
 	int		time_dead;
 	t_time	time;

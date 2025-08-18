@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/17 12:29:11 by lilo          #+#    #+#                 */
-/*   Updated: 2025/08/11 18:16:09 by lilo          ########   odam.nl         */
+/*   Updated: 2025/08/18 11:55:29 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,24 +36,24 @@ void	*philosopher_routine(void *thread_arg)
 		usleep(200);
 	if (philosopher->id % 2 != 0)
 		if (think_routine(philosopher) == -1)
-			return ;
+			return (-1);
 	while (i < philosopher->check_whiteboard_ptr->times_to_eat
 		|| philosopher->check_whiteboard_ptr->is_dead == FALSE)
 	{
-		if (run_routine(philosopher) == -1);
-			return ;
+		if (run_routine(philosopher) == -1)
+			return (-1);
 		i++;
 	}
-	return (NULL);
+	return (0);
 }
 
 int	run_routine(t_philosopher *philosopher)
 {
-	if (eat_routine(philosopher) != 0);
+	if (eat_routine(philosopher) != 0)
 		return (-1);
-	if (sleep_routine(philosopher) == -1);
+	if (sleep_routine(philosopher) == -1)
 		return (-1);
-	if (think_routine(philosopher) == -1);
+	if (think_routine(philosopher) == -1)
 		return (-1);
 	return (0);
 }
@@ -61,13 +61,15 @@ int	run_routine(t_philosopher *philosopher)
 //To do: 
 int	eat_routine(t_philosopher *philosopher)
 {
+	t_time	time;
+	
 	if (pthread_mutex_lock(philosopher->left_fork_ptr) != 0)
 		return (write_error("Left fork failed to lock.", 7), -1);
-	if (print_action(philosopher, "has taken a fork") == -1);
+	if (print_action(philosopher, "has taken a fork") == -1)
 		return (-1);
 	if (pthread_mutex_lock(philosopher->right_fork_ptr) != 0)
 		return (write_error("Right fork failed to lock", 7), -1);
-	if (print_action(philosopher, "has taken a fork") == -1);
+	if (print_action(philosopher, "has taken a fork") == -1)
 		return (-1);
 	if (print_action(philosopher, "is eating") == -1)
 		return (-1);
@@ -82,8 +84,8 @@ int	eat_routine(t_philosopher *philosopher)
 
 int	sleep_routine(t_philosopher *philosopher)
 {
-	if (check_if_dead(philosopher, philosopher->check_whiteboard_ptr->time_to_sleep) == TRUE)
-		return (-1);
+	// if (check_if_dead(philosopher, philosopher->check_whiteboard_ptr->time_to_sleep) == TRUE)
+	// 	return (-1);
 	if (print_action(philosopher, "is sleeping") == -1)
 		return (-1);
 	usleep((unsigned int)(philosopher->check_whiteboard_ptr->time_to_sleep * 1000));
@@ -93,7 +95,7 @@ int	sleep_routine(t_philosopher *philosopher)
 
 int	think_routine(t_philosopher *philosopher)
 {
-	if (print_action(philosopher, "is thinking") == -1);
+	if (print_action(philosopher, "is thinking") == -1)
 		return (-1);
 	return (0);
 }

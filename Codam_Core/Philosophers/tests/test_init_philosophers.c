@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/24 18:18:02 by lilo          #+#    #+#                 */
-/*   Updated: 2025/07/28 11:56:29 by lilo          ########   odam.nl         */
+/*   Updated: 2025/08/15 10:53:45 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,22 @@
 void	test_init_philosophers(void)
 {
 	t_whiteboard	*whiteboard;
-	t_error			error;
+	int				error;
 	size_t			i;
 
 	i = 0;
 	whiteboard = malloc(sizeof(t_whiteboard));
 	if (!whiteboard)
-		exit (MALLOC_FAIL);
+		exit (-1);
 	whiteboard->nbr_philosophers = 5;
 	whiteboard->protect_forks_ptr = malloc(sizeof(pthread_mutex_t)
 			* whiteboard->nbr_philosophers);
 	if (!whiteboard->protect_forks_ptr)
-		log_error(ft_itoa(MALLOC_FAIL));
+		log_error(ft_itoa(-1));
 	init_forks(whiteboard);
 	error = init_philosophers(whiteboard);
 	printf("Runs without fail:\n");
-	log_test(error == SUCCESS, ft_itoa(error));
+	log_test(error == 0, ft_itoa(error));
 	printf("\nInitialises the correct values:\n");
 	while (i < whiteboard->nbr_philosophers)
 	{

@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/31 11:32:51 by lilo          #+#    #+#                 */
-/*   Updated: 2025/08/06 17:36:55 by lilo          ########   odam.nl         */
+/*   Updated: 2025/08/18 11:36:32 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,23 +15,24 @@
 void	test_spawn_guests(void)
 {
 	t_whiteboard	*whiteboard;
-	t_error			error;
+	int			error;
 
 	whiteboard = malloc(sizeof(t_whiteboard));
 	if (!whiteboard)
-		exit (MALLOC_FAIL);
+		exit (-1);
 	whiteboard->nbr_philosophers = 3;
 	whiteboard->time_to_die = 200;
 	whiteboard->protect_forks_ptr = malloc(sizeof(pthread_mutex_t)
 			* whiteboard->nbr_philosophers);
 	if (!whiteboard->protect_forks_ptr)
-		log_error(ft_itoa(MALLOC_FAIL));
+		log_error(ft_itoa(-1));
 	init_forks(whiteboard);
 	error = init_philosophers(whiteboard);
-	if (error != SUCCESS)
+	if (error != 0)
 		log_error("Issue with init philosophers");
+	pthread_mutex_init(&whiteboard->protect_door, NULL);
 	error = spawn_guests(whiteboard);
-	log_test(error == SUCCESS, ft_itoa(error));
+	log_test(error == 0, ft_itoa(error));
 	log_test(whiteboard->philosophers[0].id == 1
 		&& whiteboard->philosophers[1].id == 2
 		&& whiteboard->philosophers[2].id == 3,
