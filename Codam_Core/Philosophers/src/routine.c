@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/17 12:29:11 by lilo          #+#    #+#                 */
-/*   Updated: 2025/08/18 11:55:29 by lilo          ########   odam.nl         */
+/*   Updated: 2025/08/18 14:14:18 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,21 +36,23 @@ void	*philosopher_routine(void *thread_arg)
 		usleep(200);
 	if (philosopher->id % 2 != 0)
 		if (think_routine(philosopher) == -1)
-			return (-1);
+			return ((void *)-1);
 	while (i < philosopher->check_whiteboard_ptr->times_to_eat
-		|| philosopher->check_whiteboard_ptr->is_dead == FALSE)
+		&& philosopher->check_whiteboard_ptr->is_dead == FALSE)
 	{
 		if (run_routine(philosopher) == -1)
-			return (-1);
+			return ((void *)-1);
 		i++;
 	}
-	return (0);
+	return (NULL);
 }
 
 int	run_routine(t_philosopher *philosopher)
 {
 	if (eat_routine(philosopher) != 0)
 		return (-1);
+	if (philosopher->nbr_meals_eaten == philosopher->check_whiteboard_ptr->times_to_eat)
+		return (0);
 	if (sleep_routine(philosopher) == -1)
 		return (-1);
 	if (think_routine(philosopher) == -1)
@@ -73,6 +75,7 @@ int	eat_routine(t_philosopher *philosopher)
 		return (-1);
 	if (print_action(philosopher, "is eating") == -1)
 		return (-1);
+	philosopher->nbr_meals_eaten++;
 	usleep(philosopher->check_whiteboard_ptr->time_to_eat * 1000);
 	philosopher->time_last_ate = gettimeofday(&time, NULL);
 	if (pthread_mutex_unlock(philosopher->left_fork_ptr) != 0)

@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/14 12:25:35 by lilo          #+#    #+#                 */
-/*   Updated: 2025/08/15 11:01:17 by lilo          ########   odam.nl         */
+/*   Updated: 2025/08/18 12:45:31 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ typedef struct s_whiteboard
 	int				current_time;
 	int				is_dead;
 	int				event_start;
-	int				event_start_time;
+	t_time			event_start_time;
 	pthread_mutex_t	*protect_forks_ptr;
 	pthread_mutex_t	protect_print;
 	pthread_mutex_t	protect_dead;

@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/14 13:20:53 by lilo          #+#    #+#                 */
-/*   Updated: 2025/08/18 12:12:37 by lilo          ########   odam.nl         */
+/*   Updated: 2025/08/18 13:49:04 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,21 +24,21 @@ int		spawn_guests(t_whiteboard *whiteboard);
 int	start_event(t_whiteboard *whiteboard)
 {
 	size_t	i;
-	int		routine_result;
+	void	*routine_result;
 
 	i = 0;
 	if (whiteboard->nbr_philosophers == 1)
 		return (handle_one_philosopher(whiteboard), 0);
 	if (spawn_guests(whiteboard) != 0)
 		return (-1);
-	//To do: set event start time
 	whiteboard->event_start = TRUE;
+	gettimeofday(&whiteboard->event_start_time, NULL);
 	if (pthread_mutex_unlock(&whiteboard->protect_door) != 0)
 		return (write_error("Door mutex failed to unlock", 7), -1);
 	while (i < whiteboard->nbr_philosophers)
 	{
 		if (pthread_join(whiteboard->philosophers[i].thread, &routine_result) != 0
-			|| (routine_result != 0));
+			|| (routine_result != 0))
 			return (-1);
 		i++;
 	}
