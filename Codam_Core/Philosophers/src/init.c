@@ -6,13 +6,13 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/17 12:28:52 by lilo          #+#    #+#                 */
-/*   Updated: 2025/08/15 11:01:45 by lilo          ########   odam.nl         */
+/*   Updated: 2025/08/22 14:20:58 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <philo.h>
 
-void	input_to_whiteboard(t_whiteboard *whiteboard, char **input_list);
+void	input_to_whiteboard(t_whiteboard *whiteboard, char **input_list, int argc);
 int		init_whiteboard_mutexes(t_whiteboard *whiteboard);
 int		init_forks(t_whiteboard *whiteboard);
 int		init_philosophers(t_whiteboard *whiteboard);
@@ -23,12 +23,12 @@ int		init_philosophers(t_whiteboard *whiteboard);
 	- initialises the philosophers struct
 */
 
-int	init_whiteboard(t_whiteboard **whiteboard, char **input_list)
+int	init_whiteboard(t_whiteboard **whiteboard, char **input_list, int argc)
 {
 	*whiteboard = malloc(sizeof(t_whiteboard));
 	if (!*whiteboard)
 		return (write_error("Whiteboard malloc fail", 5), -1);
-	input_to_whiteboard(*whiteboard, input_list);
+	input_to_whiteboard(*whiteboard, input_list, argc);
 	if (init_whiteboard_mutexes(*whiteboard) != 0)
 		return (-1);
 	if (init_philosophers(*whiteboard) != 0)
@@ -36,14 +36,20 @@ int	init_whiteboard(t_whiteboard **whiteboard, char **input_list)
 	return (0);
 }
 
-void	input_to_whiteboard(t_whiteboard *whiteboard, char **input_list)
+void	input_to_whiteboard(t_whiteboard *whiteboard, char **input_list, int argc)
 {
-	whiteboard->nbr_philosophers = (long unsigned)ft_atol(input_list[0]);
-	whiteboard->time_to_die = (unsigned)ft_atol(input_list[1]);
-	whiteboard->time_to_eat = (unsigned)ft_atol(input_list[2]);
-	whiteboard->time_to_sleep = (int)ft_atol(input_list[3]);
-	if (input_list[4])
-		whiteboard->times_to_eat = (int)ft_atol(input_list[4]);
+	char **list;
+
+	if (argc == 2)
+		list = input_list;
+	else
+		list = input_list + 1;
+	whiteboard->nbr_philosophers = (long unsigned)ft_atol(list[0]);
+	whiteboard->time_to_die = (unsigned)ft_atol(list[1]);
+	whiteboard->time_to_eat = (unsigned)ft_atol(list[2]);
+	whiteboard->time_to_sleep = (int)ft_atol(list[3]);
+	if (list[4])
+		whiteboard->times_to_eat = (int)ft_atol(list[4]);
 	else
 		whiteboard->times_to_eat = -1;
 	whiteboard->is_dead = FALSE;
@@ -96,7 +102,6 @@ int	init_philosophers(t_whiteboard *whiteboard)
 	{
 		whiteboard->philosophers[i].id = i;
 		whiteboard->philosophers[i].nbr_meals_eaten = 0;
-		whiteboard->philosophers[i].time_last_ate = 0;
 		whiteboard->philosophers[i].check_whiteboard_ptr = whiteboard;
 		whiteboard->philosophers[i].left_fork_ptr
 			= &whiteboard->protect_forks_ptr[i];

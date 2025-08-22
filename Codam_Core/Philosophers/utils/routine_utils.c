@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/08/05 12:19:06 by lilo          #+#    #+#                 */
-/*   Updated: 2025/08/18 13:51:34 by lilo          ########   odam.nl         */
+/*   Updated: 2025/08/22 13:41:22 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,18 @@ int	print_action(t_philosopher *philosopher, char *action)
 	printf("%ld %ld %s\n", get_timestamp, philosopher->id, action);
 	if (pthread_mutex_unlock(&philosopher->check_whiteboard_ptr->protect_print) != 0)
 		return (write_error("Print mutex failed to unlock", 7), -1);
+	return (0);
+}
+
+int	pick_up_forks(t_philosopher *philosopher, pthread_mutex_t *first_fork, pthread_mutex_t *second_fork)
+{
+	if (pthread_mutex_lock(first_fork) != 0)
+		return (write_error("Failed to lock first fork.", 7), -1);
+	if (print_action(philosopher, "has taken a fork") == -1)
+		return (-1);
+	if (pthread_mutex_lock(second_fork) != 0)
+		return (write_error("Failed to lock second fork", 7), -1);
+	if (print_action(philosopher, "has taken a fork") == -1)
+		return (-1);
 	return (0);
 }

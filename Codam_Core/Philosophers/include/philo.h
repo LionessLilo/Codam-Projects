@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/14 12:25:35 by lilo          #+#    #+#                 */
-/*   Updated: 2025/08/18 12:45:31 by lilo          ########   odam.nl         */
+/*   Updated: 2025/08/22 14:09:49 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ typedef struct s_whiteboard
 	unsigned int	time_to_eat;
 	int				time_to_sleep;
 	int				times_to_eat;
-	int				current_time;
+	t_time			current_time;
 	int				is_dead;
 	int				event_start;
 	t_time			event_start_time;
@@ -48,7 +48,7 @@ typedef struct s_philosopher
 {
 	size_t			id;
 	int				nbr_meals_eaten;
-	long			time_last_ate;
+	t_time			time_last_ate;
 	pthread_t		thread;
 	pthread_mutex_t	*left_fork_ptr;
 	pthread_mutex_t	*right_fork_ptr;
@@ -60,7 +60,7 @@ typedef struct s_philosopher
 int			input_checks(int argc, char **argv);
 
 /* Init */
-int			init_whiteboard(t_whiteboard **whiteboard, char **input_list);
+int			init_whiteboard(t_whiteboard **whiteboard, char **input_list, int argc);
 
 /* Cleanup*/
 void		cleanup_list(char **list_start);
@@ -98,6 +98,7 @@ char		*ft_strdup(const char *s);
 
 /* Routine_utils*/
 int			print_action(t_philosopher *philosopher, char *action);
+int			pick_up_forks(t_philosopher *philosopher, pthread_mutex_t *first_fork, pthread_mutex_t *second_fork);
 
 /* Monitor */
 int			monitor_routine(void);

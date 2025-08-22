@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/14 13:17:52 by lilo          #+#    #+#                 */
-/*   Updated: 2025/08/18 11:27:11 by lilo          ########   odam.nl         */
+/*   Updated: 2025/08/22 13:22:09 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,16 +95,18 @@ int	check_int(char **input_list)
 {
 	char		*item;
 	long int	str_to_nbr;
+	int			i;
 
-	while (*input_list)
+	i = 0;
+	while (input_list[i])
 	{
-		item = *input_list;
+		item = input_list[i];
 		str_to_nbr = ft_atol(item);
-		if (input_list[0] && str_to_nbr > 200)
+		if (i == 0 && str_to_nbr > 200)
 			return (write_error("Invalid user input", 41), 41);
 		if (str_to_nbr > INT_MAX)
 			return (write_error("Invalid user input", 41), 41);
-		input_list++;
+		i++;
 	}
 	return (0);
 }

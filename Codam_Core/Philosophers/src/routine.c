@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/17 12:29:11 by lilo          #+#    #+#                 */
-/*   Updated: 2025/08/18 14:14:18 by lilo          ########   odam.nl         */
+/*   Updated: 2025/08/22 13:44:39 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,21 +63,23 @@ int	run_routine(t_philosopher *philosopher)
 //To do: 
 int	eat_routine(t_philosopher *philosopher)
 {
-	t_time	time;
-	
-	if (pthread_mutex_lock(philosopher->left_fork_ptr) != 0)
-		return (write_error("Left fork failed to lock.", 7), -1);
-	if (print_action(philosopher, "has taken a fork") == -1)
-		return (-1);
-	if (pthread_mutex_lock(philosopher->right_fork_ptr) != 0)
-		return (write_error("Right fork failed to lock", 7), -1);
-	if (print_action(philosopher, "has taken a fork") == -1)
-		return (-1);
+	if (philosopher->id % 2 == 0)
+	{
+		if (pick_up_forks(philosopher, philosopher->left_fork_ptr,
+				philosopher->right_fork_ptr) == -1)
+			return (-1);
+	}
+	else
+	{
+		if (pick_up_forks(philosopher, philosopher->right_fork_ptr,
+				philosopher->left_fork_ptr) == -1)
+			return (-1);
+	}
 	if (print_action(philosopher, "is eating") == -1)
 		return (-1);
 	philosopher->nbr_meals_eaten++;
 	usleep(philosopher->check_whiteboard_ptr->time_to_eat * 1000);
-	philosopher->time_last_ate = gettimeofday(&time, NULL);
+	gettimeofday(&philosopher->time_last_ate, NULL);
 	if (pthread_mutex_unlock(philosopher->left_fork_ptr) != 0)
 		return (write_error("Left fork failed to unlock", 7), -1);
 	if (pthread_mutex_unlock(philosopher->right_fork_ptr) != 0)

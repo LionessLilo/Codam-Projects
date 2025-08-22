@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/17 12:29:45 by lilo          #+#    #+#                 */
-/*   Updated: 2025/08/18 11:45:04 by lilo          ########   odam.nl         */
+/*   Updated: 2025/08/22 14:30:00 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ void	clean_whiteboard(t_whiteboard **whiteboard)
 	pthread_mutex_destroy(&(*whiteboard)->protect_print);
 	pthread_mutex_destroy(&(*whiteboard)->protect_door);
 	pthread_mutex_destroy(&(*whiteboard)->protect_dead);
+	if ((*whiteboard)->philosophers)
+		free((*whiteboard)->philosophers);
 	free_and_null((void *)&(*whiteboard));
 }
 
