@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/14 13:20:53 by lilo          #+#    #+#                 */
-/*   Updated: 2025/08/22 16:43:48 by lilo          ########   odam.nl         */
+/*   Updated: 2025/08/22 18:59:51 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int		spawn_guests(t_whiteboard *whiteboard);
 */
 int	start_event(t_whiteboard *whiteboard)
 {
-	size_t	i;
+	int		i;
 	void	*routine_result;
 
 	i = 0;
@@ -55,7 +55,7 @@ void	handle_one_philosopher(t_whiteboard *whiteboard)
 
 int	spawn_guests(t_whiteboard *whiteboard)
 {
-	size_t			i;
+	int				i;
 	t_philosopher	*philosopher;
 
 	i = 0;

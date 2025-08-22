@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/14 12:25:35 by lilo          #+#    #+#                 */
-/*   Updated: 2025/08/22 16:48:42 by lilo          ########   odam.nl         */
+/*   Updated: 2025/08/22 18:55:43 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ typedef struct timeval	t_time;
 
 typedef struct s_whiteboard
 {
-	size_t			nbr_philosophers;
+	int				nbr_philosophers;
 	unsigned int	time_to_die;
 	unsigned int	time_to_eat;
 	int				time_to_sleep;
@@ -46,7 +46,7 @@ typedef struct s_whiteboard
 
 typedef struct s_philosopher
 {
-	size_t			id;
+	int				id;
 	int				nbr_meals_eaten;
 	t_time			time_last_ate;
 	pthread_t		thread;
@@ -77,6 +77,7 @@ void		*philosopher_routine(void *thread_arg);
 /* cleanup utils */
 void		clean_forks(t_whiteboard **whiteboard);
 void		free_and_null(void *incoming_memory);
+void		handle_death(t_philosopher *philosopher);
 
 /* Lib utils */
 size_t		ft_strlen(const char *string);
@@ -102,6 +103,6 @@ int			pick_up_forks(t_philosopher *philosopher);
 
 /* Monitor */
 int			monitor_routine(void);
-int			check_if_dead(t_philosopher *philosopher, int routine_time);
+int			will_die(t_philosopher *philosopher, unsigned routine_time);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/17 12:28:52 by lilo          #+#    #+#                 */
-/*   Updated: 2025/08/22 14:20:58 by lilo          ########   odam.nl         */
+/*   Updated: 2025/08/22 19:07:45 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	input_to_whiteboard(t_whiteboard *whiteboard, char **input_list, int argc)
 		list = input_list;
 	else
 		list = input_list + 1;
-	whiteboard->nbr_philosophers = (long unsigned)ft_atol(list[0]);
+	whiteboard->nbr_philosophers = (int)ft_atol(list[0]);
 	whiteboard->time_to_die = (unsigned)ft_atol(list[1]);
 	whiteboard->time_to_eat = (unsigned)ft_atol(list[2]);
 	whiteboard->time_to_sleep = (int)ft_atol(list[3]);
@@ -59,7 +59,7 @@ void	input_to_whiteboard(t_whiteboard *whiteboard, char **input_list, int argc)
 int	init_whiteboard_mutexes(t_whiteboard *whiteboard)
 {
 	whiteboard->protect_forks_ptr = malloc(sizeof(pthread_mutex_t)
-			* whiteboard->nbr_philosophers);
+			* (unsigned)whiteboard->nbr_philosophers);
 	if (!whiteboard->protect_forks_ptr)
 		return (write_error("Forks array malloc fail.", 5), -1);
 	if (init_forks(whiteboard) == 7)
@@ -75,7 +75,7 @@ int	init_whiteboard_mutexes(t_whiteboard *whiteboard)
 
 int	init_forks(t_whiteboard *whiteboard)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
 	while (i < whiteboard->nbr_philosophers)
@@ -90,17 +90,17 @@ int	init_forks(t_whiteboard *whiteboard)
 
 int	init_philosophers(t_whiteboard *whiteboard)
 {
-	size_t			i;
-	long unsigned	right_fork_calc;
+	int	i;
+	int	right_fork_calc;
 
 	i = 0;
 	whiteboard->philosophers = malloc(sizeof(t_philosopher)
-			* whiteboard->nbr_philosophers);
+			* (unsigned)whiteboard->nbr_philosophers);
 	if (!whiteboard->philosophers)
 		return (write_error("Philosophers failed to initialise", 5), -1);
 	while (i < whiteboard->nbr_philosophers)
 	{
-		whiteboard->philosophers[i].id = i;
+		whiteboard->philosophers[i].id = i + 1;
 		whiteboard->philosophers[i].nbr_meals_eaten = 0;
 		whiteboard->philosophers[i].check_whiteboard_ptr = whiteboard;
 		whiteboard->philosophers[i].left_fork_ptr
