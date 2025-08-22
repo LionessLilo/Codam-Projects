@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/14 13:20:53 by lilo          #+#    #+#                 */
-/*   Updated: 2025/08/18 13:49:04 by lilo          ########   odam.nl         */
+/*   Updated: 2025/08/22 16:43:48 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,10 @@ int	start_event(t_whiteboard *whiteboard)
 		return (handle_one_philosopher(whiteboard), 0);
 	if (spawn_guests(whiteboard) != 0)
 		return (-1);
-	whiteboard->event_start = TRUE;
+	if (pthread_mutex_lock(&whiteboard->protect_door) != 0)
+		return (write_error("Spawn_guests door failed to initialise", 7), -1);
 	gettimeofday(&whiteboard->event_start_time, NULL);
+	whiteboard->event_start = TRUE;
 	if (pthread_mutex_unlock(&whiteboard->protect_door) != 0)
 		return (write_error("Door mutex failed to unlock", 7), -1);
 	while (i < whiteboard->nbr_philosophers)
@@ -57,8 +59,6 @@ int	spawn_guests(t_whiteboard *whiteboard)
 	t_philosopher	*philosopher;
 
 	i = 0;
-	if (pthread_mutex_lock(&whiteboard->protect_door) != 0)
-		return (write_error("Spawn_guests door failed to initialise", 7), -1);
 	whiteboard->event_start = FALSE;
 	while (i < whiteboard->nbr_philosophers)
 	{

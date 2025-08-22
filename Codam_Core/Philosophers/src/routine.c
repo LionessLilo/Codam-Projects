@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/17 12:29:11 by lilo          #+#    #+#                 */
-/*   Updated: 2025/08/22 13:44:39 by lilo          ########   odam.nl         */
+/*   Updated: 2025/08/22 16:52:28 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,11 @@ void	*philosopher_routine(void *thread_arg)
 	while (whiteboard->event_start == FALSE)
 		usleep(200);
 	if (philosopher->id % 2 != 0)
+	{
 		if (think_routine(philosopher) == -1)
 			return ((void *)-1);
+		usleep(1000);
+	}
 	while (i < philosopher->check_whiteboard_ptr->times_to_eat
 		&& philosopher->check_whiteboard_ptr->is_dead == FALSE)
 	{
@@ -63,18 +66,8 @@ int	run_routine(t_philosopher *philosopher)
 //To do: 
 int	eat_routine(t_philosopher *philosopher)
 {
-	if (philosopher->id % 2 == 0)
-	{
-		if (pick_up_forks(philosopher, philosopher->left_fork_ptr,
-				philosopher->right_fork_ptr) == -1)
-			return (-1);
-	}
-	else
-	{
-		if (pick_up_forks(philosopher, philosopher->right_fork_ptr,
-				philosopher->left_fork_ptr) == -1)
-			return (-1);
-	}
+	if (pick_up_forks(philosopher) == -1)
+		return (-1);
 	if (print_action(philosopher, "is eating") == -1)
 		return (-1);
 	philosopher->nbr_meals_eaten++;

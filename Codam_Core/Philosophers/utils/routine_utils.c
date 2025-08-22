@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/08/05 12:19:06 by lilo          #+#    #+#                 */
-/*   Updated: 2025/08/22 13:41:22 by lilo          ########   odam.nl         */
+/*   Updated: 2025/08/22 16:50:54 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,21 @@ int	print_action(t_philosopher *philosopher, char *action)
 	return (0);
 }
 
-int	pick_up_forks(t_philosopher *philosopher, pthread_mutex_t *first_fork, pthread_mutex_t *second_fork)
+int	pick_up_forks(t_philosopher *philosopher)
 {
+	pthread_mutex_t	*first_fork;
+	pthread_mutex_t	*second_fork;
+
+	if (philosopher->id % 2 == 0)
+	{
+		first_fork = philosopher->left_fork_ptr;
+		second_fork = philosopher->right_fork_ptr;
+	}
+	else
+	{
+		first_fork = philosopher->right_fork_ptr;
+		second_fork = philosopher->left_fork_ptr;	
+	}
 	if (pthread_mutex_lock(first_fork) != 0)
 		return (write_error("Failed to lock first fork.", 7), -1);
 	if (print_action(philosopher, "has taken a fork") == -1)

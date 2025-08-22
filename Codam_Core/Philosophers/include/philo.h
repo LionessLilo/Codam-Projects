@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/14 12:25:35 by lilo          #+#    #+#                 */
-/*   Updated: 2025/08/22 14:09:49 by lilo          ########   odam.nl         */
+/*   Updated: 2025/08/22 16:48:42 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ char		*ft_strdup(const char *s);
 
 /* Routine_utils*/
 int			print_action(t_philosopher *philosopher, char *action);
-int			pick_up_forks(t_philosopher *philosopher, pthread_mutex_t *first_fork, pthread_mutex_t *second_fork);
+int			pick_up_forks(t_philosopher *philosopher);
 
 /* Monitor */
 int			monitor_routine(void);
