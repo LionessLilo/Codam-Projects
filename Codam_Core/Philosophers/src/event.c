@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/14 13:20:53 by lilo          #+#    #+#                 */
-/*   Updated: 2025/08/22 18:59:51 by lilo          ########   odam.nl         */
+/*   Updated: 2025/08/26 09:43:48 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ int	start_event(t_whiteboard *whiteboard)
 
 void	handle_one_philosopher(t_whiteboard *whiteboard)
 {
+	gettimeofday(&whiteboard->event_start_time, NULL);
 	usleep(whiteboard->time_to_die * 1000);
 	print_action(&whiteboard->philosophers[0], "died");
 }
