@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/08/05 12:19:06 by lilo          #+#    #+#                 */
-/*   Updated: 2025/08/22 18:54:27 by lilo          ########   odam.nl         */
+/*   Updated: 2025/08/26 11:28:27 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,10 @@ long	calculate_timestamp(t_philosopher *philosopher)
 
 	whiteboard = philosopher->check_whiteboard_ptr;
 	gettimeofday(&current_time, NULL);
-	timestamp = (current_time.tv_sec - whiteboard->event_start_time.tv_sec) * 1000
-			+ (current_time.tv_usec - whiteboard->event_start_time.tv_usec) / 1000;
+	timestamp = (current_time.tv_sec
+			- whiteboard->event_start_time.tv_sec) * 1000
+		+ (current_time.tv_usec
+			- whiteboard->event_start_time.tv_usec) / 1000;
 	return (timestamp);
 }
 
@@ -29,7 +31,7 @@ int	print_action(t_philosopher *philosopher, char *action)
 {
 	long			get_timestamp;
 	t_whiteboard	*whiteboard;
-	
+
 	whiteboard = philosopher->check_whiteboard_ptr;
 	if (pthread_mutex_lock(&whiteboard->protect_print) != 0)
 		return (write_error("Print mutex failed to lock", 7), -1);
@@ -53,7 +55,7 @@ int	pick_up_forks(t_philosopher *philosopher)
 	else
 	{
 		first_fork = philosopher->right_fork_ptr;
-		second_fork = philosopher->left_fork_ptr;	
+		second_fork = philosopher->left_fork_ptr;
 	}
 	if (pthread_mutex_lock(first_fork) != 0)
 		return (write_error("Failed to lock first fork.", 7), -1);

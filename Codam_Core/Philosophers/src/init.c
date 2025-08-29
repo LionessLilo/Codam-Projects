@@ -6,13 +6,14 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/17 12:28:52 by lilo          #+#    #+#                 */
-/*   Updated: 2025/08/22 19:07:45 by lilo          ########   odam.nl         */
+/*   Updated: 2025/08/26 11:21:10 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <philo.h>
 
-void	input_to_whiteboard(t_whiteboard *whiteboard, char **input_list, int argc);
+void	input_to_whiteboard(t_whiteboard *whiteboard,
+			char **input_list, int argc);
 int		init_whiteboard_mutexes(t_whiteboard *whiteboard);
 int		init_forks(t_whiteboard *whiteboard);
 int		init_philosophers(t_whiteboard *whiteboard);
@@ -36,9 +37,10 @@ int	init_whiteboard(t_whiteboard **whiteboard, char **input_list, int argc)
 	return (0);
 }
 
-void	input_to_whiteboard(t_whiteboard *whiteboard, char **input_list, int argc)
+void	input_to_whiteboard(t_whiteboard *whiteboard,
+			char **input_list, int argc)
 {
-	char **list;
+	char	**list;
 
 	if (argc == 2)
 		list = input_list;

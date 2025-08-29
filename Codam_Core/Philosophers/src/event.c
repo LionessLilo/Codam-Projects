@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/14 13:20:53 by lilo          #+#    #+#                 */
-/*   Updated: 2025/08/26 09:43:48 by lilo          ########   odam.nl         */
+/*   Updated: 2025/08/26 11:20:35 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ int	start_event(t_whiteboard *whiteboard)
 		return (write_error("Door mutex failed to unlock", 7), -1);
 	while (i < whiteboard->nbr_philosophers)
 	{
-		if (pthread_join(whiteboard->philosophers[i].thread, &routine_result) != 0
-			|| (routine_result != 0))
+		if (pthread_join(whiteboard->philosophers[i].thread, &routine_result)
+			!= 0 || (routine_result != 0))
 			return (-1);
 		i++;
 	}

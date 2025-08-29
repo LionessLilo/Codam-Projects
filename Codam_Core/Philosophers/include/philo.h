@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/14 12:25:35 by lilo          #+#    #+#                 */
-/*   Updated: 2025/08/22 18:55:43 by lilo          ########   odam.nl         */
+/*   Updated: 2025/08/26 11:09:15 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@
 # include <pthread.h>
 # include <unistd.h>
 # include <limits.h>
-#include <sys/time.h>
+# include <sys/time.h>
 
 # define TRUE 1
 # define FALSE 2
 
 typedef struct s_philosopher	t_philosopher;
-typedef struct timeval	t_time;
+typedef struct timeval			t_time;
 
 typedef struct s_whiteboard
 {
@@ -60,7 +60,8 @@ typedef struct s_philosopher
 int			input_checks(int argc, char **argv);
 
 /* Init */
-int			init_whiteboard(t_whiteboard **whiteboard, char **input_list, int argc);
+int			init_whiteboard(t_whiteboard **whiteboard,
+				char **input_list, int argc);
 
 /* Cleanup*/
 void		cleanup_list(char **list_start);
@@ -103,6 +104,6 @@ int			pick_up_forks(t_philosopher *philosopher);
 
 /* Monitor */
 int			monitor_routine(void);
-int			will_die(t_philosopher *philosopher, unsigned routine_time);
+int			will_die(t_philosopher *philosopher, unsigned int routine_time);
 
 #endif

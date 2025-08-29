@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/17 12:29:11 by lilo          #+#    #+#                 */
-/*   Updated: 2025/08/22 19:01:45 by lilo          ########   odam.nl         */
+/*   Updated: 2025/08/26 11:27:11 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ void	*philosopher_routine(void *thread_arg)
 			return ((void *)-1);
 		usleep(1000);
 	}
-	while ((philosopher->check_whiteboard_ptr->times_to_eat == -1
-        || i < philosopher->check_whiteboard_ptr->times_to_eat)
-       && philosopher->check_whiteboard_ptr->is_dead == FALSE)
+	while ((whiteboard->times_to_eat == -1
+			|| i < whiteboard->times_to_eat)
+		&& whiteboard->is_dead == FALSE)
 	{
 		if (run_routine(philosopher) == -1)
 			return ((void *)-1);
@@ -56,7 +56,8 @@ int	run_routine(t_philosopher *philosopher)
 {
 	if (eat_routine(philosopher) != 0)
 		return (-1);
-	if (philosopher->nbr_meals_eaten == philosopher->check_whiteboard_ptr->times_to_eat)
+	if (philosopher->nbr_meals_eaten
+		== philosopher->check_whiteboard_ptr->times_to_eat)
 		return (0);
 	if (sleep_routine(philosopher) == -1)
 		return (-1);
@@ -67,7 +68,8 @@ int	run_routine(t_philosopher *philosopher)
 
 int	eat_routine(t_philosopher *philosopher)
 {
-	if (will_die(philosopher, philosopher->check_whiteboard_ptr->time_to_eat) == TRUE)
+	if (will_die(philosopher,
+			philosopher->check_whiteboard_ptr->time_to_eat) == TRUE)
 		return (handle_death(philosopher), -1);
 	if (pick_up_forks(philosopher) == -1)
 		return (-1);
@@ -85,18 +87,20 @@ int	eat_routine(t_philosopher *philosopher)
 
 int	sleep_routine(t_philosopher *philosopher)
 {
-	if (will_die(philosopher, (unsigned)philosopher->check_whiteboard_ptr->time_to_sleep) == TRUE)
+	if (will_die(philosopher,
+			(unsigned)philosopher->check_whiteboard_ptr->time_to_sleep) == TRUE)
 		return (handle_death(philosopher), -1);
 	if (print_action(philosopher, "is sleeping") == -1)
 		return (-1);
-	usleep((unsigned int)(philosopher->check_whiteboard_ptr->time_to_sleep * 1000));
+	usleep((unsigned int)
+		(philosopher->check_whiteboard_ptr->time_to_sleep * 1000));
 	return (0);
 }
 
-
 int	think_routine(t_philosopher *philosopher)
 {
-	if (will_die(philosopher, (philosopher->check_whiteboard_ptr->time_to_eat)) == TRUE)
+	if (will_die(philosopher,
+			(philosopher->check_whiteboard_ptr->time_to_eat)) == TRUE)
 		return (handle_death(philosopher), -1);
 	if (print_action(philosopher, "is thinking") == -1)
 		return (-1);
