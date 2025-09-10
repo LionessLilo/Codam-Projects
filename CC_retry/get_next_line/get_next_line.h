@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/11/28 13:30:33 by llourens      #+#    #+#                 */
-/*   Updated: 2025/09/05 16:20:56 by lilo          ########   odam.nl         */
+/*   Updated: 2025/09/10 13:41:39 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,14 @@
 
 # include <stdlib.h>
 
-typedef struct s_retrieved
+typedef struct s_buffer
 {
-	char				*buffer;
-	int					size;
+	char				*contents;
+	int					fd;
 	struct s_retrieved	*next;	
-}						t_retrieved;
+}						t_buffer;
 
-char	*get_next_line(int fd);
+char		*get_next_line(int fd);
+t_buffer	*create_list(int fd);
 
 #endif

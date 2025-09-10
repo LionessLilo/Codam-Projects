@@ -6,13 +6,16 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/16 13:26:21 by llourens      #+#    #+#                 */
-/*   Updated: 2025/09/05 16:46:26 by lilo          ########   odam.nl         */
+/*   Updated: 2025/09/10 13:54:32 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "get_next_line.h"
 #include <stdlib.h>
 #include <unistd.h>
-#include "get_next_line.h"
+#include <stdio.h>
+
+t_buffer	*create_list(int fd);
 
 void	ft_free(char **memory)
 {
@@ -25,31 +28,27 @@ void	ft_free(char **memory)
 
 char	*get_next_line(int fd)
 {
-	t_retrieved	*buffer_node;
+	static t_buffer	*existing_list;
+	t_buffer		*buffer;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	check_first_node();
-	if (!buffer_node)
-		new_gnl();
-	
-	
+	if (!existing_list)
+	{
+		existing_list = create_list(fd);
+		if (!existing_list)
+			return (NULL);
+	}
 }
 
-t_retrieved	*new_gnl(void)
+t_buffer	*create_list(int fd)
 {
-	t_retrieved	*new_node;
+	t_buffer	*new_list;
 
-	new_node = malloc(sizeof(t_retrieved));
-	if (!new_node)
+	new_list = malloc(sizeof(t_buffer));
+	if (!new_list)
 		return (NULL);
-	new_node->buffer = malloc(BUFFER_SIZE + 1);
-	if (!new_node->buffer)
-	{
-		free(new_node);
-		return (NULL);
-	}
-	new_node->size = 0;
-	new_node->next = NULL;
-	return (new_node);
+	new_list->fd = fd;
+	new_list->next = NULL;
+	return (new_list);
 }
