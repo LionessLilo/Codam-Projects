@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/14 12:25:35 by lilo          #+#    #+#                 */
-/*   Updated: 2025/08/26 11:09:15 by lilo          ########   odam.nl         */
+/*   Updated: 2025/09/12 10:35:12 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ int			start_event(t_whiteboard *whiteboard);
 
 /* Routine */
 void		*philosopher_routine(void *thread_arg);
+int			eat_routine(t_philosopher *philosopher);
 
 /* Util Functions */
 /* cleanup utils */
@@ -101,9 +102,15 @@ char		*ft_strdup(const char *s);
 /* Routine_utils*/
 int			print_action(t_philosopher *philosopher, char *action);
 int			pick_up_forks(t_philosopher *philosopher);
+long		get_time_in_ms(void);
+long		get_time_last_ate(t_philosopher *philosopher);
+long		calculate_timestamp(t_philosopher *philosopher);
 
 /* Monitor */
-int			monitor_routine(void);
 int			will_die(t_philosopher *philosopher, unsigned int routine_time);
+void		*death_monitor(void *thread_arg);
+
+/* Cleanup*/
+void	record_death(t_philosopher *philosopher);
 
 #endif

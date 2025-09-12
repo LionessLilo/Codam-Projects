@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/17 12:29:11 by lilo          #+#    #+#                 */
-/*   Updated: 2025/08/26 11:27:11 by lilo          ########   odam.nl         */
+/*   Updated: 2025/09/12 13:32:16 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,12 @@ void	*philosopher_routine(void *thread_arg)
 	philosopher = (t_philosopher *)thread_arg;
 	whiteboard = philosopher->check_whiteboard_ptr;
 	while (whiteboard->event_start == FALSE)
-		usleep(200);
+		usleep(1000);
 	gettimeofday(&philosopher->time_last_ate, NULL);
 	if (philosopher->id % 2 != 0)
 	{
 		if (think_routine(philosopher) == -1)
-			return ((void *)-1);
+			return (NULL);
 		usleep(1000);
 	}
 	while ((whiteboard->times_to_eat == -1
@@ -46,7 +46,7 @@ void	*philosopher_routine(void *thread_arg)
 		&& whiteboard->is_dead == FALSE)
 	{
 		if (run_routine(philosopher) == -1)
-			return ((void *)-1);
+			return (NULL);
 		i++;
 	}
 	return (NULL);
@@ -68,16 +68,19 @@ int	run_routine(t_philosopher *philosopher)
 
 int	eat_routine(t_philosopher *philosopher)
 {
-	if (will_die(philosopher,
-			philosopher->check_whiteboard_ptr->time_to_eat) == TRUE)
-		return (handle_death(philosopher), -1);
 	if (pick_up_forks(philosopher) == -1)
 		return (-1);
 	if (print_action(philosopher, "is eating") == -1)
 		return (-1);
-	philosopher->nbr_meals_eaten++;
-	usleep(philosopher->check_whiteboard_ptr->time_to_eat * 1000);
 	gettimeofday(&philosopher->time_last_ate, NULL);
+	philosopher->nbr_meals_eaten++;
+	if (will_die(philosopher, (unsigned int)philosopher->check_whiteboard_ptr->time_to_eat)
+		== TRUE)
+	{
+		handle_death(philosopher);
+		return (-1);
+	};
+	usleep(philosopher->check_whiteboard_ptr->time_to_eat * 1000);
 	if (pthread_mutex_unlock(philosopher->left_fork_ptr) != 0)
 		return (write_error("Left fork failed to unlock", 7), -1);
 	if (pthread_mutex_unlock(philosopher->right_fork_ptr) != 0)
@@ -87,9 +90,12 @@ int	eat_routine(t_philosopher *philosopher)
 
 int	sleep_routine(t_philosopher *philosopher)
 {
-	if (will_die(philosopher,
-			(unsigned)philosopher->check_whiteboard_ptr->time_to_sleep) == TRUE)
-		return (handle_death(philosopher), -1);
+	if (will_die(philosopher, (unsigned int)philosopher->check_whiteboard_ptr->time_to_sleep)
+		== TRUE)
+	{
+		handle_death(philosopher);
+		return (-1);
+	};
 	if (print_action(philosopher, "is sleeping") == -1)
 		return (-1);
 	usleep((unsigned int)
@@ -99,9 +105,10 @@ int	sleep_routine(t_philosopher *philosopher)
 
 int	think_routine(t_philosopher *philosopher)
 {
-	if (will_die(philosopher,
-			(philosopher->check_whiteboard_ptr->time_to_eat)) == TRUE)
-		return (handle_death(philosopher), -1);
+	pthread_t		death_thread;
+
+	pthread_create(&death_thread, NULL, death_monitor, philosopher->check_whiteboard_ptr);
+	pthread_join(death_thread, NULL);
 	if (print_action(philosopher, "is thinking") == -1)
 		return (-1);
 	return (0);

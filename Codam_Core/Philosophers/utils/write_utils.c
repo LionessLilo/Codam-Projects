@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/08/06 16:51:10 by lilo          #+#    #+#                 */
-/*   Updated: 2025/08/06 17:10:04 by lilo          ########   odam.nl         */
+/*   Updated: 2025/09/12 13:02:12 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,25 @@ static void	*ft_memcpy(void *dest, const void *src, size_t n)
 		i++;
 	}
 	return (dest);
+}
+
+int	print_action(t_philosopher *philosopher, char *action)
+{
+	long			get_timestamp;
+	t_whiteboard	*whiteboard;
+
+	whiteboard = philosopher->check_whiteboard_ptr;
+	if (pthread_mutex_lock(&whiteboard->protect_print) != 0)
+		return (write_error("Print mutex failed to lock", 7), -1);
+	if (whiteboard->is_dead == TRUE)
+	{
+		get_timestamp = calculate_timestamp(philosopher);
+		printf("%ld %d %s\n", get_timestamp, philosopher->id, action);
+		return (pthread_mutex_unlock(&whiteboard->protect_print), -1);
+	}
+	get_timestamp = calculate_timestamp(philosopher);
+	printf("%ld %d %s\n", get_timestamp, philosopher->id, action);
+	if (pthread_mutex_unlock(&whiteboard->protect_print) != 0)
+		return (write_error("Print mutex failed to unlock", 7), -1);
+	return (0);
 }

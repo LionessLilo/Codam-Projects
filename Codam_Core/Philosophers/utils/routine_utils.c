@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/08/05 12:19:06 by lilo          #+#    #+#                 */
-/*   Updated: 2025/08/26 11:28:27 by lilo          ########   odam.nl         */
+/*   Updated: 2025/09/12 13:25:38 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,21 +25,6 @@ long	calculate_timestamp(t_philosopher *philosopher)
 		+ (current_time.tv_usec
 			- whiteboard->event_start_time.tv_usec) / 1000;
 	return (timestamp);
-}
-
-int	print_action(t_philosopher *philosopher, char *action)
-{
-	long			get_timestamp;
-	t_whiteboard	*whiteboard;
-
-	whiteboard = philosopher->check_whiteboard_ptr;
-	if (pthread_mutex_lock(&whiteboard->protect_print) != 0)
-		return (write_error("Print mutex failed to lock", 7), -1);
-	get_timestamp = calculate_timestamp(philosopher);
-	printf("%ld %d %s\n", get_timestamp, philosopher->id, action);
-	if (pthread_mutex_unlock(&whiteboard->protect_print) != 0)
-		return (write_error("Print mutex failed to unlock", 7), -1);
-	return (0);
 }
 
 int	pick_up_forks(t_philosopher *philosopher)
@@ -66,4 +51,23 @@ int	pick_up_forks(t_philosopher *philosopher)
 	if (print_action(philosopher, "has taken a fork") == -1)
 		return (-1);
 	return (0);
+}
+
+long	get_time_in_ms(void)
+{
+	t_time	time;
+	long	time_ms;
+
+	gettimeofday(&time, NULL);
+	time_ms = (time.tv_sec * 1000) + (time.tv_usec / 1000);
+	return (time_ms);
+}
+
+long	get_time_last_ate(t_philosopher *philosopher)
+{
+	long			time_last_ate_ms;
+
+	time_last_ate_ms = (philosopher->time_last_ate.tv_sec * 1000) +
+		(philosopher->time_last_ate.tv_usec / 1000);
+	return (time_last_ate_ms);
 }

@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/14 13:20:53 by lilo          #+#    #+#                 */
-/*   Updated: 2025/08/26 11:20:35 by lilo          ########   odam.nl         */
+/*   Updated: 2025/09/12 13:28:58 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ int	start_event(t_whiteboard *whiteboard)
 void	handle_one_philosopher(t_whiteboard *whiteboard)
 {
 	gettimeofday(&whiteboard->event_start_time, NULL);
+	print_action(&whiteboard->philosophers[0], "has taken a fork");
 	usleep(whiteboard->time_to_die * 1000);
 	print_action(&whiteboard->philosophers[0], "died");
 }
