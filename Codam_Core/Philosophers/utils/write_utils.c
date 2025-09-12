@@ -6,11 +6,12 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/08/06 16:51:10 by lilo          #+#    #+#                 */
-/*   Updated: 2025/09/12 13:02:12 by lilo          ########   odam.nl         */
+/*   Updated: 2025/09/12 17:33:32 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <philo.h>
+#include <string.h>
 
 static void	*ft_memcpy(void *dest, const void *src, size_t n);
 
@@ -20,7 +21,7 @@ char	*ft_strdup(const char *s)
 	size_t	len_s;
 
 	len_s = ft_strlen((char *)s);
-	new_s = malloc (sizeof(char) * (len_s + 1));
+	new_s = malloc(sizeof(char) * (len_s + 1));
 	if (!new_s)
 		return (NULL);
 	ft_memcpy(new_s, s, len_s);
@@ -51,11 +52,10 @@ int	print_action(t_philosopher *philosopher, char *action)
 	whiteboard = philosopher->check_whiteboard_ptr;
 	if (pthread_mutex_lock(&whiteboard->protect_print) != 0)
 		return (write_error("Print mutex failed to lock", 7), -1);
-	if (whiteboard->is_dead == TRUE)
+	if (whiteboard->is_dead == TRUE && strcmp(action, "died") != 0)
 	{
-		get_timestamp = calculate_timestamp(philosopher);
-		printf("%ld %d %s\n", get_timestamp, philosopher->id, action);
-		return (pthread_mutex_unlock(&whiteboard->protect_print), -1);
+		pthread_mutex_unlock(&whiteboard->protect_print);
+		return (-1);
 	}
 	get_timestamp = calculate_timestamp(philosopher);
 	printf("%ld %d %s\n", get_timestamp, philosopher->id, action);

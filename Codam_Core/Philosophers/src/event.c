@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/14 13:20:53 by lilo          #+#    #+#                 */
-/*   Updated: 2025/09/12 13:28:58 by lilo          ########   odam.nl         */
+/*   Updated: 2025/09/12 17:20:53 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,13 +66,13 @@ int	spawn_guests(t_whiteboard *whiteboard)
 	{
 		philosopher = &whiteboard->philosophers[i];
 		philosopher->id = i + 1;
-		if (pthread_create(&philosopher->thread, NULL,
-				philosopher_routine, philosopher) != 0)
-			return (write_error("Failed to create philosopher thread", 6), -1);
 		philosopher->left_fork_ptr
 			= &philosopher->check_whiteboard_ptr->protect_forks_ptr[i];
 		philosopher->right_fork_ptr = &philosopher->check_whiteboard_ptr
 			->protect_forks_ptr[(i + 1) % whiteboard->nbr_philosophers];
+		if (pthread_create(&philosopher->thread, NULL,
+				philosopher_routine, philosopher) != 0)
+			return (write_error("Failed to create philosopher thread", 6), -1);
 		i++;
 	}
 	return (0);

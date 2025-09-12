@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/17 12:29:11 by lilo          #+#    #+#                 */
-/*   Updated: 2025/09/12 13:32:16 by lilo          ########   odam.nl         */
+/*   Updated: 2025/09/12 17:28:24 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ int	run_routine(t_philosopher *philosopher)
 
 int	eat_routine(t_philosopher *philosopher)
 {
+	if (philosopher->check_whiteboard_ptr->is_dead == TRUE)
+		return (-1);
 	if (pick_up_forks(philosopher) == -1)
 		return (-1);
 	if (print_action(philosopher, "is eating") == -1)
@@ -77,6 +79,8 @@ int	eat_routine(t_philosopher *philosopher)
 	if (will_die(philosopher, (unsigned int)philosopher->check_whiteboard_ptr->time_to_eat)
 		== TRUE)
 	{
+		pthread_mutex_unlock(philosopher->left_fork_ptr);
+		pthread_mutex_unlock(philosopher->right_fork_ptr);
 		handle_death(philosopher);
 		return (-1);
 	};
@@ -105,11 +109,9 @@ int	sleep_routine(t_philosopher *philosopher)
 
 int	think_routine(t_philosopher *philosopher)
 {
-	pthread_t		death_thread;
-
-	pthread_create(&death_thread, NULL, death_monitor, philosopher->check_whiteboard_ptr);
-	pthread_join(death_thread, NULL);
 	if (print_action(philosopher, "is thinking") == -1)
+		return (-1);
+	if (philosopher->check_whiteboard_ptr->is_dead == TRUE)
 		return (-1);
 	return (0);
 }

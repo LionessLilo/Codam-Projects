@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/14 12:47:54 by lilo          #+#    #+#                 */
-/*   Updated: 2025/09/11 10:43:04 by lilo          ########   odam.nl         */
+/*   Updated: 2025/09/12 17:43:32 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ char	**create_argv(int argc, char **argv);
 
 /*
 	-	Checks input
-	-	Whiteboard is a struct where the shared resources sit and 
+	-	Whiteboard is a struct where the shared resources sit and
 		the philosophers can see.
 	-	Initialises whiteboard struct.
 	-	Starts the project.
