@@ -6,11 +6,15 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/08/05 12:19:06 by lilo          #+#    #+#                 */
-/*   Updated: 2025/09/12 13:25:38 by lilo          ########   odam.nl         */
+/*   Updated: 2025/09/12 18:12:30 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <philo.h>
+
+int		pick_up_forks(t_philosopher *philosopher);
+long	get_time_in_ms(void);
+long	get_time_last_ate(t_philosopher *philosopher);
 
 long	calculate_timestamp(t_philosopher *philosopher)
 {
@@ -20,10 +24,9 @@ long	calculate_timestamp(t_philosopher *philosopher)
 
 	whiteboard = philosopher->check_whiteboard_ptr;
 	gettimeofday(&current_time, NULL);
-	timestamp = (current_time.tv_sec
-			- whiteboard->event_start_time.tv_sec) * 1000
-		+ (current_time.tv_usec
-			- whiteboard->event_start_time.tv_usec) / 1000;
+	timestamp = (current_time.tv_sec - whiteboard->event_start_time.tv_sec)
+		* 1000 + (current_time.tv_usec - whiteboard->event_start_time.tv_usec)
+		/ 1000;
 	return (timestamp);
 }
 
@@ -65,9 +68,9 @@ long	get_time_in_ms(void)
 
 long	get_time_last_ate(t_philosopher *philosopher)
 {
-	long			time_last_ate_ms;
+	long	time_last_ate_ms;
 
-	time_last_ate_ms = (philosopher->time_last_ate.tv_sec * 1000) +
-		(philosopher->time_last_ate.tv_usec / 1000);
+	time_last_ate_ms = (philosopher->time_last_ate.tv_sec * 1000)
+		+ (philosopher->time_last_ate.tv_usec / 1000);
 	return (time_last_ate_ms);
 }

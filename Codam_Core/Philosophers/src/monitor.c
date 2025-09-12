@@ -6,11 +6,16 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/17 12:29:27 by lilo          #+#    #+#                 */
-/*   Updated: 2025/09/12 17:51:03 by lilo          ########   odam.nl         */
+/*   Updated: 2025/09/12 18:10:06 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <philo.h>
+
+void	set_dead(t_whiteboard *whiteboard, t_philosopher *philosopher);
+int		check_philosopher(t_whiteboard *whiteboard, t_philosopher *philosopher);
+void	*death_monitor(void *arg);
+void	handle_death(t_philosopher *philosopher);
 
 int	will_die(t_philosopher *philosopher, unsigned int routine_time)
 {
@@ -31,13 +36,41 @@ int	will_die(t_philosopher *philosopher, unsigned int routine_time)
 	return (FALSE);
 }
 
+void	set_dead(t_whiteboard *whiteboard, t_philosopher *philosopher)
+{
+	if (pthread_mutex_lock(&whiteboard->protect_dead) != 0)
+	{
+		write_error("Death mutex failed to lock", 7);
+		return ;
+	}
+	whiteboard->is_dead = TRUE;
+	if (pthread_mutex_unlock(&whiteboard->protect_dead) != 0)
+	{
+		write_error("Death mutex failed to unlock", 7);
+		return ;
+	}
+	print_action(philosopher, "died");
+}
+
+int	check_philosopher(t_whiteboard *whiteboard, t_philosopher *philosopher)
+{
+	long	current_time_ms;
+	long	time_last_ate_ms;
+
+	current_time_ms = get_time_in_ms();
+	time_last_ate_ms = get_time_last_ate(philosopher);
+	if (current_time_ms >= time_last_ate_ms + whiteboard->time_to_die)
+	{
+		set_dead(whiteboard, philosopher);
+		return (1);
+	}
+	return (0);
+}
+
 void	*death_monitor(void *arg)
 {
 	t_whiteboard	*whiteboard;
-	t_philosopher	*philosopher;
 	int				i;
-	long			current_time_ms;
-	long			time_last_ate_ms;
 
 	whiteboard = (t_whiteboard *)arg;
 	while (whiteboard->event_start == FALSE)
@@ -47,20 +80,8 @@ void	*death_monitor(void *arg)
 		i = 0;
 		while (i < whiteboard->nbr_philosophers && whiteboard->is_dead == FALSE)
 		{
-			philosopher = &whiteboard->philosophers[i];
-			current_time_ms = get_time_in_ms();
-			time_last_ate_ms = get_time_last_ate(philosopher);
-			if (current_time_ms >= time_last_ate_ms + whiteboard->time_to_die)
-			{
-				if (pthread_mutex_lock(&whiteboard->protect_dead) != 0)
-					return (write_error("Death mutex failed to lock", 7), NULL);
-				whiteboard->is_dead = TRUE;
-				if (pthread_mutex_unlock(&whiteboard->protect_dead) != 0)
-					return (write_error("Death mutex failed to unlock", 7),
-						NULL);
-				print_action(philosopher, "died");
+			if (check_philosopher(whiteboard, &whiteboard->philosophers[i]))
 				return (NULL);
-			}
 			i++;
 		}
 		usleep(1000);

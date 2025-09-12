@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/14 13:20:53 by lilo          #+#    #+#                 */
-/*   Updated: 2025/09/12 17:20:53 by lilo          ########   odam.nl         */
+/*   Updated: 2025/09/12 18:07:47 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int		spawn_guests(t_whiteboard *whiteboard);
 	 - Waits for the threads to be created
 	 - Tells the threads when they can start their routine.
 	 - Sets up the start time of the event
+	 - Joins the threads
 */
 int	start_event(t_whiteboard *whiteboard)
 {
@@ -46,6 +47,8 @@ int	start_event(t_whiteboard *whiteboard)
 	}
 	return (0);
 }
+
+/* Handles if there is a single philosopher */
 
 void	handle_one_philosopher(t_whiteboard *whiteboard)
 {

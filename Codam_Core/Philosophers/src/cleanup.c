@@ -6,11 +6,14 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/17 12:29:45 by lilo          #+#    #+#                 */
-/*   Updated: 2025/09/12 17:46:21 by lilo          ########   odam.nl         */
+/*   Updated: 2025/09/12 18:15:25 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <philo.h>
+
+void	clean_whiteboard(t_whiteboard **whiteboard);
+void	write_error(char *message, int error_code);
 
 /* Cleans up the argv list and sets the pointer to NULL */
 

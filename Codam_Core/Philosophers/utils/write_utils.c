@@ -6,14 +6,15 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/08/06 16:51:10 by lilo          #+#    #+#                 */
-/*   Updated: 2025/09/12 17:33:32 by lilo          ########   odam.nl         */
+/*   Updated: 2025/09/12 18:28:13 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <philo.h>
 #include <string.h>
 
-static void	*ft_memcpy(void *dest, const void *src, size_t n);
+void	*ft_memcpy(void *dest, const void *src, size_t n);
+int		print_action(t_philosopher *philosopher, char *action);
 
 char	*ft_strdup(const char *s)
 {
@@ -29,7 +30,7 @@ char	*ft_strdup(const char *s)
 	return (new_s);
 }
 
-static void	*ft_memcpy(void *dest, const void *src, size_t n)
+void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
 	size_t	i;
 

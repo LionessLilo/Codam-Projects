@@ -6,11 +6,15 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/14 14:00:29 by lilo          #+#    #+#                 */
-/*   Updated: 2025/08/06 16:52:26 by lilo          ########   odam.nl         */
+/*   Updated: 2025/09/12 18:11:49 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <philo.h>
+
+size_t		ft_strlcpy(char *dst, const char *src, size_t size);
+long int	ft_atol(const char *str);
+int			ft_isdigit(int c);
 
 size_t	ft_strlen(const char *string)
 {
@@ -22,9 +26,7 @@ size_t	ft_strlen(const char *string)
 	return (length);
 }
 
-size_t	ft_strlcpy(char *dst,
-				const char *src,
-				size_t size)
+size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 {
 	size_t		len_src;
 	const char	*end;
