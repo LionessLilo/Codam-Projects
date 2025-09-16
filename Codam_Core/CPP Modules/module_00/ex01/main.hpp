@@ -1,24 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   PhoneBook.cpp                                      :+:    :+:            */
+/*   main.hpp                                           :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2025/09/15 15:23:17 by lilo          #+#    #+#                 */
-/*   Updated: 2025/09/16 17:43:48 by lilo          ########   odam.nl         */
+/*   Created: 2025/09/16 14:21:00 by lilo          #+#    #+#                 */
+/*   Updated: 2025/09/16 14:23:48 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "PhoneBook.hpp"
+#ifndef MAIN_HPP
+# define MAIN_HPP
 
-PhoneBook::PhoneBook()
-{
-	nbrEnteredContacts = 0;
-	nextEntry = 0;
-}
+#include <string>
+#include <iostream>
 
-int	PhoneBook::AddContact(void)
-{
-
-}
+#endif
