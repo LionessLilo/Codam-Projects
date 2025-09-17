@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/09/10 14:12:09 by lilo          #+#    #+#                 */
-/*   Updated: 2025/09/10 15:23:48 by lilo          ########   odam.nl         */
+/*   Updated: 2025/09/17 14:16:37 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,23 +21,6 @@ void	ft_free(char **memory)
 	}
 }
 
-void	*ft_memset(void *memory,
-					int filler,
-					size_t size)
-{
-	size_t	i;
-
-	i = 0;
-	if (size == 0)
-		return (memory);
-	while (i < size)
-	{
-		((unsigned char *)memory)[i] = (unsigned char)filler;
-		i++;
-	}
-	return (memory);
-}
-
 char	*ft_strchr(const char *str,
 					int chr)
 {
@@ -50,4 +33,31 @@ char	*ft_strchr(const char *str,
 	if ((unsigned char)chr == '\0')
 		return ((char *)str);
 	return (NULL);
+}
+
+char	*ft_strjoin(char const *s1, char const *s2)
+{
+	char	*ptr;
+	char	*s3;
+
+	if (!s1 || !s2)
+	{
+		return (NULL);
+	}
+	ptr = malloc(ft_strlen((char *)s1) + ft_strlen((char *)s2) + 1);
+	if (!ptr)
+	{
+		return (NULL);
+	}
+	s3 = ptr;
+	while (*s1)
+	{
+		*s3++ = *s1++;
+	}
+	while (*s2)
+	{
+		*s3++ = *s2++;
+	}
+	*s3 = '\0';
+	return (ptr);
 }
