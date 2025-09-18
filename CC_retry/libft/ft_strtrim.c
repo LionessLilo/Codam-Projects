@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/06/30 11:26:53 by lilo          #+#    #+#                 */
-/*   Updated: 2025/06/30 16:00:57 by lilo          ########   odam.nl         */
+/*   Updated: 2025/09/18 11:34:19 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static char		*create_newstr(const char *start_newstr, const char *end_newstr,
 
 /* 
 	Returns a copy of the string with the characters specified in 
-	’exclusion set’ removedfrom the beginning and the end of the string.
+	’exclusion set’ removed from the beginning and the end of the string.
 	If there are no valid characters it returns an empty string.
 */
 

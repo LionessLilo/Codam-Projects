@@ -6,7 +6,7 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/10/20 00:38:11 by llourens      #+#    #+#                 */
-/*   Updated: 2025/09/05 15:26:38 by lilo          ########   odam.nl         */
+/*   Updated: 2025/09/18 12:10:16 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "libft/libft.h"
 #include "ft_printf.h"
 
+/* Prints and unsigned integer */
 
 int	ft_print_u(unsigned int nbr)
 {

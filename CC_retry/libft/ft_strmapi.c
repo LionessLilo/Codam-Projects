@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/06/30 16:23:12 by lilo          #+#    #+#                 */
-/*   Updated: 2025/06/30 17:02:14 by lilo          ########   odam.nl         */
+/*   Updated: 2025/09/18 11:33:52 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 /*
 Applies the function to each character of the string, passing its index
-as the first argumentand the character itself as the second. A newstring is 
-created (using malloc) to collect theresults from the successive 
+as the first argument and the character itself as the second. A newstring is 
+created (using malloc) to collect the results from the successive 
 applications of the function.
 */
 

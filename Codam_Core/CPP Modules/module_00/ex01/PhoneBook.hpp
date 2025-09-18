@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/09/15 15:22:09 by lilo          #+#    #+#                 */
-/*   Updated: 2025/09/16 17:44:20 by lilo          ########   odam.nl         */
+/*   Updated: 2025/09/17 18:25:00 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define PHONEBOOK_HPP
 
 #include "Contact.hpp"
+#include <iostream>
 
 class	PhoneBook
 {
@@ -24,7 +25,8 @@ class	PhoneBook
 
 	public:
 	PhoneBook();
-	int	AddContact();
+	int	addContact();
+	int	search();
 
 };
 

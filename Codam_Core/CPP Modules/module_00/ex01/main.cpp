@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/09/15 16:28:32 by lilo          #+#    #+#                 */
-/*   Updated: 2025/09/16 17:41:43 by lilo          ########   odam.nl         */
+/*   Updated: 2025/09/17 18:24:02 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,14 @@ int	main(void)
 			instructions();
 		}
 		if (input.compare("ADD") == 0)
-			
+			if (phonebook_1.addContact() == -1)
+				return -1;
 		else if (input.compare("SEARCH") == 0)
-			//To do: search for a contact
+			
 		else if (input.compare("EXIT") == 0)
 		{
-			exit = true;
+			exit_flag = true;
+			exit(0);
 		}
 	}
 

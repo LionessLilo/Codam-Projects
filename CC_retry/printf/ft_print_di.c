@@ -6,14 +6,16 @@
 /*   By: llourens <llourens@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/10/31 14:30:11 by llourens      #+#    #+#                 */
-/*   Updated: 2024/12/18 17:05:25 by llourens      ########   odam.nl         */
+/*   Updated: 2025/09/18 12:12:46 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
 #include "ft_printf.h"
+#include "libft/libft.h"
 #include <stdio.h>
 #include <stdlib.h>
+
+/* Converts a number to a string and then prints the string */
 
 int	ft_print_di(int nbr)
 {

@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/11/06 10:42:27 by lilo          #+#    #+#                 */
-/*   Updated: 2024/11/07 15:20:53 by llourens      ########   odam.nl         */
+/*   Updated: 2025/09/18 12:11:13 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 #include <stdint.h>
 #include <unistd.h>
 #include <stdlib.h>
+
+/* Prints a pointer address */
 
 int	ft_print_p(void *nbr)
 {
