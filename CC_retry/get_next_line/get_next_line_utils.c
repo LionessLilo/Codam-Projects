@@ -5,24 +5,34 @@
 /*                                                     +:+                    */
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2025/09/10 14:12:09 by lilo          #+#    #+#                 */
-/*   Updated: 2025/09/17 14:16:37 by lilo          ########   odam.nl         */
+/*   Created: 2025/09/18 16:07:45 by lilo          #+#    #+#                 */
+/*   Updated: 2025/09/18 17:53:40 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-void	ft_free(char **memory)
+char	*ft_strchr(const char *str, int chr);
+size_t	ft_strlen(const char *string);
+void	free_list(t_buffer *list);
+char	*ft_strjoin(char const *str1, char const *str2);
+
+/* Creates an empty string */
+
+char	*empty_string(void)
 {
-	if (*memory)
-	{
-		free(*memory);
-		*memory = NULL;
-	}
+	char	*empty_str;
+
+	empty_str = malloc(sizeof(char *));
+	if (!empty_str)
+		return (NULL);
+	empty_str = "";
+	return (empty_str);
 }
 
-char	*ft_strchr(const char *str,
-					int chr)
+/* Returns a pointer to the first occurance of the character in the string */
+
+char	*ft_strchr(const char *str, int chr)
 {
 	while (*str)
 	{
@@ -35,29 +45,61 @@ char	*ft_strchr(const char *str,
 	return (NULL);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
-{
-	char	*ptr;
-	char	*s3;
+/* Frees the linked list and its contents */
 
-	if (!s1 || !s2)
+void	free_list(t_buffer *list)
+{
+	t_buffer	*temp;
+
+	if (!list)
+		return ;
+	while (list)
 	{
+		temp = (list)->next;
+		free(list->buffer);
+		free(list);
+		list = temp;
+	}
+}
+
+/*
+	Creates a new string and joins the two strings in the new string.
+	You will need to free the resulting string when you call the function.
+*/
+
+char	*ft_strjoin(char const *str1, char const *str2)
+{
+	char	*new_string;
+	char	*start_newstr;
+
+	if (!str1 || !str2)
 		return (NULL);
-	}
-	ptr = malloc(ft_strlen((char *)s1) + ft_strlen((char *)s2) + 1);
-	if (!ptr)
-	{
+	new_string = malloc(sizeof(char) * (ft_strlen(str1) + ft_strlen(str2) + 1));
+	if (!new_string)
 		return (NULL);
-	}
-	s3 = ptr;
-	while (*s1)
+	start_newstr = new_string;
+	while (*str1)
 	{
-		*s3++ = *s1++;
+		*new_string = *str1;
+		new_string++;
+		str1++;
 	}
-	while (*s2)
+	while (*str2)
 	{
-		*s3++ = *s2++;
+		*new_string = *str2;
+		new_string++;
+		str2++;
 	}
-	*s3 = '\0';
-	return (ptr);
+	*new_string = '\0';
+	return (start_newstr);
+}
+
+size_t	ft_strlen(const char *string)
+{
+	size_t	length;
+
+	length = 0;
+	while (string[length])
+		length++;
+	return (length);
 }
