@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/09/18 15:34:44 by lilo          #+#    #+#                 */
-/*   Updated: 2025/09/18 19:21:59 by lilo          ########   odam.nl         */
+/*   Updated: 2025/09/19 12:09:24 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,16 @@ char	*get_next_line(int fd)
 		return (free(leftover), NULL);
 	i = 0;
 	while (fetched_line[i] && fetched_line[i] != '\n')
+		i++;
+	return_line = malloc((sizeof(char) * i) + 1);
+	if (!return_line)
+		return (NULL);
+	i = 0;
+	while (fetched_line[i] && fetched_line[i] != '\n')
 	{
 		return_line[i] = fetched_line[i];
 		i++;
 	}
-	return_line[i] = '\0';
 	leftover = leftover_and_clean(fetched_line);
 	return (return_line);
 }
@@ -59,7 +64,6 @@ char	*fetch_line(int fd, char *leftover)
 	bytes_read = 1;
 	while (bytes_read > 0 && !ft_strchr(new_node->buffer, '\n'))
 	{
-		bytes_read = 0;
 		bytes_read = read(fd, new_node->buffer, BUFFER_SIZE);
 		if (bytes_read < 0)
 			return (free_list(buffer_list), NULL);
@@ -69,15 +73,30 @@ char	*fetch_line(int fd, char *leftover)
 		new_node = new_node->next;
 	}
 	str = extract_line(buffer_list);
-	free_list(buffer_list);
+	if (!str)
+		return (NULL);
 	return_str = ft_strjoin(leftover, str);
 	return (return_str);
 }
 
 char	*extract_line(t_buffer *list)
 {
-	char	*str;
+	char		*str;
+	t_buffer	*list_start;
+	int			i;
 
+	i = 0;
+	list_start = list;
+	while (list)
+	{
+		while (list->buffer[i])
+			i++;
+		list = list->next;
+	}
+	str = malloc((sizeof(char *) * i) + 1);
+	if (!str)
+		return (NULL);
+	list = list_start;
 	while (list)
 	{
 		str = ft_strjoin(str, list->buffer);
@@ -110,12 +129,13 @@ char	*leftover_and_clean(char *fetched_line)
 	char	*leftover;
 
 	i = 0;
+	i_leftover = 0;
 	while (*fetched_line && *fetched_line != '\n')
 		fetched_line++;
 	if (*fetched_line == '\n')
 	{
 		fetched_line++;
-		leftover = malloc(sizeof(char *) * ft_strlen(fetched_line));
+		leftover = malloc(sizeof(char) * ft_strlen(fetched_line) + 1);
 		if (!leftover)
 			return (free(fetched_line), NULL);
 		while (fetched_line[i])
