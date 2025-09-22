@@ -4,7 +4,8 @@ FLAGS = -Wall -Wextra -Werror -std=c++98
 
 SRCS = Contact.cpp \
 PhoneBook.cpp \
-main.cpp
+main.cpp \
+PhoneBook_utils.cpp
 
 all: $(NAME)
 

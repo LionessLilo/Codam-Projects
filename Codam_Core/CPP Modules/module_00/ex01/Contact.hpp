@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/09/15 13:28:12 by lilo          #+#    #+#                 */
-/*   Updated: 2025/09/15 15:33:08 by lilo          ########   odam.nl         */
+/*   Updated: 2025/09/22 12:00:39 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define CONTACT_HPP
 
 #include <string>
+#include <iostream>
 
 class Contact
 {

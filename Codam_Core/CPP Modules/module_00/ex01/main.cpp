@@ -6,7 +6,7 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/09/15 16:28:32 by lilo          #+#    #+#                 */
-/*   Updated: 2025/09/17 18:24:02 by lilo          ########   odam.nl         */
+/*   Updated: 2025/09/22 12:41:19 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,12 @@ int		check_input(std::string user_input);
 int	main(void)
 {
 	PhoneBook	phonebook_1;
-	bool		exit_flag;
+	bool		exit_flag = false;
 	std::string	input;
 
 	std::cout << "Welcome to your PhoneBook!\n" << std::endl;
 	instructions();
-	while (!exit)
+	while (!exit_flag)
 	{
 		std::getline(std::cin, input);
 		if (check_input(input) == -1)
@@ -37,14 +37,19 @@ int	main(void)
 			instructions();
 		}
 		if (input.compare("ADD") == 0)
+		{
 			if (phonebook_1.addContact() == -1)
 				return -1;
+		}
 		else if (input.compare("SEARCH") == 0)
-			
+		{
+			if (phonebook_1.search() == -1)
+				return -1;
+		}
 		else if (input.compare("EXIT") == 0)
 		{
 			exit_flag = true;
-			exit(0);
+			exit (0);
 		}
 	}
 

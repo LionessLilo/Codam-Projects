@@ -6,12 +6,13 @@
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/09/15 15:23:17 by lilo          #+#    #+#                 */
-/*   Updated: 2025/09/17 18:30:15 by lilo          ########   odam.nl         */
+/*   Updated: 2025/09/22 12:47:57 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
 #include "Contact.hpp"
+#include "main.hpp"
 
 PhoneBook::PhoneBook()
 {
@@ -26,36 +27,11 @@ int	PhoneBook::addContact(void)
 
 	std::cout << "Please fill in the following information\n" <<std::endl;
 
-	std::cout << "First name:";
-	std::getline(std::cin, input);
-	std::cout << std::endl;
-	newContact.set_first_name(input);
-	input.clear();
-
-	std::cout << "Last name:";
-	std::getline(std::cin, input);
-	std::cout << std::endl;
-	newContact.set_last_name(input);
-	input.clear();
-
-	std::cout << "Nickname:";
-	std::getline(std::cin, input);
-	std::cout << std::endl;
-	newContact.set_nickname(input);
-	input.clear();
-
-	std::cout << "Phone number:";
-	std::getline(std::cin, input);
-	std::cout << std::endl;
-	newContact.set_phone_nbr(input);
-	input.clear();
-
-	std::cout << "Your darkest secret:";
-	std::getline(std::cin, input);
-	std::cout << std::endl;
-	newContact.set_secret(input);
-	input.clear();
-
+	ask_and_set("First name: ", newContact, &Contact::set_first_name);
+	ask_and_set("Last name: ", newContact, &Contact::set_last_name);
+	ask_and_set("Nickname: ", newContact, &Contact::set_nickname);
+	ask_and_set("Phone number: ", newContact, &Contact::set_phone_nbr);
+	ask_and_set("Their darkest secret: ", newContact, &Contact::set_secret);
 
 	contactsList[nextEntry] = newContact;
 	nextEntry = (nextEntry + 1) % 8;
@@ -64,5 +40,16 @@ int	PhoneBook::addContact(void)
 
 int	PhoneBook::search(void)
 {
-	
+	// bool	return_flag = false;
+	// int		i = 0;
+
+	// while (!return_flag)
+	// {
+		std::cout << "PhoneBook\n" << std::endl;
+
+		std::cout << "---------------------------------------------" << std::endl;
+		std::cout << "|     Index|First Name| Last Name|  Nickname|" << std::endl;
+		std::cout << "---------------------------------------------" << std::endl;
+	// }
+	return 0;
 }

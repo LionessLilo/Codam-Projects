@@ -1,23 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   main.hpp                                           :+:    :+:            */
+/*   PhoneBook_utils.cpp                                :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: lilo <lilo@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2025/09/16 14:21:00 by lilo          #+#    #+#                 */
-/*   Updated: 2025/09/22 12:19:33 by lilo          ########   odam.nl         */
+/*   Created: 2025/09/22 12:08:39 by lilo          #+#    #+#                 */
+/*   Updated: 2025/09/22 12:10:00 by lilo          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAIN_HPP
-# define MAIN_HPP
+#include "main.hpp"
 
-#include <string>
-#include <iostream>
-#include <cstdlib>
-#include "PhoneBook.hpp"
+void ask_and_set(const std::string& title, Contact& contact, void (Contact::*setter)(std::string))
+{
+    std::string input;
 
-void ask_and_set(const std::string& title, Contact& contact, void (Contact::*setter)(std::string));
-
-#endif
+    std::cout << title << std::endl;
+    std::getline(std::cin, input);
+    std::cout << std::endl;
+    (contact.*setter)(input);
+    input.clear();
+}
